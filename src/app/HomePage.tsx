@@ -5,6 +5,8 @@ import{Home,Info} from'../styled/HomePage'
 import Header from "../components/header/Header";
 import Footer from "../components/footer/Footer";
 
+
+
 function HomePage() {
 
 
@@ -16,6 +18,8 @@ function HomePage() {
         <Header />
 
 k
+
+
 
         <Footer />
       </Info>
