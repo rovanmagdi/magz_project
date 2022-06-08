@@ -12,7 +12,7 @@ export default function Login() {
     <>
       <Home />
       <Info>
-        fff
+        ddddd
         <StyledLoginContainer>
           <NavbarSign />
           <Box sx={{ display: "flex" }}>
