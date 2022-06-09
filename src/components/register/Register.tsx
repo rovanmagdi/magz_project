@@ -6,6 +6,8 @@ import { LoginInterFace } from "../../types/login";
 import Joi from "joi";
 import { StyledError } from "../../styled/Error";
 import { RegisterInterFace } from "../../types/Register";
+import { useSelector, useDispatch } from "react-redux";
+import { registerUser } from "../../redux/actions/registerAction";
 
 export default function Register() {
   const [state, setState] = useState({
@@ -23,21 +25,22 @@ export default function Register() {
     setState({ ...state, [name]: value });
   };
 
-  function validateLoginForm(login: RegisterInterFace) {
+  function validateLoginForm(login: any) {
     const schema = Joi.object({
       firstName: Joi.string(),
       lastName: Joi.string(),
       email: Joi.string()
         .email({ minDomainSegments: 2, tlds: { allow: ["com", "net"] } })
         .required(),
-      password: Joi.string()
-        .required(),
-      confirmePassword: Joi.any().equal(Joi.ref('password'))
-        
+      password: Joi.string().required(),
+      confirmePassword: Joi.any().equal(Joi.ref("password")),
     });
 
     return schema.validate(login, { abortEarly: false });
   }
+  const dispatch: any = useDispatch();
+  const any = useSelector((any: any) =>any.user);
+
   const handleSubmit = (e: React.SyntheticEvent) => {
     e.preventDefault();
     setErrorList([]);
@@ -46,7 +49,10 @@ export default function Register() {
       setErrorList(validationLoginFormResult.error.details);
     } else {
       // dispatch(loginAdmin(login));
+      console.log(any);
+
       console.log("done");
+      dispatch(registerUser(state.lastName, state.firstName,state.email ,state.password));
       setErrorList([]);
     }
   };
@@ -116,7 +122,7 @@ export default function Register() {
             }
           })
         : ""}
-         <BootstrapInput
+      <BootstrapInput
         placeholder="Confirm Password"
         type="password"
         value={confirmePassword}
@@ -129,7 +135,9 @@ export default function Register() {
         ? errorList.map((error: any, index: any) => {
             // console.log(error);
             if (error.path[0] === "confirmePassword") {
-              return <StyledError key={index}>not match with Password</StyledError>;
+              return (
+                <StyledError key={index}>not match with Password</StyledError>
+              );
             }
           })
         : ""}
