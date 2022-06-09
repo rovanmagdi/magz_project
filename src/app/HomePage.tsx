@@ -4,8 +4,7 @@ import { Box, useMediaQuery, CircularProgress } from "@mui/material";
 import { Home, Info } from "../styled/HomePage";
 import Header from "../components/header/Header";
 import Footer from "../components/footer/Footer";
-import SportsPage from '../pages/sportsPage/SportsPage'
-
+import SportsPage from "../pages/sportsPage/SportsPage";
 
 function HomePage() {
   const isMatch = useMediaQuery(theme.breakpoints.down("sm"));
@@ -15,8 +14,7 @@ function HomePage() {
       <Info>
         <Header />
         k
-        <SportsPage/>
-        
+        <SportsPage />
         <Footer />
       </Info>
     </>
