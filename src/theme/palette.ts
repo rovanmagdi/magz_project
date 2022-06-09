@@ -190,7 +190,7 @@ export const theme = createTheme({
     }
   },
   shape: {
-    borderRadius: 8
+    borderRadius: 5
   },
   shadows: [
     'none',
@@ -223,6 +223,7 @@ export const theme = createTheme({
     button: {
       fontWeight: 600
     },
+
     fontFamily: "arial, Oswald",
     body1: {
       fontSize: '1rem',

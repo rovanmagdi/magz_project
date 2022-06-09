@@ -14,10 +14,10 @@ const CategorySquareCardComponent: React.FC<Post> = (props) => {
   const StyledCard = styled(Box)(({ theme }) => ({
     color: theme.palette.primary.contrastText,
     backgroundColor: theme.palette.primary.main,
-    width: "35%",
-    minHeight: "300px",
+    // width: "100%",
+    minHeight: "83%",
     borderRadius: theme.shape.borderRadius,
-    backgroundImage: `url(${Person})`,
+    backgroundImage: `url(${image})`,
     position: "relative",
    
     
