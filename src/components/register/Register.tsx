@@ -39,7 +39,7 @@ export default function Register() {
     return schema.validate(login, { abortEarly: false });
   }
   const dispatch: any = useDispatch();
-  const any = useSelector((any: any) =>any.user);
+  const { status } = useSelector((any: any) => any);
 
   const handleSubmit = (e: React.SyntheticEvent) => {
     e.preventDefault();
@@ -49,14 +49,22 @@ export default function Register() {
       setErrorList(validationLoginFormResult.error.details);
     } else {
       // dispatch(loginAdmin(login));
-      console.log(any);
-
       console.log("done");
-      dispatch(registerUser(state.lastName, state.firstName,state.email ,state.password));
+      dispatch(
+        registerUser(
+          state.lastName,
+          state.firstName,
+          state.email,
+          state.password
+        )
+      );
       setErrorList([]);
     }
   };
 
+  useEffect(() => {
+    console.log(status.errorStatus);
+  }, [status]);
   return (
     <form onSubmit={handleSubmit}>
       <BootstrapInput
@@ -104,6 +112,7 @@ export default function Register() {
             }
           })
         : ""}
+      <StyledError>{status.errorStatus}</StyledError>
       <BootstrapInput
         placeholder="Password"
         type="password"
