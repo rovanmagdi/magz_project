@@ -9,10 +9,11 @@ export const registerUser = (firstName: any, lastName: any, email: any, password
         const { data } = await registerApi
 		.post(`/user`, { firstName, lastName, email, password });
 			dispatch(showSuccess());
-
         localStorage.setItem('RegisterInfo', JSON.stringify(data));
     } catch (error: any) {
-        dispatch(showError(error.response.status));
+        dispatch(showError(error.response.data.message));
+        // console.log();
+        
 
     }
 };
