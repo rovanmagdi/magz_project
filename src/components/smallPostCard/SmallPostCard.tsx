@@ -10,7 +10,7 @@ import { styled, ThemeProvider } from "@mui/system";
 import Post from "../../types/post";
 import { theme } from "../../theme/palette";
 
-export default function PostCard(props: Post) {
+export default function SmallPostCard(props: Post) {
   const { title, image, description, updatedAt } = props;
   console.log(title, image, description, updatedAt);
 
@@ -34,17 +34,19 @@ export default function PostCard(props: Post) {
     <ThemeProvider theme={theme}>
       <Card
         sx={{
-          width: "30%",
+          width: "23%",
           minHeight: "300px",
-          border: ".1px solid lightGray",
+         
           mb: 10,
         }}
+        elevation={0}
       >
         <CardMedia
           component="img"
           height="250px"
           image={image}
           alt=""
+          sx={{borderRadius:'5px'}}
         />
         <CardContent sx={{ py: "20px" }}>
           <PostTitle color="text.dark">{title}</PostTitle>
