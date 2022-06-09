@@ -3,26 +3,20 @@ import Card from '@mui/material/Card';
 import CardHeader from '@mui/material/CardHeader';
 import CardMedia from '@mui/material/CardMedia';
 import CardContent from '@mui/material/CardContent';
-import CardActions from '@mui/material/CardActions';
-import Collapse from '@mui/material/Collapse';
 import Avatar from '@mui/material/Avatar';
-import IconButton, { IconButtonProps } from '@mui/material/IconButton';
 import Typography from '@mui/material/Typography';
 import { red } from '@mui/material/colors';
-import FavoriteIcon from '@mui/icons-material/Favorite';
-import ShareIcon from '@mui/icons-material/Share';
-import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
-import MoreVertIcon from '@mui/icons-material/MoreVert';
-import Person from "../../../assets/person.png";
-import { styled, ThemeProvider } from "@mui/system";
-
-interface ExpandMoreProps extends IconButtonProps {
-  expand: boolean;
-}
+import { styled } from "@mui/system";
+import Post from '../../types/post'
 
 
 
-export default function PostCard() {
+
+
+export default function PostCard(props:Post) {
+
+  const{title,image,description,updatedAt}=props;
+  console.log(title,image,description,updatedAt);
 
 
     const PostTitle=styled(Typography)(({ theme }) => ({
@@ -53,16 +47,17 @@ export default function PostCard() {
       <CardMedia
         component="img"
         height="250px"
-        image= {Person}
+        image= {image}
         alt="Paella dish"
         
       />
       <CardContent sx={{py:'20px',}} >
         <PostTitle  color="text.dark" >
-        Nina Dobrev Got A Chin-Length, Asymmetrical Bob For The CFDA…
+       {title}
         </PostTitle>
         <PostDate variant='body1'  >
-        September 14, 2016
+        {/* September 14, 2016 */}
+        {updatedAt}
         </PostDate>
 
       </CardContent>
@@ -70,7 +65,7 @@ export default function PostCard() {
       <CardHeader
      
         avatar={
-          <Avatar sx={{ bgcolor: red[500],}} src={Person}  aria-label="recipe">
+          <Avatar sx={{ bgcolor: red[500],}} src={image}  aria-label="recipe">
          
           </Avatar>
         }

@@ -1,23 +1,21 @@
-import React from 'react';
+import React from "react";
 import Box from "@mui/material/Box";
 import { styled, ThemeProvider } from "@mui/system";
-import { theme } from "../../../theme/palette";
-import Person from "../../../assets/person.png";
+import { theme } from "../../theme/palette";
+import Person from "../../assets/person.png";
 import Typography from "@mui/material/Typography";
+import Post from '../../types/post'
 
-
-
-
+const CategorySquareCardComponent: React.FC<Post> = (props) => {
   
- 
-
-const CategoryRectCard:React.FC = () => {
+  const{title,image,description,updatedAt}=props;
+  console.log(title,image,description,updatedAt);
 
   const StyledCard = styled(Box)(({ theme }) => ({
     color: theme.palette.primary.contrastText,
     backgroundColor: theme.palette.primary.main,
-    width: "52%",
-    minHeight: "145px",
+    width: "35%",
+    minHeight: "300px",
     borderRadius: theme.shape.borderRadius,
     backgroundImage: `url(${Person})`,
     position: "relative",
@@ -28,28 +26,28 @@ const CategoryRectCard:React.FC = () => {
 
   }));
 
+  
 
-    return (
-      <ThemeProvider theme={theme}>
+  return (
+    <ThemeProvider theme={theme}>
       <StyledCard>
        
         <Typography
           sx={{
-            width: "70%",
+            width: "80%",
             position: "absolute",
-            top: "60%",
+            top: "70%",
             textTransform: "upperCase",
             fontWeight:'bold',
             fontSize: "1em",
           }} variant='caption'
         >
           
-          Adwoa Aboah Opens Up About Her Suicide Attempt on World Mental Health
-          Day
+          {title}
         </Typography>
       </StyledCard>
     </ThemeProvider>
-      );
+  );
 };
 
-export default CategoryRectCard;
+export default CategorySquareCardComponent;
