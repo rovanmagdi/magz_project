@@ -7,6 +7,7 @@ import Footer from "../components/footer/Footer";
 import SportsPage from '../pages/sportsPage/SportsPage'
 
 
+
 function HomePage() {
   const isMatch = useMediaQuery(theme.breakpoints.down("sm"));
   return (
@@ -15,6 +16,7 @@ function HomePage() {
       <Info>
         <Header />
         k
+        
         <SportsPage/>
         
         <Footer />
