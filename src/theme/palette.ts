@@ -223,7 +223,8 @@ export const theme = createTheme({
     button: {
       fontWeight: 600
     },
-    fontFamily: "arial,Oswald",
+
+    fontFamily: "arial, Oswald",
     body1: {
       fontSize: '1rem',
       fontWeight: 400,
