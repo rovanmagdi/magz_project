@@ -2,6 +2,7 @@ import { BootstrapInput } from "../../styled/Input";
 import { FormControl, Box } from "@mui/material";
 import { StyledButton } from "../../styled/Button";
 import { useEffect, useState } from "react";
+import  {LoginInterFace} from '../../types/login'
 
 export default function SignIn() {
   const [state, setState] = useState({
@@ -19,7 +20,7 @@ export default function SignIn() {
     setState({ ...state, [name]: value });
   };
 
-  const validate = (values: any) => {
+  const validate = (values: LoginInterFace) => {
     let errors = { email: "", password: "" };
     const regex = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/i;
     if (!values.email) {
@@ -40,20 +41,16 @@ export default function SignIn() {
     e.preventDefault();
     console.log(isSubmitting);
     setFormErrors(validate(state))
-    if(formErrors)
-    {
-      console.log();
-      
-    }
+    setIsSubmitting(true);
     console.log(isSubmitting);
  
   };
  
   useEffect(() => {
     if (isSubmitting) {
-      console.log("done");
+      console.log(state);
     }
-  }, [isSubmitting]);
+  });
 
   return (
     <form onSubmit={handleSubmit}>
