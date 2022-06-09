@@ -5,14 +5,14 @@ import NavbarSign from "../../components/navbarSign/NavbarSign";
 import { Home, Info } from "../../styled/HomePage";
 import MniNavbar from "../../components/mniNabarSign/mniNavbar";
 import { StyledLoginContainer } from "../../styled/Login";
-import { Box } from "@mui/system";
+import {Box} from"@mui/material"
 
 export default function Login() {
   return (
     <>
       <Home />
       <Info>
-        fff
+       
         <StyledLoginContainer>
           <NavbarSign />
           <Box sx={{ display: "flex" }}>
