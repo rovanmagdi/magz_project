@@ -2,7 +2,6 @@ import React from "react";
 import Box from "@mui/material/Box";
 import { styled, ThemeProvider } from "@mui/system";
 import { theme } from "../../theme/palette";
-import Person from "../../assets/person.png";
 import Typography from "@mui/material/Typography";
 import Post from '../../types/post'
 
@@ -14,14 +13,11 @@ const CategorySquareCardComponent: React.FC<Post> = (props) => {
   const StyledCard = styled(Box)(({ theme }) => ({
     color: theme.palette.primary.contrastText,
     backgroundColor: theme.palette.primary.main,
-    // width: "100%",
-    minHeight: "83%",
+    height: "100%",
     borderRadius: theme.shape.borderRadius,
     backgroundImage: `url(${image})`,
     position: "relative",
-   
-    
-    padding: "28px",
+    paddingLeft: "28px",
 
 
   }));
@@ -36,7 +32,7 @@ const CategorySquareCardComponent: React.FC<Post> = (props) => {
           sx={{
             width: "80%",
             position: "absolute",
-            top: "70%",
+            top: {md:"70%",xs:'60%'},
             textTransform: "upperCase",
             fontWeight:'bold',
             fontSize: "1em",

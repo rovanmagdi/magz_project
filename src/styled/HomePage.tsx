@@ -14,6 +14,7 @@ export const Home = styled(Box)(({ theme }) => ({
     width: "950px",
     margin: "auto",
     position: "relative",
+    padding:'20px',
     fontFamily: ["Open Sans"],
     "@media (min-width: 780px)": {
       width: "80%",
