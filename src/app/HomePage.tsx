@@ -5,7 +5,7 @@ import { Home, Info } from "../styled/HomePage";
 import Header from "../components/header/Header";
 import Footer from "../components/footer/Footer";
 import Homenews from "../pages/home/Homenews";
-import SportsPage from '../pages/sportsPage/SportsPage'
+import SportsPage from '../pages/categoryPage/CategoryPage'
 
 
 
@@ -18,9 +18,9 @@ function HomePage() {
       <Info>
     
         <Header />
-        k
+        
 
-<Homenews></Homenews>
+{/* <Homenews></Homenews> */}
 
      
 

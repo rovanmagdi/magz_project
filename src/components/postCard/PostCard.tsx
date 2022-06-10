@@ -11,17 +11,21 @@ import Post from "../../types/post";
 import { theme } from "../../theme/palette";
 
 export default function PostCard(props: Post) {
-  const { title, image, description, updatedAt } = props;
-  console.log(title, image, description, updatedAt);
+  const { title, image, updatedAt } = props;
+  
 
   const PostTitle = styled(Typography)(({ theme }) => ({
     fontWeight: "bold",
     fontSize: ".9em",
+    width:'250px',
+    
+    
   }));
 
   const PostDate = styled(Typography)(({ theme }) => ({
     fontSize: ".8em",
-    color: 'gray'
+    color: 'gray',
+    
     
   }));
 
@@ -34,10 +38,10 @@ export default function PostCard(props: Post) {
     <ThemeProvider theme={theme}>
       <Card
         sx={{
-          width: "30%",
-          minHeight: "300px",
+          // width: "30%",
+          // minHeight: "300px",
           border: ".1px solid lightGray",
-          mb: 10,
+          // mb: 10,
         }}
       >
         <CardMedia
@@ -47,11 +51,15 @@ export default function PostCard(props: Post) {
           alt=""
         />
         <CardContent sx={{ py: "20px" }}>
-          <PostTitle color="text.dark">{title}</PostTitle>
+          <PostTitle color="text.dark">{title}
+         
+          
+          </PostTitle>
           <PostDate variant="body1" ml={1} mt={1}>
             {/* September 14, 2016 */}
             {updatedAt}
           </PostDate>
+         
         </CardContent>
 
         <CardHeader
