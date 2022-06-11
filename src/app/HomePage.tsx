@@ -23,9 +23,9 @@ function HomePage() {
         <Info>
           {" "}
           <ProfilePge />
+<Homenews></Homenews>
         </Info>
 
-<Homenews></Homenews>
 
      
 

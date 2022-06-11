@@ -14,7 +14,6 @@ export const CategoryLabelBox = styled(Box)(({ theme }) => ({
   alignItems: "center",
   fontFamily: "Oswald",
   textTransform: "uppercase",
-  //  marginLeft:"20px"
 }));
 
 export const TodayLabelBox = styled(CategoryLabelBox)(({ theme }) => ({
@@ -32,7 +31,7 @@ export const HorizontalLineBox = styled(Box)(() => ({
   height: "4px",
   position: "absolute",
   top: "90%",
-  left: "8%",
+  left: "6%",
 }));
 
 export const AvatarBox = styled(Box)(() => ({

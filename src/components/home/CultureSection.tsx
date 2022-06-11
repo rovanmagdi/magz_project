@@ -16,7 +16,7 @@ const CultureSection = () => {
     <CategoryLabelBox sx={{backgroundColor:"#128CCB"}} >Culture</CategoryLabelBox>
     <HorizontalLineBox sx={{backgroundColor:"#128CCB"}}></HorizontalLineBox>
     </Box>  
-        <Stack flexDirection={"row"}>
+        <Stack flexDirection={"row"} >
               {
         posts? (posts.map((post:any)=>{
             return <Culture {...post}/>

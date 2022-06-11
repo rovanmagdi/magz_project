@@ -23,7 +23,7 @@ import NightlightIcon from "@mui/icons-material/Nightlight";
 import { keyframes } from "@emotion/react";
 import LocationOnIcon from "@mui/icons-material/LocationOn";
 import { StyledCloudIcon } from "../../styled/StyledIcon";
-import { WeatherPaper } from "../../styled/StyledPaper";
+import { WeatherPaper } from "../../styled/styledPaper";
 const spin = keyframes`
 from {
   transform: rotate(0deg);

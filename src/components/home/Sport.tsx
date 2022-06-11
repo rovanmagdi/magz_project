@@ -15,7 +15,7 @@ import { OverlaySportBox } from '../../styled/styledBox';
 import { StyledSportCard } from '../../styled/styledCard';
 import Post from '../../types/post';
 // import { TypographyCardTitle } from '../../styled/StyledTypography';
-import { TypographyCardTitle } from '../../styled/StyledTypography';
+import { TypographyCardTitle } from '../../styled/styledTypography';
 
 const Sport: React.FC<Post> = (props) => {
   

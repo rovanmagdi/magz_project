@@ -5,9 +5,9 @@ import { Card } from "@mui/material";
 
 
 export const StyledCard = styled(Card)(() => ({
-    margin: "20px 0 0 20px",
     position: "relative",
     borderRadius: "4px",
+    marginTop:"20px"
    
   }));
 

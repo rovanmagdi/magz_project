@@ -12,7 +12,7 @@ import { color } from '@mui/system';
 import { StyledCultureCard } from '../../styled/styledCard';
 import { OverlayCultureBox } from '../../styled/styledBox';
 import Post from '../../types/post';
-import { TypographyCardTitle } from '../../styled/StyledTypography';
+import { TypographyCardTitle } from '../../styled/styledTypography';
 
 const Culture: React.FC<Post> = (props) => {
   const{title,image,description,updatedAt, auther}=props;
