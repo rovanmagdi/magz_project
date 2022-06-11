@@ -11,9 +11,11 @@ export const PostTitle = styled(Typography)(({ theme }) => ({
 export const PostDate = styled(Typography)(({ theme }) => ({
   fontSize: ".8em",
   color: "gray",
+  //ahmed
 }));
 
 export const AutherName = styled(Typography)(({ theme }) => ({
   fontSize: "1em",
   color: "black",
+  //ahmed
 }));
