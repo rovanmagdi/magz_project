@@ -30,6 +30,7 @@ function App() {
     margin: "auto",
     position: "relative",
     fontFamily: ["Open Sans"],
+    // padding:'20px',
     "@media (min-width: 780px)": {
       width: "80%",
     },
