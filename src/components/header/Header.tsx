@@ -47,7 +47,7 @@ import DrawerList from "./Drawer";
 import { Link } from "react-router-dom";
 
 const Header = () => {
-  let newDate = new Date("15-2-1999");
+  let newDate = new Date();
   const days = [
     "Sunday",
     "Monday",

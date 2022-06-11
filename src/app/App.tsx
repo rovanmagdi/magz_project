@@ -14,6 +14,7 @@ import Image from "../assets/background.png";
 import Footer from "../components/footer/Footer";
 import Login from "../pages/Sign/Login";
 import HomePage from "./HomePage";
+import Interested from "../pages/Interested/Interested";
 function App() {
   const Home = styled(Box)(({ theme }) => ({
     backgroundImage: `url(${Image})`,
@@ -41,18 +42,14 @@ function App() {
   return (
     <Provider store={store}>
       <ThemeProvider theme={theme}>
-       
-        
         <Suspense fallback={<CircularProgress />}>
           <BrowserRouter>
             <Routes>
               <Route path="/" element={<HomePage />} />
-              
-              <Route path="/login" element={<Login />} />
-              
+              <Route path="login" element={<Login />} />
+              <Route path="interested" element={<Interested />} />
             </Routes>
           </BrowserRouter>
-        
         </Suspense>
       </ThemeProvider>
     </Provider>
