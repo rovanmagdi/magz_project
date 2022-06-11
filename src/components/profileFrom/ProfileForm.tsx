@@ -12,6 +12,7 @@ import TextField from "@mui/material/TextField";
 import { useDispatch  } from "react-redux";
 import {setFalseProfileEditFlag} from '../../redux/actions/flagsAction'
 import {UserInfo} from '../../types/profile'
+import axios from 'axios';
 
 
 export default function ProfileForm() {
@@ -26,9 +27,28 @@ export default function ProfileForm() {
 
   const dispatch:any=useDispatch();
 
+  const config={
+    headers:{
+     'Content-Type':'application/json',
+     Authorization:`Bearer ${userToken}`
+    }
+  }
 
   const handleSaveClick=()=>{
+    const data={
+      firstName:"ahamjhfuded",
+      lastName:"shalaby",
+    intersted:["sport","life"]
+  }
       //api call with patch
+      axios.patch(`${process.env.REACT_APP_BACKED}/user`,data,config)
+      .then(res => {
+        const updatedUser=res.data;
+        console.log(updatedUser)
+        // localStorage.setItem('RegisterInfo','hi')
+      }).catch((err)=>{
+        console.log(err)
+      })
     dispatch(setFalseProfileEditFlag());
     
 }

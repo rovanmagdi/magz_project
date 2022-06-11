@@ -6,18 +6,21 @@ import {ProfileDataItem} from '../../styled/styledPaper'
 import { useDispatch , useSelector } from "react-redux";
 import { useEffect } from 'react';
 import {getProfileEditFlag,setTrueProfileEditFlag,setFalseProfileEditFlag} from '../../redux/actions/flagsAction'
-
-
+import {UserInfo} from '../../types/profile'
 
 
 export default function ProfileInfo() {
 
+  const userInfoObj:UserInfo=JSON.parse(`${localStorage.getItem('RegisterInfo')}`);
+ 
+ 
+  const email = `${userInfoObj.email}`;
     const dispatch:any=useDispatch();
    
     
     const elevation:number=5;
     
-    const email='shefaaadel19@gmail.com';
+    
     
 
    
