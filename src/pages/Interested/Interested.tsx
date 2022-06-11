@@ -4,7 +4,7 @@ import FooterSign from "../../components/footerSign/FooterSign";
 import NavbarSign from "../../components/navbarSign/NavbarSign";
 import StepperTab from "../../components/stepper/Stepper";
 import { styled } from "@mui/material/styles";
-import { Home, Info } from "../../styled/HomePage";
+import { Home, Info,Content } from "../../styled/HomePage";
 const Interested = () => {
   const StyledGridRightTitle = styled(Box)(({ theme }) => ({
     display: "flex",
@@ -47,7 +47,7 @@ const Interested = () => {
   return (
     <Box>
       <Home />
-      <Info>
+      <Content>
         <NavbarSign />
         <StepperTab />
         <Box
@@ -73,7 +73,7 @@ const Interested = () => {
           </Box>
         </Box>
         <FooterSign />
-      </Info>
+      </Content>
     </Box>
   );
 };
