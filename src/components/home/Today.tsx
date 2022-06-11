@@ -1,66 +1,75 @@
+import * as React from "react";
+import Card from "@mui/material/Card";
+import CardActions from "@mui/material/CardActions";
+import CardContent from "@mui/material/CardContent";
+import CardMedia from "@mui/material/CardMedia";
+import { CardActionArea } from "@mui/material";
+import Typography from "@mui/material/Typography";
+import { Box } from "@mui/material";
 
+import { styled, ThemeProvider } from "@mui/system";
+import { theme } from "../../theme/palette";
+import Post from "../../types/post";
+import postAPI from "../../api/postsApi";
+import { OverlayTodayBox } from "../../styled/styledBox";
+import { StyledTodayCard } from "../../styled/styledCard";
+import { TodayLabelBox } from "../../styled/styledBox";
+import { Description } from "@mui/icons-material";
 
-import * as React from 'react';
-import  Card  from '@mui/material/Card';
-import CardActions from '@mui/material/CardActions';
-import CardContent from '@mui/material/CardContent';
-import CardMedia from '@mui/material/CardMedia';
-import { CardActionArea } from '@mui/material';
-import Button from '@mui/material/Button';
-import Typography from '@mui/material/Typography';
-import { Box } from '@mui/material';
+const Today: React.FC<Post> = (props) => {
+  //   React.useEffect(()=>{
+  // postAPI.get("get_all").then((res)=>{
+  //   console.log(res.data)
+  // }).catch((err)=>{
+  //   console.log(err);
 
-import postAPI from '../../api/postsApi'
-import { OverlayTodayBox } from '../../styled/styledBox';
-import { StyledTodayCard } from '../../styled/styledCard';
-import { TodayLabelBox } from '../../styled/styledBox';
+  // })
 
-const Today = () => {
+  //   },[])
 
-  React.useEffect(()=>{
-postAPI.get("get_all").then((res)=>{
-  console.log(res.data)
-}).catch((err)=>{
-  console.log(err);
-  
-})
+  const { title, image, description, auther } = props;
 
-  },[])
-return(
+  console.log({ title }, { image });
+  return (
     <StyledTodayCard elevation={0}>
-     
       <CardActionArea>
         <TodayLabelBox>Today</TodayLabelBox>
         <CardMedia
-          component="img" sx={{borderRadius:"8px"}}
-          height="300" 
-          image= "https://i.guim.co.uk/img/media/40f5722c70404541283ebc441ccbfdc7043bef13/0_102_2720_1632/master/2720.jpg?width=465&quality=45&auto=format&fit=max&dpr=2&s=ed017ae975f362956a848cfb935aeb2f"
-          alt="green iguana"
+          component="img"
+          sx={{ borderRadius: "8px" }}
+          height="300"
+image={image}   
+       alt="green iguana"
         />
         <OverlayTodayBox></OverlayTodayBox>
         <CardContent>
           <Typography gutterBottom variant="h5" component="div">
-            Lizard 
+          {title}
           </Typography>
           <Typography variant="body2" color="text.secondary">
-            Lizards are a widespread group of squamate reptiles, with over 6,000
-            species, ranging across all continents except Antarctica
+        {description}
+     
           </Typography>
         </CardContent>
       </CardActionArea>
-      
+
       <CardActions>
-      <Box component="img"
-height="30px" width="30px" borderRadius="50%" marginLeft={2} marginRight={2}
-src= "https://i.guim.co.uk/img/media/40f5722c70404541283ebc441ccbfdc7043bef13/0_102_2720_1632/master/2720.jpg?width=465&quality=45&auto=format&fit=max&dpr=2&s=ed017ae975f362956a848cfb935aeb2f"
-alt="green iguana"
-
-/>
-        <Typography>Author name</Typography>
+        <Box
+          component="img"
+          height="30px"
+          width="30px"
+          borderRadius="50%"
+          marginLeft={2}
+          marginRight={2}
+          src={image}
+          alt="green iguana"
+        />
+        <Typography>{auther} </Typography>
       </CardActions>
-      </StyledTodayCard>
+    </StyledTodayCard>
   );
-}
-
+};
 
 export default Today;
+
+
