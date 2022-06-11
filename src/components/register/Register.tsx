@@ -1,15 +1,18 @@
 import { BootstrapInput } from "../../styled/Input";
 import { FormControl, Box, Alert } from "@mui/material";
 import { StyledButton } from "../../styled/Button";
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { LoginInterFace } from "../../types/login";
 import Joi from "joi";
 import { StyledError } from "../../styled/Error";
 import { RegisterInterFace } from "../../types/Register";
 import { useSelector, useDispatch } from "react-redux";
 import { registerUser } from "../../redux/actions/registerAction";
+import { useNavigate } from "react-router-dom";
+import { showError, showSuccess } from "../../redux/actions/statusActions";
 
-export default function Register() {
+function Register() {
+  const [check, setCheck] = useState(false);
   const [state, setState] = useState({
     firstName: "",
     lastName: "",
@@ -19,6 +22,8 @@ export default function Register() {
   });
   const { firstName, lastName, email, password, confirmePassword } = state;
   const [errorList, setErrorList] = useState([]);
+  const [errorRes, setErrorRes] = useState("");
+
   const handLeInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     let { name, value } = e.target;
     // console.log(value);
@@ -39,12 +44,17 @@ export default function Register() {
     return schema.validate(login, { abortEarly: false });
   }
   const dispatch: any = useDispatch();
-  const { status } = useSelector((any: any) => any);
+  const { loading, hasError, errorStatus } = useSelector(
+    (state: any) => state.status
+  );
+
+  const navigate = useNavigate();
 
   const handleSubmit = (e: React.SyntheticEvent) => {
     e.preventDefault();
     setErrorList([]);
     let validationLoginFormResult: any = validateLoginForm(state);
+    // console.log(status.errorStatus);
     if (validationLoginFormResult.error) {
       setErrorList(validationLoginFormResult.error.details);
     } else {
@@ -60,11 +70,26 @@ export default function Register() {
       );
       setErrorList([]);
     }
+
+    // setChecked((old:any )=> true);
   };
 
   useEffect(() => {
-    console.log(status.errorStatus);
-  }, [status]);
+    if (!check) {
+      setCheck(hasError == true);
+      // console.log(errorStatus.status.hasError);
+
+      console.log("error");
+    } else {
+      // console.log(errorStatus.status.hasError);
+      setCheck(hasError == false);
+
+      // console.log();
+      navigate("/interested");
+
+      console.log("nagivate");
+    }
+  }, [dispatch, hasError]);
   return (
     <form onSubmit={handleSubmit}>
       <BootstrapInput
@@ -112,7 +137,7 @@ export default function Register() {
             }
           })
         : ""}
-      <StyledError>{status.errorStatus}</StyledError>
+      <StyledError>{errorStatus}</StyledError>
       <BootstrapInput
         placeholder="Password"
         type="password"
@@ -156,3 +181,5 @@ export default function Register() {
     </form>
   );
 }
+
+export default React.memo(Register);
