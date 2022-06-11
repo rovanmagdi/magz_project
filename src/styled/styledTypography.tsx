@@ -5,6 +5,7 @@ export const PostTitle = styled(Typography)(({ theme }) => ({
   fontWeight: "bold",
   fontSize: ".9em",
   // width:'250px',
+  // ahmed
 }));
 
 export const PostDate = styled(Typography)(({ theme }) => ({
