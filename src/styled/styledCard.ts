@@ -5,9 +5,9 @@ import { Card } from "@mui/material";
 
 
 export const StyledCard = styled(Card)(() => ({
-    margin: "20px 0 0 20px",
     position: "relative",
     borderRadius: "4px",
+    marginTop:"20px"
    
   }));
 
@@ -20,8 +20,7 @@ export const StyledTodayCard = styled(StyledCard)(() => ({
 
 
 export const StyledSportCard = styled(StyledCard)(() => ({
-  width: "600px",
-
+  width: "700px",
   "&:hover": {
     color: "#DD2B2B",
   },
