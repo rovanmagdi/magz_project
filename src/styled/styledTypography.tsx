@@ -1,5 +1,6 @@
-import { styled } from "@mui/system";
-import Typography from "@mui/material/Typography";
+import { Typography } from "@mui/material";
+import { styled } from "@mui/material";
+
 
 export const PostTitle = styled(Typography)(({ theme }) => ({
   fontWeight: "bold",
@@ -7,6 +8,7 @@ export const PostTitle = styled(Typography)(({ theme }) => ({
   // width:'250px',
   // ahmed
 }));
+
 
 export const PostDate = styled(Typography)(({ theme }) => ({
   fontSize: ".8em",
@@ -19,3 +21,14 @@ export const AutherName = styled(Typography)(({ theme }) => ({
   color: "black",
   //ahmed
 }));
+
+export const TypographyCardTitle= styled(Typography)(()=>({
+
+
+    fontSize:"1.1em"  ,
+fontWeight:"700", overflow:"hidden", height:"45px"
+
+
+
+}))
+
