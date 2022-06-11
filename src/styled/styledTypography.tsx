@@ -10,6 +10,18 @@ export const PostTitle = styled(Typography)(({ theme }) => ({
 }));
 
 
+export const PostDate = styled(Typography)(({ theme }) => ({
+  fontSize: ".8em",
+  color: "gray",
+  //ahmed
+}));
+
+export const AutherName = styled(Typography)(({ theme }) => ({
+  fontSize: "1em",
+  color: "black",
+  //ahmed
+}));
+
 export const TypographyCardTitle= styled(Typography)(()=>({
 
 
@@ -19,3 +31,4 @@ fontWeight:"700", overflow:"hidden", height:"45px"
 
 
 }))
+
