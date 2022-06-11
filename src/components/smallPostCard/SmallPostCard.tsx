@@ -9,7 +9,7 @@ import { red } from "@mui/material/colors";
 import {  ThemeProvider } from "@mui/system";
 import Post from "../../types/post";
 import { theme } from "../../theme/palette";
-import {PostTitle,PostDate,AutherName} from '../../styled/styledTypography'
+import {PostTitle,PostDate,AutherName} from '../../styled/StyledTypography'
 import CustomPostDate from '../postDate/PostDate'
 
 export default function SmallPostCard(props: Post) {

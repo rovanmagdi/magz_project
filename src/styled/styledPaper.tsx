@@ -8,3 +8,9 @@ export const ProfileDataItem = styled(Paper)(() => ({
     lineHeight:'45px'
    
    }));
+   
+   export const WeatherPaper = styled(Paper)(()=>({
+
+    width:"270px" , padding:"25px", height:"200px"
+    
+    }))

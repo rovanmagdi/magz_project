@@ -15,7 +15,6 @@ import { StyledCultureCard } from "../../styled/styledCard";
 import { OverlayCultureBox } from "../../styled/styledBox";
 import Forecast from "../../types/forecast";
 import { useSelector } from "react-redux";
-import { WeatherPaper } from "../../styled/StyledPaper";
 import { Stack } from "@mui/material";
 import { StyledWbSunnyIcon } from "../../styled/StyledIcon";
 import WbSunnyIcon from "@mui/icons-material/WbSunny";
@@ -24,6 +23,7 @@ import NightlightIcon from "@mui/icons-material/Nightlight";
 import { keyframes } from "@emotion/react";
 import LocationOnIcon from "@mui/icons-material/LocationOn";
 import { StyledCloudIcon } from "../../styled/StyledIcon";
+import { WeatherPaper } from "../../styled/styledPaper";
 const spin = keyframes`
 from {
   transform: rotate(0deg);

@@ -16,3 +16,15 @@ export const AutherName = styled(Typography)(({ theme }) => ({
   fontSize: "1em",
   color: "black",
 }));
+
+
+
+export const TypographyCardTitle= styled(Typography)(()=>({
+
+
+  fontSize:"1.1em"  ,
+fontWeight:"700", overflow:"hidden", height:"45px"
+
+
+
+}))
