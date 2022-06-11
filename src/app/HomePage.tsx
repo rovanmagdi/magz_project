@@ -10,6 +10,7 @@ import SportsPage from '../pages/sportsPage/SportsPage'
 
 function HomePage() {
   const isMatch = useMediaQuery(theme.breakpoints.down("sm"));
+
   return (
     <>
     {/* <Roues></Roues> */}
@@ -24,7 +25,7 @@ function HomePage() {
 
 
         
-        <SportsPage/>
+        
         
         <Footer />
       </Info>

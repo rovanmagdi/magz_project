@@ -7,11 +7,11 @@ import {getAllPosts} from '../../redux/actions/postsAction'
 
 export default function SportsPage() {
 
-    const dispatch:any=useDispatch();
+    // const dispatch:any=useDispatch();
 
-    useEffect(() => {
-        dispatch(getAllPosts());
-      },[dispatch]);
+    // useEffect(() => {
+    //     dispatch(getAllPosts());
+    //   },[dispatch]);
 
       
   return (

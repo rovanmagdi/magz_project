@@ -40,7 +40,7 @@ export const HorizontalLineBox = styled(Box)(()=>({
     width: "60%",
      height:"4px",
      position:"absolute",
-     top:"90%",
+     top:"89%",
     left:"8%",
 
     
@@ -65,6 +65,7 @@ export const OverlayBox = styled(Box)(()=>({
     left: "0px",
     transition: "0.4s all ease-in-out",
     borderRadius: "2px",
+    height:"63.6%",
 
     opacity:0,
     "&:hover": {
@@ -79,7 +80,7 @@ export const OverlayTodayBox = styled(OverlayBox)(()=>({
 
 
     width: "100%",
-    height:"100%",
+    height:"80%",
     borderRadius: "8px",
 
   
@@ -96,7 +97,7 @@ export const OverlayTodayBox = styled(OverlayBox)(()=>({
 
 
             width: "100%",
-            height:"62.5%",
+        
           
          
             "&:hover": {
@@ -110,7 +111,7 @@ export const OverlayTodayBox = styled(OverlayBox)(()=>({
         export const OverlaySportBox = styled(OverlayBox)(()=>({
 
 
-            width: "56.5%",
+            width: "48.5%",
             height:"100%",
 
          
@@ -126,7 +127,6 @@ export const OverlayTodayBox = styled(OverlayBox)(()=>({
 
 
             width: "100%",
-            height:"57.2%",
            
          
             "&:hover": {
