@@ -9,12 +9,12 @@ export const Home = styled(Box)(({ theme }) => ({
     backgroundSize: "cover",
     position: "fixed",
   }));
-  export const Info = styled(Box)(({ theme }) => ({
+  export const Content = styled(Box)(({ theme }) => ({
     backgroundColor: `${theme.palette.primary.contrastText}`,
     width: "950px",
     margin: "auto",
     position: "relative",
-    padding:'20px',
+
     fontFamily: ["Open Sans"],
     "@media (min-width: 780px)": {
       width: "80%",
@@ -22,4 +22,10 @@ export const Home = styled(Box)(({ theme }) => ({
     "@media (max-width: 780px)": {
       width: "80%",
     },
+  }));
+
+  export const Info=styled(Box)(({ theme }) => ({
+   
+    padding:'20px',
+    
   }));

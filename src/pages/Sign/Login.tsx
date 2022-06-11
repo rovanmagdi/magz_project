@@ -2,7 +2,8 @@ import React from "react";
 import FooterSign from "../../components/footerSign/FooterSign";
 import ImageSign from "../../components/imageSign/ImageSign";
 import NavbarSign from "../../components/navbarSign/NavbarSign";
-import { Home, Info } from "../../styled/HomePage";
+import { Home, Info,Content } from "../../styled/HomePage";
+
 import MniNavbar from "../../components/mniNabarSign/mniNavbar";
 import { StyledLoginContainer } from "../../styled/Login";
 import {Box} from"@mui/material"
@@ -11,7 +12,7 @@ export default function Login() {
   return (
     <>
       <Home />
-      <Info>
+      <Content>
        
         <StyledLoginContainer>
           <NavbarSign />
@@ -22,7 +23,7 @@ export default function Login() {
 
           <FooterSign />
         </StyledLoginContainer>
-      </Info>
+      </Content>
     </>
   );
 }
