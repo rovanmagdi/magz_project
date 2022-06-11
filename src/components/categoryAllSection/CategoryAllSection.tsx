@@ -1,32 +1,55 @@
-import React from 'react'
-import CategoryRectCard from '../categoryRectCard/CategoryRectCard'
-import CategorySquareCard from '../categorySquareCard/CategorySquareCard'
-import PostCard from '../postCard/PostCard'
-import {  useSelector } from "react-redux";
-import Post from '../../types/post'
-
-
+import React from "react";
+import CategoryRectCard from "../categoryRectCard/CategoryRectCard";
+import CategorySquareCard from "../categorySquareCard/CategorySquareCard";
+import { useSelector } from "react-redux";
+import { CircularProgress, Box } from "@mui/material";
+import Grid from "@mui/material/Grid";
+import { CategoryLabelBox } from "../../styled/styledBox";
+import { HorizontalLineBox } from "../../styled/styledBox";
+import Stack from "@mui/material/Stack";
 
 export default function CategoryAllSection() {
-    const posts=useSelector((state:any) =>state.posts? state.posts[0].posts : state.posts);
-    console.log(posts)
+  const posts = useSelector((state: any) =>
+    state.posts ? state.posts[0].posts : state.posts
+  );
+  console.log(posts);
 
-    
-   
+ 
   return (
-     
-      <>
-      {/* <CategoryRectCard {...post} /> */}
-    {/* <CategorySquareCard {...post}/> */}
-   
+    <>
+      {/* <CategoryRectCard {...post } key={post.id} /> */}
+      {/* <CategorySquareCard {...post}/> */}
 
-    {
-        posts? (posts.map((post:any)=>{
-            return <PostCard {...post}/>
-        })):(<div>loading</div>)
-        
-    }
+      <Box position={"relative"} mb={2}>
+        <CategoryLabelBox sx={{ backgroundColor: "#272727" }}>
+          All
+        </CategoryLabelBox>
+        <HorizontalLineBox
+          sx={{ backgroundColor: "#272727" }}
+        ></HorizontalLineBox>
+      </Box>
+      {posts ? (
+        <>
+          <Grid
+            container
+            columns={12}
+           sx={{height: {md:"400px",sm:'auto'} }}
+           gap={2}
+          >
+            <Grid item md={5} xs={12} height={{md:"100%",xs:'250px'}}>
+              <CategorySquareCard {...posts[0]} />
+            </Grid>
+            <Grid item md={6.8} xs={12} height={{md:"100%",xs:'500px'}}>
+              <Stack  spacing={2} height={"100%"}>
+                <CategoryRectCard {...posts[1]} />
+                <CategoryRectCard {...posts[2]} />
+              </Stack>
+            </Grid>
+          </Grid>
+        </>
+      ) : (
+        <CircularProgress />
+      )}
     </>
-    
-  )
+  );
 }

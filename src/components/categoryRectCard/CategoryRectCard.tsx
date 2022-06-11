@@ -20,14 +20,11 @@ const CategoryRectCard:React.FC<Post> = (props) => {
   const StyledCard = styled(Box)(({ theme }) => ({
     color: theme.palette.primary.contrastText,
     backgroundColor: theme.palette.primary.main,
-    width: "52%",
-    minHeight: "145px",
+    height: "50%",
     borderRadius: theme.shape.borderRadius,
     backgroundImage: `url(${image})`,
     position: "relative",
-   
-    
-    padding: "28px",
+    paddingLeft: "28px",
 
 
   }));
