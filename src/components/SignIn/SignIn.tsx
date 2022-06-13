@@ -5,14 +5,23 @@ import { useEffect, useState } from "react";
 import { LoginInterFace } from "../../types/login";
 import Joi from "joi";
 import { StyledError } from "../../styled/Error";
+import { useDispatch, useSelector } from "react-redux";
+import { loginUser } from "../../redux/actions/loginAction";
+import { useNavigate } from "react-router-dom";
 
 export default function SignIn() {
+  const dispatch:any=useDispatch();
+  const [check, setCheck] = useState(false);
   const [state, setState] = useState({
     email: "",
     password: "",
   });
   const { email, password } = state;
+  const { loading, hasError, errorStatus } = useSelector(
+    (state: any) => state.status
+  );
   const [errorList, setErrorList] = useState([]);
+  const navigate=useNavigate()
   const handLeInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     let { name, value } = e.target;
     // console.log(value);
@@ -38,12 +47,30 @@ export default function SignIn() {
     if (validationLoginFormResult.error) {
       setErrorList(validationLoginFormResult.error.details);
     } else {
-      // dispatch(loginAdmin(login));
+      
       console.log("done");
+      dispatch(loginUser(state.email,state.password));
       setErrorList([]);
     }
+    
   };
 
+  useEffect(() => {
+    if (!check) {
+      setCheck(hasError == true);
+      // console.log(errorStatus.status.hasError);
+
+      console.log("error");
+    } else {
+      // console.log(errorStatus.status.hasError);
+      setCheck(hasError == false);
+
+      // console.log();
+      navigate("/");
+
+      console.log("nagivate");
+    }
+  }, [dispatch, hasError]);
   return (
     <form onSubmit={handleSubmit}>
       <BootstrapInput
@@ -60,6 +87,7 @@ export default function SignIn() {
             }
           })
         : ""}
+        <StyledError>{errorStatus}</StyledError>
       <BootstrapInput
         placeholder="Password"
         type="password"
