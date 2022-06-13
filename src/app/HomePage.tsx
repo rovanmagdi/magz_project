@@ -10,6 +10,7 @@ import Interested from "../pages/Interested/Interested";
 
 function HomePage() {
   const isMatch = useMediaQuery(theme.breakpoints.down("sm"));
+
   return (
     <>
       {/* <Roues></Roues> */}
@@ -22,8 +23,16 @@ function HomePage() {
         <Info>
           {" "}
           <ProfilePge />
+{/* <Homenews></Homenews> */}
         </Info>
 
+
+     
+
+
+        
+        
+        
         <Footer />
       </Content>
     </>

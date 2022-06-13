@@ -12,13 +12,17 @@ import TextField from "@mui/material/TextField";
 import { useDispatch  } from "react-redux";
 import {setFalseProfileEditFlag} from '../../redux/actions/flagsAction'
 import {UserInfo} from '../../types/profile'
+import axios from 'axios';
+import { json } from "stream/consumers";
 
 
 export default function ProfileForm() {
 
-  const userInfoObj:UserInfo=JSON.parse(`${localStorage.getItem('RegisterInfo')}`);
+  const userInfoObj: UserInfo = JSON.parse(
+    `${localStorage.getItem("RegisterInfo")}`
+  );
  
- const firstName=`${userInfoObj.firstName} `;;
+ const firstName=`${userInfoObj.firstName}`;;
  const lastName= `${userInfoObj.lastName}`;
   const email = `${userInfoObj.email}`;
   //  `${userInfoObj.email}`;
@@ -26,9 +30,30 @@ export default function ProfileForm() {
 
   const dispatch:any=useDispatch();
 
+  const config={
+    headers:{
+     'Content-Type':'application/json',
+     Authorization:`Bearer ${userToken}`
+    }
+  }
 
   const handleSaveClick=()=>{
-      //api call with patch
+    const userInfoObj=JSON.parse(localStorage.RegisterInfo);
+
+    const userInfo={
+      firstName:`${userInfoObj.firstName}`,
+      lastName:`${userInfoObj.lastName}`,
+    
+  }
+      //api call with patch => switch to redux
+      axios.patch(`${process.env.REACT_APP_BACKED}/user`,userInfo,config)
+      .then(res => {
+        const updatedUser=res.data;
+        console.log(updatedUser)
+        // localStorage.setItem('RegisterInfo','hi')
+      }).catch((err)=>{
+        console.log(err)
+      })
     dispatch(setFalseProfileEditFlag());
     
 }

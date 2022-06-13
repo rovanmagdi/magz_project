@@ -12,12 +12,13 @@ import {UserInfo} from '../../types/profile'
 
 
 export default function ProfilePge() {
+
   const userInfoObj: UserInfo = JSON.parse(
     `${localStorage.getItem("RegisterInfo")}`
   );
 
   const userName = `${userInfoObj.firstName} ${userInfoObj.lastName} `;
-
+  // const userName =`omnia mahmoud`
   const SmallAvatar = styled(Avatar)(({ theme }) => ({
     width: 22,
     height: 22,
