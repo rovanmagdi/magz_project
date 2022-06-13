@@ -4,7 +4,9 @@ import FooterSign from "../../components/footerSign/FooterSign";
 import NavbarSign from "../../components/navbarSign/NavbarSign";
 import StepperTab from "../../components/stepper/Stepper";
 import { styled } from "@mui/material/styles";
-import { Home, Info } from "../../styled/HomePage";
+import { Content, Home, Info } from "../../styled/HomePage";
+import Image from "../../assets/new.png";
+import { StyledDescription, StyledTitle } from "../../styled/CategoryIntersted";
 const Interested = () => {
   const StyledGridRightTitle = styled(Box)(({ theme }) => ({
     display: "flex",
@@ -26,7 +28,7 @@ const Interested = () => {
   }));
   const label = { inputProps: { "aria-label": "Checkbox demo" } };
 
-  const [userinfo, setUserInfo] = useState([]);
+  const [userinfo, setUserInfo] = useState<string[]>([]);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { value, checked } = e.target;
@@ -35,19 +37,21 @@ const Interested = () => {
     console.log(`${value} is ${checked}`);
 
     if (checked) {
-    //  setUserInfo((old)=> value)
-    }
+      // userinfo.push(value);
+      setUserInfo((old: any) => [...old, value]);
+    } else {
+      const newState = userinfo?.filter((el) => {
+        return el !== value;
+      });
 
-    else {
-      // setUserInfo({
-      //   intersets: intersets.filter((e) => e !== value),
-      // });
+      setUserInfo((old) => [...newState]);
     }
   };
+  console.log(userinfo);
   return (
     <Box>
       <Home />
-      <Info>
+      <Content>
         <NavbarSign />
         <StepperTab />
         <Box
@@ -63,17 +67,32 @@ const Interested = () => {
             Contact Us
             <StyledGridRightLine />
           </StyledGridRightTitle>
-          <Box sx={{ paddingTop: "40px" }}>
-            <Checkbox
-              {...label}
-              name="intersets"
-              value="Sport"
-              onChange={handleChange}
-            />
+          <Box
+            sx={{
+              paddingTop: "40px",
+              display: "flex",
+              margin: "auto",
+              alignItems: "center",
+              justifyContent: "space-around",
+            }}
+          >
+            <Box component="img" src={Image} height="150px" width="190px" />
+
+            <Box>
+              <StyledTitle >All News in MAGZ</StyledTitle>
+              <StyledDescription >Description</StyledDescription>
+              <Checkbox
+                {...label}
+                name="intersets"
+                value="Sport"
+                onChange={handleChange}
+              />
+              Sport
+            </Box>
           </Box>
         </Box>
         <FooterSign />
-      </Info>
+      </Content>
     </Box>
   );
 };
