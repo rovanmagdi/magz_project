@@ -23,7 +23,7 @@ function HomePage() {
         <Info>
           {" "}
           <ProfilePge />
-<Homenews></Homenews>
+{/* <Homenews></Homenews> */}
         </Info>
 
 

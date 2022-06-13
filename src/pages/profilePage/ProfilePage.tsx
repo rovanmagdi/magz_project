@@ -12,6 +12,7 @@ import {UserInfo} from '../../types/profile'
 
 
 export default function ProfilePge() {
+
   const userInfoObj: UserInfo = JSON.parse(
     `${localStorage.getItem("RegisterInfo")}`
   );

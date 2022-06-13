@@ -13,13 +13,16 @@ import { useDispatch  } from "react-redux";
 import {setFalseProfileEditFlag} from '../../redux/actions/flagsAction'
 import {UserInfo} from '../../types/profile'
 import axios from 'axios';
+import { json } from "stream/consumers";
 
 
 export default function ProfileForm() {
 
-  const userInfoObj:UserInfo=JSON.parse(`${localStorage.getItem('RegisterInfo')}`);
+  const userInfoObj: UserInfo = JSON.parse(
+    `${localStorage.getItem("RegisterInfo")}`
+  );
  
- const firstName=`${userInfoObj.firstName} `;;
+ const firstName=`${userInfoObj.firstName}`;;
  const lastName= `${userInfoObj.lastName}`;
   const email = `${userInfoObj.email}`;
   //  `${userInfoObj.email}`;
@@ -35,13 +38,15 @@ export default function ProfileForm() {
   }
 
   const handleSaveClick=()=>{
-    const data={
-      firstName:"ahamjhfuded",
-      lastName:"shalaby",
-    intersted:["sport","life"]
+    const userInfoObj=JSON.parse(localStorage.RegisterInfo);
+
+    const userInfo={
+      firstName:`${userInfoObj.firstName}`,
+      lastName:`${userInfoObj.lastName}`,
+    
   }
-      //api call with patch
-      axios.patch(`${process.env.REACT_APP_BACKED}/user`,data,config)
+      //api call with patch => switch to redux
+      axios.patch(`${process.env.REACT_APP_BACKED}/user`,userInfo,config)
       .then(res => {
         const updatedUser=res.data;
         console.log(updatedUser)
