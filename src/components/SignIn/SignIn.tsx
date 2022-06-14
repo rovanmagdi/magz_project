@@ -1,7 +1,7 @@
 import { BootstrapInput } from "../../styled/Input";
 import { FormControl, Box, Alert } from "@mui/material";
 import { StyledButton } from "../../styled/Button";
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { LoginInterFace } from "../../types/login";
 import Joi from "joi";
 import { StyledError } from "../../styled/Error";
@@ -10,8 +10,8 @@ import { loginUser } from "../../redux/actions/loginAction";
 import { useNavigate } from "react-router-dom";
 
 export default function SignIn() {
-  const dispatch:any=useDispatch();
-  const [check, setCheck] = useState(false);
+  const dispatch: any = useDispatch();
+  const [check, setCheck] = useState(true);
   const [state, setState] = useState({
     email: "",
     password: "",
@@ -21,7 +21,7 @@ export default function SignIn() {
     (state: any) => state.status
   );
   const [errorList, setErrorList] = useState([]);
-  const navigate=useNavigate()
+  const navigate = useNavigate();
   const handLeInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     let { name, value } = e.target;
     // console.log(value);
@@ -40,37 +40,49 @@ export default function SignIn() {
 
     return schema.validate(login, { abortEarly: false });
   }
+  const checkFun=()=>
+  {
+    
+      if(check)
+      {
+
+        console.log("done login");
+        setCheck(hasError == true);
+          navigate("/");
+      }
+  
+  }
+  // useEffect(() => {
+  
+  //   if(check) { setTimeout(() => {
+      
+  //     console.log("done login");
+  //     setCheck(hasError == true);
+  //       navigate("/");
+  //   }, 500)
+      
+  //   }
+  // }, [ hasError,check,setCheck,navigate]);
   const handleSubmit = (e: React.SyntheticEvent) => {
     e.preventDefault();
-    setErrorList([]);
+    // setErrorList([]);
     let validationLoginFormResult: any = validateLoginForm(state);
     if (validationLoginFormResult.error) {
       setErrorList(validationLoginFormResult.error.details);
     } else {
-      
-      console.log("done");
-      dispatch(loginUser(state.email,state.password));
-      setErrorList([]);
+      setCheck(hasError);
+      dispatch(loginUser(state.email, state.password));
+      if(!check)
+      {
+        console.log("done login");
+        // setCheck(hasError == true);
+          navigate("/");     
+      }
+
+      // setErrorList([]);
     }
-    
   };
 
-  useEffect(() => {
-    if (!check) {
-      setCheck(hasError == true);
-      // console.log(errorStatus.status.hasError);
-
-      console.log("error");
-    } else {
-      // console.log(errorStatus.status.hasError);
-      setCheck(hasError == false);
-
-      // console.log();
-      navigate("/");
-
-      console.log("nagivate");
-    }
-  }, [dispatch, hasError]);
   return (
     <form onSubmit={handleSubmit}>
       <BootstrapInput
@@ -87,7 +99,7 @@ export default function SignIn() {
             }
           })
         : ""}
-        <StyledError>{errorStatus}</StyledError>
+      <StyledError>{errorStatus}</StyledError>
       <BootstrapInput
         placeholder="Password"
         type="password"

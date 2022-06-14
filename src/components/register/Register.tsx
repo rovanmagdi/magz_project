@@ -62,8 +62,8 @@ function Register() {
       console.log("done");
       dispatch(
         registerUser(
-          state.lastName,
           state.firstName,
+          state.lastName,
           state.email,
           state.password
         )
@@ -77,17 +77,12 @@ function Register() {
   useEffect(() => {
     if (!check) {
       setCheck(hasError == true);
-      // console.log(errorStatus.status.hasError);
-
       console.log("error");
     } else {
-      // console.log(errorStatus.status.hasError);
-      setCheck(hasError == false);
-
-      // console.log();
-      navigate("/interested");
-
+    
       console.log("nagivate");
+      setCheck(hasError == false);
+      navigate("/interested");
     }
   }, [dispatch, hasError]);
   return (

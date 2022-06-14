@@ -44,7 +44,9 @@ import {
 } from "../../styled/Header";
 import DrawerList from "./Drawer";
 // import { Link } from "react-router-dom";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { LogoutUser } from "../../redux/actions/logoutAction";
 
 const Header = () => {
   let newDate = new Date();
@@ -91,9 +93,20 @@ const Header = () => {
   const [value, setValue] = useState(0);
   const theme = useTheme();
   const isMatch = useMediaQuery(theme.breakpoints.down(1117));
+  const RegisterInfo = localStorage.getItem("RegisterInfo");
+  const userInfoObj = JSON.parse(`${localStorage.getItem("RegisterInfo")}`);
 
+  const userName = `${userInfoObj.firstName} ${userInfoObj.lastName} `;
+  const userImage = `${userInfoObj.image}`;
+  const nagivate = useNavigate();
+  const dispatch: any = useDispatch();
+  const handleLogout = () => {
+    console.log("logout");
+    nagivate("/login");
+
+    dispatch(LogoutUser());
+  };
   const PAGES = ["new", "opinion", "sport", "life style", "culture"];
-
 
   return (
     <StyledNavConatiner>
@@ -111,18 +124,44 @@ const Header = () => {
               {date_raw} {month_raw} {},{year}
             </Box>
             <StyledNavTopRight>
-              <StyledRightOne>
-                <StyledRightOneConatiner>
-                  <PersonIconNav />
-                </StyledRightOneConatiner>
-                <Typography
-                  sx={{ margin: "10px", fontSize: "12px" }}
-                  component={"span"}
-                  variant={"body2"}
-                >
-                  <StyledLink to="/login">Sign in</StyledLink>
-                </Typography>
-              </StyledRightOne>
+              {!RegisterInfo ? (
+                <StyledRightOne>
+                  <StyledRightOneConatiner>
+                    <PersonIconNav />
+                  </StyledRightOneConatiner>
+                  <Typography
+                    sx={{ margin: "10px", fontSize: "12px" }}
+                    component={"span"}
+                    variant={"body2"}
+                  >
+                    <StyledLink to="/login">Sign in</StyledLink>
+                  </Typography>
+                </StyledRightOne>
+              ) : (
+                <Box>
+                  <StyledRightOne>
+                    <StyledRightOneConatiner>
+                      <Box component="img" src={userImage}></Box>
+                    </StyledRightOneConatiner>
+                    <FormControl>
+                      <StylesSelected
+                        value={userName}
+                        onChange={handleChange}
+                        inputProps={{
+                          name: "agent",
+                          id: "age-simple",
+                        }}
+                      >
+                        <MenuItem value={userName}>{userName}</MenuItem>
+                        <MenuItem value="Logout" onClick={handleLogout}>
+                          Logout
+                        </MenuItem>
+                      </StylesSelected>
+                    </FormControl>
+                  </StyledRightOne>
+                </Box>
+              )}
+
               <Box>
                 <FormControl>
                   <StylesSelected
