@@ -1,8 +1,19 @@
-import React from "react";
+import React, { useEffect } from "react";
 import Logo from "../../assets/logoFooter.png";
 import Person from "../../assets/person.png";
 import PopularPosts from "../popularPosts/populatPosts";
-import { Box, Button, Grid, useMediaQuery, useTheme } from "@mui/material";
+import {
+  Box,
+  Button,
+  Grid,
+  Stack,
+  useMediaQuery,
+  useTheme,
+} from "@mui/material";
+import {
+  StyledGridRightTitle,
+  StyledGridRightLine,
+} from "../../styled/PopularPost";
 import {
   StyledFooter,
   StyledFooterBottom,
@@ -14,10 +25,16 @@ import {
   StyledLineMedai,
   StyledGridLeftTextMedia,
 } from "../../styled/Footer";
+import { useDispatch, useSelector } from "react-redux";
+import { RecentlyPosts } from "../../redux/actions/recentlyAction";
+import PostDate from "../postDate/PostDate";
+import LastPosts from "../lastPosts/LastPosts";
 const Footer = () => {
   const theme = useTheme();
   const isMatch = useMediaQuery(theme.breakpoints.down(1117));
-
+  const dispatch: any = useDispatch();
+  const { recently } = useSelector((state: any) => state);
+ 
   return (
     <Box>
       {!isMatch ? (
@@ -37,9 +54,14 @@ const Footer = () => {
                 <StyledFooterButton>Sign up for MAGZ</StyledFooterButton>
               </StyledGridLeftText>
             </StyledGridLeft>
+            <LastPosts />
 
-            <PopularPosts data="Any Description" date="125" />
-            <PopularPosts data="Any Description" date="125" />
+            <PopularPosts
+              title="title"
+              data="Any Description"
+              date="125"
+              img="img"
+            />
           </Grid>
 
           <StyledLine />
@@ -60,8 +82,57 @@ const Footer = () => {
               <StyledFooterButton>Sign up for MAGZ</StyledFooterButton>
             </StyledGridLeftTextMedia>
           </StyledGridLeft>
-          <PopularPosts data="Any Description" date="125" />
-          <PopularPosts data="Any Description" date="125" />
+          <Stack>
+            <Box>
+              <StyledGridRightTitle
+                sx={{
+                  fontFamily: "Oswald",
+                  fontWeight: "bold",
+                  fontSize: "14px",
+                  textTransform: "uppercase",
+                }}
+              >
+                lastest posts
+                <StyledGridRightLine />
+              </StyledGridRightTitle>
+              {recently.map((i: any) => {
+                return (
+                  <PopularPosts
+                    title="Recently Posts"
+                    data={i.title}
+                    date={<PostDate date={i.updatedAt} />}
+                    img={i.image}
+                  />
+                );
+              })}
+            </Box>
+            <Box>
+              <Box>
+                <StyledGridRightTitle
+                  sx={{
+                    fontFamily: "Oswald",
+                    fontWeight: "bold",
+                    fontSize: "14px",
+                    textTransform: "uppercase",
+                  }}
+                >
+                  lastest posts
+                  <StyledGridRightLine />
+                </StyledGridRightTitle>
+                {recently.map((i: any) => {
+                  return (
+                    <PopularPosts
+                      title="Recently Posts"
+                      data={i.title}
+                      date={<PostDate date={i.updatedAt} />}
+                      img={i.image}
+                    />
+                  );
+                })}
+              </Box>
+            </Box>
+          </Stack>
+
           <StyledLineMedai />
           <StyledFooterBottom>
             © 2022 - MAGZ. All Rights Reserved.
