@@ -68,6 +68,12 @@ function Register() {
           state.password
         )
       );
+      if(!check)
+      {
+        console.log("done login");
+        // setCheck(hasError == true);
+          navigate("/interested");     
+      }
       setErrorList([]);
     }
 
