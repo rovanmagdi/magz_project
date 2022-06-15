@@ -4,7 +4,7 @@ import { Box, Button, Grid, useMediaQuery, useTheme } from "@mui/material";
 export const StyledFooter = styled(Box)(({ theme }) => ({
     borderRadius: "3px",
     width: "100%",
-    height: "350px",
+    height: "450px",
     backgroundColor: `${theme.palette.primary.light}`,
     margin: "auto",
     // display: "flex",
@@ -15,7 +15,7 @@ export const StyledFooter = styled(Box)(({ theme }) => ({
   export const StyledFooterMedia = styled(Box)(({ theme }) => ({
     borderRadius: "3px",
     width: "100%",
-    height: "680px",
+    height: "760px",
     backgroundColor: `${theme.palette.primary.light}`,
     margin: "auto",
     // display: "flex",

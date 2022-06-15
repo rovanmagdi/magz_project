@@ -13,18 +13,15 @@ import { PopularPostsInterFace } from "../../types/popularPosts";
 const PopularPosts:React.FC<PopularPostsInterFace> = (props) => {
   return (
     <StyledGridRight>
-      <StyledGridRightTitle>
-        lastest posts
-        <StyledGridRightLine />
-      </StyledGridRightTitle>
+     
       <StyledGridRightTitle>
         <Box
           component="img"
-          src={Person}
+          src={props.img}
           sx={{ height: "50px", width: "80px" }}
         />
         <BoxStyleTwo >
-          {props.data}
+          <Box>{props.data}</Box>
           <BoxStyle>{props.date}</BoxStyle>
         </BoxStyleTwo>
       </StyledGridRightTitle>{" "}
