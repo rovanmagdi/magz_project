@@ -46,6 +46,9 @@ import { Link } from "react-router-dom";
     color: `${theme.palette.text.secondary}`,
     height: "30px ",
     fontSize: "12px",
+    "&:focus":{
+      border: "1px solid transparent"
+    }
   }));
   export const StyledRightOneConatiner = styled(Box)(({ theme }) => ({
     height: "25px",

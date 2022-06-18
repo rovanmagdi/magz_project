@@ -19,10 +19,11 @@ function HomePage() {
         <Header />
         <Routes>
           <Route path="index" element={<Interested />} />
+          <Route path="/Profile" element={<ProfilePge/>}/>
         </Routes>
         <Info>
           {" "}
-          <ProfilePge />
+          {/* <ProfilePge /> */}
 {/* <Homenews></Homenews> */}
         </Info>
 

@@ -26,7 +26,7 @@ function Register() {
 
   const handLeInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     let { name, value } = e.target;
-    // console.log(value);
+    console.log(value);
     setState({ ...state, [name]: value });
   };
 
@@ -62,12 +62,18 @@ function Register() {
       console.log("done");
       dispatch(
         registerUser(
-          state.lastName,
           state.firstName,
+          state.lastName,
           state.email,
           state.password
         )
       );
+      // if(!check)
+      // {
+      //   console.log("done login");
+      //   // setCheck(hasError == true);
+      //     navigate("/interested");     
+      // }
       setErrorList([]);
     }
 
@@ -75,19 +81,15 @@ function Register() {
   };
 
   useEffect(() => {
+   
     if (!check) {
       setCheck(hasError == true);
-      // console.log(errorStatus.status.hasError);
-
       console.log("error");
     } else {
-      // console.log(errorStatus.status.hasError);
-      setCheck(hasError == false);
-
-      // console.log();
-      navigate("/interested");
-
+    
       console.log("nagivate");
+      setCheck(hasError == false);
+      navigate("/interested");
     }
   }, [dispatch, hasError]);
   return (
@@ -101,10 +103,10 @@ function Register() {
       />
       {errorList
         ? errorList.map((error: any, index: any) => {
-            if (error.path[0] === "firstName") {
-              return <StyledError key={index}>First Name Invalid </StyledError>;
-            }
-          })
+          if (error.path[0] === "firstName") {
+            return <StyledError key={index}>First Name Invalid </StyledError>;
+          }
+        })
         : ""}
 
       <BootstrapInput
@@ -117,10 +119,10 @@ function Register() {
       />
       {errorList
         ? errorList.map((error: any, index: any) => {
-            if (error.path[0] === "lastName") {
-              return <StyledError key={index}>Last Name Invalid </StyledError>;
-            }
-          })
+          if (error.path[0] === "lastName") {
+            return <StyledError key={index}>Last Name Invalid </StyledError>;
+          }
+        })
         : ""}
       <BootstrapInput
         placeholder="Email"
@@ -132,10 +134,10 @@ function Register() {
       />
       {errorList
         ? errorList.map((error: any, index: any) => {
-            if (error.path[0] === "email") {
-              return <StyledError key={index}>email Invalid</StyledError>;
-            }
-          })
+          if (error.path[0] === "email") {
+            return <StyledError key={index}>email Invalid</StyledError>;
+          }
+        })
         : ""}
       <StyledError>{errorStatus}</StyledError>
       <BootstrapInput
@@ -149,12 +151,12 @@ function Register() {
 
       {errorList
         ? errorList.map((error: any, index: any) => {
-            // console.log(error);
+          // console.log(error);
 
-            if (error.path[0] === "password") {
-              return <StyledError key={index}>Password Invalid</StyledError>;
-            }
-          })
+          if (error.path[0] === "password") {
+            return <StyledError key={index}>Password Invalid</StyledError>;
+          }
+        })
         : ""}
       <BootstrapInput
         placeholder="Confirm Password"
@@ -167,13 +169,13 @@ function Register() {
 
       {errorList
         ? errorList.map((error: any, index: any) => {
-            // console.log(error);
-            if (error.path[0] === "confirmePassword") {
-              return (
-                <StyledError key={index}>not match with Password</StyledError>
-              );
-            }
-          })
+          // console.log(error);
+          if (error.path[0] === "confirmePassword") {
+            return (
+              <StyledError key={index}>not match with Password</StyledError>
+            );
+          }
+        })
         : ""}
       <StyledButton variant="contained" type="submit">
         Sign in

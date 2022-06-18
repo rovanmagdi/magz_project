@@ -61,12 +61,17 @@ const DrawerList = () => {
   const PersonIconNav = styled(PersonIcon)(({ theme }) => ({
     color: `${theme.palette.secondary.main}`,
   }));
+  const RegisterInfo = localStorage.getItem("RegisterInfo");
+  const userInfoObj = JSON.parse(`${localStorage.getItem("RegisterInfo")}`);
+
+  const userName = `${userInfoObj.firstName} ${userInfoObj.lastName} `;
+  const userImage = `${userInfoObj.image}`;
   return (
     <React.Fragment>
       <Drawer open={openDrawer} onClose={() => setOpenDrawer(false)}>
         <List>
             <Box>
-            <StyledRightOne>
+              {!RegisterInfo?(<StyledRightOne>
                 <StyledRightOneConatiner>
                   <PersonIconNav />
                 </StyledRightOneConatiner>
@@ -77,7 +82,20 @@ const DrawerList = () => {
                 >
                   Sign in
                 </Typography>
-              </StyledRightOne>
+              </StyledRightOne>):(<StyledRightOne>
+                <StyledRightOneConatiner>
+                <Box component="img" src={userImage}></Box>
+                </StyledRightOneConatiner>
+                <Typography
+                  sx={{ margin: "10px", fontSize: "12px" }}
+                  component={"span"}
+                  variant={"body2"}
+                >
+                 {userName}
+                </Typography>
+              </StyledRightOne>)
+              }
+            
                   <BoxLine sx={{marginLeft:"60px"}}/>
 
             </Box>
