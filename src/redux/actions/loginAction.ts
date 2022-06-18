@@ -1,3 +1,4 @@
+import { LOGIN_USER } from './actionTypes';
 import loginApi from "../../api/loginApi";
 import { startLoading, showSuccess, showError } from "./statusActions";
 
@@ -7,6 +8,7 @@ export  function  loginUser ( email: any, password: any){
         .then(({data})=>{
             dispatch(showSuccess()); 
             console.log("done from action loginUser");
+            dispatch(LoginInterface(data))
             localStorage.setItem('RegisterInfo', JSON.stringify(data));
 
         }).catch((error)=>{
@@ -16,3 +18,8 @@ export  function  loginUser ( email: any, password: any){
         })
     }
 }
+
+export const LoginInterface = (posts: any) => ({
+    type: LOGIN_USER,
+    payload: posts,
+});

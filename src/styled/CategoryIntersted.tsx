@@ -6,5 +6,6 @@ export const StyledTitle = styled(Box)(({ theme }) => ({
   }));
 
   export const StyledDescription = styled(Box)(({ theme }) => ({
-    marginLeft:"12px",fontSize:"0.9rem",color:"gray"
+    marginLeft:"12px",fontSize:"0.7rem",color:"gray",
+    width:"220px"
   }));
