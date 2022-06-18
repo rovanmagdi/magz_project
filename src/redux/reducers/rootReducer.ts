@@ -10,6 +10,7 @@ import InterestedReducer from "./intersetedReducer";
 import ReducerAddIntersested from "./AddIntersetedReducer";
 
 
+
 const rootReducer = combineReducers({
 	status: statusReducer,
 	 posts: postsReducer,

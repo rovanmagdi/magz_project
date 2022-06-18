@@ -9,9 +9,17 @@ import Person from "../../assets/person.png";
 import cameraIcon from "../../assets/cameraIcon.png";
 import Badge from "@mui/material/Badge";
 import {UserInfo} from '../../types/profile'
+import { useSelector } from "react-redux";
+import { useEffect } from "react";
 
 
 export default function ProfilePge() {
+  const user = useSelector((state: any) => state.user);
+  
+  
+    useEffect(() => {
+     
+    }, [user]);
 
   const userInfoObj: UserInfo = JSON.parse(
     `${localStorage.getItem("RegisterInfo")}`
