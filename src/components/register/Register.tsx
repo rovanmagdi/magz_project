@@ -53,6 +53,8 @@ function Register() {
   const handleSubmit = (e: React.SyntheticEvent) => {
     e.preventDefault();
     setErrorList([]);
+
+    
     let validationLoginFormResult: any = validateLoginForm(state);
     // console.log(status.errorStatus);
     if (validationLoginFormResult.error) {

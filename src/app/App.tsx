@@ -16,6 +16,7 @@ import Login from "../pages/Sign/Login";
 import HomePage from "./HomePage";
 import Interested from "../pages/Interested/Interested";
 import ProfilePge from "../pages/profilePage/ProfilePage";
+import Done from "../pages/Done/Done";
 function App() {
   const Home = styled(Box)(({ theme }) => ({
     backgroundImage: `url(${Image})`,
@@ -52,6 +53,8 @@ function App() {
               </Route>
               <Route path="login" element={<Login />} />
               <Route path="interested" element={<Interested />} />
+              <Route path="done" element={<Done />} />
+
             </Routes>
           </BrowserRouter>
         </Suspense>
