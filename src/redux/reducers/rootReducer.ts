@@ -6,6 +6,7 @@ import ReducerUser from "./registerReducer";
 import flagsReducer from "./flagsReducer";
 
 
+
 const rootReducer = combineReducers({
 	status: statusReducer,
 	 posts: postsReducer,
