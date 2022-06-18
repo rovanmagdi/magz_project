@@ -3,7 +3,7 @@ import {
   Box,
   Tabs,
   Typography,
-  Tab,
+  Menu,
   useTheme,
   useMediaQuery,
 } from "@mui/material";
@@ -16,7 +16,7 @@ import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
 import {
   Grid,
   FormControl,
-  Input,
+  Button,
   InputAdornment,
   FormGroup,
   MenuItem,
@@ -96,26 +96,46 @@ const Header = () => {
   const RegisterInfo = localStorage.getItem("RegisterInfo");
   const userInfoObj = JSON.parse(`${localStorage.getItem("RegisterInfo")}`);
 
-  const userName = `${userInfoObj.firstName} ${userInfoObj.lastName} `;
-  const userImage = `${userInfoObj.image}`;
+  // const userName =;
+  // const userImage = `${userInfoObj.image}`;
+
   const nagivate = useNavigate();
   const dispatch: any = useDispatch();
   const handleLogout = () => {
     console.log("logout");
-    nagivate("/login");
+    nagivate("/");
 
     dispatch(LogoutUser());
   };
-  const PAGES = ["new", "opinion", "sport", "life style", "culture"];
+  const handleProfile = () => {
+  
+    nagivate("/Profile");
 
+   
+  };
+  const handleHome = () => {
+  
+    nagivate("/");
+
+   
+  };
+  const PAGES = ["new", "opinion", "sport", "life style", "culture"];
+  const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
+  const open = Boolean(anchorEl);
+  const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
+    setAnchorEl(event.currentTarget);
+  };
+  const handleClose = () => {
+    setAnchorEl(null);
+  };
   return (
     <StyledNavConatiner>
       {isMatch ? (
         <StypledMedia>
-          <Box sx={{ padding: " 20px" }}>
-            <img src={Logo} height="70px" width="130px" />
+          <Box sx={{ padding: " 20px" }} >
+            <img src={Logo} height="70px" width="130px" onClick={handleHome}/>
           </Box>
-          <DrawerList />
+        <DrawerList />
         </StypledMedia>
       ) : (
         <StyledNavConatiner>
@@ -141,22 +161,30 @@ const Header = () => {
                 <Box>
                   <StyledRightOne>
                     <StyledRightOneConatiner>
-                      <Box component="img" src={userImage}></Box>
+                      <Box component="img" src={`${userInfoObj.image}`}></Box>
                     </StyledRightOneConatiner>
+
                     <FormControl>
-                      <StylesSelected
-                        value={userName}
-                        onChange={handleChange}
-                        inputProps={{
-                          name: "agent",
-                          id: "age-simple",
-                        }}
+                      <Button
+                        id="basic-button"
+                        aria-controls={open ? "basic-menu" : undefined}
+                        aria-haspopup="true"
+                        aria-expanded={open ? "true" : undefined}
+                        onClick={handleClick}
                       >
-                        <MenuItem value={userName}>{userName}</MenuItem>
-                        <MenuItem value="Logout" onClick={handleLogout}>
-                          Logout
-                        </MenuItem>
-                      </StylesSelected>
+                        {`${userInfoObj.firstName} ${userInfoObj.lastName} `}
+                      </Button>
+                      <Menu
+                        id="basic-menu"
+                        anchorEl={anchorEl}
+                        open={open}
+                        onClose={handleClose}
+                       
+                        sx={{width:"200px"}}
+                      >
+                        <MenuItem onClick={handleProfile}>Profile   </MenuItem>
+                        <MenuItem onClick={handleLogout}>Logout</MenuItem>
+                      </Menu>
                     </FormControl>
                   </StyledRightOne>
                 </Box>
@@ -185,7 +213,7 @@ const Header = () => {
             </StyledNavTopRight>
           </StyledNavTop>
           <StyledImage>
-            <img src={Logo} height="70px" width="160px" />
+            <Box component="img" src={Logo} height="70px" width="160px" onClick={handleHome} sx={{cursor: 'pointer'}}/>
           </StyledImage>
           <StyledNavBottom>
             <StyledListNavLeft>

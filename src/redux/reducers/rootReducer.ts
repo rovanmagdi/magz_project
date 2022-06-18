@@ -6,6 +6,8 @@ import ReducerUser from "./registerReducer";
 import flagsReducer from "./flagsReducer";
 import LoginUser from "./loginReducer";
 import RecentlyReducer from './RecentlyPostsReducer'
+import InterestedReducer from "./intersetedReducer";
+import ReducerAddIntersested from "./AddIntersetedReducer";
 
 
 const rootReducer = combineReducers({
@@ -14,7 +16,9 @@ const rootReducer = combineReducers({
 	 user: ReducerUser,
 	 login:LoginUser,
 	 flags:flagsReducer,
-	 recently:RecentlyReducer
+	 recently:RecentlyReducer,
+	 interseted:InterestedReducer,
+	 addinterested:ReducerAddIntersested
 
 });
 

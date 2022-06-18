@@ -1,4 +1,5 @@
-import { REGISTER_USER } from "../actions/actionTypes";
+import { LOGIN_USER } from './../actions/actionTypes';
+
 
 const initialState = {};
 interface Action {
@@ -8,7 +9,7 @@ interface Action {
 
 const LoginUser = (state=initialState, action:Action) => {
 	switch (action.type) {
-		case REGISTER_USER:
+		case LOGIN_USER:
 			return action.payload;
 		
 		default:

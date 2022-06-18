@@ -68,12 +68,12 @@ function Register() {
           state.password
         )
       );
-      if(!check)
-      {
-        console.log("done login");
-        // setCheck(hasError == true);
-          navigate("/interested");     
-      }
+      // if(!check)
+      // {
+      //   console.log("done login");
+      //   // setCheck(hasError == true);
+      //     navigate("/interested");     
+      // }
       setErrorList([]);
     }
 
@@ -81,6 +81,7 @@ function Register() {
   };
 
   useEffect(() => {
+   
     if (!check) {
       setCheck(hasError == true);
       console.log("error");

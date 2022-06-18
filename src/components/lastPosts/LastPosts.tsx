@@ -33,6 +33,7 @@ const LastPosts = () => {
             {recently.map((i: any) => {
                 return (
                     <PopularPosts
+                    key={i._id}
                         title="Recently Posts"
                         data={i.title}
                         date={<PostDate date={i.updatedAt} />}

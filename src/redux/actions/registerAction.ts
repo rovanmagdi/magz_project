@@ -10,6 +10,7 @@ export  function  registerUser (firstName: any, lastName: any, email: any, passw
         registerApi.post(`/user`, { firstName, lastName, email, password })
         .then(({data})=>{
             dispatch(showSuccess()); 
+            dispatch(ResgisterInterface(data))
             console.log("done from action registerUser");
             localStorage.setItem('RegisterInfo', JSON.stringify(data));
 
@@ -22,5 +23,9 @@ export  function  registerUser (firstName: any, lastName: any, email: any, passw
 }
 
 
+export const ResgisterInterface = (posts: any) => ({
+    type: REGISTER_USER,
+    payload: posts,
+});
 
 
