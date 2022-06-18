@@ -9,62 +9,79 @@ import {
 import { Box } from "@mui/system";
 import { StyledButton } from "../../styled/Button";
 import TextField from "@mui/material/TextField";
-import { useDispatch  } from "react-redux";
-import {setFalseProfileEditFlag} from '../../redux/actions/flagsAction'
-import {UserInfo} from '../../types/profile'
-import axios from 'axios';
-import { json } from "stream/consumers";
-
+import { useDispatch } from "react-redux";
+import { setFalseProfileEditFlag } from "../../redux/actions/flagsAction";
+import { UserInfo } from "../../types/profile";
+import { useState } from "react";
+import Joi from "joi";
+import { StyledError } from "../../styled/Error";
+import { updateUser } from "../../redux/actions/userActions";
 
 export default function ProfileForm() {
-
   const userInfoObj: UserInfo = JSON.parse(
     `${localStorage.getItem("RegisterInfo")}`
   );
- 
- const firstName=`${userInfoObj.firstName}`;;
- const lastName= `${userInfoObj.lastName}`;
+
+  const firstName = `${userInfoObj.firstName}`;
+  const lastName = `${userInfoObj.lastName}`;
   const email = `${userInfoObj.email}`;
-  //  `${userInfoObj.email}`;
- const userToken= `${userInfoObj.token}`;
+  const userToken = `${userInfoObj.token}`;
 
-  const dispatch:any=useDispatch();
+  const [state, setState] = useState({
+    firstName: firstName,
+    lastName: lastName,
+    email: email,
+  });
 
-  const config={
-    headers:{
-     'Content-Type':'application/json',
-     Authorization:`Bearer ${userToken}`
+  const [errorState, setErrorState] = useState([]);
+
+  const dispatch: any = useDispatch();
+
+  const handLeInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    let { name, value } = e.target;
+
+    setState({ ...state, [name]: value });
+  };
+ 
+
+  const validations = (state: any) => {
+    const schema = Joi.object({
+      firstName: Joi.string()
+        .alphanum()
+        .min(3)
+        .required()
+        .regex(/^[A-Z]+[a-zA-Z]*$/),
+      lastName: Joi.string()
+        .alphanum()
+        .min(3)
+        .required()
+        .regex(/^[A-Z]+[a-zA-Z]*$/),
+      email: Joi.string().regex(/[a-z0-9]+@[a-z]+\.[a-z]{2,3}/),
+    });
+
+    return schema.validate({ ...state }, { abortEarly: false });
+  };
+
+  const handleSaveClick = () => {
+    let errors: any = [];
+
+    validations(state).error?.details.forEach((element) => {
+      errors.push(element.path[0]);
+    });
+    console.log(validations(state).error?.details);
+    setErrorState(errors);
+
+    const isValidData = !validations(state).error;
+    if (isValidData) {
+      dispatch(updateUser(state));
+
+      dispatch(setFalseProfileEditFlag());
     }
-  }
+  };
 
-  const handleSaveClick=()=>{
-    const userInfoObj=JSON.parse(localStorage.RegisterInfo);
-
-    const userInfo={
-      firstName:`${userInfoObj.firstName}`,
-      lastName:`${userInfoObj.lastName}`,
-    
-  }
-      //api call with patch => switch to redux
-      axios.patch(`${process.env.REACT_APP_BACKED}/user`,userInfo,config)
-      .then(res => {
-        const updatedUser=res.data;
-        console.log(updatedUser)
-        // localStorage.setItem('RegisterInfo','hi')
-      }).catch((err)=>{
-        console.log(err)
-      })
+  const handleCancelClick = () => {
     dispatch(setFalseProfileEditFlag());
-    
-}
-
-const handleCancelClick=()=>{
-    dispatch(setFalseProfileEditFlag());
-   
-    
-}
- 
- 
+  };
 
   return (
     <>
@@ -78,9 +95,19 @@ const handleCancelClick=()=>{
                   id="outlined-helperText"
                   label="Required *"
                   defaultValue={firstName}
-                  helperText="Some important text"
                   fullWidth
+                  name="firstName"
+                  onChange={handLeInputChange}
                 />
+
+                {errorState.find((el) => el === "firstName") ? (
+                  <StyledError>
+                    First name must be more than 3 letters statrted with capital
+                    letter
+                  </StyledError>
+                ) : (
+                  <StyledError></StyledError>
+                )}
               </TableCell>
             </TableRow>
             <TableRow>
@@ -90,9 +117,19 @@ const handleCancelClick=()=>{
                   id="outlined-helperText"
                   label="Required *"
                   defaultValue={lastName}
-                  helperText="Some important text"
                   fullWidth
+                  name="lastName"
+                  onChange={handLeInputChange}
                 />
+
+                {errorState.find((el) => el === "lastName") ? (
+                  <StyledError>
+                    Last name must be more than 3 letters statrted with capital
+                    letter
+                  </StyledError>
+                ) : (
+                  <StyledError></StyledError>
+                )}
               </TableCell>
             </TableRow>
             <TableRow>
@@ -102,13 +139,20 @@ const handleCancelClick=()=>{
                   id="outlined-helperText"
                   label="Required *"
                   defaultValue={email}
-                  helperText="Some important text"
                   fullWidth
+                  name="email"
+                  onChange={handLeInputChange}
                 />
+
+                {errorState.find((el) => el === "email") ? (
+                  <StyledError>
+                    E-mail must be like "example@domain.com"
+                  </StyledError>
+                ) : (
+                  <StyledError></StyledError>
+                )}
               </TableCell>
             </TableRow>
-
-            
           </TableBody>
         </Table>
         <StyledButton onClick={handleSaveClick}>
