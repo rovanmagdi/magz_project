@@ -49,7 +49,12 @@ import { useDispatch, useSelector } from "react-redux";
 import { LogoutUser } from "../../redux/actions/logoutAction";
 import { InterstedCatergory } from "../../redux/actions/interestedAction";
 
+
 const Header = () => {
+
+  const user = useSelector((state: any) => state.user);
+  useEffect(() => {}, [user]);
+
   let newDate = new Date();
   const days = [
     "Sunday",
@@ -96,6 +101,9 @@ const Header = () => {
   const isMatch = useMediaQuery(theme.breakpoints.down(1117));
   const RegisterInfo = localStorage.getItem("RegisterInfo");
   const userInfoObj = JSON.parse(`${localStorage.getItem("RegisterInfo")}`);
+
+  // console.log(userInfoObj.image);
+  
 
   // const userName =;
 
@@ -172,9 +180,16 @@ const Header = () => {
                       >
                         {!userInfoObj.imageUrl ? (
                           <Box sx={{ display: "flex" }}>
-                            <StyledRightOneConatiner>
-                              <PersonIconNav />
-                            </StyledRightOneConatiner>
+                             <Box
+                              component="img"
+                              sx={{
+                                height: "25px",
+                                width: "25px",
+                                borderRadius: "50%",
+                                marginRight: "10px",
+                              }}
+                              src={`${userInfoObj.image}`}
+                            />
                             {userInfoObj.firstName} {userInfoObj.lastName}
                           </Box>
                         ) : (
@@ -187,7 +202,7 @@ const Header = () => {
                                 borderRadius: "50%",
                                 marginRight: "10px",
                               }}
-                              src={`${userInfoObj.image}`}
+                              src={`${userInfoObj.imageUrl}`}
                             />
                             <Box>{userInfoObj.name} </Box>
                           </>

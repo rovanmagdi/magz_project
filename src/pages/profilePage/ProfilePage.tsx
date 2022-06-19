@@ -13,6 +13,8 @@ import { useSelector } from "react-redux";
 import { useEffect, useState } from "react";
 import CameraAltIcon from "@mui/icons-material/CameraAlt";
 import axios from "axios";
+import { useDispatch } from "react-redux";
+import { updateUser } from "../../redux/actions/userActions";
 
 export default function ProfilePge() {
   const [userInf, setUserInf]: any = useState();
@@ -23,6 +25,7 @@ export default function ProfilePge() {
 
   useEffect(() => {}, [user]);
 
+  const dispatch: any = useDispatch();
   const userInfoObj: UserInfo = JSON.parse(
     `${localStorage.getItem("RegisterInfo")}`
   );
@@ -55,21 +58,23 @@ export default function ProfilePge() {
         };
 
         console.log(res.data.secure_url);
-        axios
-          .patch(
-            `${process.env.REACT_APP_BACKED}/user`,
-            { image: res.data.secure_url },
-            config
-          )
-          .then((res) => {
-            console.log(res.data);
+        // axios
+        //   .patch(
+        //     `${process.env.REACT_APP_BACKED}/user`,
+        //     { image: res.data.secure_url },
+        //     config
+        //   )
+        //   .then((res) => {
+        //     console.log(res.data);
 
-            localStorage.setItem("RegisterInfo", JSON.stringify(res.data));
-            setUserInf(() => res.data);
-          })
-          .catch((err) => {
-            alert("some thing go wrong  " + err);
-          });
+        //     localStorage.setItem("RegisterInfo", JSON.stringify(res.data));
+        //     setUserInf(() => res.data);
+        //   })
+        //   .catch((err) => {
+        //     alert("some thing go wrong  " + err);
+        //   });
+        dispatch(updateUser( {...user,image: res.data.secure_url}));
+
       })
       .catch((err) => {
         alert("some thing go wrong data base" + err);
