@@ -13,9 +13,11 @@ import {
 import PersonIcon from "@mui/icons-material/Person";
 import MenuIcon from "@mui/icons-material/Menu";
 import * as React from "react";
-import { useState } from "react";
+import { useState,useEffect } from "react";
 import { styled } from "@mui/material/styles";
 import SearchIcon from "@mui/icons-material/Search";
+import { useDispatch, useSelector } from "react-redux";
+import { InterstedCatergory } from "../../redux/actions/interestedAction";
 
 
 const DrawerList = () => {
@@ -64,8 +66,15 @@ const DrawerList = () => {
   const RegisterInfo = localStorage.getItem("RegisterInfo");
   const userInfoObj = JSON.parse(`${localStorage.getItem("RegisterInfo")}`);
 
-  const userName = `${userInfoObj.firstName} ${userInfoObj.lastName} `;
-  const userImage = `${userInfoObj.image}`;
+
+  const intersted = useSelector((state: any) => state.interseted);
+
+  const dispatch: any = useDispatch();
+  useEffect(() => {
+    dispatch(InterstedCatergory());
+
+    console.log(intersted);
+  }, []);
   return (
     <React.Fragment>
       <Drawer open={openDrawer} onClose={() => setOpenDrawer(false)}>
@@ -84,14 +93,14 @@ const DrawerList = () => {
                 </Typography>
               </StyledRightOne>):(<StyledRightOne>
                 <StyledRightOneConatiner>
-                <Box component="img" src={userImage}></Box>
+                <Box component="img" src={ `${userInfoObj.image}`}></Box>
                 </StyledRightOneConatiner>
                 <Typography
                   sx={{ margin: "10px", fontSize: "12px" }}
                   component={"span"}
                   variant={"body2"}
                 >
-                 {userName}
+                 {`${userInfoObj.firstName} ${userInfoObj.lastName} `}
                 </Typography>
               </StyledRightOne>)
               }
@@ -99,11 +108,11 @@ const DrawerList = () => {
                   <BoxLine sx={{marginLeft:"60px"}}/>
 
             </Box>
-          {PAGES.map((page, index) => {
+          {intersted?.map((page:any, index:any) => {
             return (
               <ListItemButton key={index} sx={{width:"500px"}}>
                 <ListItemIcon sx={{marginLeft:"50px"}}>
-                  <StyledListItemText >{page}
+                  <StyledListItemText >{page.title}
                   <BoxLine/>
 
                   </StyledListItemText>

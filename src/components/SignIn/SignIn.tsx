@@ -11,7 +11,6 @@ import { useNavigate } from "react-router-dom";
 import { loginUser } from "../../redux/actions/userData";
 
 export default function SignIn() {
-  const dispatch: any = useDispatch();
   const [check, setCheck] = useState(true);
   const [state, setStateList] = useState({
     email: "",
@@ -22,7 +21,8 @@ export default function SignIn() {
     (state: any) => state.status
   );
   const [errorList, setErrorList] = useState([]);
-  const navigate = useNavigate();
+  const navigate: any = useNavigate();
+  const dispatch: any = useDispatch();
   const handLeInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     let { name, value } = e.target;
     // console.log(value);
@@ -44,20 +44,24 @@ export default function SignIn() {
 
   const handleSubmit = (e: React.SyntheticEvent) => {
     e.preventDefault();
+    setErrorList([]);
 
     let validationLoginFormResult: any = validateLoginForm(state);
     if (validationLoginFormResult.error) {
       setErrorList(validationLoginFormResult.error.details);
     } else {
+      setErrorList([]);
+
       dispatch(loginUser(state));
-      console.log(errorStatus);
+      // console.log(errorStatus);
     }
   };
-
-  const data = useSelector((state: any) => state?.userData);
-  if (data) {
-    navigate("/");
-  }
+  const data = useSelector((state: any) => state.userData);
+  useEffect(() => {
+    if (data) {
+      navigate("/");
+    }
+  },[data]);
 
   return (
     <form onSubmit={handleSubmit}>
@@ -70,10 +74,10 @@ export default function SignIn() {
       />
       {errorList
         ? errorList.map((error: any, index: any) => {
-          if (error.path[0] === "email") {
-            return <StyledError key={index}>email Invalid</StyledError>;
-          }
-        })
+            if (error.path[0] === "email") {
+              return <StyledError key={index}>Email Invalid</StyledError>;
+            }
+          })
         : ""}
       <StyledError>{errorStatus}</StyledError>
       <BootstrapInput
@@ -87,12 +91,10 @@ export default function SignIn() {
 
       {errorList
         ? errorList.map((error: any, index: any) => {
-          // console.log(error);
-
-          if (error.path[0] === "password") {
-            return <StyledError key={index}>Password Invalid</StyledError>;
-          }
-        })
+            if (error.path[0] === "password") {
+              return <StyledError key={index}>Password Invalid</StyledError>;
+            }
+          })
         : ""}
       <StyledButton variant="contained" type="submit">
         Sign in

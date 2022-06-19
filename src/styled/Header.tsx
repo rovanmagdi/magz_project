@@ -38,6 +38,8 @@ import { Link } from "react-router-dom";
     alignItems: "center",
     justifyContent: "space-between",
     padding: "10px",
+    cursor: "pointer",
+
   }));
   export const PersonIconNav = styled(PersonIcon)(({ theme }) => ({
     color: `${theme.palette.secondary.main}`,
@@ -190,7 +192,7 @@ import { Link } from "react-router-dom";
     alignItems: "center",
   }));
 
-  export const StyledLink=styled(Link)(({ theme }) => ({
+  export const StyledLink=styled(Box)(({ theme }) => ({
     textDecoration:"none",
     color: `${theme.palette.text.secondary}`,
 

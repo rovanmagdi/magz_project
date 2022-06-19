@@ -1,83 +1,50 @@
-import { Box, Checkbox, Grid } from "@mui/material";
+import { Box, Checkbox, Grid, Stack } from "@mui/material";
 import React, { useEffect, useState } from "react";
 import FooterSign from "../../components/footerSign/FooterSign";
 import NavbarSign from "../../components/navbarSign/NavbarSign";
 import StepperTab from "../../components/stepper/Stepper";
 import { styled } from "@mui/material/styles";
 import { Content, Home, Info } from "../../styled/HomePage";
-import { StyledDescription, StyledTitle } from "../../styled/CategoryIntersted";
 import { useDispatch, useSelector } from "react-redux";
 import { InterstedCatergory } from "../../redux/actions/interestedAction";
-import { StyledLine } from "../../styled/Footer";
 import { StyledButton } from "../../styled/Button";
 import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
 import { useNavigate } from "react-router-dom";
 import { updateUser } from "../../redux/actions/userActions";
 import { UserInfo } from "../../types/profile";
+import {
+  StyledGridRightTitle,
+  StyledGridRightLine,
+} from "../../styled/interested";
+import InterestedComponent from "../../components/interested/Interested";
 
 const Interested = () => {
-  const StyledGridRightTitle = styled(Box)(({ theme }) => ({
-    display: "flex",
-    fontFamily: "Oswald",
-    fontWeight: "800",
-    fontSize: "14px",
-    textTransform: "uppercase",
-    position: "absolute",
-    paddingLeft: "20px",
-    marginTop: "-10px",
-    backgroundColor: "white",
-  }));
-  const StyledGridRightLine = styled(Box)(({ theme }) => ({
-    backgroundColor: `${theme.palette.primary.light}`,
-    height: "3px",
-    width: "370px",
-    borderRadius: "10px",
-    margin: "8px 0px 0px 15px",
-  }));
-  const label = { inputProps: { "aria-label": "Checkbox demo" } };
-
   const [userinfo, setUserInfo] = useState<string[]>([]);
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const { value, checked } = e.target;
-
-    console.log(`${value} is ${checked}`);
-
-    if (checked) {
-      setUserInfo((old: any) => [...old, value]);
-    } else {
-      const newState = userinfo?.filter((el) => {
-        return el !== value;
-      });
-
-      setUserInfo((old) => [...newState]);
-    }
-  };
-  console.log(userinfo);
+  // console.log(userinfo);
 
   const intersted = useSelector((state: any) => state.interseted);
-  
+
   const dispatch: any = useDispatch();
   useEffect(() => {
     dispatch(InterstedCatergory());
 
-    console.log(intersted);
+    // console.log(intersted);
   }, []);
-const nagivate=useNavigate()
-const userInfoObj: UserInfo = JSON.parse(
-  `${localStorage.getItem("RegisterInfo")}`
-);
-  const handleGoDone=()=>
-  {
-    dispatch(updateUser({intersted:userinfo}));
-    nagivate("/done")
-  }
+  const nagivate = useNavigate();
+  const userInfoObj: UserInfo = JSON.parse(
+    `${localStorage.getItem("RegisterInfo")}`
+  );
+  const handleGoDone = () => {
+    dispatch(updateUser({ intersted: userinfo }));
+    nagivate("/done");
+  };
   return (
     <Box>
       <Home />
       <Content>
         <NavbarSign />
-        <StepperTab activeStep={1}/>
+        <StepperTab activeStep={1} />
         <Box
           sx={{
             // display: "flex",
@@ -93,38 +60,12 @@ const userInfoObj: UserInfo = JSON.parse(
           </StyledGridRightTitle>
           {intersted?.map((item: any) => {
             return (
-              <>
-                <Box
-                  sx={{
-                    paddingTop: "25px",
-                    display: "flex",
-                    margin: "auto",
-                    alignItems: "center",
-                    justifyContent: "space-around",
-                  }}
-                  key={item.title}
-                >
-                  <Box
-                    component="img"
-                    src={item.image}
-                    height="150px"
-                    width="190px"
-                  />
-
-                  <Box>
-                    <StyledTitle>{item.title}</StyledTitle>
-                    <StyledDescription>{item.description}</StyledDescription>
-                    <Checkbox
-                      {...label}
-                      name="intersets"
-                      value={item.title}
-                      onChange={handleChange}
-                    />
-                    Yes,
-                  </Box>
-                </Box>
-                <StyledLine sx={{ width: "650px" }} />
-              </>
+              <InterestedComponent
+                id={item._id}
+                image={item.image}
+                description={item.description}
+                title={item.title}
+              />
             );
           })}
           <StyledButton
