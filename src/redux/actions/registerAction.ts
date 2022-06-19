@@ -18,7 +18,7 @@ export function registerUser(firstName: any, lastName: any, email: any, password
 
                 dispatch(showSuccess());
                 console.log("done from action registerUser");
-                dispatch(RegisterInterface(data))
+                dispatch(ResgisterInterface(data))
                 localStorage.setItem('RegisterInfo', JSON.stringify(data));
 
 
@@ -32,7 +32,7 @@ export function registerUser(firstName: any, lastName: any, email: any, password
 }
 
 
-export const RegisterInterface = (posts: any) => ({
+export const ResgisterInterface = (posts: any) => ({
     type: REGISTER_USER,
     payload: posts,
 });

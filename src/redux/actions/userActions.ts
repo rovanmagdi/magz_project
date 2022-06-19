@@ -7,6 +7,7 @@ interface Info {
   lastName?: string;
   email?: string;
   intersted?:string[];
+  image?:string;
 }
 
 export const updateUser = (state: Info) => (dispatch: any) => {
