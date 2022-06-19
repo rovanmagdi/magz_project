@@ -12,6 +12,9 @@ import { StyledLine } from "../../styled/Footer";
 import { StyledButton } from "../../styled/Button";
 import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
 import { useNavigate } from "react-router-dom";
+import { updateUser } from "../../redux/actions/userActions";
+import { UserInfo } from "../../types/profile";
+
 const Interested = () => {
   const StyledGridRightTitle = styled(Box)(({ theme }) => ({
     display: "flex",
@@ -61,8 +64,12 @@ const Interested = () => {
     console.log(intersted);
   }, []);
 const nagivate=useNavigate()
+const userInfoObj: UserInfo = JSON.parse(
+  `${localStorage.getItem("RegisterInfo")}`
+);
   const handleGoDone=()=>
   {
+    dispatch(updateUser({intersted:userinfo}));
     nagivate("/done")
   }
   return (

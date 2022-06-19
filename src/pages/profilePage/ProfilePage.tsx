@@ -15,6 +15,7 @@ import CameraAltIcon from "@mui/icons-material/CameraAlt";
 import axios from "axios";
 import { useDispatch } from "react-redux";
 import { updateUser } from "../../redux/actions/userActions";
+import Interested from '../Interested/Interested'
 
 export default function ProfilePge() {
   const [userInf, setUserInf]: any = useState();
@@ -57,22 +58,8 @@ export default function ProfilePge() {
           },
         };
 
-        console.log(res.data.secure_url);
-        // axios
-        //   .patch(
-        //     `${process.env.REACT_APP_BACKED}/user`,
-        //     { image: res.data.secure_url },
-        //     config
-        //   )
-        //   .then((res) => {
-        //     console.log(res.data);
-
-        //     localStorage.setItem("RegisterInfo", JSON.stringify(res.data));
-        //     setUserInf(() => res.data);
-        //   })
-        //   .catch((err) => {
-        //     alert("some thing go wrong  " + err);
-        //   });
+        // console.log(res.data.secure_url);
+       
         dispatch(updateUser( {...user,image: res.data.secure_url}));
 
       })
