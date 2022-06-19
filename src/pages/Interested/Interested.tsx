@@ -9,7 +9,9 @@ import { StyledDescription, StyledTitle } from "../../styled/CategoryIntersted";
 import { useDispatch, useSelector } from "react-redux";
 import { InterstedCatergory } from "../../redux/actions/interestedAction";
 import { StyledLine } from "../../styled/Footer";
-import { AddInterested } from "../../redux/actions/addInterested";
+import { StyledButton } from "../../styled/Button";
+import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
+import { useNavigate } from "react-router-dom";
 const Interested = () => {
   const StyledGridRightTitle = styled(Box)(({ theme }) => ({
     display: "flex",
@@ -40,7 +42,6 @@ const Interested = () => {
 
     if (checked) {
       setUserInfo((old: any) => [...old, value]);
-      dispatch(AddInterested(value))
     } else {
       const newState = userinfo?.filter((el) => {
         return el !== value;
@@ -50,20 +51,26 @@ const Interested = () => {
     }
   };
   console.log(userinfo);
+
   const intersted = useSelector((state: any) => state.interseted);
+  
   const dispatch: any = useDispatch();
   useEffect(() => {
     dispatch(InterstedCatergory());
-   
+
     console.log(intersted);
   }, []);
-
+const nagivate=useNavigate()
+  const handleGoDone=()=>
+  {
+    nagivate("/done")
+  }
   return (
     <Box>
       <Home />
       <Content>
         <NavbarSign />
-        <StepperTab />
+        <StepperTab activeStep={1}/>
         <Box
           sx={{
             // display: "flex",
@@ -88,6 +95,7 @@ const Interested = () => {
                     alignItems: "center",
                     justifyContent: "space-around",
                   }}
+                  key={item.title}
                 >
                   <Box
                     component="img"
@@ -112,6 +120,13 @@ const Interested = () => {
               </>
             );
           })}
+          <StyledButton
+            endIcon={<ArrowForwardIcon />}
+            sx={{ color: "white", transform: "translateX(300%)" }}
+            onClick={handleGoDone}
+          >
+            Continue
+          </StyledButton>
         </Box>
         <FooterSign />
       </Content>

@@ -6,8 +6,9 @@ import { LoginInterFace } from "../../types/login";
 import Joi from "joi";
 import { StyledError } from "../../styled/Error";
 import { useDispatch, useSelector } from "react-redux";
-import { loginUser } from "../../redux/actions/loginAction";
+
 import { useNavigate } from "react-router-dom";
+import { loginUser } from "../../redux/actions/userData";
 
 export default function SignIn() {
   const dispatch: any = useDispatch();
@@ -40,29 +41,7 @@ export default function SignIn() {
 
     return schema.validate(login, { abortEarly: false });
   }
-  const checkFun=()=>
-  {
-    
-      if(check)
-      {
 
-        console.log("done login");
-        setCheck(hasError == true);
-          navigate("/");
-      }
-  
-  }
-  // useEffect(() => {
-  
-  //   if(check) { setTimeout(() => {
-      
-  //     console.log("done login");
-  //     setCheck(hasError == true);
-  //       navigate("/");
-  //   }, 500)
-      
-  //   }
-  // }, [ hasError,check,setCheck,navigate]);
   const handleSubmit = (e: React.SyntheticEvent) => {
     e.preventDefault();
     // setErrorList([]);
@@ -71,17 +50,16 @@ export default function SignIn() {
       setErrorList(validationLoginFormResult.error.details);
     } else {
       setCheck(hasError);
-      dispatch(loginUser(state.email, state.password));
-      if(!check)
-      {
-        console.log("done login");
-        // setCheck(hasError == true);
-          navigate("/");     
-      }
 
-      // setErrorList([]);
+      console.log("done login");
+      dispatch(loginUser(state));
     }
   };
+
+  const data = useSelector((state: any) => state?.userData);
+  if (data) {
+    navigate("/");
+  }
 
   return (
     <form onSubmit={handleSubmit}>

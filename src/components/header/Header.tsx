@@ -8,7 +8,7 @@ import {
   useMediaQuery,
 } from "@mui/material";
 import { styled } from "@mui/material/styles";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Logo from "../../assets/logo.png";
 import OutlinedInput from "@mui/material/OutlinedInput";
 import SearchIcon from "@mui/icons-material/Search";
@@ -45,8 +45,9 @@ import {
 import DrawerList from "./Drawer";
 // import { Link } from "react-router-dom";
 import { Link, useNavigate } from "react-router-dom";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { LogoutUser } from "../../redux/actions/logoutAction";
+import { InterstedCatergory } from "../../redux/actions/interestedAction";
 
 const Header = () => {
   let newDate = new Date();
@@ -97,10 +98,9 @@ const Header = () => {
   const userInfoObj = JSON.parse(`${localStorage.getItem("RegisterInfo")}`);
 
   // const userName =;
-  // const userImage = `${userInfoObj.image}`;
 
   const nagivate = useNavigate();
-  const dispatch: any = useDispatch();
+
   const handleLogout = () => {
     console.log("logout");
     nagivate("/");
@@ -108,18 +108,20 @@ const Header = () => {
     dispatch(LogoutUser());
   };
   const handleProfile = () => {
-  
     nagivate("/Profile");
-
-   
   };
   const handleHome = () => {
-  
     nagivate("/");
-
-   
   };
   const PAGES = ["new", "opinion", "sport", "life style", "culture"];
+  const intersted = useSelector((state: any) => state.interseted);
+
+  const dispatch: any = useDispatch();
+  useEffect(() => {
+    dispatch(InterstedCatergory());
+
+    console.log(intersted);
+  }, []);
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
   const open = Boolean(anchorEl);
   const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
@@ -132,10 +134,10 @@ const Header = () => {
     <StyledNavConatiner>
       {isMatch ? (
         <StypledMedia>
-          <Box sx={{ padding: " 20px" }} >
-            <img src={Logo} height="70px" width="130px" onClick={handleHome}/>
+          <Box sx={{ padding: " 20px" }}>
+            <img src={Logo} height="70px" width="130px" onClick={handleHome} />
           </Box>
-        <DrawerList />
+          <DrawerList />
         </StypledMedia>
       ) : (
         <StyledNavConatiner>
@@ -160,10 +162,6 @@ const Header = () => {
               ) : (
                 <Box>
                   <StyledRightOne>
-                    <StyledRightOneConatiner>
-                      <Box component="img" src={`${userInfoObj.image}`}></Box>
-                    </StyledRightOneConatiner>
-
                     <FormControl>
                       <Button
                         id="basic-button"
@@ -172,18 +170,62 @@ const Header = () => {
                         aria-expanded={open ? "true" : undefined}
                         onClick={handleClick}
                       >
-                        {`${userInfoObj.firstName} ${userInfoObj.lastName} `}
+                        {!userInfoObj.imageUrl ? (
+                          <Box sx={{ display: "flex" }}>
+                            <StyledRightOneConatiner>
+                              <PersonIconNav />
+                            </StyledRightOneConatiner>
+                            {userInfoObj.firstName} {userInfoObj.lastName}
+                          </Box>
+                        ) : (
+                          <>
+                            <Box
+                              component="img"
+                              sx={{
+                                height: "25px",
+                                width: "25px",
+                                borderRadius: "50%",
+                                marginRight: "10px",
+                              }}
+                              src={`${userInfoObj.image}`}
+                            />
+                            <Box>{userInfoObj.name} </Box>
+                          </>
+                        )}
+                        {` `}
                       </Button>
                       <Menu
                         id="basic-menu"
                         anchorEl={anchorEl}
                         open={open}
                         onClose={handleClose}
-                       
-                        sx={{width:"200px"}}
+                        PaperProps={{
+                          style: {
+                            width: 130,
+                            textAlign: "center",
+                          },
+                        }}
                       >
-                        <MenuItem onClick={handleProfile}>Profile   </MenuItem>
-                        <MenuItem onClick={handleLogout}>Logout</MenuItem>
+                        <MenuItem
+                          onClick={handleProfile}
+                          sx={{
+                            "&:hover": {
+                              backgroundColor: "rgba(77,126,150,0.4)",
+                            },
+                          }}
+                        >
+                          Profile{" "}
+                        </MenuItem>
+                        <MenuItem
+                          onClick={handleLogout}
+                          sx={{
+                            "&:hover": {
+                              backgroundColor: "rgba(77,126,150,0.4)",
+                            },
+                          }}
+                        >
+                          Logout
+                        </MenuItem>
                       </Menu>
                     </FormControl>
                   </StyledRightOne>
@@ -213,13 +255,22 @@ const Header = () => {
             </StyledNavTopRight>
           </StyledNavTop>
           <StyledImage>
-            <Box component="img" src={Logo} height="70px" width="160px" onClick={handleHome} sx={{cursor: 'pointer'}}/>
+            <Box
+              component="img"
+              src={Logo}
+              height="70px"
+              width="160px"
+              onClick={handleHome}
+              sx={{ cursor: "pointer" }}
+            />
           </StyledImage>
           <StyledNavBottom>
             <StyledListNavLeft>
               <Tabs value={value} onChange={(e, value) => setValue(value)}>
-                {PAGES.map((page, index) => {
-                  return <StyledListNavLeftContent label={page} key={index} />;
+                {intersted?.map((page: any, index: any) => {
+                  return (
+                    <StyledListNavLeftContent label={page.title} key={index} />
+                  );
                 })}
 
                 <StyledListNavLeftMore

@@ -19,7 +19,7 @@ export const updateUser = (state: Info) => (dispatch: any) => {
   };
 
   userApi
-    .patch(`${process.env.REACT_APP_BACKED}/user`, state, config)
+    .patch(``, state, config)
     .then((res) => {
     
       localStorage.setItem(
