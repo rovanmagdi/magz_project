@@ -13,7 +13,7 @@ import { loginUser } from "../../redux/actions/userData";
 export default function SignIn() {
   const dispatch: any = useDispatch();
   const [check, setCheck] = useState(true);
-  const [state, setState] = useState({
+  const [state, setStateList] = useState({
     email: "",
     password: "",
   });
@@ -26,7 +26,7 @@ export default function SignIn() {
   const handLeInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     let { name, value } = e.target;
     // console.log(value);
-    setState({ ...state, [name]: value });
+    setStateList({ ...state, [name]: value });
   };
 
   function validateLoginForm(login: LoginInterFace) {
@@ -44,15 +44,13 @@ export default function SignIn() {
 
   const handleSubmit = (e: React.SyntheticEvent) => {
     e.preventDefault();
-    // setErrorList([]);
+
     let validationLoginFormResult: any = validateLoginForm(state);
     if (validationLoginFormResult.error) {
       setErrorList(validationLoginFormResult.error.details);
     } else {
-      setCheck(hasError);
-
-      console.log("done login");
       dispatch(loginUser(state));
+      console.log(errorStatus);
     }
   };
 
@@ -72,10 +70,10 @@ export default function SignIn() {
       />
       {errorList
         ? errorList.map((error: any, index: any) => {
-            if (error.path[0] === "email") {
-              return <StyledError key={index}>email Invalid</StyledError>;
-            }
-          })
+          if (error.path[0] === "email") {
+            return <StyledError key={index}>email Invalid</StyledError>;
+          }
+        })
         : ""}
       <StyledError>{errorStatus}</StyledError>
       <BootstrapInput
@@ -89,12 +87,12 @@ export default function SignIn() {
 
       {errorList
         ? errorList.map((error: any, index: any) => {
-            // console.log(error);
+          // console.log(error);
 
-            if (error.path[0] === "password") {
-              return <StyledError key={index}>Password Invalid</StyledError>;
-            }
-          })
+          if (error.path[0] === "password") {
+            return <StyledError key={index}>Password Invalid</StyledError>;
+          }
+        })
         : ""}
       <StyledButton variant="contained" type="submit">
         Sign in

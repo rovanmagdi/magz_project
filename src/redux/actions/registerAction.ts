@@ -8,31 +8,21 @@ import registerApi from '../../api/registerApi'
 export function registerUser(firstName: any, lastName: any, email: any, password: any, image?: any) {
     return (dispatch: any) => {
         registerApi.post(`/user`, { firstName, lastName, email, password })
-        .then(({data})=>{
-            dispatch(showSuccess()); 
-            dispatch(ResgisterInterface(data))
-            console.log("done from action registerUser");
-            console.log(data);
-            localStorage.setItem('RegisterInfo', JSON.stringify(data));
-
-
+            .then(({ data }) => {
                 dispatch(showSuccess());
+                dispatch(RegisterInterface(data))
                 console.log("done from action registerUser");
-                dispatch(ResgisterInterface(data))
+                console.log(data);
                 localStorage.setItem('RegisterInfo', JSON.stringify(data));
-
-
-
             }).catch((error) => {
                 console.log("errror from action registerUser");
-
                 dispatch(showError(error.response.data.message));
             })
     }
 }
 
 
-export const ResgisterInterface = (posts: any) => ({
+export const RegisterInterface = (posts: any) => ({
     type: REGISTER_USER,
     payload: posts,
 });
