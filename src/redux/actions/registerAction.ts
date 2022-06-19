@@ -8,7 +8,12 @@ import registerApi from '../../api/registerApi'
 export function registerUser(firstName: any, lastName: any, email: any, password: any, image?: any) {
     return (dispatch: any) => {
         registerApi.post(`/user`, { firstName, lastName, email, password })
-            .then(({ data }) => {
+        .then(({data})=>{
+            dispatch(showSuccess()); 
+            dispatch(ResgisterInterface(data))
+            console.log("done from action registerUser");
+            console.log(data);
+            localStorage.setItem('RegisterInfo', JSON.stringify(data));
 
 
                 dispatch(showSuccess());
