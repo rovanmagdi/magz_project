@@ -9,7 +9,6 @@ import { StyledDescription, StyledTitle } from "../../styled/CategoryIntersted";
 import { useDispatch, useSelector } from "react-redux";
 import { InterstedCatergory } from "../../redux/actions/interestedAction";
 import { StyledLine } from "../../styled/Footer";
-import { AddInterested } from "../../redux/actions/addInterested";
 import { StyledButton } from "../../styled/Button";
 import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
 import { useNavigate } from "react-router-dom";
@@ -43,7 +42,6 @@ const Interested = () => {
 
     if (checked) {
       setUserInfo((old: any) => [...old, value]);
-      dispatch(AddInterested(value));
     } else {
       const newState = userinfo?.filter((el) => {
         return el !== value;
@@ -53,7 +51,9 @@ const Interested = () => {
     }
   };
   console.log(userinfo);
+
   const intersted = useSelector((state: any) => state.interseted);
+  
   const dispatch: any = useDispatch();
   useEffect(() => {
     dispatch(InterstedCatergory());
@@ -95,6 +95,7 @@ const nagivate=useNavigate()
                     alignItems: "center",
                     justifyContent: "space-around",
                   }}
+                  key={item.title}
                 >
                   <Box
                     component="img"

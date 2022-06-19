@@ -8,6 +8,7 @@ import LoginUser from "./loginReducer";
 import RecentlyReducer from './RecentlyPostsReducer'
 import InterestedReducer from "./intersetedReducer";
 import ReducerAddIntersested from "./AddIntersetedReducer";
+import {userDataReducer} from'./userData'
 
 
 
@@ -19,7 +20,8 @@ const rootReducer = combineReducers({
 	 flags:flagsReducer,
 	 recently:RecentlyReducer,
 	 interseted:InterestedReducer,
-	 addinterested:ReducerAddIntersested
+	 addinterested:ReducerAddIntersested,
+	 userData:userDataReducer
 
 });
 

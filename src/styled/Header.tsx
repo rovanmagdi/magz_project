@@ -51,10 +51,12 @@ import { Link } from "react-router-dom";
     }
   }));
   export const StyledRightOneConatiner = styled(Box)(({ theme }) => ({
-    height: "25px",
-    width: "25px",
-    borderRadius: "50%",
-    textAlign: "center",
+    
+      height: "25px",
+      width: "25px",
+      borderRadius: "50%",
+      marginRight: "10px",
+    
     backgroundColor: `${theme.palette.primary.light}`,
   }));
   export const StyledImage = styled(Box)(({ theme }) => ({
