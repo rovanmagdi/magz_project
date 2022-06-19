@@ -19,7 +19,7 @@ function Register() {
     firstName: "",
     lastName: "",
     email: "",
-    password: ""
+    password: "",
     // confirmePassword: "",
   });
   const { firstName, lastName, email, password } = state;
@@ -57,27 +57,23 @@ function Register() {
     setErrorList([]);
 
     let validationLoginFormResult: any = validateLoginForm(state);
-    // console.log(status.errorStatus);
+
     if (validationLoginFormResult.error) {
       setErrorList(validationLoginFormResult.error.details);
     } else {
-      // dispatch(loginAdmin(login));
-      console.log("done");
-    
 
-      dispatch(RegisterUser(state))
+ 
+
+      dispatch(RegisterUser(state));
       setErrorList([]);
     }
 
-    // setChecked((old:any )=> true);
   };
   const data = useSelector((state: any) => state?.userData);
   if (data) {
     navigate("/interested");
   }
-  console.log((data));
-  
- 
+  console.log(data);
 
   const handleSuccess = (results: any) => {
     console.log(results);
