@@ -10,7 +10,7 @@ export function registerUser(firstName: any, lastName: any, email: any, password
         registerApi.post(`/user`, { firstName, lastName, email, password })
         .then(({data})=>{
             dispatch(showSuccess()); 
-            dispatch(ResgisterInterface(data))
+            dispatch(RegisterInterface(data))
             console.log("done from action registerUser");
             console.log(data);
             localStorage.setItem('RegisterInfo', JSON.stringify(data));
