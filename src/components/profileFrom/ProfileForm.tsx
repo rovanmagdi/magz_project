@@ -102,7 +102,8 @@ export default function ProfileForm() {
 
                 {errorState.find((el) => el === "firstName") ? (
                   <StyledError>
-                    First name must be more than 3 letters and letters only
+                    First name must be more than 3 letters and only letters
+                    
                   </StyledError>
                 ) : (
                   <StyledError></StyledError>
@@ -123,8 +124,7 @@ export default function ProfileForm() {
 
                 {errorState.find((el) => el === "lastName") ? (
                   <StyledError>
-                    Last name must be more than 3 letters and letters only
-                    
+                    Last name must be more than 3 letters and only letters
                   </StyledError>
                 ) : (
                   <StyledError></StyledError>

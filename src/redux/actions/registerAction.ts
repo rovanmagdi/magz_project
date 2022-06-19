@@ -12,6 +12,7 @@ export  function  registerUser (firstName: any, lastName: any, email: any, passw
             dispatch(showSuccess()); 
             dispatch(ResgisterInterface(data))
             console.log("done from action registerUser");
+            console.log(data);
             localStorage.setItem('RegisterInfo', JSON.stringify(data));
 
         }).catch((error)=>{
