@@ -50,12 +50,12 @@ export default function ProfileForm() {
         .alphanum()
         .min(3)
         .required()
-        .regex(/^[A-Z]+[a-zA-Z]*$/),
+        .regex(/^[a-zA-Z]*$/),
       lastName: Joi.string()
         .alphanum()
         .min(3)
         .required()
-        .regex(/^[A-Z]+[a-zA-Z]*$/),
+        .regex(/^[a-zA-Z]*$/),
       email: Joi.string().regex(/[a-z0-9]+@[a-z]+\.[a-z]{2,3}/),
     });
 
@@ -102,8 +102,7 @@ export default function ProfileForm() {
 
                 {errorState.find((el) => el === "firstName") ? (
                   <StyledError>
-                    First name must be more than 3 letters statrted with capital
-                    letter
+                    First name must be more than 3 letters and letters only
                   </StyledError>
                 ) : (
                   <StyledError></StyledError>
@@ -124,8 +123,8 @@ export default function ProfileForm() {
 
                 {errorState.find((el) => el === "lastName") ? (
                   <StyledError>
-                    Last name must be more than 3 letters statrted with capital
-                    letter
+                    Last name must be more than 3 letters and letters only
+                    
                   </StyledError>
                 ) : (
                   <StyledError></StyledError>
