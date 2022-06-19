@@ -13,7 +13,7 @@ export const RecentlyPosts = ()=> {
             .then(({ data }) => {
                 dispatch(showSuccess());
                 dispatch(RecentlyPostsInterface(data));
-                console.log(data);
+                // console.log(data);
                 
 
             }).catch((error) => {

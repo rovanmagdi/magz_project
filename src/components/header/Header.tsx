@@ -8,7 +8,7 @@ import {
   useMediaQuery,
 } from "@mui/material";
 import { styled } from "@mui/material/styles";
-import React, { useEffect, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import Logo from "../../assets/logo.png";
 import OutlinedInput from "@mui/material/OutlinedInput";
 import SearchIcon from "@mui/icons-material/Search";
@@ -49,9 +49,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { LogoutUser } from "../../redux/actions/logoutAction";
 import { InterstedCatergory } from "../../redux/actions/interestedAction";
 
-
 const Header = () => {
-
   const user = useSelector((state: any) => state.user);
   useEffect(() => {}, [user]);
 
@@ -102,12 +100,7 @@ const Header = () => {
   const RegisterInfo = localStorage.getItem("RegisterInfo");
   const userInfoObj = JSON.parse(`${localStorage.getItem("RegisterInfo")}`);
 
-  // console.log(userInfoObj.image);
-  
-
-  // const userName =;
-
-  const nagivate = useNavigate();
+  const nagivate: any = useNavigate();
 
   const handleLogout = () => {
     console.log("logout");
@@ -121,14 +114,12 @@ const Header = () => {
   const handleHome = () => {
     nagivate("/");
   };
-  const PAGES = ["new", "opinion", "sport", "life style", "culture"];
+
   const intersted = useSelector((state: any) => state.interseted);
 
   const dispatch: any = useDispatch();
   useEffect(() => {
     dispatch(InterstedCatergory());
-
-    console.log(intersted);
   }, []);
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
   const open = Boolean(anchorEl);
@@ -138,6 +129,10 @@ const Header = () => {
   const handleClose = () => {
     setAnchorEl(null);
   };
+  const handleClickLogin = () => {
+    nagivate("/login");
+  };
+
   return (
     <StyledNavConatiner>
       {isMatch ? (
@@ -155,7 +150,11 @@ const Header = () => {
             </Box>
             <StyledNavTopRight>
               {!RegisterInfo ? (
-                <StyledRightOne>
+                <StyledRightOne
+                  onClick={() => {
+                    handleClickLogin();
+                  }}
+                >
                   <StyledRightOneConatiner>
                     <PersonIconNav />
                   </StyledRightOneConatiner>
@@ -164,7 +163,7 @@ const Header = () => {
                     component={"span"}
                     variant={"body2"}
                   >
-                    <StyledLink to="/login">Sign in</StyledLink>
+                    <StyledLink>Sign in</StyledLink>
                   </Typography>
                 </StyledRightOne>
               ) : (
@@ -180,16 +179,22 @@ const Header = () => {
                       >
                         {!userInfoObj.imageUrl ? (
                           <Box sx={{ display: "flex" }}>
-                             <Box
-                              component="img"
-                              sx={{
-                                height: "25px",
-                                width: "25px",
-                                borderRadius: "50%",
-                                marginRight: "10px",
-                              }}
-                              src={`${userInfoObj.image}`}
-                            />
+                            {userInfoObj.image === " " ? (
+                              <Box
+                                component="img"
+                                sx={{
+                                  height: "25px",
+                                  width: "25px",
+                                  borderRadius: "50%",
+                                  marginRight: "10px",
+                                }}
+                                src={`${userInfoObj.image}`}
+                              />
+                            ) : (
+                              <StyledRightOneConatiner>
+                                <PersonIconNav />
+                              </StyledRightOneConatiner>
+                            )}
                             {userInfoObj.firstName} {userInfoObj.lastName}
                           </Box>
                         ) : (

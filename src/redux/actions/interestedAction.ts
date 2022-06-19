@@ -13,7 +13,7 @@ export const InterstedCatergory = ()=> {
             .then(({ data }) => {
                 dispatch(showSuccess());
                 dispatch(IntersetedCaterogryInterface(data));
-                console.log(data);
+                // console.log(data);
                 
 
             }).catch((error) => {

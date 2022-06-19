@@ -14,7 +14,7 @@ const LastPosts = () => {
     const { recently } = useSelector((state: any) => state);
     useEffect(() => {
         dispatch(RecentlyPosts());
-        console.log(recently);
+        // console.log(recently);
     }, []);
 
     return (

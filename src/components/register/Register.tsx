@@ -14,8 +14,8 @@ import GoogleLogin from "react-google-login";
 import { RegisterUser } from "../../redux/actions/userData";
 
 function Register() {
-  const [check, setCheck] = useState(false);
-  const [state, setState] = useState({
+ 
+  const [state, setStateList] = useState({
     firstName: "",
     lastName: "",
     email: "",
@@ -28,8 +28,8 @@ function Register() {
 
   const handLeInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     let { name, value } = e.target;
-    console.log(value);
-    setState({ ...state, [name]: value });
+    // console.log(value);
+    setStateList({ ...state, [name]: value });
   };
 
   function validateLoginForm(login: any) {
@@ -70,10 +70,14 @@ function Register() {
 
   };
   const data = useSelector((state: any) => state?.userData);
-  if (data) {
-    navigate("/interested");
-  }
-  console.log(data);
+  useEffect(()=>
+  {
+
+    if (data) {
+      navigate("/interested");
+    }
+  },[data])
+  
 
   const handleSuccess = (results: any) => {
     console.log(results);
