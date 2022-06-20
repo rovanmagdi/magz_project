@@ -9,7 +9,7 @@ import Weather from './Weather';
 import PopularPosts from '../popularPosts/populatPosts';
 const TodaySection = () => {
     const posts=useSelector((state:any) =>state.posts? state.posts[0].posts : state.posts);
-    console.log(posts)
+    // console.log(posts)
 
     return (
         <>

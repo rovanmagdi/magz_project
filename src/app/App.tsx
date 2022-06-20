@@ -13,7 +13,7 @@ import Header from "../components/header/Header";
 import Image from "../assets/background.png";
 import Footer from "../components/footer/Footer";
 import Login from "../pages/Sign/Login";
-import HomePage from "./HomePage";
+import Homenews  from "./HomePage";
 import Interested from "../pages/Interested/Interested";
 import ProfilePge from "../pages/profilePage/ProfilePage";
 import Done from "../pages/Done/Done";
@@ -48,7 +48,7 @@ function App() {
         <Suspense fallback={<CircularProgress />}>
           <BrowserRouter>
             <Routes>
-              <Route path="/" element={<HomePage />}>
+              <Route path="/" element={<Homenews  />}>
                 <Route path="/Profile" element={<ProfilePge />} />
               </Route>
               <Route path="login" element={<Login />} />
