@@ -19,20 +19,19 @@ const OpinionSection = () => {
     <HorizontalLineBox sx={{backgroundColor:"#C29653"}}></HorizontalLineBox>
     </Box>  
  
- <Grid container>
-    <Grid item columns={6} wrap={"wrap"}>
-        <Stack flexDirection={"row"} >
+ <Grid container   columns={12}
+           gap={1} >
+ 
               {
         posts? (posts.map((post:any)=>{
-            return <Opinion {...post}/>
+            return <Grid item sm={12} md={4} ><Opinion {...post}/>
+            </Grid> 
         })):(<div>loading</div>)
         
     }
 
-</Stack>
 </Grid>
 
-</Grid>
 </Box>
         </>
     );

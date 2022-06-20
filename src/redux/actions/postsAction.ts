@@ -22,4 +22,3 @@ export const getAllPostsSuccess = (posts:any) => ({
 	payload: posts,
 });
 
-

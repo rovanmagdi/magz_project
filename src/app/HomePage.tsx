@@ -32,6 +32,7 @@ function HomePage() {
           {" "}
           {/* <ProfilePge /> */}
 <Homenews></Homenews>
+
         </Info>
 
 

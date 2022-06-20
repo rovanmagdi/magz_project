@@ -5,8 +5,8 @@ import { Stack } from '@mui/material';
 import { CategoryLabelBox, HorizontalLineBox } from '../../styled/styledBox';
 import { Box } from '@mui/material';
 import Today from './Today';
-import Weather from './Weather';
 import PopularPosts from '../popularPosts/populatPosts';
+import Weather from './Weather';
 const TodaySection = () => {
     const posts=useSelector((state:any) =>state.posts? state.posts[0].posts : state.posts);
     // console.log(posts)
@@ -14,15 +14,15 @@ const TodaySection = () => {
     return (
         <>
 
-        <Stack  direction={"row"}>
-             {/* {
-        posts? (posts.map((post:any)=>{
+        <Stack  direction={"row"} justifyContent={"space-between"}>
+              {
+        posts? (posts.slice(0,1).map((post:any)=>{
             return <Today {...post}/>
         })):(<div>loading</div>)
         
-    }  */}
-    <Weather/>
-    {/* <PopularPosts data="Any Description" date="125" /> */}
+    }  
+
+     <Weather></Weather> 
 </Stack>
         </>
     );

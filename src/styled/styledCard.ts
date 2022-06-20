@@ -13,7 +13,8 @@ export const StyledCard = styled(Card)(() => ({
 
 
 export const StyledTodayCard = styled(StyledCard)(() => ({
-  width: "600px",
+  width: "68%",
+  marginTop:"0px", 
  
 }));
 
@@ -27,7 +28,7 @@ export const StyledSportCard = styled(StyledCard)(() => ({
 }));
 
 export const StyledLifestyleCard = styled(StyledCard)(() => ({
-  width: "300px",
+  width: "380px",
   "&:hover": {
     color: "#22b8b3",
   },
