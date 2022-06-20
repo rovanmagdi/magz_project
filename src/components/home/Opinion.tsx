@@ -16,6 +16,7 @@ import { OverlayTodayBox } from "../../styled/styledBox";
 import { color } from "@mui/system";
 import { StyledOpinionCard } from "../../styled/styledCard";
 import Post from "../../types/post";
+import { TypographyCardTitle } from "../../styled/styledTypography";
 const Opinion: React.FC<Post> = (props) => {
   const { title, image, description, updatedAt, auther } = props;
   console.log(title, image, description, updatedAt, auther);
@@ -33,9 +34,9 @@ const Opinion: React.FC<Post> = (props) => {
 
           <OverlayOpinionBox> </OverlayOpinionBox>
           <CardContent>
-            <Typography gutterBottom  >
+            <TypographyCardTitle gutterBottom  >
               {title}
-            </Typography>
+            </TypographyCardTitle>
           </CardContent>
         </CardActionArea>
         <CardActions>

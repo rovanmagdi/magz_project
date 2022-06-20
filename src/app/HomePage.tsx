@@ -22,7 +22,7 @@ function HomePage() {
         </Routes>
         <Info>
           {" "}
-          <ProfilePge />
+          {/* <ProfilePge /> */}
 <Homenews></Homenews>
         </Info>
 

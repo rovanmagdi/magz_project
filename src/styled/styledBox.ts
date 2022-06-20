@@ -30,7 +30,7 @@ export const HorizontalLineBox = styled(Box)(() => ({
   width: "60%",
   height: "4px",
   position: "absolute",
-  top: "90%",
+  top: "88%",
   left: "6%",
 }));
 
@@ -57,18 +57,17 @@ export const OverlayBox = styled(Box)(() => ({
 
 export const OverlayTodayBox = styled(OverlayBox)(() => ({
   width: "100%",
-  height: "100%",
   borderRadius: "8px",
-
+  height: "67.6%",
   "&:hover": {
-    height: "67%",
+   
     backgroundColor: "rgba(96, 89, 85,.5)",
   },
 }));
 
 export const OverlayOpinionBox = styled(OverlayBox)(() => ({
   width: "100%",
-  height: "62.5%",
+  height: "63.8%",
 
   "&:hover": {
     backgroundColor: "rgba(194, 150, 83,0.5)",
@@ -90,9 +89,7 @@ export const OverlayOpinionBox = styled(OverlayBox)(() => ({
 //   },
 // }));
 
-export const OverlayLifestyleBox = styled(OverlayBox)(() => ({
-  width: "100%",
-  height: "57.2%",
+export const OverlayLifestyleBox = styled(OverlayOpinionBox)(() => ({
 
   "&:hover": {
     backgroundColor: "rgba(34, 184, 179, 0.5)",

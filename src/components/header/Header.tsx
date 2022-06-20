@@ -43,6 +43,7 @@ import {
   StyledLink,
 } from "../../styled/Header";
 import DrawerList from "./Drawer";
+import SearchCategory from "./SearchCategory";
 // import { Link } from "react-router-dom";
 import { Link } from "react-router-dom";
 
