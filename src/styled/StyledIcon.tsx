@@ -22,7 +22,7 @@ export const StyledWbSunnyIcon= styled(WbSunnyIcon)(()=>({
 
 
     color: "#FFA500",
-    fontSize: "3em",
+    fontSize: "4em",
     animation: `${spin} 5s infinite ease-in-out`,
     marginLeft: "25px",
 

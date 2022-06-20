@@ -12,6 +12,7 @@ import OpinionSection from '../../components/home/OpinionSection'
 import SportSection from '../../components/home/SportSection';
 import LifestyleSection from '../../components/home/LifestyleSection';
 import Weather from '../../components/home/Weather';
+import SearchCategory from '../../components/header/SearchCategory';
 
 const Homenews = () => {
 
@@ -27,11 +28,12 @@ const Homenews = () => {
     return (
         <>
         <TodaySection></TodaySection>  
-                      
 <OpinionSection></OpinionSection>
 <SportSection></SportSection>
 <LifestyleSection></LifestyleSection>
 <CultureSection></CultureSection>
+{/* <SearchCategory></SearchCategory> */}
+
         </>
     );
 };

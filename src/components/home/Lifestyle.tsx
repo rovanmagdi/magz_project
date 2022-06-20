@@ -13,6 +13,7 @@ import { OverlayLifestyleBox } from "../../styled/styledBox";
 import { StyledLifestyleCard } from "../../styled/styledCard";
 import Post from "../../types/post";
 import { TypographyCardTitle } from "../../styled/styledTypography";
+import PostDate from "../postDate/PostDate";
 const Lifestyle: React.FC<Post> = (props) => {
   const { title, image, description, updatedAt , auther} = props;
   console.log(title, image, description, updatedAt);
