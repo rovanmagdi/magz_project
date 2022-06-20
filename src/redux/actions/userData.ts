@@ -38,18 +38,18 @@ export const userLogout = () => (dispatch: any) => {
 
 //Register
 
-export const RegisterUser = (data: any) => (dispatch: any) => {
+export const RegisterUser = (firstName: any, lastName: any, email: any, password: any, image?: any) => (dispatch: any) => {
   dispatch(startLoading());
   axios
-    .post(`${process.env.REACT_APP_BACKED}/user`, data)
+    .post(`${process.env.REACT_APP_BACKED}/user`, {firstName, lastName, email, password})
     .then((response) => {
       dispatch(registerUserSuccess(response.data));
       dispatch(showSuccess());
       localStorage.setItem("RegisterInfo", JSON.stringify(response.data));
     })
     .catch((err) => {
-        console.log(err.response.data.message);
-        
+      console.log(err.response.data.message);
+
       dispatch(showError(err.response.data.message));
     });
 };
