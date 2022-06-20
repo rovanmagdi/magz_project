@@ -38,6 +38,8 @@ import { Link } from "react-router-dom";
     alignItems: "center",
     justifyContent: "space-between",
     padding: "10px",
+    cursor: "pointer",
+
   }));
   export const PersonIconNav = styled(PersonIcon)(({ theme }) => ({
     color: `${theme.palette.secondary.main}`,
@@ -46,12 +48,17 @@ import { Link } from "react-router-dom";
     color: `${theme.palette.text.secondary}`,
     height: "30px ",
     fontSize: "12px",
+    "&:focus":{
+      border: "1px solid transparent"
+    }
   }));
   export const StyledRightOneConatiner = styled(Box)(({ theme }) => ({
-    height: "25px",
-    width: "25px",
-    borderRadius: "50%",
-    textAlign: "center",
+    
+      height: "25px",
+      width: "25px",
+      borderRadius: "50%",
+      marginRight: "10px",
+    
     backgroundColor: `${theme.palette.primary.light}`,
   }));
   export const StyledImage = styled(Box)(({ theme }) => ({
@@ -185,7 +192,7 @@ import { Link } from "react-router-dom";
     alignItems: "center",
   }));
 
-  export const StyledLink=styled(Link)(({ theme }) => ({
+  export const StyledLink=styled(Box)(({ theme }) => ({
     textDecoration:"none",
     color: `${theme.palette.text.secondary}`,
 

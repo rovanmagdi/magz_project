@@ -7,12 +7,9 @@ import { Box, Button, Grid, useMediaQuery, useTheme } from "@mui/material";
   export const StyledGridRightTitle = styled(Box)(({ theme }) => ({
     color: `${theme.palette.primary.contrastText}`,
     display: "flex",
-    padding: "30px 0px 0px 42px",
+    padding: "20px 0px 0px 42px",
     justifyContent: "space-between",
-    fontFamily: "Oswald",
-    fontWeight: "bold",
-    fontSize: "14px",
-    textTransform: "uppercase",
+   
   }));
   export const StyledGridRightLine = styled(Box)(({ theme }) => ({
     backgroundColor: `${theme.palette.secondary.dark}`,

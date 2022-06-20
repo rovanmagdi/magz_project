@@ -14,10 +14,13 @@ export default function ProfileContent() {
     const dispatch: any = useDispatch();
 
     let editMode = useSelector((state: any) => state.flags.profileEditFlag);
+    const user = useSelector((state: any) => state.user);
+  
   
     useEffect(() => {
       dispatch(getProfileEditFlag());
-    }, [dispatch, editMode]);
+      console.log('hello from content')
+    }, [dispatch, editMode,user]);
   
     return <>
     <Box sx={{marginTop:'20px'}}>
