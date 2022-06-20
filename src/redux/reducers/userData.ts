@@ -15,7 +15,7 @@ export const userDataReducer = (state = null, { type, payload }: IreducerActions
 
             }
 
-        case LOGOUT_USER: return ({})
+        case LOGOUT_USER: return (null)
 
         default: return state
     }

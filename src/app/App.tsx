@@ -9,7 +9,7 @@ import { ThemeProvider } from "@mui/material/styles";
 import { theme } from "../theme/palette";
 import { Box, useMediaQuery, CircularProgress } from "@mui/material";
 import { styled } from "@mui/material/styles";
-import Header from "../components/header/Header";
+import Header from "../components/navbar/Header";
 import Image from "../assets/background.png";
 import Footer from "../components/footer/Footer";
 import Login from "../pages/Sign/Login";

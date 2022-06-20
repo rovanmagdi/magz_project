@@ -10,16 +10,6 @@ export default function InterestedComponent(props: InterestedInterFace) {
         const { value, checked } = e.target;
 
         console.log(`${value} is ${checked}`);
-
-        // if (checked) {
-        //   setUserInfo((old: any) => [...old, value]);
-        // } else {
-        //   const newState = userinfo?.filter((el) => {
-        //     return el !== value;
-        //   });
-
-        //   setUserInfo((old) => [...newState]);
-        // }
     };
     return (
         <Stack key={props.id}>

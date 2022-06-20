@@ -1,5 +1,5 @@
 import React from "react";
-import { StyledImage } from "../../styled/Header";
+import { StyledImage } from "../../styled/Navbar";
 import Logo from "../../assets/logo.png";
 
 const NavbarSign = () => {

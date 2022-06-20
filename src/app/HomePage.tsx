@@ -2,7 +2,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { theme } from "../theme/palette";
 import { Box, useMediaQuery, CircularProgress } from "@mui/material";
 import { Home, Info, Content } from "../styled/HomePage";
-import Header from "../components/header/Header";
+import Header from "../components/navbar/Header";
 import Footer from "../components/footer/Footer";
 import Homenews from "../pages/home/Homenews";
 import ProfilePge from "../pages/profilePage/ProfilePage";
@@ -20,28 +20,16 @@ function HomePage() {
       <Content>
         <Header />
         <Routes>
-        <Route path="login" element={<Login />} />
-
+          <Route path="login" element={<Login />} />
           <Route path="/interested" element={<Interested />} />
-          <Route path="/Profile" element={<ProfilePge/>}/>
-        
-
-          
+          <Route path="/Profile" element={<ProfilePge />} />
         </Routes>
         <Info>
           {" "}
           {/* <ProfilePge /> */}
-<Homenews></Homenews>
-
+          <Homenews></Homenews>
         </Info>
 
-
-     
-
-
-        
-        
-        
         <Footer />
       </Content>
     </>

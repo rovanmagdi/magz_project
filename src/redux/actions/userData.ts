@@ -32,7 +32,7 @@ export const loginUserSuccess = (users: any) => ({
 });
 
 export const userLogout = () => (dispatch: any) => {
-  localStorage.removeItem("userInf");
+  localStorage.removeItem("RegisterInfo");
   dispatch({ type: LOGOUT_USER });
 };
 

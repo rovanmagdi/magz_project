@@ -6,6 +6,7 @@ import {
     Tab,
     useTheme,
     useMediaQuery,
+    Button,
   } from "@mui/material";
 import { styled } from "@mui/material/styles";
 import Switch from "@mui/material/Switch";
@@ -91,13 +92,13 @@ import { Link } from "react-router-dom";
     justifyContent: "space-between",
     padding: "0px 10px 0px 10px",
   }));
-  export const StyledListNavLeftContent = styled(Tab)(({ theme }) => ({
+  export const StyledListNavLeftContent = styled(Button)(({ theme }) => ({
     color: `${theme.palette.primary.contrastText}`,
     fontSize: "18px",
     textTransform: "uppercase",
     fontFamily: "Oswald",
     "&:hover": {
-      color: `${theme.palette.primary.main}`,
+      backgroundColor: `${theme.palette.primary.main}`,
     },
   }));
   export const StyledListNavLeftMore = styled(Box)(({ theme }) => ({
