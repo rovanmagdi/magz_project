@@ -58,7 +58,7 @@ export const OverlayBox = styled(Box)(() => ({
 export const OverlayTodayBox = styled(OverlayBox)(() => ({
   width: "100%",
   borderRadius: "8px",
-  height: "67.6%",
+  height: "65%",
   "&:hover": {
    
     backgroundColor: "rgba(96, 89, 85,.5)",
@@ -67,7 +67,7 @@ export const OverlayTodayBox = styled(OverlayBox)(() => ({
 
 export const OverlayOpinionBox = styled(OverlayBox)(() => ({
   width: "100%",
-  height: "63.8%",
+  height: "59.3%",
 
   "&:hover": {
     backgroundColor: "rgba(194, 150, 83,0.5)",
@@ -173,30 +173,12 @@ export const OverlayCultureBox = styled(OverlayLifestyleBox)(() => ({
               }
         }))
 
+export const AuthorAvatarBox= styled(Box)(()=>({
 
-        // export const OverlayLifestyleBox = styled(OverlayBox)(()=>({
-
-
-        //     width: "100%",
-           
-         
-        //     "&:hover": {
-              
-        //         backgroundColor: "rgba(34, 184, 179, 0.5)"
-           
-        //       }
-        // }))
+width:"150px", 
+height:"150px",
+borderRadius:"50%"
 
 
-        
-        // export const OverlayCultureBox = styled(OverlayLifestyleBox)(()=>({
 
-
-          
-         
-        //     "&:hover": {
-            
-        //         backgroundColor: "rgba(0,113,252,0.5)"
-           
-        //       }
-        // }))
+}))

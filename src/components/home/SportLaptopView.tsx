@@ -14,10 +14,11 @@ import { CategoryLabelBox, HorizontalLineBox } from '../../styled/styledBox';
 import { OverlaySportBox } from '../../styled/styledBox';
 import { StyledSportCard } from '../../styled/styledCard';
 import Post from '../../types/post';
-// import { TypographyCardTitle } from '../../styled/StyledTypography';
 import { TypographyCardTitle } from '../../styled/styledTypography';
+import { StyledCircleIcon } from '../../styled/StyledIcon';
+import { DateTypography } from '../../styled/styledTypography';
 
-const Sport: React.FC<Post> = (props) => {
+const SportLaptopView: React.FC<Post> = (props) => {
   
   const{title,image,description,updatedAt,auther}=props;
   console.log(title,image,description,updatedAt,auther);
@@ -30,7 +31,7 @@ return(
         < Stack direction={"row"}>
         <CardMedia
           component="img" sx={{borderRadius:"2px", maxWidth:"340px"}}
-            height={250}
+            height={275}
             image={image}
           alt="green iguana"
         />
@@ -39,7 +40,14 @@ return(
           <TypographyCardTitle gutterBottom >
             {title}
           </TypographyCardTitle>
-          <Typography></Typography>
+          <DateTypography>
+            <StyledCircleIcon ></StyledCircleIcon>
+               {`${new Date(updatedAt).toLocaleString("en-GB", {
+               month: "short",
+              day: "numeric",
+              year: "numeric",
+            })}`}
+          </DateTypography>
           <Box height="80px" overflow={"hidden"}>
           <Typography variant="body2" color="text.secondary">
            {description}
@@ -65,4 +73,4 @@ alt="green iguana"
 }
 
 
-export default Sport;
+export default SportLaptopView;

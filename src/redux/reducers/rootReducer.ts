@@ -2,15 +2,24 @@ import { combineReducers } from "redux";
 
 import statusReducer from "./statusReducer";
 import postsReducer from "./postsReducer";
-import ReducerUser from "./registerReducer";
 import flagsReducer from "./flagsReducer";
+import RecentlyReducer from './RecentlyPostsReducer'
+import InterestedReducer from "./intersetedReducer";
+
+import {userDataReducer} from'./userData'
+import registerReducer from './registerReducer'
+
 
 
 const rootReducer = combineReducers({
 	status: statusReducer,
 	 posts: postsReducer,
-	 user: ReducerUser,
 	 flags:flagsReducer,
+	 recently:RecentlyReducer,
+	 interseted:InterestedReducer,
+	 
+	 userData:userDataReducer,
+	 user:registerReducer
 
 });
 

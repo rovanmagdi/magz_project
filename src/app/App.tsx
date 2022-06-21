@@ -15,6 +15,10 @@ import Footer from "../components/footer/Footer";
 import Login from "../pages/Sign/Login";
 import HomePage from "./HomePage";
 import Interested from "../pages/Interested/Interested";
+import ProfilePge from "../pages/profilePage/ProfilePage";
+import Done from "../pages/Done/Done";
+import { ColorModeProvider } from '../contexts/ColorModeContext';
+import {Paper} from "@mui/material";
 function App() {
   const Home = styled(Box)(({ theme }) => ({
     backgroundImage: `url(${Image})`,
@@ -41,19 +45,27 @@ function App() {
 
   const isMatch = useMediaQuery(theme.breakpoints.down("sm"));
   return (
+    <ColorModeProvider>
+    <Paper>
     <Provider store={store}>
       <ThemeProvider theme={theme}>
         <Suspense fallback={<CircularProgress />}>
           <BrowserRouter>
             <Routes>
-              <Route path="/" element={<HomePage />} />
+              <Route path="/" element={<HomePage />}>
+                <Route path="/Profile" element={<ProfilePge />} />
+              </Route>
               <Route path="login" element={<Login />} />
               <Route path="interested" element={<Interested />} />
+              <Route path="done" element={<Done />} />
+
             </Routes>
           </BrowserRouter>
         </Suspense>
       </ThemeProvider>
     </Provider>
+    </Paper>
+    </ColorModeProvider>
   );
 }
 

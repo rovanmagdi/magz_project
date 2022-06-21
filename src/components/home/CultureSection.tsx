@@ -5,6 +5,8 @@ import { Stack } from '@mui/material';
 import { CategoryLabelBox, HorizontalLineBox } from '../../styled/styledBox';
 import { Box } from '@mui/material';
 import {Grid} from '@mui/material';
+import {CircularProgress} from '@mui/material';
+
 const CultureSection = () => {
     const posts=useSelector((state:any) =>state.posts? state.posts[0].posts : state.posts);
     console.log(posts)
@@ -23,7 +25,7 @@ const CultureSection = () => {
         posts? (posts.map((post:any)=>{
             return <Grid item md={4} sm={12}><Culture {...post}/>
             </Grid> 
-        })):(<div>loading</div>)
+        })):(<CircularProgress/>)
         
     }
 

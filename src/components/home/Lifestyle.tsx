@@ -13,7 +13,9 @@ import { OverlayLifestyleBox } from "../../styled/styledBox";
 import { StyledLifestyleCard } from "../../styled/styledCard";
 import Post from "../../types/post";
 import { TypographyCardTitle } from "../../styled/styledTypography";
-import PostDate from "../postDate/PostDate";
+import { DateTypography } from "../../styled/styledTypography";
+import { StyledCircleIcon } from "../../styled/StyledIcon";
+
 const Lifestyle: React.FC<Post> = (props) => {
   const { title, image, description, updatedAt , auther} = props;
   console.log(title, image, description, updatedAt);
@@ -34,8 +36,14 @@ const Lifestyle: React.FC<Post> = (props) => {
             <TypographyCardTitle gutterBottom  >
              {title}
             </TypographyCardTitle>
-            {/* <Typography variant="body2" color="text.secondary">
-{description}            </Typography> */}
+            <DateTypography>
+            <StyledCircleIcon ></StyledCircleIcon>
+               {`${new Date(updatedAt).toLocaleString("en-GB", {
+               month: "short",
+              day: "numeric",
+              year: "numeric",
+            })}`}
+          </DateTypography>
           </CardContent>
         </CardActionArea>
         <CardActions>

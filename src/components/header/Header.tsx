@@ -3,12 +3,12 @@ import {
   Box,
   Tabs,
   Typography,
-  Tab,
+  Menu,
   useTheme,
   useMediaQuery,
 } from "@mui/material";
 import { styled } from "@mui/material/styles";
-import React, { useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import Logo from "../../assets/logo.png";
 import OutlinedInput from "@mui/material/OutlinedInput";
 import SearchIcon from "@mui/icons-material/Search";
@@ -16,7 +16,7 @@ import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
 import {
   Grid,
   FormControl,
-  Input,
+  Button,
   InputAdornment,
   FormGroup,
   MenuItem,
@@ -45,9 +45,15 @@ import {
 import DrawerList from "./Drawer";
 import SearchCategory from "./SearchCategory";
 // import { Link } from "react-router-dom";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
+import { LogoutUser } from "../../redux/actions/logoutAction";
+import { InterstedCatergory } from "../../redux/actions/interestedAction";
 
 const Header = () => {
+  const user = useSelector((state: any) => state.user);
+  useEffect(() => {}, [user]);
+
   let newDate = new Date();
   const days = [
     "Sunday",
@@ -92,16 +98,48 @@ const Header = () => {
   const [value, setValue] = useState(0);
   const theme = useTheme();
   const isMatch = useMediaQuery(theme.breakpoints.down(1117));
+  const RegisterInfo = localStorage.getItem("RegisterInfo");
+  const userInfoObj = JSON.parse(`${localStorage.getItem("RegisterInfo")}`);
 
-  const PAGES = ["new", "opinion", "sport", "life style", "culture"];
+  const nagivate: any = useNavigate();
 
+  const handleLogout = () => {
+    console.log("logout");
+    nagivate("/");
+
+    dispatch(LogoutUser());
+  };
+  const handleProfile = () => {
+    nagivate("/Profile");
+  };
+  const handleHome = () => {
+    nagivate("/");
+  };
+
+  const intersted = useSelector((state: any) => state.interseted);
+
+  const dispatch: any = useDispatch();
+  useEffect(() => {
+    dispatch(InterstedCatergory());
+  }, []);
+  const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
+  const open = Boolean(anchorEl);
+  const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
+    setAnchorEl(event.currentTarget);
+  };
+  const handleClose = () => {
+    setAnchorEl(null);
+  };
+  const handleClickLogin = () => {
+    nagivate("/login");
+  };
 
   return (
     <StyledNavConatiner>
       {isMatch ? (
         <StypledMedia>
           <Box sx={{ padding: " 20px" }}>
-            <img src={Logo} height="70px" width="130px" />
+            <img src={Logo} height="70px" width="130px" onClick={handleHome} />
           </Box>
           <DrawerList />
         </StypledMedia>
@@ -112,18 +150,109 @@ const Header = () => {
               {date_raw} {month_raw} {},{year}
             </Box>
             <StyledNavTopRight>
-              <StyledRightOne>
-                <StyledRightOneConatiner>
-                  <PersonIconNav />
-                </StyledRightOneConatiner>
-                <Typography
-                  sx={{ margin: "10px", fontSize: "12px" }}
-                  component={"span"}
-                  variant={"body2"}
+              {!RegisterInfo ? (
+                <StyledRightOne
+                  onClick={() => {
+                    handleClickLogin();
+                  }}
                 >
-                  <StyledLink to="/login">Sign in</StyledLink>
-                </Typography>
-              </StyledRightOne>
+                  <StyledRightOneConatiner>
+                    <PersonIconNav />
+                  </StyledRightOneConatiner>
+                  <Typography
+                    sx={{ margin: "10px", fontSize: "12px" }}
+                    component={"span"}
+                    variant={"body2"}
+                  >
+                    <StyledLink>Sign in</StyledLink>
+                  </Typography>
+                </StyledRightOne>
+              ) : (
+                <Box>
+                  <StyledRightOne>
+                    <FormControl>
+                      <Button
+                        id="basic-button"
+                        aria-controls={open ? "basic-menu" : undefined}
+                        aria-haspopup="true"
+                        aria-expanded={open ? "true" : undefined}
+                        onClick={handleClick}
+                      >
+                        {!userInfoObj.imageUrl ? (
+                          <Box sx={{ display: "flex" }}>
+                            {userInfoObj.image === " " ? (
+                              <Box
+                                component="img"
+                                sx={{
+                                  height: "25px",
+                                  width: "25px",
+                                  borderRadius: "50%",
+                                  marginRight: "10px",
+                                }}
+                                src={`${userInfoObj.image}`}
+                              />
+                            ) : (
+                              <StyledRightOneConatiner>
+                                <PersonIconNav />
+                              </StyledRightOneConatiner>
+                            )}
+                            {userInfoObj.firstName} {userInfoObj.lastName}
+                          </Box>
+                        ) : (
+                          <>
+                            <Box
+                              component="img"
+                              sx={{
+                                height: "25px",
+                                width: "25px",
+                                borderRadius: "50%",
+                                marginRight: "10px",
+                              }}
+                              src={`${userInfoObj.imageUrl}`}
+                            />
+                            <Box>{userInfoObj.name} </Box>
+                          </>
+                        )}
+                        {` `}
+                      </Button>
+                      <Menu
+                        id="basic-menu"
+                        anchorEl={anchorEl}
+                        open={open}
+                        onClose={handleClose}
+                        PaperProps={{
+                          style: {
+                            width: 130,
+                            textAlign: "center",
+                          },
+                        }}
+                      >
+                        <MenuItem
+                          onClick={handleProfile}
+                          sx={{
+                            "&:hover": {
+                              backgroundColor: "rgba(77,126,150,0.4)",
+                            },
+                          }}
+                        >
+                          Profile{" "}
+                        </MenuItem>
+                        <MenuItem
+                          onClick={handleLogout}
+                          sx={{
+                            "&:hover": {
+                              backgroundColor: "rgba(77,126,150,0.4)",
+                            },
+                          }}
+                        >
+                          Logout
+                        </MenuItem>
+                      </Menu>
+                    </FormControl>
+                  </StyledRightOne>
+                </Box>
+              )}
+
               <Box>
                 <FormControl>
                   <StylesSelected
@@ -147,13 +276,22 @@ const Header = () => {
             </StyledNavTopRight>
           </StyledNavTop>
           <StyledImage>
-            <img src={Logo} height="70px" width="160px" />
+            <Box
+              component="img"
+              src={Logo}
+              height="70px"
+              width="160px"
+              onClick={handleHome}
+              sx={{ cursor: "pointer" }}
+            />
           </StyledImage>
           <StyledNavBottom>
             <StyledListNavLeft>
               <Tabs value={value} onChange={(e, value) => setValue(value)}>
-                {PAGES.map((page, index) => {
-                  return <StyledListNavLeftContent label={page} key={index} />;
+                {intersted?.map((page: any, index: any) => {
+                  return (
+                    <StyledListNavLeftContent label={page.title} key={index} />
+                  );
                 })}
 
                 <StyledListNavLeftMore

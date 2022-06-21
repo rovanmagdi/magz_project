@@ -1,4 +1,6 @@
 export interface PopularPostsInterFace {
     data: string;
-    date: string;
+    date: any;
+    img:string;
+    title:string;
   }

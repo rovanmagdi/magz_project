@@ -17,6 +17,9 @@ import { color } from "@mui/system";
 import { StyledOpinionCard } from "../../styled/styledCard";
 import Post from "../../types/post";
 import { TypographyCardTitle } from "../../styled/styledTypography";
+import { DateTypography } from "../../styled/styledTypography";
+import { StyledCircleIcon } from "../../styled/StyledIcon";
+
 const Opinion: React.FC<Post> = (props) => {
   const { title, image, description, updatedAt, auther } = props;
   console.log(title, image, description, updatedAt, auther);
@@ -36,10 +39,22 @@ const Opinion: React.FC<Post> = (props) => {
           <CardContent>
             <TypographyCardTitle gutterBottom  >
               {title}
+              
             </TypographyCardTitle>
+            <DateTypography>
+            <StyledCircleIcon ></StyledCircleIcon>
+               {`${new Date(updatedAt).toLocaleString("en-GB", {
+               month: "short",
+              day: "numeric",
+              year: "numeric",
+            })}`}
+          </DateTypography>
           </CardContent>
+          
         </CardActionArea>
+        
         <CardActions>
+          
           <Box
             component="img"
             height="30px"
@@ -50,6 +65,7 @@ const Opinion: React.FC<Post> = (props) => {
             src={image}
             alt="green iguana"
           />
+          
           <Typography>{auther}</Typography>
         </CardActions>
       </StyledOpinionCard>
