@@ -14,6 +14,7 @@ import GoogleLogin from "react-google-login";
 import { RegisterUser } from "../../redux/actions/userData";
 
 function Register() {
+ 
   const [state, setStateList] = useState({
     firstName: "",
     lastName: "",

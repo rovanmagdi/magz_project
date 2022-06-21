@@ -1,7 +1,7 @@
 import React,{useEffect} from 'react';
 import Today from '../../components/home/Today';
 import Opinion from '../../components/home/Opinion';
-import Sport from '../../components/home/Sport';
+import Sport from '../../components/home/SportLaptopView';
 import Lifestyle from '../../components/home/Lifestyle';
 import Culture from '../../components/home/Culture';
 import { useDispatch ,useSelector } from "react-redux";
@@ -12,6 +12,8 @@ import OpinionSection from '../../components/home/OpinionSection'
 import SportSection from '../../components/home/SportSection';
 import LifestyleSection from '../../components/home/LifestyleSection';
 import Weather from '../../components/home/Weather';
+
+import { QuotePaper } from '../../styled/styledPaper';
 
 
 const Homenews = () => {
@@ -28,13 +30,15 @@ const Homenews = () => {
 
     return (
         <>
-        <TodaySection></TodaySection>  
+   
+         <TodaySection></TodaySection> 
 <OpinionSection></OpinionSection>
 <SportSection></SportSection>
 <LifestyleSection></LifestyleSection>
 <CultureSection></CultureSection>
-{/* <SearchCategory></SearchCategory> */}
 
+
+{/* <QuotePaper>dfghjhgf</QuotePaper> */}
         </>
     );
 };

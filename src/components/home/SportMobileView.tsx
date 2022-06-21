@@ -20,11 +20,12 @@ import { TypographyCardTitle } from "../../styled/styledTypography";
 import { DateTypography } from "../../styled/styledTypography";
 import { StyledCircleIcon } from "../../styled/StyledIcon";
 
-const Opinion: React.FC<Post> = (props) => {
+const SportMobileView: React.FC<Post> = (props) => {
   const { title, image, description, updatedAt, auther } = props;
   console.log(title, image, description, updatedAt, auther);
   return (
     <>
+    {/* Ahmed */}
       <StyledOpinionCard>
         <CardActionArea>
           <CardMedia
@@ -73,4 +74,4 @@ const Opinion: React.FC<Post> = (props) => {
   );
 };
 
-export default Opinion;
+export default SportMobileView;

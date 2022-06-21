@@ -5,6 +5,7 @@ import CloudIcon from '@mui/icons-material/Cloud';
 import NightlightIcon from '@mui/icons-material/Nightlight';
 import { keyframes } from "@emotion/react";
 import LocationOnIcon from '@mui/icons-material/LocationOn';
+import CircleIcon from '@mui/icons-material/Circle';
 
 
 
@@ -42,6 +43,16 @@ export const StyledCloudIcon= styled(CloudIcon)(()=>({
 }))
 
 
+
+
+export const StyledCircleIcon= styled(CircleIcon)(()=>({
+
+
+  fontSize:".7em",
+  marginRight:"5px"
+
+
+}))
 
 
 

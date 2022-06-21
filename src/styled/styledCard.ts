@@ -21,7 +21,8 @@ export const StyledTodayCard = styled(StyledCard)(() => ({
 
 
 export const StyledSportCard = styled(StyledCard)(() => ({
-  width: "700px",
+  maxWidth: "700px",
+
   "&:hover": {
     color: "#DD2B2B",
   },

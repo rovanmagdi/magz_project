@@ -13,6 +13,8 @@ import { StyledCultureCard } from '../../styled/styledCard';
 import { OverlayCultureBox } from '../../styled/styledBox';
 import Post from '../../types/post';
 import { TypographyCardTitle } from '../../styled/styledTypography';
+import { DateTypography } from '../../styled/styledTypography';
+import { StyledCircleIcon } from '../../styled/StyledIcon';
 
 const Culture: React.FC<Post> = (props) => {
   const{title,image,description,updatedAt, auther}=props;
@@ -33,9 +35,14 @@ return(
           <TypographyCardTitle gutterBottom >
           {title}
           </TypographyCardTitle>
-          {/* <Typography variant="body2" color="text.secondary">
-{description}        
-          </Typography> */}
+          <DateTypography>
+            <StyledCircleIcon ></StyledCircleIcon>
+               {`${new Date(updatedAt).toLocaleString("en-GB", {
+               month: "short",
+              day: "numeric",
+              year: "numeric",
+            })}`}
+          </DateTypography>
         </CardContent>
       </CardActionArea>
       <CardActions>
