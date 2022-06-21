@@ -14,19 +14,9 @@ import postAPI from "../../api/postsApi";
 import { OverlayTodayBox } from "../../styled/styledBox";
 import { StyledTodayCard } from "../../styled/styledCard";
 import { TodayLabelBox } from "../../styled/styledBox";
-import { Description } from "@mui/icons-material";
+import PostDate from "../postDate/PostDate";
 
 const Today: React.FC<Post> = (props) => {
-  //   React.useEffect(()=>{
-  // postAPI.get("get_all").then((res)=>{
-  //   console.log(res.data)
-  // }).catch((err)=>{
-  //   console.log(err);
-
-  // })
-
-  //   },[])
-
   const { title, image, description, auther } = props;
 
   console.log({ title }, { image });
@@ -36,19 +26,18 @@ const Today: React.FC<Post> = (props) => {
         <TodayLabelBox>Today</TodayLabelBox>
         <CardMedia
           component="img"
-          sx={{ borderRadius: "8px" }}
-          height="300"
-image={image}   
-       alt="green iguana"
+          sx={{ borderRadius: "8px", backgroundSize: "contain" }}
+          height="380"
+          image={image}
+          alt="green iguana"
         />
         <OverlayTodayBox></OverlayTodayBox>
         <CardContent>
           <Typography gutterBottom variant="h5" component="div">
-          {title}
+            {title}
           </Typography>
           <Typography variant="body2" color="text.secondary">
-        {description}
-     
+            {description}
           </Typography>
         </CardContent>
       </CardActionArea>
@@ -71,5 +60,3 @@ image={image}
 };
 
 export default Today;
-
-

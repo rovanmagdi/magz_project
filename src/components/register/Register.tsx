@@ -10,24 +10,25 @@ import { useSelector, useDispatch } from "react-redux";
 import { registerUser } from "../../redux/actions/registerAction";
 import { useNavigate } from "react-router-dom";
 import { showError, showSuccess } from "../../redux/actions/statusActions";
+import GoogleLogin from "react-google-login";
+import { RegisterUser } from "../../redux/actions/userData";
 
 function Register() {
-  const [check, setCheck] = useState(false);
-  const [state, setState] = useState({
+  const [state, setStateList] = useState({
     firstName: "",
     lastName: "",
     email: "",
     password: "",
-    confirmePassword: "",
+    // confirmePassword: "",
   });
-  const { firstName, lastName, email, password, confirmePassword } = state;
+  const { firstName, lastName, email, password } = state;
   const [errorList, setErrorList] = useState([]);
   const [errorRes, setErrorRes] = useState("");
 
   const handLeInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     let { name, value } = e.target;
     // console.log(value);
-    setState({ ...state, [name]: value });
+    setStateList({ ...state, [name]: value });
   };
 
   function validateLoginForm(login: any) {
@@ -53,132 +54,158 @@ function Register() {
   const handleSubmit = (e: React.SyntheticEvent) => {
     e.preventDefault();
     setErrorList([]);
+
     let validationLoginFormResult: any = validateLoginForm(state);
-    // console.log(status.errorStatus);
+
     if (validationLoginFormResult.error) {
       setErrorList(validationLoginFormResult.error.details);
     } else {
-      // dispatch(loginAdmin(login));
-      console.log("done");
-      dispatch(
-        registerUser(
-          state.lastName,
-          state.firstName,
-          state.email,
-          state.password
-        )
-      );
+      dispatch(RegisterUser(state.firstName, state.lastName, state.email, state.password));
       setErrorList([]);
     }
-
-    // setChecked((old:any )=> true);
   };
-
+  const data = useSelector((state: any) => state?.userData);
   useEffect(() => {
-    if (!check) {
-      setCheck(hasError == true);
-      // console.log(errorStatus.status.hasError);
-
-      console.log("error");
-    } else {
-      // console.log(errorStatus.status.hasError);
-      setCheck(hasError == false);
-
-      // console.log();
+    if (data) {
       navigate("/interested");
-
-      console.log("nagivate");
     }
-  }, [dispatch, hasError]);
+  }, [data]);
+
+  const [stateGoogle, setState] = useState({
+    firstName: "",
+    lastName: "",
+    email: "",
+    password: "",
+    // confirmePassword: "",
+  });
+  const handleSuccess = (results: any) => {
+    console.log(results);
+    localStorage.setItem("RegisterInfo", JSON.stringify(results.profileObj));
+
+    dispatch(
+      RegisterUser(
+        results.profileObj.givenName,
+        results.profileObj.familyName,
+        results.profileObj.email,
+        results.profileObj.googleId,
+        results.profileObj.imageUrl
+      )
+    );
+    navigate("/interested");
+    console.log(results);
+  };
+  const handleFailure = (error: any) => {
+    console.log(error);
+  };
   return (
-    <form onSubmit={handleSubmit}>
-      <BootstrapInput
-        placeholder="First Name"
-        type="text"
-        value={firstName}
-        onChange={handLeInputChange}
-        name="firstName"
-      />
-      {errorList
-        ? errorList.map((error: any, index: any) => {
-            if (error.path[0] === "firstName") {
-              return <StyledError key={index}>First Name Invalid </StyledError>;
-            }
-          })
-        : ""}
-
-      <BootstrapInput
-        placeholder="Last Name"
-        type="text"
-        value={lastName}
-        sx={{ marginTop: "20px" }}
-        onChange={handLeInputChange}
-        name="lastName"
-      />
-      {errorList
-        ? errorList.map((error: any, index: any) => {
-            if (error.path[0] === "lastName") {
-              return <StyledError key={index}>Last Name Invalid </StyledError>;
-            }
-          })
-        : ""}
-      <BootstrapInput
-        placeholder="Email"
-        type="text"
-        value={email}
-        sx={{ marginTop: "20px" }}
-        onChange={handLeInputChange}
-        name="email"
-      />
-      {errorList
-        ? errorList.map((error: any, index: any) => {
-            if (error.path[0] === "email") {
-              return <StyledError key={index}>email Invalid</StyledError>;
-            }
-          })
-        : ""}
+    <>
       <StyledError>{errorStatus}</StyledError>
-      <BootstrapInput
-        placeholder="Password"
-        type="password"
-        value={password}
-        onChange={handLeInputChange}
-        sx={{ marginTop: "20px" }}
-        name="password"
-      />
 
-      {errorList
-        ? errorList.map((error: any, index: any) => {
-            // console.log(error);
+      <form onSubmit={handleSubmit}>
+        <BootstrapInput
+          placeholder="First Name"
+          type="text"
+          value={firstName}
+          onChange={handLeInputChange}
+          name="firstName"
+        />
+        {errorList
+          ? errorList.map((error: any, index: any) => {
+              if (error.path[0] === "firstName") {
+                return (
+                  <StyledError key={index}>
+                    First name must start with Capetal letter{" "}
+                  </StyledError>
+                );
+              }
+            })
+          : ""}
 
-            if (error.path[0] === "password") {
-              return <StyledError key={index}>Password Invalid</StyledError>;
-            }
-          })
-        : ""}
-      <BootstrapInput
-        placeholder="Confirm Password"
-        type="password"
-        value={confirmePassword}
-        onChange={handLeInputChange}
-        sx={{ marginTop: "20px" }}
-        name="confirmePassword"
-      />
+        <BootstrapInput
+          placeholder="Last Name"
+          type="text"
+          value={lastName}
+          sx={{ marginTop: "20px" }}
+          onChange={handLeInputChange}
+          name="lastName"
+        />
+        {errorList
+          ? errorList.map((error: any, index: any) => {
+              if (error.path[0] === "lastName") {
+                return (
+                  <StyledError key={index}>
+                    Last Name must start with Capetal letter{" "}
+                  </StyledError>
+                );
+              }
+            })
+          : ""}
+        <BootstrapInput
+          placeholder="Email"
+          type="text"
+          value={email}
+          sx={{ marginTop: "20px" }}
+          onChange={handLeInputChange}
+          name="email"
+        />
+        {errorList
+          ? errorList.map((error: any, index: any) => {
+              if (error.path[0] === "email") {
+                return <StyledError key={index}>email Invalid</StyledError>;
+              }
+            })
+          : ""}
+        <BootstrapInput
+          placeholder="Password"
+          type="password"
+          value={password}
+          onChange={handLeInputChange}
+          sx={{ marginTop: "20px" }}
+          name="password"
+        />
 
-      {errorList
-        ? errorList.map((error: any, index: any) => {
-            // console.log(error);
-            if (error.path[0] === "confirmePassword") {
-              return (
-                <StyledError key={index}>not match with Password</StyledError>
-              );
-            }
-          })
-        : ""}
-      <StyledButton variant="contained" type="submit">
-        Sign in
-      </StyledButton>
-    </form>
+        {errorList
+          ? errorList.map((error: any, index: any) => {
+              // console.log(error);
+
+              if (error.path[0] === "password") {
+                return <StyledError key={index}>Password Invalid</StyledError>;
+              }
+            })
+          : ""}
+        {/* <BootstrapInput
+          placeholder="Confirm Password"
+          type="password"
+          value={confirmePassword}
+          onChange={handLeInputChange}
+          sx={{ marginTop: "20px" }}
+          name="confirmePassword"
+        />
+
+        {errorList
+          ? errorList.map((error: any, index: any) => {
+              // console.log(error);
+              if (error.path[0] === "confirmePassword") {
+                return (
+                  <StyledError key={index}>not match with Password</StyledError>
+                );
+              }
+            })
+          : ""} */}
+        <StyledButton variant="contained" type="submit">
+          Sign in
+        </StyledButton>
+      </form>
+      <Box sx={{ marginTop: "10px" }}>
+        <GoogleLogin
+          clientId="776938136564-chuk0avh81c6be0b5659j1v864hlakc1.apps.googleusercontent.com"
+          onSuccess={handleSuccess}
+          onFailure={handleFailure}
+          cookiePolicy={"single_host_origin"}
+        ></GoogleLogin>
+      </Box>
+      {/* 776938136564-chuk0avh81c6be0b5659j1v864hlakc1.apps.googleusercontent.com */}
+    </>
   );
 }
 

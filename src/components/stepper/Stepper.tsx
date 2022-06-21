@@ -14,11 +14,11 @@ const steps = [
 
 
 
-export default function StepperTab() {
+export default function StepperTab(props: any) {
   
   return (
-    <Box sx={{ width: '50%',margin:"auto",marginBottom:"20px",fontFamily:"Oswald" }}>
-      <Stepper activeStep={1} alternativeLabel>
+    <Box sx={{ width: '50%',margin:"auto",marginTop:"50px",marginBottom:"50px",fontFamily:"Oswald" }}>
+      <Stepper activeStep={props.activeStep} alternativeLabel>
         {steps.map((label) => (
           <Step key={label}>
             <StepLabel>{label}</StepLabel>

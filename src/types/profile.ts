@@ -4,4 +4,6 @@ export interface UserInfo {
     token: string;
     email:string;
     image: string;
+    name?:string
+
   }

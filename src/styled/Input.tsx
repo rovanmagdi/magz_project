@@ -1,9 +1,12 @@
 import { styled } from "@mui/material/styles";
 import { InputBase, TextField } from "@mui/material";
 
-export const BootstrapInput = styled(TextField)(({ theme }) => ({
+export const BootstrapInput = styled(InputBase)(({ theme }) => ({
   borderRadius: 4,
   position: "relative",
+  width:"280px",
+  height:"45px",
+  padding:"5px",
   backgroundColor:
     theme.palette.mode === "light"
       ? `${theme.palette.success.dark}`
@@ -11,9 +14,8 @@ export const BootstrapInput = styled(TextField)(({ theme }) => ({
 
   display: "block",
   fontSize: 16,
-  width: "auto",
+ 
   color: `${theme.palette.primary.main}`,
-  // padding: '10px 12px',
   transition: theme.transitions.create([
     "border-color",
     "background-color",

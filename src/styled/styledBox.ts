@@ -1,5 +1,5 @@
 import Box from "@mui/material/Box";
-import { styled } from "@mui/material";
+import { styled, Typography } from "@mui/material";
 import { fontFamily, fontSize, height } from "@mui/system";
 
 export const CategoryLabelBox = styled(Box)(({ theme }) => ({
@@ -25,12 +25,26 @@ export const TodayLabelBox = styled(CategoryLabelBox)(({ theme }) => ({
   width: "70px",
   backgroundColor: `${theme.palette.primary.main}`,
 }));
+export const TodayLabelBox2 = styled(CategoryLabelBox)(({ theme }) => ({
+
+ marginTop: "20px",
+  zIndex: "555",
+  height: "28px",
+  width: "70px",
+  backgroundColor: `${theme.palette.primary.main}`,
+}));
+export const StyledTitle= styled(Typography)(({ theme }) => ({
+
+ fontFamily:"Open sans",
+ fontSize:"1.5rem",
+ fontWeight:"bold"
+ }));
 
 export const HorizontalLineBox = styled(Box)(() => ({
   width: "60%",
   height: "4px",
   position: "absolute",
-  top: "90%",
+  top: "88%",
   left: "6%",
 }));
 
@@ -48,7 +62,6 @@ export const OverlayBox = styled(Box)(() => ({
   left: "0px",
   transition: "0.4s all ease-in-out",
   borderRadius: "2px",
-
   opacity: 0,
   "&:hover": {
     opacity: 1,
@@ -57,18 +70,17 @@ export const OverlayBox = styled(Box)(() => ({
 
 export const OverlayTodayBox = styled(OverlayBox)(() => ({
   width: "100%",
-  height: "100%",
   borderRadius: "8px",
-
+  height: "67.6%",
   "&:hover": {
-    height: "67%",
+   
     backgroundColor: "rgba(96, 89, 85,.5)",
   },
 }));
 
 export const OverlayOpinionBox = styled(OverlayBox)(() => ({
   width: "100%",
-  height: "62.5%",
+  height: "63.8%",
 
   "&:hover": {
     backgroundColor: "rgba(194, 150, 83,0.5)",
@@ -90,9 +102,7 @@ export const OverlayOpinionBox = styled(OverlayBox)(() => ({
 //   },
 // }));
 
-export const OverlayLifestyleBox = styled(OverlayBox)(() => ({
-  width: "100%",
-  height: "57.2%",
+export const OverlayLifestyleBox = styled(OverlayOpinionBox)(() => ({
 
   "&:hover": {
     backgroundColor: "rgba(34, 184, 179, 0.5)",

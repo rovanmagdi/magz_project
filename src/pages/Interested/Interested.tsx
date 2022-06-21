@@ -1,76 +1,81 @@
-import { Box, Checkbox, Grid } from "@mui/material";
-import React, { useState } from "react";
+import { Box, Checkbox, Grid, Stack } from "@mui/material";
+import React, { useEffect, useState } from "react";
 import FooterSign from "../../components/footerSign/FooterSign";
 import NavbarSign from "../../components/navbarSign/NavbarSign";
 import StepperTab from "../../components/stepper/Stepper";
 import { styled } from "@mui/material/styles";
-import { Home, Info,Content } from "../../styled/HomePage";
+import { Content, Home, Info } from "../../styled/HomePage";
+import { useDispatch, useSelector } from "react-redux";
+import { InterstedCatergory } from "../../redux/actions/interestedAction";
+import { StyledButton } from "../../styled/Button";
+import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
+import { useNavigate } from "react-router-dom";
+import { updateUser } from "../../redux/actions/userActions";
+import { UserInfo } from "../../types/profile";
+import {
+  StyledGridRightTitle,
+  StyledGridRightLine,
+} from "../../styled/interested";
+import InterestedComponent from "../../components/interested/Interested";
+
 const Interested = () => {
-  const StyledGridRightTitle = styled(Box)(({ theme }) => ({
-    display: "flex",
-    fontFamily: "Oswald",
-    fontWeight: "800",
-    fontSize: "14px",
-    textTransform: "uppercase",
-    position: "absolute",
-    paddingLeft: "20px",
-    marginTop: "-10px",
-    backgroundColor: "white",
-  }));
-  const StyledGridRightLine = styled(Box)(({ theme }) => ({
-    backgroundColor: `${theme.palette.primary.light}`,
-    height: "3px",
-    width: "370px",
-    borderRadius: "10px",
-    margin: "8px 0px 0px 15px",
-  }));
-  const label = { inputProps: { "aria-label": "Checkbox demo" } };
+  const [userinfo, setUserInfo] = useState<string[]>([]);
 
-  const [userinfo, setUserInfo] = useState([]);
+  // console.log(userinfo);
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const { value, checked } = e.target;
-    // const { intersets }= userinfo;
+  const intersted = useSelector((state: any) => state.interseted);
 
-    console.log(`${value} is ${checked}`);
+  const dispatch: any = useDispatch();
+  useEffect(() => {
+    dispatch(InterstedCatergory());
 
-    if (checked) {
-    //  setUserInfo((old)=> value)
-    }
-
-    else {
-      // setUserInfo({
-      //   intersets: intersets.filter((e) => e !== value),
-      // });
-    }
+    // console.log(intersted);
+  }, []);
+  const nagivate = useNavigate();
+  const userInfoObj: UserInfo = JSON.parse(
+    `${localStorage.getItem("RegisterInfo")}`
+  );
+  const handleGoDone = () => {
+    dispatch(updateUser({ intersted: userinfo }));
+    nagivate("/done");
   };
   return (
     <Box>
       <Home />
       <Content>
         <NavbarSign />
-        <StepperTab />
+        <StepperTab activeStep={1} />
         <Box
           sx={{
-            display: "flex",
+            // display: "flex",
             border: `1px solid #D9D9D9`,
             margin: "0px 150px 0px 200px",
             height: "auto",
             position: "relative",
           }}
         >
-          <StyledGridRightTitle sx={{ color: "black" }}>
+          <StyledGridRightTitle sx={{ color: "black", marginBottom: "50px" }}>
             Contact Us
             <StyledGridRightLine />
           </StyledGridRightTitle>
-          <Box sx={{ paddingTop: "40px" }}>
-            <Checkbox
-              {...label}
-              name="intersets"
-              value="Sport"
-              onChange={handleChange}
-            />
-          </Box>
+          {intersted?.map((item: any) => {
+            return (
+              <InterestedComponent
+                key={item._id}
+                image={item.image}
+                description={item.description}
+                title={item.title}
+                id={item._id}
+              />
+            );
+          })}
+          <StyledButton
+            endIcon={<ArrowForwardIcon />}
+            sx={{ color: "white", transform: "translateX(300%)" }}
+            onClick={handleGoDone}
+          >
+            Continue
+          </StyledButton>
         </Box>
         <FooterSign />
       </Content>

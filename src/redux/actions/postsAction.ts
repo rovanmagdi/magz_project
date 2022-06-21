@@ -9,6 +9,7 @@ export const getAllPosts = () => (dispatch:any) => {
 		.get(`/get_all`)
 		.then((response) => {
 			dispatch(getAllPostsSuccess(response.data));
+			
 			dispatch(showSuccess());
 		})
 		.catch((err) => {
@@ -20,5 +21,4 @@ export const getAllPostsSuccess = (posts:any) => ({
 	type: GET_ALL_POSTS,
 	payload: posts,
 });
-
 

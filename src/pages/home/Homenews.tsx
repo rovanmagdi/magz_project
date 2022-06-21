@@ -13,9 +13,11 @@ import SportSection from '../../components/home/SportSection';
 import LifestyleSection from '../../components/home/LifestyleSection';
 import Weather from '../../components/home/Weather';
 
+
 const Homenews = () => {
 
     const dispatch:any=useDispatch();
+   console.log("here news home")
 
     useEffect(() => {
         dispatch(getAllPosts());
@@ -27,11 +29,12 @@ const Homenews = () => {
     return (
         <>
         <TodaySection></TodaySection>  
-                      
 <OpinionSection></OpinionSection>
 <SportSection></SportSection>
 <LifestyleSection></LifestyleSection>
 <CultureSection></CultureSection>
+{/* <SearchCategory></SearchCategory> */}
+
         </>
     );
 };
