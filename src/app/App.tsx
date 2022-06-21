@@ -52,6 +52,8 @@ function App() {
               <Route path="/" element={<Homenews />}>
                 <Route path="/Profile" element={<ProfilePge />} />
                 <Route path="/details" element={<Details />} />
+                <Route path="/:page" element={<Details />} />
+
                 
               </Route>
               <Route path="login" element={<Login />} />

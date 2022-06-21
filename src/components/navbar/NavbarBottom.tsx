@@ -8,7 +8,7 @@ import {
   MenuItem,
   OutlinedInput,
 } from "@mui/material";
-import React, { useEffect } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import {
   MaterialUISwitch,
   StyledListNavLeft,
@@ -20,12 +20,20 @@ import SearchIcon from "@mui/icons-material/Search";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { userLogout } from "../../redux/actions/userData";
-import {InterstedCatergory} from '../../redux/actions/interestedAction'
+import { InterstedCatergory } from "../../redux/actions/interestedAction";
+import { subCatergory } from "../../redux/actions/subCategory";
+import { useParams } from "react-router";
+import { log } from "console";
 export default function NavbarBottom() {
-
   const intersted = useSelector((state: any) => state.interseted);
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
   const open = Boolean(anchorEl);
+  const [color, setColor] = useState("white");
+
+  const toggleColor = () => {
+    return setColor((old) => (old == "white" ? "red" : "white"));
+  };
+
   const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
     setAnchorEl(event.currentTarget);
   };
@@ -33,88 +41,99 @@ export default function NavbarBottom() {
     setAnchorEl(null);
   };
   const nagivate: any = useNavigate();
-  const handleProfile = () => {
-    nagivate("/Profile");
-  };
   const dispatch: any = useDispatch();
+  const subCatergoryState = useSelector((state: any) => state.Subcategory);
 
-  const handleClickLogout = () => {
-    console.log("logout");
-    dispatch(userLogout());
+  const { page } = useParams();
+  const userInfoObj = JSON.parse(`${localStorage.getItem("SubCategory")}`);
+
+  const handleGoPage = useCallback(
+    (page: any) => {
+      console.log("done");
+      nagivate(`/${page}`);
+
+      console.log(userInfoObj);
+    },
+    [page]
+  );
+  const handleGoHome = () => {
     nagivate("/");
   };
-  useEffect(()=>
-  {
-    dispatch(InterstedCatergory())
-  })
+
+  useEffect(() => {
+    // dispatch(subCatergory(page));
+    dispatch(InterstedCatergory());
+  }, []);
+
   return (
     <>
       <StyledNavBottom>
         <StyledListNavLeft>
-          <StyledListNavLeftContent>News</StyledListNavLeftContent>
+          <StyledListNavLeftContent onClick={handleGoHome}>
+            News
+          </StyledListNavLeftContent>
           {intersted?.map((page: any, index: any) => {
             return (
               // <StyledListNavLeftContent  />
-              <>
-                <FormControl>
-                  <StyledListNavLeftContent
-                    id="basic-button"
-                    aria-controls={open ? "basic-menu" : undefined}
-                    aria-haspopup="true"
-                    aria-expanded={open ? "true" : undefined}
-                    onClick={handleClick}
-                    sx={{
-                      color: "white",
-                      fontFamily: "Oswald",
-                      "&:hover": {
-                        backgroundColor: "#4D7E96",
-                        color: "white",
-                      },
-                    }}
-                  >
-                    <Box>{page.title}</Box>
 
-                    {` `}
-                  </StyledListNavLeftContent>
-                  <Menu
-                    id="basic-menu"
-                    anchorEl={anchorEl}
-                    open={open}
-                    onClose={handleClose}
-                    PaperProps={{
-                      style: {
-                        textAlign: "center",
-                        backgroundColor: "#272727",
-                        color: "#FFFFF",
-                        borderRadius: "0px",
-                      },
-                    }}
-                  >
-                    <MenuItem
-                      onClick={handleProfile}
-                      sx={{
-                        color: "white",
-                        "&:hover": {
-                          backgroundColor: "rgba(77,126,150,0.4)",
-                        },
-                      }}
-                    >
-                      Profile{" "}
-                    </MenuItem>
-                    <MenuItem
-                      onClick={handleClickLogout}
-                      sx={{
-                        color: "white",
-                        "&:hover": {
-                          backgroundColor: "rgba(77,126,150,0.4)",
-                        },
-                      }}
-                    >
-                      Logout
-                    </MenuItem>
-                  </Menu>
-                </FormControl>
-              </>
+              <FormControl key={page._id}>
+                <StyledListNavLeftContent
+                  id="basic-button"
+                  aria-controls={open ? "basic-menu" : undefined}
+                  aria-haspopup="true"
+                  aria-expanded={open ? "true" : undefined}
+                  onClick={handleClick}
+                  sx={{
+                    color: "white",
+                    fontFamily: "Oswald",
+                    "&:hover": {
+                      color: "white",
+                    },
+                    "&:active": {
+                      backgroundColor: `${color}`,
+                    },
+                  }}
+                >
+                  <Box onClick={() => handleGoPage(page.title)}>
+                    {page.title}
+                  </Box>
+
+                  {` `}
+                </StyledListNavLeftContent>
+
+                {/* {subCatergoryState[0]?.title} */}
+
+                <Menu
+                  id="basic-menu"
+                  anchorEl={anchorEl}
+                  open={open}
+                  onClose={handleClose}
+                  PaperProps={{
+                    style: {
+                      textAlign: "center",
+                      backgroundColor: "#272727",
+                      color: "#FFFFF",
+                      borderRadius: "0px",
+                    },
+                  }}
+                >
+                  {subCatergoryState?.map((subCatergory: any) => {
+                    return (
+                      <MenuItem
+                        key={subCatergory._id}
+                        sx={{
+                          color: "white",
+                          "&:hover": {
+                            backgroundColor: "rgba(77,126,150,0.4)",
+                          },
+                        }}
+                      >
+                        {subCatergory.title}
+                      </MenuItem>
+                    );
+                  })}
+                </Menu>
+              </FormControl>
             );
           })}
         </StyledListNavLeft>

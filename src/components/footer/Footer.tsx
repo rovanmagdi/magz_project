@@ -79,60 +79,10 @@ const Footer = () => {
               <br />
               explores the connection between contemporary visual culture and
               social issues
-              <StyledFooterButton>Sign up for MAGZ</StyledFooterButton>
             </StyledGridLeftTextMedia>
+              <StyledFooterButton>Sign up for MAGZ</StyledFooterButton>
           </StyledGridLeft>
-          <Stack>
-            <Box>
-              <StyledGridRightTitle
-                sx={{
-                  fontFamily: "Oswald",
-                  fontWeight: "bold",
-                  fontSize: "14px",
-                  textTransform: "uppercase",
-                }}
-              >
-                lastest posts
-                <StyledGridRightLine />
-              </StyledGridRightTitle>
-              {recently.map((i: any) => {
-                return (
-                  <PopularPosts
-                    title="Recently Posts"
-                    data={i.title}
-                    date={<PostDate date={i.updatedAt} />}
-                    img={i.image}
-                  />
-                );
-              })}
-            </Box>
-            <Box>
-              <Box>
-                <StyledGridRightTitle
-                  sx={{
-                    fontFamily: "Oswald",
-                    fontWeight: "bold",
-                    fontSize: "14px",
-                    textTransform: "uppercase",
-                  }}
-                >
-                  lastest posts
-                  <StyledGridRightLine />
-                </StyledGridRightTitle>
-                {recently.map((i: any) => {
-                  return (
-                    <PopularPosts
-                      title="Recently Posts"
-                      data={i.title}
-                      date={<PostDate date={i.updatedAt} />}
-                      img={i.image}
-                    />
-                  );
-                })}
-              </Box>
-            </Box>
-          </Stack>
-
+        
           <StyledLineMedai />
           <StyledFooterBottom>
             © 2022 - MAGZ. All Rights Reserved.

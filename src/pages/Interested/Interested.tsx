@@ -5,8 +5,10 @@ import NavbarSign from "../../components/navbarSign/NavbarSign";
 import StepperTab from "../../components/stepper/Stepper";
 import { styled } from "@mui/material/styles";
 import { Content, Home, Info } from "../../styled/HomePage";
+import { StyledDescription, StyledTitle } from "../../styled/CategoryIntersted";
 import { useDispatch, useSelector } from "react-redux";
 import { InterstedCatergory } from "../../redux/actions/interestedAction";
+import { StyledLine } from "../../styled/Footer";
 import { StyledButton } from "../../styled/Button";
 import ArrowForwardIcon from "@mui/icons-material/ArrowForward";
 import { useNavigate } from "react-router-dom";
@@ -16,11 +18,27 @@ import {
   StyledGridRightTitle,
   StyledGridRightLine,
 } from "../../styled/interested";
-import InterestedComponent from "../../components/interested/Interested";
 
 const Interested = () => {
+  const label = { inputProps: { "aria-label": "Checkbox demo" } };
+
   const [userinfo, setUserInfo] = useState<string[]>([]);
 
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const { value, checked } = e.target;
+
+    console.log(`${value} is ${checked}`);
+
+    if (checked) {
+      setUserInfo((old: any) => [...old, value]);
+    } else {
+      const newState = userinfo?.filter((el) => {
+        return el !== value;
+      });
+
+      setUserInfo((old) => [...newState]);
+    }
+  };
   // console.log(userinfo);
 
   const intersted = useSelector((state: any) => state.interseted);
@@ -60,13 +78,37 @@ const Interested = () => {
           </StyledGridRightTitle>
           {intersted?.map((item: any) => {
             return (
-              <InterestedComponent
-                key={item._id}
-                image={item.image}
-                description={item.description}
-                title={item.title}
-                id={item._id}
-              />
+              <Stack key={item._id}>
+                <Box
+                  sx={{
+                    paddingTop: "25px",
+                    display: "flex",
+                    margin: "auto",
+                    alignItems: "center",
+                    justifyContent: "space-around",
+                  }}
+                >
+                  <Box
+                    component="img"
+                    src={item.image}
+                    height="150px"
+                    width="190px"
+                  />
+
+                  <Box>
+                    <StyledTitle>{item.title}</StyledTitle>
+                    <StyledDescription>{item.description}</StyledDescription>
+                    <Checkbox
+                      {...label}
+                      name="intersets"
+                      value={item.title}
+                      onChange={handleChange}
+                    />
+                    Yes,
+                  </Box>
+                </Box>
+                <StyledLine sx={{ width: "650px" }} />
+              </Stack>
             );
           })}
           <StyledButton
