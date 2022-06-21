@@ -57,8 +57,10 @@ export default function SignIn() {
     }
   };
   const data = useSelector((state: any) => state.userData);
+  console.log(data)
   useEffect(() => {
     if (data) {
+      console.log("here")
       navigate("/");
     }
   },[data]);

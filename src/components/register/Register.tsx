@@ -61,29 +61,30 @@ function Register() {
     if (validationLoginFormResult.error) {
       setErrorList(validationLoginFormResult.error.details);
     } else {
-
- 
-
-      dispatch(RegisterUser(state));
+      dispatch(RegisterUser(state.firstName, state.lastName, state.email, state.password));
       setErrorList([]);
     }
-
   };
   const data = useSelector((state: any) => state?.userData);
-  useEffect(()=>
-  {
-
+  useEffect(() => {
     if (data) {
       navigate("/interested");
     }
-  },[data])
-  
+  }, [data]);
 
+  const [stateGoogle, setState] = useState({
+    firstName: "",
+    lastName: "",
+    email: "",
+    password: "",
+    // confirmePassword: "",
+  });
   const handleSuccess = (results: any) => {
     console.log(results);
     localStorage.setItem("RegisterInfo", JSON.stringify(results.profileObj));
+
     dispatch(
-      registerUser(
+      RegisterUser(
         results.profileObj.givenName,
         results.profileObj.familyName,
         results.profileObj.email,
@@ -92,6 +93,7 @@ function Register() {
       )
     );
     navigate("/interested");
+    console.log(results);
   };
   const handleFailure = (error: any) => {
     console.log(error);

@@ -15,7 +15,7 @@ import CameraAltIcon from "@mui/icons-material/CameraAlt";
 import axios from "axios";
 import { useDispatch } from "react-redux";
 import { updateUser } from "../../redux/actions/userActions";
-import Interested from '../Interested/Interested'
+import Interested from "../Interested/Interested";
 
 export default function ProfilePge() {
   const [userInf, setUserInf]: any = useState();
@@ -31,7 +31,6 @@ export default function ProfilePge() {
     `${localStorage.getItem("RegisterInfo")}`
   );
 
-  const userName = `${userInfoObj.firstName} ${userInfoObj.lastName} `;
   // const userName =`omnia mahmoud`
   const SmallAvatar = styled(Avatar)(({ theme }) => ({
     width: 22,
@@ -59,9 +58,8 @@ export default function ProfilePge() {
         };
 
         // console.log(res.data.secure_url);
-       
-        dispatch(updateUser( {...user,image: res.data.secure_url}));
 
+        dispatch(updateUser({ ...user, image: res.data.secure_url }));
       })
       .catch((err) => {
         alert("some thing go wrong data base" + err);
@@ -77,26 +75,11 @@ export default function ProfilePge() {
           padding: "20px 0px",
         }}
       >
-        {/* <Badge
-          overlap="circular"
-          anchorOrigin={{ vertical: "bottom", horizontal: "right" }}
-          badgeContent=
-          {
-            <SmallAvatar
-              alt="Remy Sharp"
-              src={cameraIcon}
-              onClick={editProfilePic}
-            />
-           
-
-            
-          }
-        > */}
         <Avatar
           sx={{ width: "150px", height: "150px", margin: "auto" }}
           src={userInfoObj.image}
         ></Avatar>
-        {/* </Badge> */}
+
         <label htmlFor="contained-button-file">
           <Input
             accept="image/*"
@@ -117,7 +100,15 @@ export default function ProfilePge() {
           />
         </label>
         <Typography variant="h3" mt={1}>
-          {userName}
+         
+          {!userInfoObj.name ? (
+            <Box>
+              {" "}
+              {userInfoObj.firstName} {userInfoObj.lastName}
+            </Box>
+          ) : (
+            <Box>{userInfoObj.name}</Box>
+          )}
         </Typography>
 
         <ProfileContent />

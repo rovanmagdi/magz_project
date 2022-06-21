@@ -16,8 +16,12 @@ import { TodayLabelBox } from "../../styled/styledBox";
 import PostDate from "../postDate/PostDate";
 import { StyledCircleIcon } from "../../styled/StyledIcon";
 import { DateTypography } from "../../styled/styledTypography";
+
 const Today: React.FC<Post> = (props) => {
   const { title, image, description, auther, updatedAt } = props;
+
+const Today: React.FC<Post> = (props) => {
+  const { title, image, description, auther } = props;
 
   console.log({ title }, { image });
   return (

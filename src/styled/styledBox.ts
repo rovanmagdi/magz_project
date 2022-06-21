@@ -1,5 +1,5 @@
 import Box from "@mui/material/Box";
-import { styled } from "@mui/material";
+import { styled, Typography } from "@mui/material";
 import { fontFamily, fontSize, height } from "@mui/system";
 
 export const CategoryLabelBox = styled(Box)(({ theme }) => ({
@@ -25,6 +25,20 @@ export const TodayLabelBox = styled(CategoryLabelBox)(({ theme }) => ({
   width: "70px",
   backgroundColor: `${theme.palette.primary.main}`,
 }));
+export const TodayLabelBox2 = styled(CategoryLabelBox)(({ theme }) => ({
+
+ marginTop: "20px",
+  zIndex: "555",
+  height: "28px",
+  width: "70px",
+  backgroundColor: `${theme.palette.primary.main}`,
+}));
+export const StyledTitle= styled(Typography)(({ theme }) => ({
+
+ fontFamily:"Open sans",
+ fontSize:"1.5rem",
+ fontWeight:"bold"
+ }));
 
 export const HorizontalLineBox = styled(Box)(() => ({
   width: "60%",
@@ -48,7 +62,6 @@ export const OverlayBox = styled(Box)(() => ({
   left: "0px",
   transition: "0.4s all ease-in-out",
   borderRadius: "2px",
-
   opacity: 0,
   "&:hover": {
     opacity: 1,

@@ -5,7 +5,7 @@ import { Stack } from '@mui/material';
 import { CategoryLabelBox, HorizontalLineBox } from '../../styled/styledBox';
 import { Box } from '@mui/material';
 import Today from './Today';
-import PopularPosts from '../popularPosts/populatPosts';
+import PopularPosts from '../otherPost/otherPosts';
 import Weather from './Weather';
 import {CircularProgress} from '@mui/material';
 import { useTheme } from '@mui/material';
@@ -19,7 +19,7 @@ const TodaySection = () => {
     const LaptopView = useMediaQuery(theme.breakpoints.up("md"));
 
     const posts=useSelector((state:any) =>state.posts? state.posts[0].posts : state.posts);
-    console.log(posts)
+    // console.log(posts)
 
 
 

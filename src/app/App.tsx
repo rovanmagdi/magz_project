@@ -9,16 +9,17 @@ import { ThemeProvider } from "@mui/material/styles";
 import { theme } from "../theme/palette";
 import { Box, useMediaQuery, CircularProgress } from "@mui/material";
 import { styled } from "@mui/material/styles";
-import Header from "../components/header/Header";
+import Header from "../components/navbar/Header";
 import Image from "../assets/background.png";
 import Footer from "../components/footer/Footer";
 import Login from "../pages/Sign/Login";
-import HomePage from "./HomePage";
+import Homenews from "./HomePage";
 import Interested from "../pages/Interested/Interested";
 import ProfilePge from "../pages/profilePage/ProfilePage";
 import Done from "../pages/Done/Done";
 import { ColorModeProvider } from '../contexts/ColorModeContext';
 import {Paper} from "@mui/material";
+import Details from "../pages/details/Details";
 function App() {
   const Home = styled(Box)(({ theme }) => ({
     backgroundImage: `url(${Image})`,
@@ -52,8 +53,10 @@ function App() {
         <Suspense fallback={<CircularProgress />}>
           <BrowserRouter>
             <Routes>
-              <Route path="/" element={<HomePage />}>
+              <Route path="/" element={<Homenews />}>
                 <Route path="/Profile" element={<ProfilePge />} />
+                <Route path="/details" element={<Details />} />
+                
               </Route>
               <Route path="login" element={<Login />} />
               <Route path="interested" element={<Interested />} />

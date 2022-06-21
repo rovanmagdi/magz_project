@@ -12,11 +12,14 @@ import OpinionSection from '../../components/home/OpinionSection'
 import SportSection from '../../components/home/SportSection';
 import LifestyleSection from '../../components/home/LifestyleSection';
 import Weather from '../../components/home/Weather';
-import SearchCategory from '../../components/header/SearchCategory';
+
 import { QuotePaper } from '../../styled/styledPaper';
+
+
 const Homenews = () => {
 
     const dispatch:any=useDispatch();
+   console.log("here news home")
 
     useEffect(() => {
         dispatch(getAllPosts());

@@ -61,10 +61,11 @@ const Interested = () => {
           {intersted?.map((item: any) => {
             return (
               <InterestedComponent
-                id={item._id}
+                key={item._id}
                 image={item.image}
                 description={item.description}
                 title={item.title}
+                id={item._id}
               />
             );
           })}

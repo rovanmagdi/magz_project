@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import Logo from "../../assets/logoFooter.png";
 import Person from "../../assets/person.png";
-import PopularPosts from "../popularPosts/populatPosts";
+import PopularPosts from "../otherPost/otherPosts";
 import {
   Box,
   Button,
