@@ -6,7 +6,7 @@ export const ProfileDataItem = styled(Paper)(() => ({
     paddingLeft:'20px',
     minHeight:'45px',
     lineHeight:'45px'
-   
+   //ahmed
    }));
 
 
@@ -14,6 +14,7 @@ export const ProfileDataItem = styled(Paper)(() => ({
 export const WeatherPaper = styled(Paper)(()=>({
 
 width:"25%" , padding:"25px", height:"250px"
+//ahmed
 
 }))
 
@@ -45,5 +46,5 @@ export const QuotePaper= styled(Paper)(()=>({
 width:"80%",
 backgroundColor:"rgba(77,126,150,.47)",
 height:"400px"
-
+//ahmed
 }))
