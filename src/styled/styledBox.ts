@@ -190,7 +190,7 @@ export const AuthorAvatarBox= styled(Box)(()=>({
 
 width:"150px", 
 height:"150px",
-borderRadius:"50%"
+borderRadius:"50%"}));
 
 
 

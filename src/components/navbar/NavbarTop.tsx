@@ -6,7 +6,7 @@ import {
   MenuItem,
   Typography,
 } from "@mui/material";
-import React, { useState } from "react";
+import React, { useState,useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import {
@@ -20,8 +20,11 @@ import {
 } from "../../styled/Navbar";
 
 import { userLogout } from "../../redux/actions/userData";
+import { useSelector } from "react-redux";
 
 export default function NavbarTop() {
+  const user = useSelector((state: any) => state.user);
+  useEffect(() => {}, [user]);
   let newDate = new Date();
   const days = [
     "Sunday",
