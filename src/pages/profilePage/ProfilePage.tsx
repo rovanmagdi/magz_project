@@ -100,6 +100,7 @@ export default function ProfilePge() {
           />
         </label>
         <Typography variant="h3" mt={1}>
+         
           {!userInfoObj.name ? (
             <Box>
               {" "}

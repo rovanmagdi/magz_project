@@ -6,7 +6,6 @@ import CardMedia from "@mui/material/CardMedia";
 import { CardActionArea } from "@mui/material";
 import Typography from "@mui/material/Typography";
 import { Box } from "@mui/material";
-
 import { styled, ThemeProvider } from "@mui/system";
 import { theme } from "../../theme/palette";
 import Post from "../../types/post";
@@ -15,6 +14,11 @@ import { OverlayTodayBox } from "../../styled/styledBox";
 import { StyledTodayCard } from "../../styled/styledCard";
 import { TodayLabelBox } from "../../styled/styledBox";
 import PostDate from "../postDate/PostDate";
+import { StyledCircleIcon } from "../../styled/StyledIcon";
+import { DateTypography } from "../../styled/styledTypography";
+
+const Today: React.FC<Post> = (props) => {
+  const { title, image, description, auther, updatedAt } = props;
 
 const Today: React.FC<Post> = (props) => {
   const { title, image, description, auther } = props;
@@ -36,6 +40,14 @@ const Today: React.FC<Post> = (props) => {
           <Typography gutterBottom variant="h5" component="div">
             {title}
           </Typography>
+          <DateTypography>
+            <StyledCircleIcon ></StyledCircleIcon>
+               {`${new Date(updatedAt).toLocaleString("en-GB", {
+               month: "short",
+              day: "numeric",
+              year: "numeric",
+            })}`}
+          </DateTypography>
           <Typography variant="body2" color="text.secondary">
             {description}
           </Typography>

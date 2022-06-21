@@ -10,6 +10,7 @@ import LocationOnIcon from "@mui/icons-material/LocationOn";
 import { StyledCloudIcon } from "../../styled/StyledIcon";
 import { WeatherPaper } from "../../styled/styledPaper";
 import { useMemo } from "react";
+import {CircularProgress } from "@mui/material";
 
 const weekday = [
   "Sunday",
@@ -23,7 +24,7 @@ const weekday = [
 
 const Weather = () => {
   const [forecast, setForecast] = useState({
-    address: "",
+   
     temp: "",
     timezone: "",
     condition: "",
@@ -39,7 +40,6 @@ const Weather = () => {
       .then((response) => {
         setForecast((forecast) => ({
           ...forecast,
-          address: response.data.address,
           temp: response.data.currentConditions.temp,
           timezone: response.data.timezone,
           condition: response.data.currentConditions.conditions,
@@ -130,7 +130,7 @@ const Weather = () => {
               );
             })
           ) : (
-            <div>loading</div>
+            <CircularProgress />
           )}
         </Stack>
       </WeatherPaper>

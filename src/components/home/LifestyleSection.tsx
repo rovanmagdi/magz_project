@@ -5,6 +5,7 @@ import { CategoryLabelBox, HorizontalLineBox } from '../../styled/styledBox';
 import { Box } from '@mui/material';
 import Lifestyle from './Lifestyle';
 import {Grid} from "@mui/material";
+import {CircularProgress} from '@mui/material';
 
 const LifestyleSection = () => {
     const posts=useSelector((state:any) =>state.posts? state.posts[0].posts : state.posts);
@@ -29,7 +30,7 @@ const LifestyleSection = () => {
         posts? (posts.map((post:any)=>{
             return <Grid item md={4} sm={12} ><Lifestyle {...post}/>
             </Grid> 
-        })):(<div>loading</div>)
+        })):(<CircularProgress/>)
         
     }
 

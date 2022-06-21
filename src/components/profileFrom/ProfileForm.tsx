@@ -42,6 +42,7 @@ export default function ProfileForm() {
 
     setState({ ...state, [name]: value });
   };
+ 
 
   const validations = (state: any) => {
     const schema = Joi.object({
@@ -102,6 +103,7 @@ export default function ProfileForm() {
                 {errorState.find((el) => el === "firstName") ? (
                   <StyledError>
                     First name must be more than 3 letters and only letters
+                    
                   </StyledError>
                 ) : (
                   <StyledError></StyledError>

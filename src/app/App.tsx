@@ -17,6 +17,8 @@ import Homenews from "./HomePage";
 import Interested from "../pages/Interested/Interested";
 import ProfilePge from "../pages/profilePage/ProfilePage";
 import Done from "../pages/Done/Done";
+import { ColorModeProvider } from '../contexts/ColorModeContext';
+import {Paper} from "@mui/material";
 import Details from "../pages/details/Details";
 function App() {
   const Home = styled(Box)(({ theme }) => ({
@@ -44,6 +46,8 @@ function App() {
 
   const isMatch = useMediaQuery(theme.breakpoints.down("sm"));
   return (
+    <ColorModeProvider>
+    <Paper>
     <Provider store={store}>
       <ThemeProvider theme={theme}>
         <Suspense fallback={<CircularProgress />}>
@@ -59,11 +63,14 @@ function App() {
               <Route path="login" element={<Login />} />
               <Route path="interested" element={<Interested />} />
               <Route path="done" element={<Done />} />
+
             </Routes>
           </BrowserRouter>
         </Suspense>
       </ThemeProvider>
     </Provider>
+    </Paper>
+    </ColorModeProvider>
   );
 }
 
