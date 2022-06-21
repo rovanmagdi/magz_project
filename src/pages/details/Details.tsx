@@ -1,24 +1,29 @@
-import { Box, Stack, Typography } from "@mui/material";
+import { Box, Stack, TextareaAutosize, Typography } from "@mui/material";
 import React from "react";
 import {
+  CategoryLabelBox,
+  HorizontalLineBox,
   StyledTitle,
   TodayLabelBox,
   TodayLabelBox2,
 } from "../../styled/styledBox";
 import { StyledTodayCard } from "../../styled/styledCard";
-import { OverlayTodayBox } from "../../styled/styledBox";
+import { OverlayDetailsBox } from "../../styled/styledBox";
 
 import CardActions from "@mui/material/CardActions";
 import CardContent from "@mui/material/CardContent";
 import CardMedia from "@mui/material/CardMedia";
 import { CardActionArea } from "@mui/material";
 import image from "../../assets/background.png";
-import LastPosts from "../../components/lastPosts/LastPosts";
 import icon from "../../assets/icons.png";
 import { StyledLine } from "../../styled/Footer";
+import comments from "../../assets/comment.png";
+import like from "../../assets/like.png";
+import { StyledButton } from "../../styled/Button";
+
 export default function Details() {
   return (
-    <Stack >
+    <Stack>
       <StyledTodayCard elevation={0}>
         <Box
           sx={{
@@ -41,10 +46,9 @@ export default function Details() {
             image={image}
             alt="green iguana"
           />
-          <OverlayTodayBox></OverlayTodayBox>
+          <OverlayDetailsBox></OverlayDetailsBox>
         </CardActionArea>
         <Box
-         
           color="text.secondary"
           sx={{
             marginTop: "15px",
@@ -52,37 +56,104 @@ export default function Details() {
             display: "flex",
             alignItems: "center",
             marginBottom: "0px",
-            
           }}
         >
           <Box component="img" src={icon}></Box>
-          <Box sx={{ marginLeft: "10px" ,fontSize:"13px"}}>
+          <Box sx={{ marginLeft: "10px", fontSize: "13px" }}>
             Steve Kerr slams lack of gun control as ‘pathetic’ after Texas
             school massacre
           </Box>
         </Box>
         <StyledLine sx={{ marginTop: "10px" }} />
 
-        <CardActions>
-        <Box sx={{display: "flex" }}>  
+        <CardActions sx={{ display: "flex", justifyContent: "space-between" }}>
+          <Box sx={{ display: "flex" }}>
+            <Box
+              component="img"
+              height="30px"
+              width="30px"
+              borderRadius="50%"
+              marginLeft={2}
+              marginRight={2}
+              src={image}
+              alt="green iguana"
+            />
+
+            <Typography>Name </Typography>
+          </Box>
+
           <Box
-            component="img"
-            height="30px"
-            width="30px"
-            borderRadius="50%"
-            marginLeft={2}
-            marginRight={2}
-            src={image}
-            alt="green iguana"
-          />
-          
-          <Typography>Name </Typography>
+            sx={{
+              display: "flex",
+              justifyContent: "space-between",
+              alignItems: "center",
+            }}
+          >
+            <Box
+              sx={{
+                display: "flex",
+                justifyContent: "center",
+                alignItems: "center",
+              }}
+            >
+              <Box
+                component="img"
+                src={comments}
+                sx={{ height: "15px", width: "15px", margin: "8px" }}
+              />
+              <Typography component="span">2</Typography>
+            </Box>
+
+            <Box
+              sx={{
+                display: "flex",
+                justifyContent: "center",
+                alignItems: "center",
+              }}
+            >
+              <Box
+                component="img"
+                src={like}
+                sx={{ height: "15px", width: "15px", margin: "8px" }}
+              />
+              <Typography component="span">2</Typography>
+            </Box>
           </Box>
-          <Box>
-            
-          </Box>
-          <Box>12</Box>
         </CardActions>
+        <StyledLine sx={{ marginTop: "10px", width: "800px" }} />
+        <Stack sx={{ fontSize: "15px", margin: "20px" }}>
+          Socrates was charged with denying the gods exist and inventing new
+          ones, and of corrupting youth. Actually, Socrates was deeply religious
+          and it was fighting dirty to accuse him of sacrilege. But powerful
+          people had had enough of him. A scruffy 70-year-old man hanging out in
+          public places surrounded by adoring pupils, teaching that a life
+          unexamined is not worth living but we must learn we know nothing,
+          corroded certainty. And certainty was what the city craved.e
+          uncompromising voice of Socrates in a dangerous time resonates with
+          our own “age of rage”. After Tom Littler, artistic director of the
+          small but heavy-punching Jermyn Street theatre, proposed a Socrates
+          play, I drafted a scene based on Plato’s dialogue E
+        </Stack>
+        <Box sx={{ border: "1px solid #B1B1B1" }}>
+          <Box>
+
+          <Box position={"relative"} sx={{ margin: "20px" }}>
+            <CategoryLabelBox sx={{ backgroundColor: "#4D7E96" }}>
+              Leave Comment
+            </CategoryLabelBox>
+            <HorizontalLineBox
+              sx={{ backgroundColor: "#4D7E96", width: "550px" }}
+            ></HorizontalLineBox>
+          </Box>
+          <TextareaAutosize
+            aria-label="minimum height"
+            minRows={10}
+            placeholder="Your Comment"
+            style={{ width: 500, margin: "20px", border: "1px solid #B1B1B1" }}
+          />
+          </Box>
+          <StyledButton sx={{color:"white",margin: "20px"}}>POST COMMENT</StyledButton>
+        </Box>
       </StyledTodayCard>
     </Stack>
   );

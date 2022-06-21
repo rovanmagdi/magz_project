@@ -194,4 +194,15 @@ borderRadius:"50%"
 
 
 
-}))
+
+        export const OverlayDetailsBox = styled(OverlayBox)(() => ({
+          width: "100%",
+          borderRadius: "8px",
+          height: "100%",
+          "&:hover": {
+           
+            backgroundColor: "rgba(96, 89, 85,.5)",
+          },
+        }));
+        
+
