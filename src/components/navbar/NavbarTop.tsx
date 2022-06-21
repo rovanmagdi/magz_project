@@ -125,7 +125,7 @@ export default function NavbarTop() {
                   >
                     {!userInfoObj.imageUrl ? (
                       <Box sx={{ display: "flex" }}>
-                        {userInfoObj.image === " " ? (
+                        {userInfoObj.image !== " " ? (
                           <Box
                             component="img"
                             sx={{

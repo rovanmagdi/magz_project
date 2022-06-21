@@ -9,6 +9,7 @@ import ProfilePge from "../pages/profilePage/ProfilePage";
 import Interested from "../pages/Interested/Interested";
 import Done from "../pages/Done/Done";
 import Login from "../pages/Sign/Login";
+import Details from "../pages/details/Details";
 
 function HomePage() {
   const isMatch = useMediaQuery(theme.breakpoints.down("sm"));
@@ -20,15 +21,12 @@ function HomePage() {
       <Content>
         <Header />
         <Routes>
-          <Route path="login" element={<Login />} />
-          <Route path="/interested" element={<Interested />} />
+          <Route path="/" element={<Homenews />} />
+
           <Route path="/Profile" element={<ProfilePge />} />
+          <Route path="/details" element={<Details />} />
         </Routes>
-        <Info>
-          {" "}
-          {/* <ProfilePge /> */}
-          <Homenews></Homenews>
-        </Info>
+        <Info></Info>
 
         <Footer />
       </Content>

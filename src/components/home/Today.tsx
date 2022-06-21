@@ -16,9 +16,7 @@ import { StyledTodayCard } from "../../styled/styledCard";
 import { TodayLabelBox } from "../../styled/styledBox";
 import PostDate from "../postDate/PostDate";
 
-
 const Today: React.FC<Post> = (props) => {
-
   const { title, image, description, auther } = props;
 
   console.log({ title }, { image });
@@ -28,19 +26,18 @@ const Today: React.FC<Post> = (props) => {
         <TodayLabelBox>Today</TodayLabelBox>
         <CardMedia
           component="img"
-          sx={{ borderRadius: "8px" , backgroundSize:"contain"}}
+          sx={{ borderRadius: "8px", backgroundSize: "contain" }}
           height="380"
-image={image}   
-       alt="green iguana"
+          image={image}
+          alt="green iguana"
         />
         <OverlayTodayBox></OverlayTodayBox>
         <CardContent>
           <Typography gutterBottom variant="h5" component="div">
-          {title}
+            {title}
           </Typography>
           <Typography variant="body2" color="text.secondary">
-        {description}
-     
+            {description}
           </Typography>
         </CardContent>
       </CardActionArea>
@@ -63,5 +60,3 @@ image={image}
 };
 
 export default Today;
-
-

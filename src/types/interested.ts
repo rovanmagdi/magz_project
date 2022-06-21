@@ -3,4 +3,5 @@ export interface InterestedInterFace {
     title: string;
     description: string;
     image: string;
+    userInfo?: any;
   }

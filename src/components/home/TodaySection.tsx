@@ -5,7 +5,7 @@ import { Stack } from '@mui/material';
 import { CategoryLabelBox, HorizontalLineBox } from '../../styled/styledBox';
 import { Box } from '@mui/material';
 import Today from './Today';
-import PopularPosts from '../popularPosts/populatPosts';
+import PopularPosts from '../otherPost/otherPosts';
 import Weather from './Weather';
 const TodaySection = () => {
     const posts=useSelector((state:any) =>state.posts? state.posts[0].posts : state.posts);

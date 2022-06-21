@@ -13,10 +13,11 @@ import Header from "../components/navbar/Header";
 import Image from "../assets/background.png";
 import Footer from "../components/footer/Footer";
 import Login from "../pages/Sign/Login";
-import Homenews  from "./HomePage";
+import Homenews from "./HomePage";
 import Interested from "../pages/Interested/Interested";
 import ProfilePge from "../pages/profilePage/ProfilePage";
 import Done from "../pages/Done/Done";
+import Details from "../pages/details/Details";
 function App() {
   const Home = styled(Box)(({ theme }) => ({
     backgroundImage: `url(${Image})`,
@@ -48,13 +49,14 @@ function App() {
         <Suspense fallback={<CircularProgress />}>
           <BrowserRouter>
             <Routes>
-              <Route path="/" element={<Homenews  />}>
+              <Route path="/" element={<Homenews />}>
                 <Route path="/Profile" element={<ProfilePge />} />
+                <Route path="/details" element={<Details />} />
+                
               </Route>
               <Route path="login" element={<Login />} />
               <Route path="interested" element={<Interested />} />
               <Route path="done" element={<Done />} />
-
             </Routes>
           </BrowserRouter>
         </Suspense>
