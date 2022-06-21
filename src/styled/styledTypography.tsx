@@ -7,6 +7,7 @@ export const PostTitle = styled(Typography)(({ theme }) => ({
   // width:'250px',
   // ahmed
   // ahmed
+  // ahmed
 }));
 
 export const PostDate = styled(Typography)(({ theme }) => ({
