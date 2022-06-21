@@ -45,5 +45,6 @@ export const QuotePaper= styled(Paper)(()=>({
 width:"80%",
 backgroundColor:"rgba(77,126,150,.47)",
 height:"400px"
+// anything
 
 }))
