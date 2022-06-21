@@ -134,26 +134,8 @@ export default function Details() {
           small but heavy-punching Jermyn Street theatre, proposed a Socrates
           play, I drafted a scene based on Plato’s dialogue E
         </Stack>
-        <Box sx={{ border: "1px solid #B1B1B1" }}>
-          <Box>
-
-          <Box position={"relative"} sx={{ margin: "20px" }}>
-            <CategoryLabelBox sx={{ backgroundColor: "#4D7E96" }}>
-              Leave Comment
-            </CategoryLabelBox>
-            <HorizontalLineBox
-              sx={{ backgroundColor: "#4D7E96", width: "550px" }}
-            ></HorizontalLineBox>
-          </Box>
-          <TextareaAutosize
-            aria-label="minimum height"
-            minRows={10}
-            placeholder="Your Comment"
-            style={{ width: 500, margin: "20px", border: "1px solid #B1B1B1" }}
-          />
-          </Box>
-          <StyledButton sx={{color:"white",margin: "20px"}}>POST COMMENT</StyledButton>
-        </Box>
+        </Comment>
+        {/*  */}
       </StyledTodayCard>
     </Stack>
   );
