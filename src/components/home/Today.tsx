@@ -14,9 +14,12 @@ import { OverlayTodayBox } from "../../styled/styledBox";
 import { StyledTodayCard } from "../../styled/styledCard";
 import { TodayLabelBox } from "../../styled/styledBox";
 import PostDate from "../postDate/PostDate";
-import { StyledCircleIcon } from "../../styled/StyledIcon";
 import { DateTypography } from "../../styled/styledTypography";
 import { useNavigate } from "react-router-dom";
+
+import { ReadMoreTypography } from "../../styled/styledTypography";
+import { TypographyOverFlow } from "../../styled/TypopraphyOverFlow";
+
 
 const Today: React.FC<Post> = (props) => {
   const { title, image, description, auther, updatedAt, _id } = props;
@@ -29,7 +32,8 @@ const Today: React.FC<Post> = (props) => {
   const handleGoDetails = (id: any) => {
     console.log("go details");
     console.log(props);
-    nagivate(`/details/${id}`);
+    nagivate(`/details/${id}`);       
+
 
   }
   return (
@@ -43,27 +47,23 @@ const Today: React.FC<Post> = (props) => {
           image={image}
           alt="green iguana"
         />
-        <OverlayTodayBox></OverlayTodayBox>
+        <OverlayTodayBox><ReadMoreTypography sx={{left:"43%", top:"45%"}}>read more...</ReadMoreTypography></OverlayTodayBox>
         <CardContent>
           <Typography gutterBottom variant="h5" component="div">
             {title}
           </Typography>
           <DateTypography>
-            <StyledCircleIcon ></StyledCircleIcon>
-            {`${new Date(updatedAt).toLocaleString("en-GB", {
-              month: "short",
-              day: "numeric",
-              year: "numeric",
-            })}`}
+
+            
+      
+            <Box sx={{ color: "text.secondary", fontSize: "13px" }}>
+              {<PostDate date={updatedAt} />}
+            </Box>
+
           </DateTypography>
-          <Typography variant="body2" color="text.secondary" sx={{
-            whiteSpace: "nowrap",
-            width: "8000px",
-            overflow: "hidden",
-            textOverflow: "ellipsis"
-          }}>
+          <TypographyOverFlow variant="body2" color="text.secondary" >
             {description}
-          </Typography>
+          </TypographyOverFlow>
         </CardContent>
       </CardActionArea>
 

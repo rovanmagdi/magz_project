@@ -9,9 +9,19 @@ import {Grid} from '@mui/material';
 import {CircularProgress} from '@mui/material';
 
 const OpinionSection = () => {
-    const posts=useSelector((state:any) =>state.posts? state.posts[0].posts : state.posts);
-    // console.log(posts)
 
+    const filteredCategories:any=[];
+
+
+    const posts=useSelector((state:any) =>state.posts? state.posts: state.posts);
+    // console.log(posts)
+    if(posts)
+    {
+       posts.forEach((category:any)=>{
+           filteredCategories[category._id]=category.posts
+       })
+       console.log(filteredCategories["opinion"])
+   }
     return (
         <>
 < Box component={"section"} marginTop={8}>
@@ -24,8 +34,8 @@ const OpinionSection = () => {
            gap={1} >
  
               {
-        posts? (posts.map((post:any)=>{
-            return <Grid item sm={12} md={4} ><Opinion {...post}/>
+       filteredCategories["opinion"]? (filteredCategories["opinion"].map(( post:any)=>{
+            return <Grid item sm={12} md={4} key={post._id}><Opinion {...post}/>
             </Grid> 
         })):(<CircularProgress/>)
         

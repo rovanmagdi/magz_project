@@ -12,12 +12,22 @@ import {useMediaQuery} from '@mui/material';
 import SportLaptopView from './SportLaptopView';
 import SportMobileView from './SportMobileView';
 const SportSection = () => {
+    const filteredCategories:any=[];
+
     const theme = useTheme();
     const MobileView = useMediaQuery(theme.breakpoints.down("md")); 
     const LaptopView = useMediaQuery(theme.breakpoints.up("md"));
 
     const posts=useSelector((state:any) =>state.posts? state.posts[0].posts : state.posts);
     // console.log(posts)
+
+    if(posts)
+    {
+       posts.forEach((category:any)=>{
+           filteredCategories[category._id]=category.posts
+       })
+       console.log(filteredCategories["sport"])
+   }
 
     return (
         <>
@@ -31,8 +41,8 @@ const SportSection = () => {
         <Grid container columns={12}>
             <Grid item md={12}  hidden={MobileView}>
               {
-        posts? (posts.map((post:any)=>{
-            return <SportLaptopView {...post}/>
+        posts? (posts.map(( post:any)=>{
+            return <SportLaptopView  key={post._id} {...post}/>
         })):(<CircularProgress/>)
         
     }
@@ -41,8 +51,8 @@ const SportSection = () => {
 
 <Grid item md={12}  hidden={LaptopView}>
               {
-        posts? (posts.map((post:any)=>{
-            return <SportMobileView {...post}/>
+        filteredCategories["sport"]? (filteredCategories["sport"].map(( post:any)=>{
+            return <SportMobileView key={post._id} {...post}/>
         })):(<CircularProgress/>)
         
     }

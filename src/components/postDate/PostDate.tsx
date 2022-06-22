@@ -1,5 +1,6 @@
 import React from 'react'
-
+import { StyledCircleIcon } from "../../styled/StyledIcon";
+import {Box} from "@mui/material"
 interface CustomDate{
     date:string,
 }
@@ -9,7 +10,10 @@ export default function PostDate(props:CustomDate) {
   const date=new Date(props.date);
   const postDate=`${month[date.getMonth()]}   ${date.getDate()} , ${date.getFullYear()}`
   return (
-      <div>{postDate}</div>
-    
+    <>
+    <Box>
+    <StyledCircleIcon ></StyledCircleIcon>
+      {postDate}</Box>
+      </>
   )
 }

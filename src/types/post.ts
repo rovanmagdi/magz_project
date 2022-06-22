@@ -13,5 +13,7 @@ export default interface Post {
     "status":string;
     "createdAt":string;
     "__v":number;
+    "autherFirstName":string;
+    "autherLastName":string;
     
   }

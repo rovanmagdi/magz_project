@@ -12,12 +12,13 @@ import { color } from '@mui/system';
 import { StyledCultureCard } from '../../styled/styledCard';
 import { OverlayCultureBox } from '../../styled/styledBox';
 import Post from '../../types/post';
-import { TypographyCardTitle } from '../../styled/styledTypography';
+import { ReadMoreTypography, TypographyCardTitle } from '../../styled/styledTypography';
 import { DateTypography } from '../../styled/styledTypography';
-import { StyledCircleIcon } from '../../styled/StyledIcon';
-
+import PostDate from '../postDate/PostDate';
 const Culture: React.FC<Post> = (props) => {
-  const{title,image,description,updatedAt, auther}=props;
+
+  const{title,image,updatedAt, autherFirstName, autherLastName}=props;
+
   // console.log(title,image,description,updatedAt, auther);
 return(
 <>
@@ -30,18 +31,17 @@ return(
           image={image}
           alt="green iguana"
         />
-        <OverlayCultureBox></OverlayCultureBox>
+        <OverlayCultureBox><ReadMoreTypography>read more...</ReadMoreTypography></OverlayCultureBox>
         <CardContent>
           <TypographyCardTitle gutterBottom >
           {title}
           </TypographyCardTitle>
           <DateTypography>
-            <StyledCircleIcon ></StyledCircleIcon>
-               {`${new Date(updatedAt).toLocaleString("en-GB", {
-               month: "short",
-              day: "numeric",
-              year: "numeric",
-            })}`}
+            
+      
+            <Box sx={{ color: "text.secondary", fontSize: "13px" }}>
+              {<PostDate date={updatedAt} />}
+            </Box>
           </DateTypography>
         </CardContent>
       </CardActionArea>
@@ -52,7 +52,7 @@ src={image}
 alt="green iguana"
 
 />
-<Typography>{auther}</Typography>
+<Typography>{ autherFirstName+" "+ autherLastName}</Typography>
       </CardActions>
     </StyledCultureCard>
     </>
