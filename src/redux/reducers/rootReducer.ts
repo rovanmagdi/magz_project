@@ -10,7 +10,7 @@ import {userDataReducer} from'./userData'
 import registerReducer from './registerReducer'
 import SubCatergoryReducer from "./subCatergory";
 
-
+import authorReducer from "./authorReducer";
 
 const rootReducer = combineReducers({
 	status: statusReducer,
@@ -18,6 +18,9 @@ const rootReducer = combineReducers({
 	 flags:flagsReducer,
 	 recently:RecentlyReducer,
 	 interseted:InterestedReducer,
+
+	author:authorReducer,
+
 	 userData:userDataReducer,
 	 user:registerReducer,
 	 Subcategory:SubCatergoryReducer

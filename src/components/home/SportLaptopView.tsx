@@ -15,9 +15,9 @@ import { OverlaySportBox } from '../../styled/styledBox';
 import { StyledSportCard } from '../../styled/styledCard';
 import Post from '../../types/post';
 import { TypographyCardTitle } from '../../styled/styledTypography';
-import { StyledCircleIcon } from '../../styled/StyledIcon';
 import { DateTypography } from '../../styled/styledTypography';
-
+import PostDate from '../postDate/PostDate';
+import { ReadMoreTypography } from '../../styled/styledTypography';
 const SportLaptopView: React.FC<Post> = (props) => {
   
   const{title,image,description,updatedAt,auther}=props;
@@ -35,18 +35,17 @@ return(
             image={image}
           alt="green iguana"
         />
-        <OverlaySportBox></OverlaySportBox>
+        <OverlaySportBox><ReadMoreTypography>read more...</ReadMoreTypography></OverlaySportBox>
         <CardContent>
           <TypographyCardTitle gutterBottom >
             {title}
           </TypographyCardTitle>
           <DateTypography>
-            <StyledCircleIcon ></StyledCircleIcon>
-               {`${new Date(updatedAt).toLocaleString("en-GB", {
-               month: "short",
-              day: "numeric",
-              year: "numeric",
-            })}`}
+            
+      
+            <Box sx={{ color: "text.secondary", fontSize: "13px" }}>
+              {<PostDate date={updatedAt} />}
+            </Box>
           </DateTypography>
           <Box height="80px" overflow={"hidden"}>
           <Typography variant="body2" color="text.secondary">

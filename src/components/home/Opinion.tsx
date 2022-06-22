@@ -18,11 +18,14 @@ import { StyledOpinionCard } from "../../styled/styledCard";
 import Post from "../../types/post";
 import { TypographyCardTitle } from "../../styled/styledTypography";
 import { DateTypography } from "../../styled/styledTypography";
-import { StyledCircleIcon } from "../../styled/StyledIcon";
+
 import { useNavigate } from "react-router-dom";
+import PostDate from "../postDate/PostDate";
+import { ReadMoreTypography } from "../../styled/styledTypography";
 
 const Opinion: React.FC<Post> = (props) => {
-  const { title, image, description, updatedAt, auther,_id } = props;
+  const { title, image, updatedAt, autherFirstName, autherLastName,_id,  } = props;
+
   // console.log(title, image, description, updatedAt, auther);
   
   const nagivate: any = useNavigate();
@@ -45,19 +48,18 @@ const Opinion: React.FC<Post> = (props) => {
             alt="green iguana"
           />
 
-          <OverlayOpinionBox> </OverlayOpinionBox>
+          <OverlayOpinionBox> <ReadMoreTypography>read more...</ReadMoreTypography></OverlayOpinionBox>
           <CardContent>
             <TypographyCardTitle gutterBottom  >
               {title}
               
             </TypographyCardTitle>
             <DateTypography>
-            <StyledCircleIcon ></StyledCircleIcon>
-               {`${new Date(updatedAt).toLocaleString("en-GB", {
-               month: "short",
-              day: "numeric",
-              year: "numeric",
-            })}`}
+            
+      
+            <Box sx={{ color: "text.secondary", fontSize: "13px" }}>
+              {<PostDate date={updatedAt} />}
+            </Box>
           </DateTypography>
           </CardContent>
           
@@ -76,7 +78,7 @@ const Opinion: React.FC<Post> = (props) => {
             alt="green iguana"
           />
           
-          <Typography>{auther}</Typography>
+          <Typography>{ autherFirstName+" "+ autherLastName}</Typography>
         </CardActions>
       </StyledOpinionCard>
     </>

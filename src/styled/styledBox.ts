@@ -195,6 +195,26 @@ borderRadius:"50%"}));
 
 
 
+
+
+export const OverlaySportMobileBox = styled(OverlayLifestyleBox)(() => ({
+  "&:hover": {
+    backgroundColor: "rgba(100,0,0,0.5)"
+  },
+}));
+
+
+
+export const AuthorPostLabelBox = styled(CategoryLabelBox)(({ theme }) => ({
+  position:"relative",
+  left: "80%",
+  height: "28px",
+  width: "70px",
+  marginBottom:"15px",
+  backgroundColor: `${theme.palette.primary.main}`,
+}));
+
+
         export const OverlayDetailsBox = styled(OverlayBox)(() => ({
           width: "100%",
           borderRadius: "8px",

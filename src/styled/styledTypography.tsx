@@ -32,6 +32,25 @@ export const TypographyCardTitle = styled(Typography)(() => ({
   // ahmed
 }));
 
-export const DateTypography=styled(Typography)(() => ({
- 
-}));
+
+export const DateTypography= styled(Typography)(({theme})=>({
+
+    fontWeight:"600", fontSize:"1em", color:`${theme.palette.secondary.dark}` ,marginBottom:"3px"
+  
+  
+  
+  }))
+
+
+
+  export const ReadMoreTypography= styled(Typography)(()=>({
+
+    fontSize:"1.3em", color:"white", fontWeight:"700"
+    , position:"relative",
+    top:"40%",  left:"38%", textTransform:"capitalize"
+
+  
+  
+  
+  }))
+
