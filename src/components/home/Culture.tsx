@@ -16,7 +16,9 @@ import { ReadMoreTypography, TypographyCardTitle } from '../../styled/styledTypo
 import { DateTypography } from '../../styled/styledTypography';
 import PostDate from '../postDate/PostDate';
 const Culture: React.FC<Post> = (props) => {
+
   const{title,image,updatedAt, autherFirstName, autherLastName}=props;
+
   // console.log(title,image,description,updatedAt, auther);
 return(
 <>

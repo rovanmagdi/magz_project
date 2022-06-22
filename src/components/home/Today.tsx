@@ -16,7 +16,9 @@ import { TodayLabelBox } from "../../styled/styledBox";
 import PostDate from "../postDate/PostDate";
 import { DateTypography } from "../../styled/styledTypography";
 import { useNavigate } from "react-router-dom";
+
 import { ReadMoreTypography } from "../../styled/styledTypography";
+
 
 const Today: React.FC<Post> = (props) => {
   const { title, image, description, auther, updatedAt,_id } = props;
@@ -30,6 +32,7 @@ const Today: React.FC<Post> = (props) => {
     console.log("go details");
     console.log(props);
     nagivate(`/details/${id}`);       
+
 
   }
   return (
@@ -49,11 +52,13 @@ const Today: React.FC<Post> = (props) => {
             {title}
           </Typography>
           <DateTypography>
+
             
       
             <Box sx={{ color: "text.secondary", fontSize: "13px" }}>
               {<PostDate date={updatedAt} />}
             </Box>
+
           </DateTypography>
           <Typography variant="body2" color="text.secondary" textOverflow={"ellisis"}>
             {description}

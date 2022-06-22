@@ -18,7 +18,9 @@ const rootReducer = combineReducers({
 	 flags:flagsReducer,
 	 recently:RecentlyReducer,
 	 interseted:InterestedReducer,
+
 	author:authorReducer,
+
 	 userData:userDataReducer,
 	 user:registerReducer,
 	 Subcategory:SubCatergoryReducer

@@ -8,6 +8,7 @@ import {Grid} from '@mui/material';
 import {CircularProgress} from '@mui/material';
 
 const CultureSection = () => {
+
     const filteredCategories:any=[];
     const posts=useSelector((state:any) =>state.posts? state.posts : state.posts);
     // console.log(posts)
@@ -18,6 +19,7 @@ const CultureSection = () => {
         })
         console.log(filteredCategories["culture"])
     }
+
     return (
         <>
 < Box component={"section"} marginTop={8}>

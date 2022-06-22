@@ -17,6 +17,7 @@ const AuthorPage = () => {
       },[dispatch]);
 
     return (
+
         <>
         <Stack alignItems={"center"}>
 <Avatar></Avatar> 
@@ -29,6 +30,7 @@ const AuthorPage = () => {
 
 
        </>
+
     );
 };
 

@@ -9,7 +9,9 @@ import {Grid} from '@mui/material';
 import {CircularProgress} from '@mui/material';
 
 const OpinionSection = () => {
+
     const filteredCategories:any=[];
+
 
     const posts=useSelector((state:any) =>state.posts? state.posts: state.posts);
     // console.log(posts)
