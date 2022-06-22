@@ -5,10 +5,10 @@ import postsReducer from "./postsReducer";
 import flagsReducer from "./flagsReducer";
 import RecentlyReducer from './RecentlyPostsReducer'
 import InterestedReducer from "./intersetedReducer";
-
 import {userDataReducer} from'./userData'
 import registerReducer from './registerReducer'
 import SubCatergoryReducer from "./subCatergory";
+import viewsReducer from './viewReducer'
 
 
 
@@ -20,7 +20,8 @@ const rootReducer = combineReducers({
 	 interseted:InterestedReducer,
 	 userData:userDataReducer,
 	 user:registerReducer,
-	 Subcategory:SubCatergoryReducer
+	 Subcategory:SubCatergoryReducer,
+	 views:viewsReducer,
 
 });
 

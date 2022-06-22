@@ -19,14 +19,14 @@ import { DateTypography } from "../../styled/styledTypography";
 import { useNavigate } from "react-router-dom";
 
 const Today: React.FC<Post> = (props) => {
-  const { title, image, description, auther, updatedAt,_id } = props;
+  const { title, image, description, auther, updatedAt, _id } = props;
 
   // const Today: React.FC<Post> = (props) => {
   //   const { title, image, description, auther } = props;
 
   // console.log({ title }, { image });
   const nagivate: any = useNavigate();
-  const handleGoDetails = (id:any) => {
+  const handleGoDetails = (id: any) => {
     console.log("go details");
     console.log(props);
     nagivate(`/details/${id}`);
@@ -56,7 +56,12 @@ const Today: React.FC<Post> = (props) => {
               year: "numeric",
             })}`}
           </DateTypography>
-          <Typography variant="body2" color="text.secondary">
+          <Typography variant="body2" color="text.secondary" sx={{
+            whiteSpace: "nowrap",
+            width: "8000px",
+            overflow: "hidden",
+            textOverflow: "ellipsis"
+          }}>
             {description}
           </Typography>
         </CardContent>
