@@ -8,9 +8,16 @@ import {Grid} from '@mui/material';
 import {CircularProgress} from '@mui/material';
 
 const CultureSection = () => {
-    const posts=useSelector((state:any) =>state.posts? state.posts[0].posts : state.posts);
-    console.log(posts)
-
+    const filteredCategories:any=[];
+    const posts=useSelector((state:any) =>state.posts? state.posts : state.posts);
+    // console.log(posts)
+     if(posts)
+     {
+        posts.forEach((category:any)=>{
+            filteredCategories[category._id]=category.posts
+        })
+        console.log(filteredCategories["culture"])
+    }
     return (
         <>
 < Box component={"section"} marginTop={8}>
@@ -22,8 +29,8 @@ const CultureSection = () => {
     <Grid container  columns={12}
            gap={1}>
               {
-        posts? (posts.map((post:any)=>{
-            return <Grid item md={4} sm={12}><Culture {...post}/>
+        filteredCategories["culture"]? (filteredCategories["culture"].map((post:any)=>{
+            return <Grid item md={4} sm={12} key={post._id}><Culture {...post}/>
             </Grid> 
         })):(<CircularProgress/>)
         

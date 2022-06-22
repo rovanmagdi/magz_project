@@ -39,3 +39,16 @@ export const DateTypography= styled(Typography)(({theme})=>({
   
   
   }))
+
+
+
+  export const ReadMoreTypography= styled(Typography)(()=>({
+
+    fontSize:"1.3em", color:"white", fontWeight:"700"
+    , position:"relative",
+    top:"40%",  left:"38%", textTransform:"capitalize"
+
+  
+  
+  
+  }))

@@ -17,12 +17,14 @@ import { QuotePaper } from '../../styled/styledPaper';
 import SearchCategory from '../../components/navbar/SearchCategory';
 import AuthorPage from '../author/AuthorPage';
 const Homenews = () => {
+    // const posts=useSelector((state:any) =>state.posts? state.posts[0].posts : state.posts);
 
     const dispatch:any=useDispatch();
    console.log("here news home")
 
     useEffect(() => {
         dispatch(getAllPosts());
+        // console.log(posts._id)
       },[dispatch]);
 
     
@@ -30,13 +32,13 @@ const Homenews = () => {
 
     return (
         <>
-   <AuthorPage></AuthorPage>
+   {/* <AuthorPage></AuthorPage> */}
           <TodaySection></TodaySection> 
 <OpinionSection></OpinionSection>
 <SportSection></SportSection>
 <LifestyleSection></LifestyleSection>
 <CultureSection></CultureSection> 
- <SearchCategory></SearchCategory> 
+ {/* <SearchCategory></SearchCategory>  */}
 
 {/* <QuotePaper>dfghjhgf</QuotePaper> */}
         </>

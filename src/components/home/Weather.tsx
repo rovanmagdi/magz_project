@@ -51,8 +51,8 @@ const Weather = () => {
           days: response.data.days,
         }));
 
-        console.log(response.data);
-        console.log(response.data.days);
+        // console.log(response.data);
+        // console.log(response.data.days);
       });
   }, []);
   

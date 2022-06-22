@@ -28,9 +28,9 @@ const TodaySection = () => {
 <Stack direction={"row"} justifyContent={"center"}>
       
               {
-        posts? (posts.slice(0,1).map((post:any)=>{
+        posts? (posts.slice(0,1).map(( post:any)=>{
             
-            return   <Today {...post}        />
+            return   <Today key={post._id} {...post}        />
         })):( <CircularProgress />)
         
     }  

@@ -9,7 +9,9 @@ export const getAllPosts = () => (dispatch:any) => {
 		.get(`/get_all`)
 		.then((response) => {
 			dispatch(getAllPostsSuccess(response.data));
-			console.log("data", response.data)
+			// console.log("data", response.data)
+			
+			
 			dispatch(showSuccess());
 		})
 		.catch((err) => {

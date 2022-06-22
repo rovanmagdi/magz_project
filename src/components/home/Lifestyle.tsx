@@ -12,13 +12,12 @@ import { color } from "@mui/system";
 import { OverlayLifestyleBox } from "../../styled/styledBox";
 import { StyledLifestyleCard } from "../../styled/styledCard";
 import Post from "../../types/post";
-import { TypographyCardTitle } from "../../styled/styledTypography";
+import { ReadMoreTypography, TypographyCardTitle } from "../../styled/styledTypography";
 import { DateTypography } from "../../styled/styledTypography";
-import { StyledCircleIcon } from "../../styled/StyledIcon";
-
+import PostDate from "../postDate/PostDate";
 const Lifestyle: React.FC<Post> = (props) => {
-  const { title, image, description, updatedAt , auther} = props;
-  console.log(title, image, description, updatedAt);
+  const { title, image, updatedAt , autherFirstName, autherLastName} = props;
+  // console.log(title, image, description, updatedAt);
   return (
     <>
    
@@ -31,18 +30,17 @@ const Lifestyle: React.FC<Post> = (props) => {
             image={image}
             alt="green iguana"
           />
-          <OverlayLifestyleBox></OverlayLifestyleBox>
+          <OverlayLifestyleBox><ReadMoreTypography>read more...</ReadMoreTypography></OverlayLifestyleBox>
           <CardContent>
             <TypographyCardTitle gutterBottom  >
              {title}
             </TypographyCardTitle>
             <DateTypography>
-            <StyledCircleIcon ></StyledCircleIcon>
-               {`${new Date(updatedAt).toLocaleString("en-GB", {
-               month: "short",
-              day: "numeric",
-              year: "numeric",
-            })}`}
+            
+      
+            <Box sx={{ color: "text.secondary", fontSize: "13px" }}>
+              {<PostDate date={updatedAt} />}
+            </Box>
           </DateTypography>
           </CardContent>
         </CardActionArea>
@@ -57,7 +55,7 @@ const Lifestyle: React.FC<Post> = (props) => {
             src={image}
             alt="green iguana"
           />
-          <Typography>{auther}</Typography>
+<Typography>{ autherFirstName+" "+ autherLastName}</Typography>
         </CardActions>
       </StyledLifestyleCard>
     </>

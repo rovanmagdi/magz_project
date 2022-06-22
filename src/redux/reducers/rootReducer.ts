@@ -8,6 +8,7 @@ import InterestedReducer from "./intersetedReducer";
 
 import {userDataReducer} from'./userData'
 import registerReducer from './registerReducer'
+import SubCatergoryReducer from "./subCatergory";
 
 import authorReducer from "./authorReducer";
 
@@ -19,7 +20,8 @@ const rootReducer = combineReducers({
 	 interseted:InterestedReducer,
 	author:authorReducer,
 	 userData:userDataReducer,
-	 user:registerReducer
+	 user:registerReducer,
+	 Subcategory:SubCatergoryReducer
 
 });
 

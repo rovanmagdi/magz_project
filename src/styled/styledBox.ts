@@ -190,11 +190,11 @@ export const AuthorAvatarBox= styled(Box)(()=>({
 
 width:"150px", 
 height:"150px",
-borderRadius:"50%"
+borderRadius:"50%"}));
 
 
 
-}))
+
 
 export const OverlaySportMobileBox = styled(OverlayLifestyleBox)(() => ({
   "&:hover": {
@@ -212,3 +212,15 @@ export const AuthorPostLabelBox = styled(CategoryLabelBox)(({ theme }) => ({
   marginBottom:"15px",
   backgroundColor: `${theme.palette.primary.main}`,
 }));
+
+        export const OverlayDetailsBox = styled(OverlayBox)(() => ({
+          width: "100%",
+          borderRadius: "8px",
+          height: "100%",
+          "&:hover": {
+           
+            backgroundColor: "rgba(96, 89, 85,.5)",
+          },
+        }));
+        
+

@@ -8,7 +8,7 @@ import {
   MenuItem,
   OutlinedInput,
 } from "@mui/material";
-import React, { useEffect } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import {
   MaterialUISwitch,
   StyledListNavLeft,
@@ -20,101 +20,95 @@ import SearchIcon from "@mui/icons-material/Search";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { userLogout } from "../../redux/actions/userData";
-import {InterstedCatergory} from '../../redux/actions/interestedAction'
+import { InterstedCatergory } from "../../redux/actions/interestedAction";
+import { subCatergory } from "../../redux/actions/subCategory";
+import { useParams } from "react-router";
+import { log } from "console";
 export default function NavbarBottom() {
-
-  const intersted = useSelector((state: any) => state.interseted);
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
   const open = Boolean(anchorEl);
+  const [subcategories, setSubcategories] = useState([]);
+  const subCatergoryState = useSelector((state: any) => state?.Subcategory);
+  const nagivate: any = useNavigate();
+  const dispatch: any = useDispatch();
+
+  const { page } = useParams();
+
   const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
     setAnchorEl(event.currentTarget);
   };
   const handleClose = () => {
     setAnchorEl(null);
   };
-  const nagivate: any = useNavigate();
-  const handleProfile = () => {
-    nagivate("/Profile");
-  };
-  const dispatch: any = useDispatch();
 
-  const handleClickLogout = () => {
-    console.log("logout");
-    dispatch(userLogout());
+  // console.log(subCatergoryState);
+  const handleGoPage = useCallback(
+    (page: any) => {
+      const [{ subCategories }] = subCatergoryState?.filter(
+        (el: any) => el._id === page
+      );
+
+      setSubcategories((old: any) => subCategories);
+    },
+    [page, setSubcategories, subCatergoryState]
+  );
+  const handleGoHome = () => {
     nagivate("/");
   };
-  useEffect(()=>
-  {
-    dispatch(InterstedCatergory())
-  })
+  useEffect(() => {
+    dispatch(subCatergory());
+  }, [dispatch]);
+
   return (
     <>
       <StyledNavBottom>
         <StyledListNavLeft>
-          <StyledListNavLeftContent>News</StyledListNavLeftContent>
-          {intersted?.map((page: any, index: any) => {
+          <StyledListNavLeftContent onClick={handleGoHome}>
+            News
+          </StyledListNavLeftContent>
+          {subCatergoryState?.map((page: any, index: any) => {
             return (
-              // <StyledListNavLeftContent  />
-              <>
-                <FormControl>
-                  <StyledListNavLeftContent
-                    id="basic-button"
-                    aria-controls={open ? "basic-menu" : undefined}
-                    aria-haspopup="true"
-                    aria-expanded={open ? "true" : undefined}
-                    onClick={handleClick}
-                    sx={{
+              <FormControl key={page._id}>
+                <StyledListNavLeftContent
+                  id="basic-button"
+                  aria-controls={open ? "basic-menu" : undefined}
+                  aria-haspopup="true"
+                  aria-expanded={open ? "true" : undefined}
+                  onClick={handleClick}
+                  sx={{
+                    color: "white",
+                    fontFamily: "Oswald",
+                    "&:hover": {
                       color: "white",
-                      fontFamily: "Oswald",
-                      "&:hover": {
-                        backgroundColor: "#4D7E96",
-                        color: "white",
-                      },
-                    }}
-                  >
-                    <Box>{page.title}</Box>
+                    },
+                  }}
+                >
+                  <Box onClick={() => handleGoPage(page._id)}>{page._id}</Box>
 
-                    {` `}
-                  </StyledListNavLeftContent>
-                  <Menu
-                    id="basic-menu"
-                    anchorEl={anchorEl}
-                    open={open}
-                    onClose={handleClose}
-                    PaperProps={{
-                      style: {
-                        textAlign: "center",
-                        backgroundColor: "#272727",
-                        color: "#FFFFF",
-                        borderRadius: "0px",
-                      },
-                    }}
-                  >
-                    <MenuItem
-                      onClick={handleProfile}
-                      sx={{
-                        color: "white",
-                        "&:hover": {
-                          backgroundColor: "rgba(77,126,150,0.4)",
-                        },
-                      }}
-                    >
-                      Profile{" "}
-                    </MenuItem>
-                    <MenuItem
-                      onClick={handleClickLogout}
-                      sx={{
-                        color: "white",
-                        "&:hover": {
-                          backgroundColor: "rgba(77,126,150,0.4)",
-                        },
-                      }}
-                    >
-                      Logout
-                    </MenuItem>
-                  </Menu>
-                </FormControl>
-              </>
+                  {` `}
+                </StyledListNavLeftContent>
+
+                <Menu
+                  id="basic-menu"
+                  anchorEl={anchorEl}
+                  open={open}
+                  onClose={handleClose}
+                  PaperProps={{
+                    style: {
+                      textAlign: "center",
+                      backgroundColor: "#272727",
+                      color: "#FFFFF",
+                      borderRadius: "0px",
+                    },
+                  }}
+                >
+                  {subcategories?.map((el: any) => (
+                    <Box sx={{ color: "white",width:"100px" }} key={el._id}>
+                      {el?.title}
+                    </Box>
+                  ))}
+                </Menu>
+              </FormControl>
             );
           })}
         </StyledListNavLeft>
@@ -145,6 +139,4 @@ export default function NavbarBottom() {
     </>
   );
 }
-function setIsOpened(arg0: (wasOpened: any) => boolean) {
-  throw new Error("Function not implemented.");
-}
+

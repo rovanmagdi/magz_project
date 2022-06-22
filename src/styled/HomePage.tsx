@@ -26,6 +26,6 @@ export const Home = styled(Box)(({ theme }) => ({
 
   export const Info=styled(Box)(({ theme }) => ({
    
-    padding:'20px',
+    padding:'20px', 
     
   }));
