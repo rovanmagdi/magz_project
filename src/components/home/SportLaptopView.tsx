@@ -21,7 +21,7 @@ import { DateTypography } from '../../styled/styledTypography';
 const SportLaptopView: React.FC<Post> = (props) => {
   
   const{title,image,description,updatedAt,auther}=props;
-  console.log(title,image,description,updatedAt,auther);
+  // console.log(title,image,description,updatedAt,auther);
 return(
 <>
 

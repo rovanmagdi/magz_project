@@ -17,7 +17,7 @@ const SportSection = () => {
     const LaptopView = useMediaQuery(theme.breakpoints.up("md"));
 
     const posts=useSelector((state:any) =>state.posts? state.posts[0].posts : state.posts);
-    console.log(posts)
+    // console.log(posts)
 
     return (
         <>

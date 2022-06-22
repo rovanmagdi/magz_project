@@ -1,5 +1,5 @@
 import { Box, Stack, TextareaAutosize, Typography } from "@mui/material";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import {
   CategoryLabelBox,
   HorizontalLineBox,
@@ -20,8 +20,42 @@ import { StyledLine } from "../../styled/Footer";
 import comments from "../../assets/comment.png";
 import like from "../../assets/like.png";
 import { StyledButton } from "../../styled/Button";
+import Comment from "./Comment";
+import AuthorDetails from "./AuthorDetails";
+import { useParams } from "react-router-dom";
+import axios from "axios";
+import { DetailsInterFace } from "../../types/details";
+import { DateTypography } from "../../styled/styledTypography";
+import PostDate from "../../components/postDate/PostDate";
 
-export default function Details() {
+const Details = () => {
+  const { id }: any = useParams();
+  const [stateDetails, setStateDetails] = useState({
+    _id: "",
+    title: "",
+    description: "",
+    image: "",
+    category: "",
+    subCategory: "",
+    likes: [],
+    auther: "",
+    regien: "",
+    status: "",
+    views: "",
+    comments: [],
+    createdAt: "",
+    updatedAt: "",
+  });
+
+  useEffect(() => {
+    axios.get(`http://localhost:4000/posts/get_one/${id}`).then((response) => {
+      setStateDetails(response.data);
+      console.log(response.data);
+    });
+    axios
+      .patch(`http://localhost:4000/posts/add_view/${id}`)
+      .then((response) => {});
+  }, []);
   return (
     <Stack>
       <StyledTodayCard elevation={0}>
@@ -33,40 +67,50 @@ export default function Details() {
             marginBottom: "20px",
           }}
         >
-          <StyledTitle>
-            Liverpool chase defining high in blue-chip final against Real Madrid
-          </StyledTitle>
-          <TodayLabelBox2>Today</TodayLabelBox2>
+          <StyledTitle>{stateDetails.title}</StyledTitle>
+          <TodayLabelBox2>{stateDetails.category}</TodayLabelBox2>
         </Box>
         <CardActionArea>
           <CardMedia
             component="img"
             sx={{ borderRadius: "8px", backgroundSize: "contain" }}
             height="380"
-            image={image}
+            image={stateDetails.image}
             alt="green iguana"
           />
           <OverlayDetailsBox></OverlayDetailsBox>
         </CardActionArea>
         <Box
-          color="text.secondary"
           sx={{
+            color: "text.secondary",
             marginTop: "15px",
             marginLeft: "20px",
-            display: "flex",
-            alignItems: "center",
             marginBottom: "0px",
           }}
         >
-          <Box component="img" src={icon}></Box>
-          <Box sx={{ marginLeft: "10px", fontSize: "13px" }}>
-            Steve Kerr slams lack of gun control as ‘pathetic’ after Texas
-            school massacre
+          <Box
+            sx={{
+              display: "flex",
+              justifyContent: "space-between",
+              alignItems: "space-around",
+            }}
+          >
+            <Box sx={{ display: "flex" }}>
+              <Box component="img" src={icon} />
+              <Box sx={{ marginLeft: "10px", fontSize: "13px" }}>
+                Steve Kerr slams lack of gun control as ‘pathetic’ after Texas
+                school massacre
+              </Box>
+            </Box>
+
+            <Box sx={{ color: "text.secondary", fontSize: "13px" }}>
+              {<PostDate date={stateDetails.updatedAt} />}
+            </Box>
           </Box>
         </Box>
         <StyledLine sx={{ marginTop: "10px" }} />
 
-        <CardActions sx={{ display: "flex", justifyContent: "space-between" }}>
+        <CardActions sx={{ display: "flex", justifyContent: "space-between",alignItems: "center"}}>
           <Box sx={{ display: "flex" }}>
             <Box
               component="img"
@@ -79,8 +123,8 @@ export default function Details() {
               alt="green iguana"
             />
 
-            <Typography>Name </Typography>
-          </Box>
+            <Typography>{stateDetails.auther} </Typography>
+        </Box>
 
           <Box
             sx={{
@@ -122,21 +166,13 @@ export default function Details() {
         </CardActions>
         <StyledLine sx={{ marginTop: "10px", width: "800px" }} />
         <Stack sx={{ fontSize: "15px", margin: "20px" }}>
-          Socrates was charged with denying the gods exist and inventing new
-          ones, and of corrupting youth. Actually, Socrates was deeply religious
-          and it was fighting dirty to accuse him of sacrilege. But powerful
-          people had had enough of him. A scruffy 70-year-old man hanging out in
-          public places surrounded by adoring pupils, teaching that a life
-          unexamined is not worth living but we must learn we know nothing,
-          corroded certainty. And certainty was what the city craved.e
-          uncompromising voice of Socrates in a dangerous time resonates with
-          our own “age of rage”. After Tom Littler, artistic director of the
-          small but heavy-punching Jermyn Street theatre, proposed a Socrates
-          play, I drafted a scene based on Plato’s dialogue E
+         {stateDetails.description}
         </Stack>
-        </Comment>
+        <Comment />
+        <AuthorDetails />
         {/*  */}
       </StyledTodayCard>
     </Stack>
   );
-}
+};
+export default Details;

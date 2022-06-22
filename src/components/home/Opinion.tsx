@@ -19,13 +19,23 @@ import Post from "../../types/post";
 import { TypographyCardTitle } from "../../styled/styledTypography";
 import { DateTypography } from "../../styled/styledTypography";
 import { StyledCircleIcon } from "../../styled/StyledIcon";
+import { useNavigate } from "react-router-dom";
 
 const Opinion: React.FC<Post> = (props) => {
-  const { title, image, description, updatedAt, auther } = props;
-  console.log(title, image, description, updatedAt, auther);
+  const { title, image, description, updatedAt, auther,_id } = props;
+  // console.log(title, image, description, updatedAt, auther);
+  
+  const nagivate: any = useNavigate();
+
+  const handleGoDetails = (id:any) => {
+    console.log("go details");
+    // console.log(props);
+    nagivate(`/details/${id}`);
+
+  }
   return (
     <>
-      <StyledOpinionCard>
+      <StyledOpinionCard onClick={() => handleGoDetails(_id)}>
         <CardActionArea>
           <CardMedia
             component="img"
