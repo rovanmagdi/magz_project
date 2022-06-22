@@ -14,8 +14,8 @@ import LifestyleSection from '../../components/home/LifestyleSection';
 import Weather from '../../components/home/Weather';
 
 import { QuotePaper } from '../../styled/styledPaper';
-
-
+import SearchCategory from '../../components/navbar/SearchCategory';
+import AuthorPage from '../author/AuthorPage';
 const Homenews = () => {
 
     const dispatch:any=useDispatch();
@@ -30,13 +30,13 @@ const Homenews = () => {
 
     return (
         <>
-   
-         <TodaySection></TodaySection> 
+   <AuthorPage></AuthorPage>
+          <TodaySection></TodaySection> 
 <OpinionSection></OpinionSection>
 <SportSection></SportSection>
 <LifestyleSection></LifestyleSection>
-<CultureSection></CultureSection>
-
+<CultureSection></CultureSection> 
+ <SearchCategory></SearchCategory> 
 
 {/* <QuotePaper>dfghjhgf</QuotePaper> */}
         </>

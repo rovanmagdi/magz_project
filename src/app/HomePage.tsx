@@ -20,13 +20,14 @@ function HomePage() {
       <Home />
       <Content>
         <Header />
+        <Info>
         <Routes>
           <Route path="/" element={<Homenews />} />
 
           <Route path="/Profile" element={<ProfilePge />} />
           <Route path="/details" element={<Details />} />
         </Routes>
-        <Info></Info>
+      </Info>
 
         <Footer />
       </Content>

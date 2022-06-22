@@ -47,3 +47,19 @@ export const StyledCultureCard = styled(StyledLifestyleCard)(() => ({
       color: "#128CCB",
     },
   }));
+
+
+  export const StyledSportMobileCard = styled(StyledLifestyleCard)(() => ({
+  
+    "&:hover": {
+      color: "#DD2B2B",
+    },
+  }));
+
+
+
+  export const StyledAuthorPostCard = styled(StyledCard)(() => ({
+    width: "350px",
+      color: "#4D7E96"
+    
+  }));

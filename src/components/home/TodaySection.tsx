@@ -25,7 +25,7 @@ const TodaySection = () => {
 
     return (
         <>
-<Stack direction={"row"}>
+<Stack direction={"row"} justifyContent={"center"}>
       
               {
         posts? (posts.slice(0,1).map((post:any)=>{

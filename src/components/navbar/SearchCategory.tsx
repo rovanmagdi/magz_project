@@ -3,7 +3,7 @@ import React from "react";
 import { useEffect } from "react";
 import { useSelector } from "react-redux";
 import { useState } from "react";
-import { Grid } from "@mui/material";
+import { CircularProgress, Grid } from "@mui/material";
 import Culture from "../home/Culture";
 const SearchCategory = () => {
   const posts = useSelector((state: any) =>
@@ -34,14 +34,14 @@ const SearchCategory = () => {
             .filter((post: any) => post.category.toLowerCase().includes(search.toLowerCase()))
             .map((post: any) => {
               return (
+                
                 <Grid item md={4} sm={12}>
                   <Culture {...post} />
                 </Grid>
               );
             })
         ) : (
-          <div>loading</div>
-        )}
+<CircularProgress/>       )}
       </Grid>
     </>
   );

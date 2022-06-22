@@ -31,3 +31,11 @@ export const TypographyCardTitle = styled(Typography)(() => ({
   height: "45px",
   // ahmed
 }));
+
+export const DateTypography= styled(Typography)(({theme})=>({
+
+    fontWeight:"600", fontSize:"1em", color:`${theme.palette.secondary.dark}` ,marginBottom:"3px"
+  
+  
+  
+  }))
