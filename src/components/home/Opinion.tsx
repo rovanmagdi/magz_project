@@ -23,7 +23,7 @@ import PostDate from "../postDate/PostDate";
 import { ReadMoreTypography } from "../../styled/styledTypography";
 
 const Opinion: React.FC<Post> = (props) => {
-  const { title, image, updatedAt, autherFirstName, autherLastName,_id,  } = props;
+  const { title, image, updatedAt, autherFirstName, autherLastName,_id} = props;
   // console.log(title, image, description, updatedAt, auther);
   
   const nagivate: any = useNavigate();

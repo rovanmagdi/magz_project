@@ -23,7 +23,7 @@ import { StyledSportMobileCard } from "../../styled/styledCard";
 import PostDate from "../postDate/PostDate";
 import { ReadMoreTypography } from "../../styled/styledTypography";
 const SportMobileView: React.FC<Post> = (props) => {
-  const { title, image, description, updatedAt, auther } = props;
+  const{title,image,description,updatedAt, autherFirstName, autherLastName,_id}=props;
   // console.log(title, image, description, updatedAt, auther);
   return (
     <>
@@ -68,7 +68,7 @@ const SportMobileView: React.FC<Post> = (props) => {
             alt="green iguana"
           />
           
-          <Typography>{auther}</Typography>
+          <Typography>{ autherFirstName+" "+ autherLastName}</Typography>
         </CardActions>
       </StyledSportMobileCard>
     </>

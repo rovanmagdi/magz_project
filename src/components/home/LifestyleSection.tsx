@@ -10,9 +10,8 @@ import { useEffect, useState } from "react";
 const LifestyleSection = () => {
   const filteredCategories:any=[];
 
-  const posts = useSelector((state: any) =>
-    state.posts ? state.posts : state.posts
-  );
+  const {posts}=useSelector((state:any) =>state);
+
   console.log(posts);
   
   if(posts)
