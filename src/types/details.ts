@@ -1,0 +1,16 @@
+export interface DetailsInterFace {
+   _id:string,
+   title:string,
+   description:string,
+   image:string,
+   category:string,
+   subCategory:string,
+   likes: [],
+   auther:string,
+   regien:string,
+   status:string,
+   views: number,
+   comments: [],
+   createdAt:string,
+   updatedAt:string,
+  }

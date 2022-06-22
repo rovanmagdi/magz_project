@@ -6,9 +6,7 @@ import Header from "../components/navbar/Header";
 import Footer from "../components/footer/Footer";
 import Homenews from "../pages/home/Homenews";
 import ProfilePge from "../pages/profilePage/ProfilePage";
-import Interested from "../pages/Interested/Interested";
-import Done from "../pages/Done/Done";
-import Login from "../pages/Sign/Login";
+
 import Details from "../pages/details/Details";
 
 function HomePage() {
@@ -26,6 +24,8 @@ function HomePage() {
             <Route path="/Profile" element={<ProfilePge />} />
             <Route path="/details" element={<Details />} />
             <Route path="/:page" element={<Details />} />
+                    <Route path="/details/:id" element={<Details />} />
+
           </Routes>
         </Info>
 

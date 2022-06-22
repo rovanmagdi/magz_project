@@ -18,7 +18,7 @@ import { StyledCircleIcon } from "../../styled/StyledIcon";
 
 const Lifestyle: React.FC<Post> = (props) => {
   const { title, image, description, updatedAt , auther} = props;
-  console.log(title, image, description, updatedAt);
+  // console.log(title, image, description, updatedAt);
   return (
     <>
    

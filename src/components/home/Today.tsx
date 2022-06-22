@@ -16,16 +16,24 @@ import { TodayLabelBox } from "../../styled/styledBox";
 import PostDate from "../postDate/PostDate";
 import { StyledCircleIcon } from "../../styled/StyledIcon";
 import { DateTypography } from "../../styled/styledTypography";
+import { useNavigate } from "react-router-dom";
 
 const Today: React.FC<Post> = (props) => {
-  const { title, image, description, auther, updatedAt } = props;
+  const { title, image, description, auther, updatedAt,_id } = props;
 
-// const Today: React.FC<Post> = (props) => {
-//   const { title, image, description, auther } = props;
+  // const Today: React.FC<Post> = (props) => {
+  //   const { title, image, description, auther } = props;
 
-  console.log({ title }, { image });
+  // console.log({ title }, { image });
+  const nagivate: any = useNavigate();
+  const handleGoDetails = (id:any) => {
+    console.log("go details");
+    console.log(props);
+    nagivate(`/details/${id}`);
+
+  }
   return (
-    <StyledTodayCard elevation={0}>
+    <StyledTodayCard elevation={0} onClick={() => handleGoDetails(_id)}>
       <CardActionArea>
         <TodayLabelBox>Today</TodayLabelBox>
         <CardMedia
@@ -42,8 +50,8 @@ const Today: React.FC<Post> = (props) => {
           </Typography>
           <DateTypography>
             <StyledCircleIcon ></StyledCircleIcon>
-               {`${new Date(updatedAt).toLocaleString("en-GB", {
-               month: "short",
+            {`${new Date(updatedAt).toLocaleString("en-GB", {
+              month: "short",
               day: "numeric",
               year: "numeric",
             })}`}

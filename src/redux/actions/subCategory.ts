@@ -2,17 +2,17 @@ import { SUBCATEGORIES } from "../actions/actionTypes";
 import { startLoading, showSuccess, showError } from "./statusActions";
 import subCatergoryApi from "../../api/subCatergoryApi";
 
-export function subCatergory(name: any) {
+export function subCatergory() {
   
   
   return (dispatch: any) => {
     subCatergoryApi
-      .get(`/subcategories/${name}`)
+      .get(`/getAll`)
       .then(({ data }) => {
         
         dispatch(showSuccess());
         dispatch(Interface(data));
-        localStorage.setItem('SubCategory', JSON.stringify(data));
+   
 
       })
       .catch((error) => {
