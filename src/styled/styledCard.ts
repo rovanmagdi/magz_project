@@ -13,7 +13,7 @@ export const StyledCard = styled(Card)(() => ({
 
 
 export const StyledTodayCard = styled(StyledCard)(() => ({
-  width: "68%",
+  // width: "65%",
   marginTop:"0px", 
  
 }));

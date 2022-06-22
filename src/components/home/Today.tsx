@@ -18,17 +18,18 @@ import { DateTypography } from "../../styled/styledTypography";
 import { useNavigate } from "react-router-dom";
 
 import { ReadMoreTypography } from "../../styled/styledTypography";
+import { TypographyOverFlow } from "../../styled/TypopraphyOverFlow";
 
 
 const Today: React.FC<Post> = (props) => {
-  const { title, image, description, auther, updatedAt,_id } = props;
+  const { title, image, description, auther, updatedAt, _id } = props;
 
   // const Today: React.FC<Post> = (props) => {
   //   const { title, image, description, auther } = props;
 
   // console.log({ title }, { image });
   const nagivate: any = useNavigate();
-  const handleGoDetails = (id:any) => {
+  const handleGoDetails = (id: any) => {
     console.log("go details");
     console.log(props);
     nagivate(`/details/${id}`);       
@@ -60,9 +61,9 @@ const Today: React.FC<Post> = (props) => {
             </Box>
 
           </DateTypography>
-          <Typography variant="body2" color="text.secondary" textOverflow={"ellisis"}>
+          <TypographyOverFlow variant="body2" color="text.secondary" >
             {description}
-          </Typography>
+          </TypographyOverFlow>
         </CardContent>
       </CardActionArea>
 

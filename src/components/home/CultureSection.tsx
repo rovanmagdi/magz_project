@@ -34,7 +34,7 @@ const CultureSection = () => {
         filteredCategories["culture"]? (filteredCategories["culture"].map((post:any)=>{
             return <Grid item md={4} sm={12} key={post._id}><Culture {...post}/>
             </Grid> 
-        })):(<CircularProgress/>)
+        })):(<CircularProgress sx={{margin:"auto"}}/>)
         
     }
 
