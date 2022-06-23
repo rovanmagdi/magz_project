@@ -7,13 +7,6 @@ import { CardActionArea } from "@mui/material";
 import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
 import { Box } from "@mui/material";
-import {
-  CategoryLabelBox,
-  HorizontalLineBox,
-  OverlayOpinionBox,
-} from "../../styled/styledBox";
-import { OverlayTodayBox } from "../../styled/styledBox";
-import { color } from "@mui/system";
 import { StyledOpinionCard } from "../../styled/styledCard";
 import Post from "../../types/post";
 import { TypographyCardTitle } from "../../styled/styledTypography";
@@ -22,13 +15,18 @@ import { OverlaySportMobileBox } from "../../styled/styledBox";
 import { StyledSportMobileCard } from "../../styled/styledCard";
 import PostDate from "../postDate/PostDate";
 import { ReadMoreTypography } from "../../styled/styledTypography";
+import { useNavigate } from "react-router-dom";
+
 const SportMobileView: React.FC<Post> = (props) => {
-  const{title,image,description,updatedAt, autherFirstName, autherLastName,_id}=props;
-  // console.log(title, image, description, updatedAt, auther);
+  const{title,image,description,updatedAt, autherFirstName, autherLastName,_id, autherImage}=props;
+  const nagivate: any = useNavigate();
+  const handleGoDetails = (id: any) => {
+    console.log("go details");
+    console.log(props);
+    nagivate(`/details/${id}`); }
   return (
     <>
-    {/* Ahmed */}
-      <StyledSportMobileCard>
+      <StyledSportMobileCard onClick={() => handleGoDetails(_id)}>
         <CardActionArea>
           <CardMedia
             component="img"
@@ -64,11 +62,11 @@ const SportMobileView: React.FC<Post> = (props) => {
             borderRadius="50%"
             marginLeft={2}
             marginRight={2}
-            src={image}
+            src={autherImage}
             alt="green iguana"
           />
           
-          <Typography>{ autherFirstName+" "+ autherLastName}</Typography>
+          <Typography textTransform={"capitalize"}>{ autherFirstName+" "+ autherLastName}</Typography>
         </CardActions>
       </StyledSportMobileCard>
     </>

@@ -11,25 +11,27 @@ import { useEffect } from 'react';
 import { getAuthorInfo } from '../../redux/actions/authorAction';
 const AuthorPage = () => {
 
-    const dispatch:any=useDispatch();
-    useEffect(() => {
-        dispatch(getAuthorInfo());
-      },[dispatch]);
+  const dispatch: any = useDispatch();
+  useEffect(() => {
+    dispatch(getAuthorInfo());
+  }, [dispatch]);
 
-    return (
-        <>
-        <Stack alignItems={"center"}>
-<Avatar></Avatar> 
-{/* <AuthorInfoSection></AuthorInfoSection>
-<PostsSection></PostsSection> */}
-<Paginationd></Paginationd>
-</Stack>
+  return (
+
+    <>
+      <Stack alignItems={"center"}>
+        <Avatar></Avatar>
+        <AuthorInfoSection></AuthorInfoSection>
+<PostsSection></PostsSection>
+        <Paginationd></Paginationd>
+      </Stack>
 
 
 
 
-       </>
-    );
+    </>
+
+  );
 };
 
 export default AuthorPage;

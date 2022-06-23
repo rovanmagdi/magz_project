@@ -13,6 +13,7 @@ import { useMemo } from "react";
 import {CircularProgress } from "@mui/material";
 import { useTheme } from "@mui/material";
 import {useMediaQuery} from "@mui/material";
+import RecommendedPosts from "../recommendPosts/RecommendedPosts";
 const weekday = [
   "Sunday",
   "Monday",
@@ -25,7 +26,7 @@ const weekday = [
 
 const Weather = () => {
   const theme = useTheme();
-  const MobileView = useMediaQuery(theme.breakpoints.down("md")); 
+  const MobileView = useMediaQuery(theme.breakpoints.down("lg")); 
   const LaptopView = useMediaQuery(theme.breakpoints.up("md"));
   const [forecast, setForecast] = useState({
    
@@ -59,6 +60,8 @@ const Weather = () => {
 
   return (
     <>
+ 
+
       <WeatherPaper hidden={MobileView}>
         <Stack>
           <Stack direction={"row"} justifyContent={"space-between"}>
@@ -138,6 +141,8 @@ const Weather = () => {
           )}
         </Stack>
       </WeatherPaper>
+  
+      {/* <RecommendedPosts/> */}
     </>
   );
 };

@@ -59,14 +59,13 @@ export default function AuthorDetails(props:any) {
             <Box sx={{ display: "flex",justifyContent: "center",alignItems: "center"}}>
               <Box
                 component="img"
-                src={author}
+                src={props.image}
                 sx={{ borderRadius: "50%", height: "70px", width: "70px",margin:"20px" }}
               />
               <Box sx={{margin:"20px"}}>
-                <Box component="p" sx={{fontWeight:"bold"}} > Author name</Box>
+                <Box component="p" sx={{fontWeight:"bold"}} >{props.name}</Box>
                 <Box component="span" sx={{fontSize:"13px"}}>
-                  Bachelor of Arts, majoring in History, Pre-Masters,
-                  Criticizing and Investigating Heritage.
+                 {props.brief}
                 </Box>
               </Box>
             </Box>

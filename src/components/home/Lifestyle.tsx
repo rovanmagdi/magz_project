@@ -15,13 +15,23 @@ import Post from "../../types/post";
 import { ReadMoreTypography, TypographyCardTitle } from "../../styled/styledTypography";
 import { DateTypography } from "../../styled/styledTypography";
 import PostDate from "../postDate/PostDate";
+import { useNavigate } from "react-router-dom";
+
 const Lifestyle: React.FC<Post> = (props) => {
-  const { title, image, updatedAt , autherFirstName, autherLastName} = props;
+
+  const { title, image, updatedAt , autherFirstName, autherLastName, _id, autherImage} = props;
+
+
+  const nagivate: any = useNavigate();
+  const handleGoDetails = (id: any) => {
+    console.log("go details");
+    console.log(props);
+    nagivate(`/details/${id}`); }
   // console.log(title, image, description, updatedAt);
   return (
     <>
    
-      <StyledLifestyleCard>
+      <StyledLifestyleCard   onClick={() => handleGoDetails(_id)}>
         <CardActionArea>
           <CardMedia
             component="img"
@@ -52,10 +62,10 @@ const Lifestyle: React.FC<Post> = (props) => {
             borderRadius="50%"
             marginLeft={2}
             marginRight={2}
-            src={image}
+            src={autherImage}
             alt="green iguana"
           />
-<Typography>{ autherFirstName+" "+ autherLastName}</Typography>
+          <Typography textTransform={"capitalize"}>{ autherFirstName+" "+ autherLastName}</Typography>
         </CardActions>
       </StyledLifestyleCard>
     </>

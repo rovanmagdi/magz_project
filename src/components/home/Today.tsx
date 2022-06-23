@@ -16,20 +16,24 @@ import { TodayLabelBox } from "../../styled/styledBox";
 import PostDate from "../postDate/PostDate";
 import { DateTypography } from "../../styled/styledTypography";
 import { useNavigate } from "react-router-dom";
+
 import { ReadMoreTypography } from "../../styled/styledTypography";
+import { TypographyOverFlow } from "../../styled/styledTypography";
+
 
 const Today: React.FC<Post> = (props) => {
-  const { title, image, description, auther, updatedAt,_id } = props;
+  const { title, image, description, autherFirstName,autherLastName, updatedAt, _id, autherImage } = props;
 
   // const Today: React.FC<Post> = (props) => {
   //   const { title, image, description, auther } = props;
 
   // console.log({ title }, { image });
   const nagivate: any = useNavigate();
-  const handleGoDetails = (id:any) => {
+  const handleGoDetails = (id: any) => {
     console.log("go details");
     console.log(props);
     nagivate(`/details/${id}`);       
+
 
   }
   return (
@@ -49,15 +53,17 @@ const Today: React.FC<Post> = (props) => {
             {title}
           </Typography>
           <DateTypography>
+
             
       
             <Box sx={{ color: "text.secondary", fontSize: "13px" }}>
               {<PostDate date={updatedAt} />}
             </Box>
+
           </DateTypography>
-          <Typography variant="body2" color="text.secondary" textOverflow={"ellisis"}>
-            {description}
-          </Typography>
+          <TypographyOverFlow variant="body2" color="text.secondary" >
+            {description}...
+          </TypographyOverFlow>
         </CardContent>
       </CardActionArea>
 
@@ -69,10 +75,10 @@ const Today: React.FC<Post> = (props) => {
           borderRadius="50%"
           marginLeft={2}
           marginRight={2}
-          src={image}
+          src={autherImage}
           alt="green iguana"
         />
-        <Typography>{auther} </Typography>
+          <Typography textTransform={"capitalize"}>{ autherFirstName+" "+ autherLastName}</Typography>
       </CardActions>
     </StyledTodayCard>
   );

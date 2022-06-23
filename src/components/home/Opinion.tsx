@@ -18,22 +18,24 @@ import { StyledOpinionCard } from "../../styled/styledCard";
 import Post from "../../types/post";
 import { TypographyCardTitle } from "../../styled/styledTypography";
 import { DateTypography } from "../../styled/styledTypography";
+
 import { useNavigate } from "react-router-dom";
 import PostDate from "../postDate/PostDate";
 import { ReadMoreTypography } from "../../styled/styledTypography";
 
 const Opinion: React.FC<Post> = (props) => {
-  const { title, image, updatedAt, autherFirstName, autherLastName,_id} = props;
+  const { title, image, updatedAt, autherFirstName, autherLastName,_id,autherImage} = props;
   // console.log(title, image, description, updatedAt, auther);
   
   const nagivate: any = useNavigate();
 
   const handleGoDetails = (id:any) => {
     console.log("go details");
-    // console.log(props);
+    //console.log(props);
     nagivate(`/details/${id}`);
 
   }
+  
   return (
     <>
       <StyledOpinionCard onClick={() => handleGoDetails(_id)}>
@@ -72,11 +74,11 @@ const Opinion: React.FC<Post> = (props) => {
             borderRadius="50%"
             marginLeft={2}
             marginRight={2}
-            src={image}
+            src={autherImage}
             alt="green iguana"
           />
           
-          <Typography>{ autherFirstName+" "+ autherLastName}</Typography>
+          <Typography textTransform={"capitalize"}>{ autherFirstName+" "+ autherLastName}</Typography>
         </CardActions>
       </StyledOpinionCard>
     </>

@@ -20,6 +20,7 @@ const SportSection = () => {
 
     const {posts}=useSelector((state:any) =>state);
     // console.log(posts)
+
     if(posts)
     {
        posts.forEach((category:any)=>{
@@ -27,6 +28,7 @@ const SportSection = () => {
        })
        console.log(filteredCategories["sport"])
    }
+
     return (
         <>
 < Box component={"section"} marginTop={8}>

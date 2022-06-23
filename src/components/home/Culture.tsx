@@ -15,13 +15,20 @@ import Post from '../../types/post';
 import { ReadMoreTypography, TypographyCardTitle } from '../../styled/styledTypography';
 import { DateTypography } from '../../styled/styledTypography';
 import PostDate from '../postDate/PostDate';
+import { useNavigate } from 'react-router-dom';
+
 const Culture: React.FC<Post> = (props) => {
-  const{title,image,updatedAt, autherFirstName, autherLastName}=props;
-  // console.log(title,image,description,updatedAt, auther);
+
+  const{title,image,updatedAt, autherFirstName, autherLastName, _id, autherImage}=props;
+  const nagivate: any = useNavigate();
+  const handleGoDetails = (id: any) => {
+    console.log("go details");
+    console.log(props);
+    nagivate(`/details/${id}`);  }
 return(
 <>
  
-     <StyledCultureCard>
+     <StyledCultureCard  onClick={() => handleGoDetails(_id)}>
       <CardActionArea>
         <CardMedia
           component="img" sx={{borderRadius:"2px"}}
@@ -46,11 +53,11 @@ return(
       <CardActions>
       <Box component="img"
 height="30px" width="30px" borderRadius="50%" marginLeft={2} marginRight={2}
-src={image}
+src={autherImage}
 alt="green iguana"
 
 />
-<Typography>{ autherFirstName+" "+ autherLastName}</Typography>
+<Typography textTransform={"capitalize"}>{ autherFirstName+" "+ autherLastName}</Typography>
       </CardActions>
     </StyledCultureCard>
     </>

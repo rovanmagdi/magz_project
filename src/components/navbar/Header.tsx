@@ -12,7 +12,7 @@ import NavbarBottom from "./NavbarBottom";
 
 const Header = () => {
   const theme = useTheme();
-  const isMatch = useMediaQuery(theme.breakpoints.down(1117));
+  const isMatch = useMediaQuery(theme.breakpoints.down("md"));
   const nagivate: any = useNavigate();
   const handleHome = () => {
     nagivate("/");

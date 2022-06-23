@@ -8,6 +8,7 @@ import { CircularProgress } from "@mui/material";
 import { useEffect, useState } from "react";
 
 const LifestyleSection = () => {
+
   const filteredCategories:any=[];
 
   const {posts}=useSelector((state:any) =>state);
@@ -33,7 +34,7 @@ const LifestyleSection = () => {
           ></HorizontalLineBox>
         </Box>
 
-        <Grid container columns={12} gap={1}>
+        <Grid container columns={12} columnGap={17}>
           {filteredCategories["lifestyle"] ? (
           filteredCategories["lifestyle"].map((post: any) => {
               return (
@@ -46,6 +47,7 @@ const LifestyleSection = () => {
             <CircularProgress />
           )}
         </Grid>
+
       </Box>
     </>
   );

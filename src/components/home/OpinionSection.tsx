@@ -9,6 +9,7 @@ import {Grid} from '@mui/material';
 import {CircularProgress} from '@mui/material';
 
 const OpinionSection = () => {
+
     const filteredCategories:any=[];
 
     const {posts}=useSelector((state:any) =>state);
@@ -29,11 +30,11 @@ const OpinionSection = () => {
     </Box>  
  
  <Grid container   columns={12}
-           gap={1} >
+          columnGap={17} >
  
               {
        filteredCategories["opinion"]? (filteredCategories["opinion"].map(( post:any)=>{
-            return <Grid item sm={12} md={4} key={post._id}><Opinion {...post}/>
+            return <Grid item sm={12} md={4} key={post._id} ><Opinion {...post}/>
             </Grid> 
         })):(<CircularProgress/>)
         

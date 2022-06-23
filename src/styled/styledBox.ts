@@ -41,7 +41,7 @@ export const StyledTitle= styled(Typography)(({ theme }) => ({
  }));
 
 export const HorizontalLineBox = styled(Box)(() => ({
-  width: "60%",
+  width: "94%",
   height: "4px",
   position: "absolute",
   top: "88%",
@@ -196,6 +196,7 @@ borderRadius:"50%"}));
 
 
 
+
 export const OverlaySportMobileBox = styled(OverlayLifestyleBox)(() => ({
   "&:hover": {
     backgroundColor: "rgba(100,0,0,0.5)"
@@ -212,6 +213,7 @@ export const AuthorPostLabelBox = styled(CategoryLabelBox)(({ theme }) => ({
   marginBottom:"15px",
   backgroundColor: `${theme.palette.primary.main}`,
 }));
+
 
         export const OverlayDetailsBox = styled(OverlayBox)(() => ({
           width: "100%",
