@@ -1,6 +1,6 @@
 import { AUTHOR_PROFILE } from "../actions/actionTypes";
 
-const initialState = null;
+const initialState = {};
 interface Action {
     type: String;
     payload: any

@@ -1,12 +1,14 @@
-import React from "react";
+import React, { useEffect } from "react";
 import CategoryRectCard from "../categoryRectCard/CategoryRectCard";
 import CategorySquareCard from "../categorySquareCard/CategorySquareCard";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { CircularProgress, Box } from "@mui/material";
 import Grid from "@mui/material/Grid";
 import { CategoryLabelBox } from "../../styled/styledBox";
 import { HorizontalLineBox } from "../../styled/styledBox";
 import Stack from "@mui/material/Stack";
+import { Catergory } from "../../redux/actions/catergotyAction";
+import { useParams } from "react-router-dom";
 
 export default function CategoryAllSection() {
   const posts = useSelector((state: any) =>
@@ -14,6 +16,13 @@ export default function CategoryAllSection() {
   );
   console.log(posts);
 
+  const dispatch:any=useDispatch();
+  const {page}=useParams();
+  
+  useEffect(() => {
+
+    dispatch(Catergory(page))
+  },[page])
  
   return (
     <>

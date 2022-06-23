@@ -32,6 +32,7 @@ export default function PostCard(props: Post) {
         />
         <CardContent sx={{ py: "20px" }}>
           <PostTitle color="text.dark" sx={{width:'250px'}}>{title}
+          
          
           
           </PostTitle>

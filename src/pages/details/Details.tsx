@@ -22,12 +22,14 @@ import like from "../../assets/like.png";
 
 import Comment from "./Comment";
 import AuthorDetails from "./AuthorDetails";
-import { Link, useParams } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import axios from "axios";
 import PostDate from "../../components/postDate/PostDate";
 import { AuthorTypography } from "../../styled/AuthorTypography";
 import RecommendedPosts from "../../components/recommendPosts/RecommendedPosts";
 import { useDispatch } from "react-redux";
+import { getAuthorInfo } from "../../redux/actions/authorAction";
+import { StyledGridRightLine } from "../../styled/recommendedPosts";
 
 const Details = () => {
   const { id }: any = useParams();
@@ -51,162 +53,241 @@ const Details = () => {
     comments: [],
     updatedAt: "",
     brief: "",
+    autherId: "",
   });
-const dispatch:any =useDispatch();
+  const [stateAuthor, setStateAuthor] = useState();
+  const dispatch: any = useDispatch();
+  const nagivate: any = useNavigate();
+
   useEffect(() => {
     axios.get(`http://localhost:4000/posts/get_one/${id}`).then((response) => {
       setStateDetails(response.data);
       // console.log(response.data);
+      console.log(response.data.auther._id);
+      setStateAuthor(response.data.auther._id);
     });
     axios
       .patch(`http://localhost:4000/posts/add_view/${id}`)
-      .then((response) => { });
+      .then((response) => {});
     // console.log(stateDetails?.comments);
-   
   }, []);
+  const handleAuthor = (id: any) => {
+    dispatch(getAuthorInfo(stateAuthor));
+    nagivate(`/auther/${id}`);
+  };
 
   return (
     <Stack direction="row">
-      
-
-        <StyledTodayCard elevation={0} >
+      <StyledTodayCard elevation={0}>
+        <Box
+          sx={{
+            display: "flex",
+            alignItems: "space-between",
+            justifyContent: "center",
+            marginBottom: "20px",
+          }}
+        >
+          <StyledTitle>{stateDetails.title}</StyledTitle>
+          <TodayLabelBox2>{stateDetails.category}</TodayLabelBox2>
+        </Box>
+        <CardActionArea>
+          <CardMedia
+            component="img"
+            sx={{ borderRadius: "8px", backgroundSize: "contain" }}
+            height="380"
+            image={stateDetails.image}
+            alt="green iguana"
+          />
+          <OverlayDetailsBox></OverlayDetailsBox>
+        </CardActionArea>
+        <Box
+          sx={{
+            color: "text.secondary",
+            marginTop: "15px",
+            marginLeft: "20px",
+            marginBottom: "0px",
+          }}
+        >
           <Box
             sx={{
               display: "flex",
-              alignItems: "space-between",
-              justifyContent: "center",
-              marginBottom: "20px",
+              justifyContent: "space-between",
+              alignItems: "space-around",
             }}
           >
-            <StyledTitle>{stateDetails.title}</StyledTitle>
-            <TodayLabelBox2>{stateDetails.category}</TodayLabelBox2>
+            <Box sx={{ display: "flex" }}>
+              <Box component="img" src={icon} />
+              <Box sx={{ marginLeft: "10px", fontSize: "13px" }}>
+                Steve Kerr slams lack of gun control as ‘pathetic’ after Texas
+                school massacre
+              </Box>
+            </Box>
+
+            <Box sx={{ color: "text.secondary", fontSize: "13px" }}>
+              {<PostDate date={stateDetails.updatedAt} />}
+            </Box>
           </Box>
-          <CardActionArea>
-            <CardMedia
-              component="img"
-              sx={{ borderRadius: "8px", backgroundSize: "contain" }}
-              height="380"
-              image={stateDetails.image}
-              alt="green iguana"
-            />
-            <OverlayDetailsBox></OverlayDetailsBox>
-          </CardActionArea>
+        </Box>
+        <StyledLine sx={{ margin: "10px" }} />
+
+        <CardActions
+          sx={{
+            display: "flex",
+            justifyContent: "space-between",
+            alignItems: "center",
+          }}
+        >
           <Box
             sx={{
-              color: "text.secondary",
-              marginTop: "15px",
-              marginLeft: "20px",
-              marginBottom: "0px",
+              display: "flex",
+              alignItems: "center",
+              "&:hover": {
+                cursor: "pointer",
+              },
             }}
           >
             <Box
-              sx={{
-                display: "flex",
-                justifyContent: "space-between",
-                alignItems: "space-around",
-              }}
+              component="img"
+              height="30px"
+              width="30px"
+              borderRadius="50%"
+              marginLeft={2}
+              marginRight={2}
+              src={image}
+              alt="green iguana"
+            />
+
+            <AuthorTypography
+              onClick={() => handleAuthor(stateDetails.auther._id)}
             >
-              <Box sx={{ display: "flex" }}>
-                <Box component="img" src={icon} />
-                <Box sx={{ marginLeft: "10px", fontSize: "13px" }}>
-                  Steve Kerr slams lack of gun control as ‘pathetic’ after Texas
-                  school massacre
-                </Box>
-              </Box>
-
-              <Box sx={{ color: "text.secondary", fontSize: "13px" }}>
-                {<PostDate date={stateDetails.updatedAt} />}
-              </Box>
-            </Box>
+              {stateDetails.auther.firstName} {stateDetails.auther.lastName}
+            </AuthorTypography>
           </Box>
-          <StyledLine sx={{ margin: "10px" }} />
 
-          <CardActions
+          <Box
             sx={{
               display: "flex",
               justifyContent: "space-between",
               alignItems: "center",
             }}
           >
-            <Box sx={{ display: "flex", alignItems: "center" }}>
+            <Box
+              sx={{
+                display: "flex",
+                justifyContent: "center",
+                alignItems: "center",
+              }}
+            >
               <Box
                 component="img"
-                height="30px"
-                width="30px"
-                borderRadius="50%"
-                marginLeft={2}
-                marginRight={2}
-                src={image}
-                alt="green iguana"
+                src={comments}
+                sx={{ height: "15px", width: "15px", margin: "8px" }}
               />
-
-              <AuthorTypography>
-                {stateDetails.auther.firstName} {stateDetails.auther.lastName}
-              </AuthorTypography>
+              <Typography component="span">
+                {" "}
+                {stateDetails?.comments?.length}
+              </Typography>
             </Box>
 
             <Box
               sx={{
                 display: "flex",
-                justifyContent: "space-between",
+                justifyContent: "center",
                 alignItems: "center",
               }}
             >
               <Box
-                sx={{
-                  display: "flex",
-                  justifyContent: "center",
-                  alignItems: "center",
-                }}
-              >
-                <Box
-                  component="img"
-                  src={comments}
-                  sx={{ height: "15px", width: "15px", margin: "8px" }}
-                />
-                <Typography component="span">
-                  {" "}
-                  {stateDetails?.comments?.length}
-                </Typography>
-              </Box>
+                component="img"
+                src={like}
+                sx={{ height: "15px", width: "15px", margin: "8px" }}
+              />
+              <Typography component="span">
+                {stateDetails?.likes?.length}
+              </Typography>
+            </Box>
+          </Box>
+        </CardActions>
+        <StyledLine sx={{ margin: "10px" }} />
+        <Stack sx={{ fontSize: "15px", margin: "20px" }}>
+          {stateDetails?.description?.split("t")}
+        </Stack>
+        <Comment />
 
+        <Box
+        sx={{
+          border: "1px solid #B1B1B1",
+          marginTop: "30px",
+          height: "250px",
+          display: "flex",
+          justifyItems: "flex-end",
+        }}
+      >
+        <Box
+          sx={{
+            height: "200px",
+            width: "500px",
+            backgroundColor: "#FFFFFF",
+            boxShadow: "-1px -1px 13px 0px rgba(196,191,191,0.75);",
+            margin: "auto",
+            marginBottom: "0px",
+          }}
+        >
+          <Box
+            sx={{
+              display: "flex",
+            }}
+          >
+            <StyledGridRightLine
+              sx={{
+                alignSelf: "flex-end",
+                width: "500px",
+                height: "6px",
+                margin: "auto",
+                position: "absolute",
+                bottom: "0",
+
+                backgroundColor: "#4D7E96",
+              }}
+            />
+            <CategoryLabelBox
+              sx={{
+                backgroundColor: "#4D7E96",
+                position: "absolute",
+                bottom: "0",
+                zIndex: "15",
+                width:"130px",
+                left: "40%",
+                "&:hover":{
+                  cursor: "pointer",
+                }
+              }}
+              onClick={() => handleAuthor(stateDetails.auther._id)}
+            >
+              Articles for Author
+            </CategoryLabelBox>
+            <Box sx={{ display: "flex",justifyContent: "center",alignItems: "center"}}>
               <Box
-                sx={{
-                  display: "flex",
-                  justifyContent: "center",
-                  alignItems: "center",
-                }}
-              >
-                <Box
-                  component="img"
-                  src={like}
-                  sx={{ height: "15px", width: "15px", margin: "8px" }}
-                />
-                <Typography component="span">
-                  {stateDetails?.likes?.length}
-                </Typography>
+                component="img"
+                src={stateDetails.auther.image}
+                sx={{ borderRadius: "50%", height: "70px", width: "70px",margin:"20px" }}
+              />
+              <Box sx={{margin:"20px"}}>
+                <Box component="p" sx={{fontWeight:"bold"}} ><AuthorTypography>
+              {stateDetails.auther.firstName} {stateDetails.auther.lastName}
+            </AuthorTypography></Box>
+                <Box component="span" sx={{fontSize:"13px"}}>
+                {stateDetails.brief}
+                </Box>
               </Box>
             </Box>
-          </CardActions>
-          <StyledLine sx={{ margin: "10px" }} />
-          <Stack sx={{ fontSize: "15px", margin: "20px" }}>
-            {stateDetails.description}
-          </Stack>
-          <Comment />
-          <AuthorDetails
-            brief={stateDetails.brief}
-            name={
-              <AuthorTypography>
-                {stateDetails.auther.firstName} {stateDetails.auther.lastName}
-              </AuthorTypography>
-            }
-            image={stateDetails.image}
-          />
-          {/*  */}
-        </StyledTodayCard>
-     
-      <Box sx={{color:"red"}}>
-        <RecommendedPosts/>
+          </Box>
+        </Box>
+      </Box>
+       
+      </StyledTodayCard>
+
+      <Box sx={{ color: "red" }}>
+        <RecommendedPosts />
       </Box>
     </Stack>
   );

@@ -18,6 +18,7 @@ import SearchCategory from "../../components/navbar/SearchCategory";
 import AuthorPage from "../author/AuthorPage";
 import RecommendedPosts from "../../components/recommendPosts/RecommendedPosts";
 import { Box, Stack } from "@mui/material";
+import { getAuthorInfo } from "../../redux/actions/authorAction";
 const Homenews = () => {
   // const posts=useSelector((state:any) =>state.posts? state.posts[0].posts : state.posts);
 
@@ -29,6 +30,8 @@ const Homenews = () => {
     // console.log(posts._id)
   }, [dispatch]);
 
+
+ 
   return (
     <>
       {/* <AuthorPage></AuthorPage> */}
