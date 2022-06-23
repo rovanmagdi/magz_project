@@ -5,11 +5,6 @@ import { theme } from "../../theme/palette";
 import Typography from "@mui/material/Typography";
 import Post from '../../types/post'
 
-
-
-  
- 
-
 const CategoryRectCard:React.FC<Post> = (props) => {
 
   const{title,image}=props;

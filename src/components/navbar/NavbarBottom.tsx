@@ -59,6 +59,14 @@ export default function NavbarBottom() {
     dispatch(subCatergory());
   }, [dispatch]);
 
+  const handleRoute=(page:any)=>
+
+  {
+    console.log("go");
+    nagivate(`/${page}`)
+
+    
+  }
   return (
     <>
       <StyledNavBottom>
@@ -74,7 +82,7 @@ export default function NavbarBottom() {
                   aria-controls={open ? "basic-menu" : undefined}
                   aria-haspopup="true"
                   aria-expanded={open ? "true" : undefined}
-                  onClick={handleClick}
+                  onClick={() => handleClick(page._id)}
                   sx={{
                     color: "white",
                     fontFamily: "Oswald",
@@ -83,7 +91,9 @@ export default function NavbarBottom() {
                     },
                   }}
                 >
-                  <Box onClick={() => handleGoPage(page._id)}>{page._id}</Box>
+                  <Box onClick={() => handleGoPage(page._id)}>
+                    <Box onClick={() => handleRoute(page._id)}>{page._id}</Box>
+                  </Box>
 
                   {` `}
                 </StyledListNavLeftContent>
@@ -103,7 +113,7 @@ export default function NavbarBottom() {
                   }}
                 >
                   {subcategories?.map((el: any) => (
-                    <Box sx={{ color: "white",width:"100px" }} key={el._id}>
+                    <Box sx={{ color: "white", width: "100px" }} key={el._id}>
                       {el?.title}
                     </Box>
                   ))}

@@ -3,10 +3,10 @@ import {  AUTHOR_PROFILE} from "../actions/actionTypes";
 import { startLoading, showSuccess, showError } from "./statusActions";
 import authorApi from "../../api/authorApi";
 
-export const getAuthorInfo = () => (dispatch:any) => {
+export const getAuthorInfo = (id:any) => (dispatch:any) => {
 	dispatch(startLoading());
 	authorApi
-		.get(`/auther/autherId`)
+		.get(`/${id}`)
 		.then((response) => {
 			dispatch(getAuthorInfoSuccess(response.data));
 			console.log("data", response.data)
