@@ -25,7 +25,6 @@ function HomePage() {
             <Route path="/" element={<Homenews />} />
             <Route path="/Profile" element={<ProfilePge />} />
             <Route path="/details" element={<Details />} />
-          
             <Route path="/details/:id" element={<Details />} />
             <Route path="/auther/:id" element={<AuthorPage />} />
             <Route path="/:page" element={<SportsPage />} />
