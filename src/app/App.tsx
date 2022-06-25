@@ -34,15 +34,13 @@ function App() {
             <Suspense fallback={<CircularProgress />}>
               <BrowserRouter>
                 <Routes>
-                  <Route path="/" element={<Homenews />}>
+            <Route path="/" element={<Homenews />}>
                     <Route path="/Profile" element={<ProfilePge />} />
                     <Route path="/:page" element={<Details />} />
                     <Route path="/details/:id" element={<Details />} />
                     <Route path="/auther/:id" element={<AuthorPage />} />
                     <Route path="/:page" element={<SportsPage />} />
-
-
-                  </Route>
+           </Route>
                   <Route path="login" element={<Login />} />
                   <Route path="interested" element={<Interested />} />
                   <Route path="done" element={<Done />} />
