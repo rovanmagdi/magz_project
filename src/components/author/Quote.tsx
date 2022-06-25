@@ -1,10 +1,11 @@
+import { Typography } from '@mui/material';
 import React from 'react';
-
+import { QuotePaper } from '../../styled/styledPaper';
 const Quote = () => {
     return (
-        <div>
-            quote box here 
-        </div>
+        <>
+          <QuotePaper><Typography textAlign={"center"}>sdfghgfd</Typography></QuotePaper>
+        </>
     );
 };
 

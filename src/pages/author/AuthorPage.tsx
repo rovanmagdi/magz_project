@@ -1,12 +1,41 @@
 
-import React from 'react';
-
+import PostsSection from '../../components/author/PostsSection';
+import Quote from '../../components/author/Quote';
+import Paginationd from '../../components/author/Paginationd';
+import { Stack } from '@mui/material';
+import AuthorInfoSection from '../../components/author/AuthorInfoSection';
+import { useDispatch, useSelector } from 'react-redux';
+import { useEffect } from 'react';
+import { getAuthorInfo } from '../../redux/actions/authorAction';
 const AuthorPage = () => {
-    return (
-        <div>
-            drop author components here 
-        </div>
-    );
+
+  const dispatch: any = useDispatch();
+  const authorInfo=useSelector((state:any) =>state.author? state.author: state.author);
+
+  useEffect(() => {
+    // dispatch(getAuthorInfo());
+    
+  }, [dispatch]);
+  useEffect(() => {
+    
+
+  },[authorInfo])
+
+  return (
+
+    <>
+      <Stack alignItems={"center"}>
+        <AuthorInfoSection></AuthorInfoSection>
+        <PostsSection></PostsSection>
+        <Paginationd></Paginationd>
+      </Stack>
+
+
+
+
+    </>
+
+  );
 };
 
 export default AuthorPage;

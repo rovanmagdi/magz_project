@@ -1,5 +1,5 @@
 import { Box, Stack, TextareaAutosize, Typography } from "@mui/material";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import {
   CategoryLabelBox,
   HorizontalLineBox,
@@ -19,11 +19,65 @@ import icon from "../../assets/icons.png";
 import { StyledLine } from "../../styled/Footer";
 import comments from "../../assets/comment.png";
 import like from "../../assets/like.png";
-import { StyledButton } from "../../styled/Button";
 
-export default function Details() {
+import Comment from "./Comment";
+import AuthorDetails from "./AuthorDetails";
+import { Link, useNavigate, useParams } from "react-router-dom";
+import axios from "axios";
+import PostDate from "../../components/postDate/PostDate";
+import { AuthorTypography } from "../../styled/AuthorTypography";
+import RecommendedPosts from "../../components/recommendPosts/RecommendedPosts";
+import { useDispatch } from "react-redux";
+import { getAuthorInfo } from "../../redux/actions/authorAction";
+import { StyledGridRightLine } from "../../styled/recommendedPosts";
+
+const Details = () => {
+  const { id }: any = useParams();
+  const [stateDetails, setStateDetails] = useState({
+    _id: "",
+    title: "",
+    description: "",
+    image: "",
+    category: "",
+    subCategory: "",
+    likes: [],
+    auther: {
+      _id: "",
+      firstName: "",
+      lastName: "",
+      image: "",
+    },
+    regien: "",
+    status: "",
+    views: "",
+    comments: [],
+    updatedAt: "",
+    brief: "",
+    autherId: "",
+  });
+  const [stateAuthor, setStateAuthor] = useState();
+  const dispatch: any = useDispatch();
+  const nagivate: any = useNavigate();
+
+  useEffect(() => {
+    axios.get(`http://localhost:4000/posts/get_one/${id}`).then((response) => {
+      setStateDetails(response.data);
+      // console.log(response.data);
+      console.log(response.data.auther._id);
+      setStateAuthor(response.data.auther._id);
+    });
+    axios
+      .patch(`http://localhost:4000/posts/add_view/${id}`)
+      .then((response) => {});
+    // console.log(stateDetails?.comments);
+  }, []);
+  const handleAuthor = (id: any) => {
+    dispatch(getAuthorInfo(stateAuthor));
+    nagivate(`/auther/${id}`);
+  };
+
   return (
-    <Stack>
+    <Stack direction="row">
       <StyledTodayCard elevation={0}>
         <Box
           sx={{
@@ -33,41 +87,65 @@ export default function Details() {
             marginBottom: "20px",
           }}
         >
-          <StyledTitle>
-            Liverpool chase defining high in blue-chip final against Real Madrid
-          </StyledTitle>
-          <TodayLabelBox2>Today</TodayLabelBox2>
+          <StyledTitle>{stateDetails.title}</StyledTitle>
+          <TodayLabelBox2>{stateDetails.category}</TodayLabelBox2>
         </Box>
         <CardActionArea>
           <CardMedia
             component="img"
             sx={{ borderRadius: "8px", backgroundSize: "contain" }}
             height="380"
-            image={image}
+            image={stateDetails.image}
             alt="green iguana"
           />
           <OverlayDetailsBox></OverlayDetailsBox>
         </CardActionArea>
         <Box
-          color="text.secondary"
           sx={{
+            color: "text.secondary",
             marginTop: "15px",
             marginLeft: "20px",
-            display: "flex",
-            alignItems: "center",
             marginBottom: "0px",
           }}
         >
-          <Box component="img" src={icon}></Box>
-          <Box sx={{ marginLeft: "10px", fontSize: "13px" }}>
-            Steve Kerr slams lack of gun control as ‘pathetic’ after Texas
-            school massacre
+          <Box
+            sx={{
+              display: "flex",
+              justifyContent: "space-between",
+              alignItems: "space-around",
+            }}
+          >
+            <Box sx={{ display: "flex" }}>
+              <Box component="img" src={icon} />
+              <Box sx={{ marginLeft: "10px", fontSize: "13px" }}>
+                Steve Kerr slams lack of gun control as ‘pathetic’ after Texas
+                school massacre
+              </Box>
+            </Box>
+
+            <Box sx={{ color: "text.secondary", fontSize: "13px" }}>
+              {<PostDate date={stateDetails.updatedAt} />}
+            </Box>
           </Box>
         </Box>
-        <StyledLine sx={{ marginTop: "10px" }} />
+        <StyledLine sx={{ margin: "10px" }} />
 
-        <CardActions sx={{ display: "flex", justifyContent: "space-between" }}>
-          <Box sx={{ display: "flex" }}>
+        <CardActions
+          sx={{
+            display: "flex",
+            justifyContent: "space-between",
+            alignItems: "center",
+          }}
+        >
+          <Box
+            sx={{
+              display: "flex",
+              alignItems: "center",
+              "&:hover": {
+                cursor: "pointer",
+              },
+            }}
+          >
             <Box
               component="img"
               height="30px"
@@ -79,7 +157,11 @@ export default function Details() {
               alt="green iguana"
             />
 
-            <Typography>Name </Typography>
+            <AuthorTypography
+              onClick={() => handleAuthor(stateDetails.auther._id)}
+            >
+              {stateDetails.auther.firstName} {stateDetails.auther.lastName}
+            </AuthorTypography>
           </Box>
 
           <Box
@@ -101,7 +183,10 @@ export default function Details() {
                 src={comments}
                 sx={{ height: "15px", width: "15px", margin: "8px" }}
               />
-              <Typography component="span">2</Typography>
+              <Typography component="span">
+                {" "}
+                {stateDetails?.comments?.length}
+              </Typography>
             </Box>
 
             <Box
@@ -116,45 +201,95 @@ export default function Details() {
                 src={like}
                 sx={{ height: "15px", width: "15px", margin: "8px" }}
               />
-              <Typography component="span">2</Typography>
+              <Typography component="span">
+                {stateDetails?.likes?.length}
+              </Typography>
             </Box>
           </Box>
         </CardActions>
-        <StyledLine sx={{ marginTop: "10px", width: "800px" }} />
+        <StyledLine sx={{ margin: "10px" }} />
         <Stack sx={{ fontSize: "15px", margin: "20px" }}>
-          Socrates was charged with denying the gods exist and inventing new
-          ones, and of corrupting youth. Actually, Socrates was deeply religious
-          and it was fighting dirty to accuse him of sacrilege. But powerful
-          people had had enough of him. A scruffy 70-year-old man hanging out in
-          public places surrounded by adoring pupils, teaching that a life
-          unexamined is not worth living but we must learn we know nothing,
-          corroded certainty. And certainty was what the city craved.e
-          uncompromising voice of Socrates in a dangerous time resonates with
-          our own “age of rage”. After Tom Littler, artistic director of the
-          small but heavy-punching Jermyn Street theatre, proposed a Socrates
-          play, I drafted a scene based on Plato’s dialogue E
+          {stateDetails?.description?.split("t")}
         </Stack>
-        <Box sx={{ border: "1px solid #B1B1B1" }}>
-          <Box>
+        <Comment />
 
-          <Box position={"relative"} sx={{ margin: "20px" }}>
-            <CategoryLabelBox sx={{ backgroundColor: "#4D7E96" }}>
-              Leave Comment
+        <Box
+        sx={{
+          border: "1px solid #B1B1B1",
+          marginTop: "30px",
+          height: "250px",
+          display: "flex",
+          justifyItems: "flex-end",
+        }}
+      >
+        <Box
+          sx={{
+            height: "200px",
+            width: "500px",
+            backgroundColor: "#FFFFFF",
+            boxShadow: "-1px -1px 13px 0px rgba(196,191,191,0.75);",
+            margin: "auto",
+            marginBottom: "0px",
+          }}
+        >
+          <Box
+            sx={{
+              display: "flex",
+            }}
+          >
+            <StyledGridRightLine
+              sx={{
+                alignSelf: "flex-end",
+                width: "500px",
+                height: "6px",
+                margin: "auto",
+                position: "absolute",
+                bottom: "0",
+
+                backgroundColor: "#4D7E96",
+              }}
+            />
+            <CategoryLabelBox
+              sx={{
+                backgroundColor: "#4D7E96",
+                position: "absolute",
+                bottom: "0",
+                zIndex: "15",
+                width:"130px",
+                left: "40%",
+                "&:hover":{
+                  cursor: "pointer",
+                }
+              }}
+              onClick={() => handleAuthor(stateDetails.auther._id)}
+            >
+              Articles for Author
             </CategoryLabelBox>
-            <HorizontalLineBox
-              sx={{ backgroundColor: "#4D7E96", width: "550px" }}
-            ></HorizontalLineBox>
+            <Box sx={{ display: "flex",justifyContent: "center",alignItems: "center"}}>
+              <Box
+                component="img"
+                src={stateDetails.auther.image}
+                sx={{ borderRadius: "50%", height: "70px", width: "70px",margin:"20px" }}
+              />
+              <Box sx={{margin:"20px"}}>
+                <Box component="p" sx={{fontWeight:"bold"}} ><AuthorTypography>
+              {stateDetails.auther.firstName} {stateDetails.auther.lastName}
+            </AuthorTypography></Box>
+                <Box component="span" sx={{fontSize:"13px"}}>
+                {stateDetails.brief}
+                </Box>
+              </Box>
+            </Box>
           </Box>
-          <TextareaAutosize
-            aria-label="minimum height"
-            minRows={10}
-            placeholder="Your Comment"
-            style={{ width: 500, margin: "20px", border: "1px solid #B1B1B1" }}
-          />
-          </Box>
-          <StyledButton sx={{color:"white",margin: "20px"}}>POST COMMENT</StyledButton>
         </Box>
+      </Box>
+       
       </StyledTodayCard>
+
+      <Box sx={{ color: "red" }}>
+        <RecommendedPosts />
+      </Box>
     </Stack>
   );
-}
+};
+export default Details;

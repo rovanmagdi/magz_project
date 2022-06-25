@@ -18,15 +18,17 @@ import { StyledOpinionCard } from "../../styled/styledCard";
 import Post from "../../types/post";
 import { TypographyCardTitle } from "../../styled/styledTypography";
 import { DateTypography } from "../../styled/styledTypography";
-import { StyledCircleIcon } from "../../styled/StyledIcon";
-
+import { OverlaySportMobileBox } from "../../styled/styledBox";
+import { StyledSportMobileCard } from "../../styled/styledCard";
+import PostDate from "../postDate/PostDate";
+import { ReadMoreTypography } from "../../styled/styledTypography";
 const SportMobileView: React.FC<Post> = (props) => {
   const { title, image, description, updatedAt, auther } = props;
-  console.log(title, image, description, updatedAt, auther);
+  // console.log(title, image, description, updatedAt, auther);
   return (
     <>
     {/* Ahmed */}
-      <StyledOpinionCard>
+      <StyledSportMobileCard>
         <CardActionArea>
           <CardMedia
             component="img"
@@ -36,19 +38,18 @@ const SportMobileView: React.FC<Post> = (props) => {
             alt="green iguana"
           />
 
-          <OverlayOpinionBox> </OverlayOpinionBox>
+          <OverlaySportMobileBox> <ReadMoreTypography>read more...</ReadMoreTypography></OverlaySportMobileBox>
           <CardContent>
             <TypographyCardTitle gutterBottom  >
               {title}
               
             </TypographyCardTitle>
             <DateTypography>
-            <StyledCircleIcon ></StyledCircleIcon>
-               {`${new Date(updatedAt).toLocaleString("en-GB", {
-               month: "short",
-              day: "numeric",
-              year: "numeric",
-            })}`}
+            
+      
+            <Box sx={{ color: "text.secondary", fontSize: "13px" }}>
+              {<PostDate date={updatedAt} />}
+            </Box>
           </DateTypography>
           </CardContent>
           
@@ -69,7 +70,7 @@ const SportMobileView: React.FC<Post> = (props) => {
           
           <Typography>{auther}</Typography>
         </CardActions>
-      </StyledOpinionCard>
+      </StyledSportMobileCard>
     </>
   );
 };

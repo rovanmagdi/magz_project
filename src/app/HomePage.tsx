@@ -6,14 +6,14 @@ import Header from "../components/navbar/Header";
 import Footer from "../components/footer/Footer";
 import Homenews from "../pages/home/Homenews";
 import ProfilePge from "../pages/profilePage/ProfilePage";
-import Interested from "../pages/Interested/Interested";
-import Done from "../pages/Done/Done";
-import Login from "../pages/Sign/Login";
+
 import Details from "../pages/details/Details";
+import AuthorPage from "../pages/author/AuthorPage";
+import SportsPage from "../pages/categoryPage/CategoryPage";
 
 function HomePage() {
   const isMatch = useMediaQuery(theme.breakpoints.down("sm"));
-
+  
   return (
     <>
       {/* <Roues></Roues> */}
@@ -25,7 +25,13 @@ function HomePage() {
             <Route path="/" element={<Homenews />} />
             <Route path="/Profile" element={<ProfilePge />} />
             <Route path="/details" element={<Details />} />
-            <Route path="/:page" element={<Details />} />
+          
+            <Route path="/details/:id" element={<Details />} />
+            <Route path="/auther/:id" element={<AuthorPage />} />
+            <Route path="/:page" element={<SportsPage />} />
+
+
+
           </Routes>
         </Info>
 

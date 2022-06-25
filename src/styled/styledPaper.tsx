@@ -11,7 +11,7 @@ export const ProfileDataItem = styled(Paper)(() => ({
 }));
 
 export const WeatherPaper = styled(Paper)(() => ({
-  width: "25%",
+  minWidth: "25%",
   padding: "25px",
   height: "250px",
   // ahmed

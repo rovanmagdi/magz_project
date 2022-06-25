@@ -1,19 +1,14 @@
-import { SUBCATEGORIES } from "../actions/actionTypes";
+import { VIEW_POSTS } from "../actions/actionTypes";
 import { startLoading, showSuccess, showError } from "./statusActions";
-import subCatergoryApi from "../../api/subCatergoryApi";
+import viewsApi from "../../api/viewsApi";
 
-export function subCatergory() {
-  
-  
+export function ViewPosts() {
   return (dispatch: any) => {
-    subCatergoryApi
-      .get(`/getAll`)
+    viewsApi
+      .get("/most_viewed")
       .then(({ data }) => {
-        
         dispatch(showSuccess());
         dispatch(Interface(data));
-   
-
       })
       .catch((error) => {
         dispatch(showError(error.response.data.message));
@@ -22,6 +17,6 @@ export function subCatergory() {
 }
 
 export const Interface = (posts: any) => ({
-  type: SUBCATEGORIES,
+  type: VIEW_POSTS,
   payload: posts,
 });

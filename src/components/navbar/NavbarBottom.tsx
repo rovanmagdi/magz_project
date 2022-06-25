@@ -25,14 +25,14 @@ import { subCatergory } from "../../redux/actions/subCategory";
 import { useParams } from "react-router";
 import { log } from "console";
 export default function NavbarBottom() {
-  const intersted = useSelector((state: any) => state.interseted);
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
   const open = Boolean(anchorEl);
-  const [color, setColor] = useState("white");
+  const [subcategories, setSubcategories] = useState([]);
+  const subCatergoryState = useSelector((state: any) => state?.Subcategory);
+  const nagivate: any = useNavigate();
+  const dispatch: any = useDispatch();
 
-  const toggleColor = () => {
-    return setColor((old) => (old == "white" ? "red" : "white"));
-  };
+  const { page } = useParams();
 
   const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
     setAnchorEl(event.currentTarget);
@@ -40,31 +40,33 @@ export default function NavbarBottom() {
   const handleClose = () => {
     setAnchorEl(null);
   };
-  const nagivate: any = useNavigate();
-  const dispatch: any = useDispatch();
-  const subCatergoryState = useSelector((state: any) => state.Subcategory);
 
-  const { page } = useParams();
-  const userInfoObj = JSON.parse(`${localStorage.getItem("SubCategory")}`);
-
+  // console.log(subCatergoryState);
   const handleGoPage = useCallback(
     (page: any) => {
-      console.log("done");
-      nagivate(`/${page}`);
+      const [{ subCategories }] = subCatergoryState?.filter(
+        (el: any) => el._id === page
+      );
 
-      console.log(userInfoObj);
+      setSubcategories((old: any) => subCategories);
     },
-    [page]
+    [page, setSubcategories, subCatergoryState]
   );
   const handleGoHome = () => {
     nagivate("/");
   };
-
   useEffect(() => {
-    // dispatch(subCatergory(page));
-    dispatch(InterstedCatergory());
-  }, []);
+    dispatch(subCatergory());
+  }, [dispatch]);
 
+  const handleRoute=(page:any)=>
+
+  {
+    console.log("go");
+    nagivate(`/${page}`)
+
+    
+  }
   return (
     <>
       <StyledNavBottom>
@@ -72,36 +74,29 @@ export default function NavbarBottom() {
           <StyledListNavLeftContent onClick={handleGoHome}>
             News
           </StyledListNavLeftContent>
-          {intersted?.map((page: any, index: any) => {
+          {subCatergoryState?.map((page: any, index: any) => {
             return (
-              // <StyledListNavLeftContent  />
-
               <FormControl key={page._id}>
                 <StyledListNavLeftContent
                   id="basic-button"
                   aria-controls={open ? "basic-menu" : undefined}
                   aria-haspopup="true"
                   aria-expanded={open ? "true" : undefined}
-                  onClick={handleClick}
+                  onClick={() => handleClick(page._id)}
                   sx={{
                     color: "white",
                     fontFamily: "Oswald",
                     "&:hover": {
                       color: "white",
                     },
-                    "&:active": {
-                      backgroundColor: `${color}`,
-                    },
                   }}
                 >
-                  <Box onClick={() => handleGoPage(page.title)}>
-                    {page.title}
+                  <Box onClick={() => handleGoPage(page._id)}>
+                    <Box onClick={() => handleRoute(page._id)}>{page._id}</Box>
                   </Box>
 
                   {` `}
                 </StyledListNavLeftContent>
-
-                {/* {subCatergoryState[0]?.title} */}
 
                 <Menu
                   id="basic-menu"
@@ -117,21 +112,11 @@ export default function NavbarBottom() {
                     },
                   }}
                 >
-                  {subCatergoryState?.map((subCatergory: any) => {
-                    return (
-                      <MenuItem
-                        key={subCatergory._id}
-                        sx={{
-                          color: "white",
-                          "&:hover": {
-                            backgroundColor: "rgba(77,126,150,0.4)",
-                          },
-                        }}
-                      >
-                        {subCatergory.title}
-                      </MenuItem>
-                    );
-                  })}
+                  {subcategories?.map((el: any) => (
+                    <Box sx={{ color: "white", width: "100px" }} key={el._id}>
+                      {el?.title}
+                    </Box>
+                  ))}
                 </Menu>
               </FormControl>
             );
@@ -164,6 +149,4 @@ export default function NavbarBottom() {
     </>
   );
 }
-function setIsOpened(arg0: (wasOpened: any) => boolean) {
-  throw new Error("Function not implemented.");
-}
+
