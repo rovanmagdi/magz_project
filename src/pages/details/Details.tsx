@@ -212,6 +212,7 @@ const Details = () => {
                 cursor: "pointer",
               },
             }}
+            onClick={() => handleAuthor(stateDetails.auther._id)}
           >
             <Box
               component="img"
@@ -220,7 +221,7 @@ const Details = () => {
               borderRadius="50%"
               marginLeft={2}
               marginRight={2}
-              src={image}
+              src={stateDetails.auther.image}
               alt="green iguana"
             />
 

@@ -18,5 +18,4 @@ export const SUBCATEGORIES = "SUBCATEGORIES";
 export const VIEW_POSTS="VIEW_POSTS";
 export const AUTHOR_PROFILE="AUTHOR_PROFILE";
 export const CATERGORY="CATERGORY"
-
-
+export const DARK_MODE = 'dark_mode';

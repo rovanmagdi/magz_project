@@ -13,13 +13,14 @@ import { useNavigate, useParams } from "react-router-dom";
 export default function CategoryAllSection() {
   const { catergory } = useSelector((state: any) => state);
 
-  const dispatch: any = useDispatch();
-  const { page } = useParams();
+  const dispatch:any=useDispatch();
+  const {page}=useParams();
+  
+  useEffect(() => {
 
-  // useEffect(() => {
-  //   dispatch(Catergory(page));
-  //   console.log(catergory);
-  // }, [page]);
+    dispatch(Catergory(page))
+  },[page])
+ 
 
   // const nagivate: any = useNavigate();
   // const handleGoDetails = (id: any) => {

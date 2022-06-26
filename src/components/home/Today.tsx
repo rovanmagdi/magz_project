@@ -18,11 +18,14 @@ import { DateTypography } from "../../styled/styledTypography";
 import { useNavigate } from "react-router-dom";
 
 import { ReadMoreTypography } from "../../styled/styledTypography";
-import { TypographyOverFlow } from "../../styled/TypopraphyOverFlow";
-
+import { TypographyOverFlow } from "../../styled/styledTypography";
+import { useState } from "react";
+import {useMediaQuery, useTheme} from "@mui/material";
 
 const Today: React.FC<Post> = (props) => {
-  const { title, image, description, auther, updatedAt, _id } = props;
+  const { title, image, description, autherFirstName,autherLastName, updatedAt, _id, autherImage } = props;
+
+
 var today = new Date();
 var dd = String(today.getDate()).padStart(2, '0');
 var mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
@@ -30,10 +33,9 @@ var yyyy = today.getFullYear();
 
 const todayDate = mm + '/' + dd + '/' + yyyy;
 
-  // const Today: React.FC<Post> = (props) => {
-  //   const { title, image, description, auther } = props;
+  const theme = useTheme();
+  const MobileView = useMediaQuery(theme.breakpoints.down("lg"));
 
-  // console.log({ title }, { image });
   const nagivate: any = useNavigate();
   const handleGoDetails = (id: any) => {
     console.log("go details");
@@ -42,6 +44,8 @@ const todayDate = mm + '/' + dd + '/' + yyyy;
 
 
   }
+  // const [date, setDate]= useState("");
+
   return (
     <StyledTodayCard elevation={0} onClick={() => handleGoDetails(_id)}>
       <CardActionArea>
@@ -53,7 +57,7 @@ const todayDate = mm + '/' + dd + '/' + yyyy;
           image={image}
           alt="green iguana"
         />
-        <OverlayTodayBox><ReadMoreTypography sx={{left:"43%", top:"45%"}}>read more...</ReadMoreTypography></OverlayTodayBox>
+        <OverlayTodayBox><ReadMoreTypography sx={{left:"43%", top:"45%"}} hidden={MobileView}>read more...</ReadMoreTypography></OverlayTodayBox>
         <CardContent>
           <Typography gutterBottom variant="h5" component="div">
             {title}
@@ -68,7 +72,7 @@ const todayDate = mm + '/' + dd + '/' + yyyy;
 
           </DateTypography>
           <TypographyOverFlow variant="body2" color="text.secondary" >
-            {description}
+            {description}...
           </TypographyOverFlow>
         </CardContent>
       </CardActionArea>
@@ -81,10 +85,10 @@ const todayDate = mm + '/' + dd + '/' + yyyy;
           borderRadius="50%"
           marginLeft={2}
           marginRight={2}
-          src={image}
+          src={autherImage}
           alt="green iguana"
         />
-        <Typography>{auther} </Typography>
+          <Typography textTransform={"capitalize"}>{ autherFirstName+" "+ autherLastName}</Typography>
       </CardActions>
     </StyledTodayCard>
   );

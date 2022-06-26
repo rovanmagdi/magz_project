@@ -30,7 +30,7 @@ const TodaySection = () => {
                         return <Today key={post._id} {...post} />;
                     })
                 ) : (
-                    <CircularProgress />
+                    <CircularProgress sx={{margin:"auto"}}/>
                 )}
 
 

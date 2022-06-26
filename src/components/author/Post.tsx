@@ -20,8 +20,8 @@ import { TodayLabelBox } from "../../styled/styledBox";
 import { AuthorPostLabelBox } from "../../styled/styledBox";
 
 const AuthorPost: React.FC<Post> = (props) => {
-  const { title, image, description, updatedAt , auther, category} = props;
-  console.log(title, image, description, updatedAt);
+  const { title, image, description, updatedAt , autherFirstName, autherLastName, category, autherBrief,autherImage} = props;
+  console.log(title, image, description, updatedAt, autherFirstName);
   return (
     <>
    
@@ -65,7 +65,7 @@ const AuthorPost: React.FC<Post> = (props) => {
             src={image}
             alt="green iguana"
           />
-          <Typography>{auther}</Typography>
+          <Typography textTransform={"capitalize"}>{ autherFirstName+" "+ autherLastName}</Typography>
         </CardActions>
       </StyledAuthorPostCard>
     </>

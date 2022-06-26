@@ -61,7 +61,7 @@ export const theme = createTheme({
           variant: 'h6'
         },
         subheaderTypographyProps: {
-          variant: 'body2'
+          variant: 'body2', 
         }
       },
       styleOverrides: {
@@ -144,7 +144,7 @@ export const theme = createTheme({
     },
     background: {
       default: '#F9FAFC',
-      paper: '#FFFFFF'
+      paper: '#FFFFFF', 
     },
     divider: '#E6E8F0',
     primary: {

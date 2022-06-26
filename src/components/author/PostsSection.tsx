@@ -25,6 +25,7 @@ const PostsSection = () => {
 
   return (
     <>
+    
       < Box component={"section"} marginTop={8}>
 
         <Box position={"relative"}>
@@ -42,7 +43,7 @@ const PostsSection = () => {
             author.posts ? (author.posts.map((post: any) => {
               return <Grid key={post._id} md={3} sm={12} ><AuthorPost {...post} />
               </Grid>
-            })) : (<CircularProgress />)
+            })) : (<CircularProgress sx={{margin:"auto"}} />)
 
           }
 
