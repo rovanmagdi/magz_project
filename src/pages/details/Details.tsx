@@ -1,5 +1,5 @@
 import { Box, Stack, TextareaAutosize, Typography } from "@mui/material";
-import React, { useEffect, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import {
   CategoryLabelBox,
   HorizontalLineBox,
@@ -20,6 +20,8 @@ import { StyledLine } from "../../styled/Footer";
 import comments from "../../assets/comment.png";
 import like from "../../assets/like.png";
 
+import Pusher from "pusher-js";
+
 import Comment from "./Comment";
 import AuthorDetails from "./AuthorDetails";
 import { Link, useNavigate, useParams } from "react-router-dom";
@@ -30,6 +32,7 @@ import RecommendedPosts from "../../components/recommendPosts/RecommendedPosts";
 import { useDispatch } from "react-redux";
 import { getAuthorInfo } from "../../redux/actions/authorAction";
 import { StyledGridRightLine } from "../../styled/recommendedPosts";
+import CommentList from "./CommentList";
 
 const Details = () => {
   const { id }: any = useParams();
@@ -55,6 +58,9 @@ const Details = () => {
     brief: "",
     autherId: "",
   });
+
+  const [commentsNummber, setCommentsNummber] = useState<any>(0);
+  const [likesNumber, setLikesNumber] = useState<any>(0);
   const [stateAuthor, setStateAuthor] = useState();
   const dispatch: any = useDispatch();
   const nagivate: any = useNavigate();
@@ -62,18 +68,76 @@ const Details = () => {
   useEffect(() => {
     axios.get(`http://localhost:4000/posts/get_one/${id}`).then((response) => {
       setStateDetails(response.data);
+      handleLikesNumber(response.data.likes.length);
       // console.log(response.data);
-      console.log(response.data.auther._id);
-      setStateAuthor(response.data.auther._id);
+      // console.log(response.data.auther._id);
+      setStateAuthor(response.data.auther?._id);
+      handleCommentsNummber(response.data.comments.length);
     });
     axios
       .patch(`http://localhost:4000/posts/add_view/${id}`)
       .then((response) => {});
     // console.log(stateDetails?.comments);
-  }, []);
+  }, [id]);
   const handleAuthor = (id: any) => {
     dispatch(getAuthorInfo(stateAuthor));
     nagivate(`/auther/${id}`);
+  };
+
+  const handleCommentsNummber = (number: any) => {
+    setCommentsNummber(number);
+  };
+
+  const postId = useParams();
+  const handleLike = useCallback(
+    async (event: React.SyntheticEvent<EventTarget>) => {
+      const userInfo: any = JSON.parse(
+        `${localStorage.getItem("RegisterInfo")}`
+      );
+
+      const config = {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: ` Bearer ${userInfo.token}`,
+        },
+      };
+
+      const body = { postId: postId.id };
+
+      const { data } = await axios.post(
+        "http://localhost:4000/like",
+        body,
+        config
+      );
+    },
+    [postId.id]
+  );
+
+  // useEffect(() => {
+  //   axios
+  //     .get(`http://localhost:4000/posts/get_one/${props.id}`)
+  //     .then((response) => {
+  //       setComments(response.data.comments);
+
+  //     });
+  // }, [setComments, props.id]);
+
+  const [pusher, setPusher] = useState<any>(
+    () =>
+      new Pusher("7d5a00f0cb139e7cc884", {
+        cluster: "eu",
+      })
+  );
+  const [channel, setChannel] = useState<any>(() => pusher.subscribe("magz"));
+
+  useEffect(() => {
+    channel.bind("new-like", (data: any) => {
+      handleLikesNumber(data.likes.length);
+    });
+  }, [channel]);
+
+  const handleLikesNumber = (number: any) => {
+    setLikesNumber(number);
   };
 
   return (
@@ -158,9 +222,9 @@ const Details = () => {
             />
 
             <AuthorTypography
-              onClick={() => handleAuthor(stateDetails.auther._id)}
+              onClick={() => handleAuthor(stateDetails?.auther?._id)}
             >
-              {stateDetails.auther.firstName} {stateDetails.auther.lastName}
+              {stateDetails?.auther?.firstName} {stateDetails?.auther?.lastName}
             </AuthorTypography>
           </Box>
 
@@ -185,7 +249,8 @@ const Details = () => {
               />
               <Typography component="span">
                 {" "}
-                {stateDetails?.comments?.length}
+                {/* {stateDetails?.comments?.length} */}
+                {commentsNummber}
               </Typography>
             </Box>
 
@@ -200,9 +265,11 @@ const Details = () => {
                 component="img"
                 src={like}
                 sx={{ height: "15px", width: "15px", margin: "8px" }}
+                onClick={handleLike}
               />
               <Typography component="span">
-                {stateDetails?.likes?.length}
+                {/* {stateDetails?.likes?.length} */}
+                {likesNumber}
               </Typography>
             </Box>
           </Box>
@@ -211,79 +278,93 @@ const Details = () => {
         <Stack sx={{ fontSize: "15px", margin: "20px" }}>
           {stateDetails?.description?.split("t")}
         </Stack>
+        <CommentList id={id} handleCommentsNummber={handleCommentsNummber} />
         <Comment />
 
         <Box
-        sx={{
-          border: "1px solid #B1B1B1",
-          marginTop: "30px",
-          height: "250px",
-          display: "flex",
-          justifyItems: "flex-end",
-        }}
-      >
-        <Box
           sx={{
-            height: "200px",
-            width: "500px",
-            backgroundColor: "#FFFFFF",
-            boxShadow: "-1px -1px 13px 0px rgba(196,191,191,0.75);",
-            margin: "auto",
-            marginBottom: "0px",
+            border: "1px solid #B1B1B1",
+            marginTop: "30px",
+            height: "250px",
+            display: "flex",
+            justifyItems: "flex-end",
           }}
         >
           <Box
             sx={{
-              display: "flex",
+              height: "200px",
+              width: "500px",
+              backgroundColor: "#FFFFFF",
+              boxShadow: "-1px -1px 13px 0px rgba(196,191,191,0.75);",
+              margin: "auto",
+              marginBottom: "0px",
             }}
           >
-            <StyledGridRightLine
+            <Box
               sx={{
-                alignSelf: "flex-end",
-                width: "500px",
-                height: "6px",
-                margin: "auto",
-                position: "absolute",
-                bottom: "0",
-
-                backgroundColor: "#4D7E96",
+                display: "flex",
               }}
-            />
-            <CategoryLabelBox
-              sx={{
-                backgroundColor: "#4D7E96",
-                position: "absolute",
-                bottom: "0",
-                zIndex: "15",
-                width:"130px",
-                left: "40%",
-                "&:hover":{
-                  cursor: "pointer",
-                }
-              }}
-              onClick={() => handleAuthor(stateDetails.auther._id)}
             >
-              Articles for Author
-            </CategoryLabelBox>
-            <Box sx={{ display: "flex",justifyContent: "center",alignItems: "center"}}>
-              <Box
-                component="img"
-                src={stateDetails.auther.image}
-                sx={{ borderRadius: "50%", height: "70px", width: "70px",margin:"20px" }}
+              <StyledGridRightLine
+                sx={{
+                  alignSelf: "flex-end",
+                  width: "500px",
+                  height: "6px",
+                  margin: "auto",
+                  position: "absolute",
+                  bottom: "0",
+
+                  backgroundColor: "#4D7E96",
+                }}
               />
-              <Box sx={{margin:"20px"}}>
-                <Box component="p" sx={{fontWeight:"bold"}} ><AuthorTypography>
-              {stateDetails.auther.firstName} {stateDetails.auther.lastName}
-            </AuthorTypography></Box>
-                <Box component="span" sx={{fontSize:"13px"}}>
-                {stateDetails.brief}
+              <CategoryLabelBox
+                sx={{
+                  backgroundColor: "#4D7E96",
+                  position: "absolute",
+                  bottom: "0",
+                  zIndex: "15",
+                  width: "130px",
+                  left: "40%",
+                  "&:hover": {
+                    cursor: "pointer",
+                  },
+                }}
+                onClick={() => handleAuthor(stateDetails.auther._id)}
+              >
+                Articles for Author
+              </CategoryLabelBox>
+              <Box
+                sx={{
+                  display: "flex",
+                  justifyContent: "center",
+                  alignItems: "center",
+                }}
+              >
+                <Box
+                  component="img"
+                  src={stateDetails?.auther?.image}
+                  sx={{
+                    borderRadius: "50%",
+                    height: "70px",
+                    width: "70px",
+                    margin: "20px",
+                  }}
+                />
+                <Box sx={{ margin: "20px" }}>
+                  <Box component="p" sx={{ fontWeight: "bold" }}>
+                    <AuthorTypography>
+                      {stateDetails.auther?.firstName}{" "}
+                      {stateDetails.auther?.lastName}
+                    </AuthorTypography>
+                  </Box>
+                  <Box component="span" sx={{ fontSize: "13px" }}>
+                    {stateDetails.brief}
+                  </Box>
                 </Box>
               </Box>
             </Box>
           </Box>
         </Box>
-      </Box>
-       
       </StyledTodayCard>
 
       <Box sx={{ color: "red" }}>
