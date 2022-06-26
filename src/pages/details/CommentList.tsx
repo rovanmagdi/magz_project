@@ -30,6 +30,8 @@ const CommentList = (props: any) => {
 
   useEffect(() => {
     channel.bind("new-comment", (data: any) => {
+      console.log(data);
+      
         setComments((oldState: any) => ( data.comments ));
         handleCommentsNummber(data.comments.length)
     });
