@@ -50,6 +50,9 @@ export default function Comment() {
 
       const { data } = await axios.post("http://localhost:4000/comment",body,config);
 
+      console.log(data);
+      
+
       
       setComment({ commentText: "" });
     },
