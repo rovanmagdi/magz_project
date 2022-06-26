@@ -8,6 +8,32 @@ import {
 } from "../../styled/PopularPost";
 import OtherPosts from "../otherPost/otherPosts";
 import PostDate from "../postDate/PostDate";
+
+import { ColorModeContext } from "../../contexts/ColorModeContext";
+import { useContext } from "react";
+
+
+import { SxProps, Theme} from "@mui/material";
+import { theme } from "../../theme/palette";
+
+const Styles = (theme: Theme): SxProps<Theme> => {
+  const defaultStyles: SxProps<Theme> = {};
+  switch (theme.palette.mode) {
+    case "dark":
+      return {
+        ...defaultStyles,
+        color: "white",
+
+      };
+
+    case "light": {
+      return {
+        ...defaultStyles,
+        color: "white",
+      };
+    }
+  }
+};
 const LastPosts = () => {
   const dispatch: any = useDispatch();
 
@@ -18,16 +44,16 @@ const LastPosts = () => {
   }, []);
 
   return (
-    <Box>
+    <Box >
       <StyledGridRightTitle
         sx={{
           fontFamily: "Oswald",
           fontWeight: "bold",
           fontSize: "14px",
-          textTransform: "uppercase",
+          textTransform: "uppercase", 
         }}
       >
-        lastest posts
+        latest posts
         <StyledGridRightLine />
       </StyledGridRightTitle>
       {recently.map((i: any) => {

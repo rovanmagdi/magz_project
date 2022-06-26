@@ -69,8 +69,6 @@ const Details = () => {
     axios.get(`http://localhost:4000/posts/get_one/${id}`).then((response) => {
       setStateDetails(response.data);
       handleLikesNumber(response.data.likes.length);
-      // console.log(response.data);
-      // console.log(response.data.auther._id);
       setStateAuthor(response.data.auther?._id);
       handleCommentsNummber(response.data.comments.length);
     });
@@ -115,15 +113,7 @@ const Details = () => {
     [postId.id]
   );
 
-  // useEffect(() => {
-  //   axios
-  //     .get(`http://localhost:4000/posts/get_one/${props.id}`)
-  //     .then((response) => {
-  //       setComments(response.data.comments);
-        
-  //     });
-  // }, [setComments, props.id]);
-
+ 
   const [pusher, setPusher] = useState<any>(
     () =>
       new Pusher("7d5a00f0cb139e7cc884", {
@@ -212,6 +202,7 @@ const Details = () => {
                 cursor: "pointer",
               },
             }}
+            onClick={() => handleAuthor(stateDetails.auther._id)}
           >
             <Box
               component="img"
@@ -220,7 +211,7 @@ const Details = () => {
               borderRadius="50%"
               marginLeft={2}
               marginRight={2}
-              src={image}
+              src={stateDetails?.auther?.image}
               alt="green iguana"
             />
 

@@ -15,5 +15,7 @@ export default interface Post {
     "__v":number;
     "autherFirstName":string;
     "autherLastName":string;
+    "autherImage":string;
+    "autherBrief":string;
     
   }

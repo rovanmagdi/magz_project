@@ -29,6 +29,32 @@ import { useDispatch, useSelector } from "react-redux";
 import { RecentlyPosts } from "../../redux/actions/recentlyAction";
 import PostDate from "../postDate/PostDate";
 import LastPosts from "../lastPosts/LastPosts";
+import { ColorModeContext } from "../../contexts/ColorModeContext";
+import { useContext } from "react";
+
+
+import { SxProps, Theme} from "@mui/material";
+
+const FooterStyles = (theme: Theme): SxProps<Theme> => {
+  const defaultStyles: SxProps<Theme> = {};
+  switch (theme.palette.mode) {
+    case "dark":
+      return {
+        ...defaultStyles,
+        color: "black",
+        backgroundColor: "white",
+
+      };
+
+    case "light": {
+      return {
+        ...defaultStyles,
+        color: "black",
+        backgroundColor: "#272727",
+      };
+    }
+  }
+};
 const Footer = () => {
   const theme = useTheme();
   const isMatch = useMediaQuery(theme.breakpoints.down(1117));
@@ -36,12 +62,12 @@ const Footer = () => {
   const { recently } = useSelector((state: any) => state);
  
   return (
-    <Box>
+    <Box >
       {!isMatch ? (
         <StyledFooter>
           <Grid container>
             <StyledGridLeft item xs={4}>
-              <img src={Logo} />
+              <Box component={"img"} src={Logo} />
               <StyledGridLeftText>
                 <Box>
                   All the day's headlines and highlights from MAGZ , direct to

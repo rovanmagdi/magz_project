@@ -10,7 +10,7 @@ import { getAuthorInfo } from '../../redux/actions/authorAction';
 const AuthorPage = () => {
 
   const dispatch: any = useDispatch();
-  const authorInfo=useSelector((state:any) =>state.author? state.author: state.author);
+  const {authorInfo}=useSelector((state:any) =>state)
 
   useEffect(() => {
     // dispatch(getAuthorInfo());

@@ -14,6 +14,10 @@ const CategoryRectCard: React.FC<Post> = (props) => {
 
   // console.log({ title }, { image });
 
+  // const{title,image}=props;
+  
+  console.log({title},{image});
+  
 
   const StyledCard = styled(Box)(({ theme }) => ({
     color: theme.palette.primary.contrastText,

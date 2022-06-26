@@ -26,7 +26,7 @@ import { Link } from "react-router-dom";
     padding: "0px 0px 0px 10px",
   }));
   export const StyledNavConatiner = styled(Box)(({ theme }) => ({
-    color: `${theme.palette.text.secondary}`,
+  
     fontSize: "12px",
   }));
   export const StyledNavTopRight = styled(Box)(({ theme }) => ({
@@ -134,7 +134,7 @@ import { Link } from "react-router-dom";
           opacity: 1,
           backgroundColor:
             theme.palette.mode === "dark"
-              ? "#8796A5"
+              ? `${theme.palette.primary.main}`
               : `${theme.palette.primary.main}`,
         },
       },
@@ -142,7 +142,7 @@ import { Link } from "react-router-dom";
     "& .MuiSwitch-thumb": {
       backgroundColor:
         theme.palette.mode === "dark"
-          ? "#003892"
+          ? "white"
           : `${theme.palette.primary.contrastText}`,
       width: 32,
       height: 32,

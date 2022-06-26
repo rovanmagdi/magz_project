@@ -24,7 +24,7 @@ const AuthorInfoSection = () => {
                 gap={10} >
                 {
                     author.fullName ? (<Grid item md={12} sm={12} ><QuotePaper {...author} />
-                    </Grid>) : (<CircularProgress />)
+                    </Grid>) : (<CircularProgress sx={{margin:"auto"}} />)
 
                 }
 
