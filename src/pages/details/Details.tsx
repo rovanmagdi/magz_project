@@ -272,6 +272,7 @@ const Details = () => {
               />
               <Typography component="span">
                 {/* {stateDetails?.likes?.length} */}
+                {likesNumber}
               </Typography>
             </Box>
           </Box>
