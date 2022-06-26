@@ -1,7 +1,7 @@
-import React, { useEffect } from "react";
+
 import logo from "./logo.svg";
 import "./App.css";
-import { Provider, useDispatch } from "react-redux";
+import { Provider } from "react-redux";
 import store from "../redux/store";
 import { lazy, Suspense } from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
@@ -20,7 +20,6 @@ import Done from "../pages/Done/Done";
 import { Paper } from "@mui/material";
 import Details from "../pages/details/Details";
 import AuthorPage from "../pages/author/AuthorPage";
-import { getAuthorInfo } from "../redux/actions/authorAction";
 import SportsPage from "../pages/categoryPage/CategoryPage";
 import useLocalStorage from "use-local-storage";
 import { getDesignMode } from "../theme/DarkMode";
@@ -39,7 +38,7 @@ function App() {
             <Suspense fallback={<CircularProgress />}>
               <BrowserRouter>
                 <Routes>
-                  <Route path="/" element={<Homenews />}>
+            <Route path="/" element={<Homenews />}>
                     <Route path="/Profile" element={<ProfilePge />} />
                     <Route path="/:page" element={<Details />} />
                     <Route path="/details/:id" element={<Details />} />

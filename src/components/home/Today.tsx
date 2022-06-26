@@ -25,6 +25,14 @@ import {useMediaQuery, useTheme} from "@mui/material";
 const Today: React.FC<Post> = (props) => {
   const { title, image, description, autherFirstName,autherLastName, updatedAt, _id, autherImage } = props;
 
+
+var today = new Date();
+var dd = String(today.getDate()).padStart(2, '0');
+var mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
+var yyyy = today.getFullYear();
+
+const todayDate = mm + '/' + dd + '/' + yyyy;
+
   const theme = useTheme();
   const MobileView = useMediaQuery(theme.breakpoints.down("lg"));
 
@@ -33,6 +41,7 @@ const Today: React.FC<Post> = (props) => {
     console.log("go details");
     console.log(props);
     nagivate(`/details/${id}`);       
+
 
   }
   // const [date, setDate]= useState("");
@@ -58,7 +67,7 @@ const Today: React.FC<Post> = (props) => {
             
       
             <Box sx={{ color: "text.secondary", fontSize: "13px" }}>
-              {<PostDate date={updatedAt} />}
+              {<PostDate date={todayDate} />}
             </Box>
 
           </DateTypography>

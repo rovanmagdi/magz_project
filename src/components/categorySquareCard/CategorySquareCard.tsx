@@ -4,11 +4,13 @@ import { styled, ThemeProvider } from "@mui/system";
 import { theme } from "../../theme/palette";
 import Typography from "@mui/material/Typography";
 import Post from '../../types/post'
+import { useNavigate } from "react-router-dom";
+import {OverlayPostBox} from '../../styled/styledBox'
 
 const CategorySquareCardComponent: React.FC<Post> = (props) => {
   
   const{title,image,description,updatedAt}=props;
-  console.log(title,image,description,updatedAt);
+  // console.log(title,image,description,updatedAt);
 
   const StyledCard = styled(Box)(({ theme }) => ({
     color: theme.palette.primary.contrastText,
@@ -23,11 +25,11 @@ const CategorySquareCardComponent: React.FC<Post> = (props) => {
   }));
 
   
-
+ 
   return (
     <ThemeProvider theme={theme}>
-      <StyledCard>
-       
+      <StyledCard >
+      <OverlayPostBox height={'100%'} sx={{borderRadius:'5px'}}></OverlayPostBox>
         <Typography
           sx={{
             width: "80%",

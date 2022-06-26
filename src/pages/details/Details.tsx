@@ -71,7 +71,6 @@ const Details = () => {
       .then((response) => {});
     // console.log(stateDetails?.comments);
   }, []);
-
   const handleAuthor = (id: any) => {
     dispatch(getAuthorInfo(stateAuthor));
     nagivate(`/auther/${id}`);
@@ -214,91 +213,76 @@ const Details = () => {
         <Comment />
 
         <Box
+        sx={{
+          border: "1px solid #B1B1B1",
+          marginTop: "30px",
+          height: "250px",
+          display: "flex",
+          justifyItems: "flex-end",
+        }}
+      >
+        <Box
           sx={{
-            border: "1px solid #B1B1B1",
-            marginTop: "30px",
-            height: "250px",
-            display: "flex",
-            justifyItems: "flex-end",
+            height: "200px",
+            width: "500px",
+            backgroundColor: "#FFFFFF",
+            boxShadow: "-1px -1px 13px 0px rgba(196,191,191,0.75);",
+            margin: "auto",
+            marginBottom: "0px",
           }}
         >
           <Box
             sx={{
-              height: "200px",
-              width: "500px",
-              backgroundColor: "#FFFFFF",
-              boxShadow: "-1px -1px 13px 0px rgba(196,191,191,0.75);",
-              margin: "auto",
-              marginBottom: "0px",
+              display: "flex",
             }}
           >
-            <Box
+            <StyledGridRightLine
               sx={{
-                display: "flex",
-              }}
-            >
-              <StyledGridRightLine
-                sx={{
-                  alignSelf: "flex-end",
-                  width: "500px",
-                  height: "6px",
-                  margin: "auto",
-                  position: "absolute",
-                  bottom: "0",
+                alignSelf: "flex-end",
+                width: "500px",
+                height: "6px",
+                margin: "auto",
+                position: "absolute",
+                bottom: "0",
 
-                  backgroundColor: "#4D7E96",
-                }}
-              />
-              <CategoryLabelBox
-                sx={{
-                  backgroundColor: "#4D7E96",
-                  position: "absolute",
-                  bottom: "0",
-                  zIndex: "15",
-                  width: "130px",
-                  left: "40%",
-                  "&:hover": {
-                    cursor: "pointer",
-                  },
-                }}
-                onClick={() => handleAuthor(stateDetails.auther._id)}
-              >
-                Articles for Author
-              </CategoryLabelBox>
-              <Box
-                sx={{
-                  display: "flex",
-                  justifyContent: "center",
-                  alignItems: "center",
+                backgroundColor: "#4D7E96",
+              }}
+            />
+            <CategoryLabelBox
+              sx={{
+                backgroundColor: "#4D7E96",
+                position: "absolute",
+                bottom: "0",
+                zIndex: "15",
+                width:"130px",
+                left: "40%",
+                "&:hover":{
                   cursor: "pointer",
-                }}
-                onClick={() => handleAuthor(stateDetails.auther._id)}
-              >
-                <Box
-                  component="img"
-                  src={stateDetails.auther.image}
-                  sx={{
-                    borderRadius: "50%",
-                    height: "70px",
-                    width: "70px",
-                    margin: "20px",
-                  }}
-                />
-                <Box sx={{ margin: "20px" }}>
-                  <Box component="p" sx={{ fontWeight: "bold" }}>
-                    <AuthorTypography>
-                      {stateDetails.auther.firstName}{" "}
-                      {stateDetails.auther.lastName}
-                    </AuthorTypography>
-                  </Box>
-                  <Box component="span" sx={{ fontSize: "13px" }}>
-                    {stateDetails.brief}
-                  </Box>
+                }
+              }}
+              onClick={() => handleAuthor(stateDetails.auther._id)}
+            >
+              Articles for Author
+            </CategoryLabelBox>
+            <Box sx={{ display: "flex",justifyContent: "center",alignItems: "center"}}>
+              <Box
+                component="img"
+                src={stateDetails.auther.image}
+                sx={{ borderRadius: "50%", height: "70px", width: "70px",margin:"20px" }}
+              />
+              <Box sx={{margin:"20px"}}>
+                <Box component="p" sx={{fontWeight:"bold"}} ><AuthorTypography>
+              {stateDetails.auther.firstName} {stateDetails.auther.lastName}
+            </AuthorTypography></Box>
+                <Box component="span" sx={{fontSize:"13px"}}>
+                {stateDetails.brief}
                 </Box>
               </Box>
             </Box>
           </Box>
         </Box>
+      </Box>
+       
       </StyledTodayCard>
 
       <Box sx={{ color: "red" }}>

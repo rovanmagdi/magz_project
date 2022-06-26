@@ -4,6 +4,9 @@ import { styled, ThemeProvider } from "@mui/system";
 import { theme } from "../../theme/palette";
 import Typography from "@mui/material/Typography";
 import Post from '../../types/post'
+import { useNavigate } from 'react-router-dom';
+import { useSelector } from 'react-redux';
+import {OverlayPostBox} from '../../styled/styledBox'
 
 const CategoryRectCard:React.FC<Post> = (props) => {
 
@@ -23,28 +26,41 @@ const CategoryRectCard:React.FC<Post> = (props) => {
 
 
   }));
+  const { catergory } = useSelector((state: any) => state);
+
+  const nagivate: any = useNavigate();
+  
+  const handleGoDetails = (id: any) => {
+    console.log("go details");
+    nagivate(`/details/${id}`);
 
 
-    return (
-      <ThemeProvider theme={theme}>
-      <StyledCard>
-       
+  }
+  return (
+    <ThemeProvider theme={theme}>
+      
+      <StyledCard  sx={{
+        "&:hover": {
+          cursor: "pointer",
+        }
+      }}>
+<OverlayPostBox height={'100%'} sx={{borderRadius:'5px'}}></OverlayPostBox>
         <Typography
           sx={{
             width: "70%",
             position: "absolute",
             top: "60%",
             textTransform: "upperCase",
-            fontWeight:'bold',
+            fontWeight: 'bold',
             fontSize: "1em",
           }} variant='caption'
         >
-          
+
           {title}
         </Typography>
       </StyledCard>
     </ThemeProvider>
-      );
+  );
 };
 
 export default CategoryRectCard;

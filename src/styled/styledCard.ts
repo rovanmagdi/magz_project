@@ -63,3 +63,13 @@ export const StyledCultureCard = styled(StyledLifestyleCard)(() => ({
       color: "#4D7E96"
     
   }));
+
+  export const StyledPostCard = styled(StyledCard)(() => ({
+    border: ".1px solid lightGray",
+    position:'relative',
+    cursor:'pointer',
+    "&:hover": {
+   
+      color: "#4D7E96",
+    },
+  }));
