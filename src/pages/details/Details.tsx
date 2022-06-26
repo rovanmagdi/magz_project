@@ -162,7 +162,7 @@ const Details = () => {
             component="img"
             sx={{ borderRadius: "8px", backgroundSize: "contain" }}
             height="380"
-            image={stateDetails.image}
+            image={stateDetails?.image}
             alt="green iguana"
           />
           <OverlayDetailsBox></OverlayDetailsBox>
@@ -221,7 +221,7 @@ const Details = () => {
               borderRadius="50%"
               marginLeft={2}
               marginRight={2}
-              src={stateDetails.auther.image}
+              src={stateDetails.auther?.image}
               alt="green iguana"
             />
 

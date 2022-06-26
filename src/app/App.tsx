@@ -21,7 +21,7 @@ import { Paper } from "@mui/material";
 import Details from "../pages/details/Details";
 import AuthorPage from "../pages/author/AuthorPage";
 import SportsPage from "../pages/categoryPage/CategoryPage";
-import useLocalStorage from "use-local-storage";
+
 import { getDesignMode } from "../theme/DarkMode";
 import { createTheme } from "@mui/material";
 import { ColorModeProvider } from "../contexts/ColorModeContext";

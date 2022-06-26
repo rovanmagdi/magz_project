@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import CategoryAllSection from "../../components/categoryAllSection/CategoryAllSection";
-import SubCategorySection from "../../components/subCategorySection/SubCategorySections";
+import SubCategorySections from "../../components/subCategorySection/SubCategorySections";
 import { useDispatch, useSelector } from "react-redux";
 import { Box, Stack } from "@mui/material";
 import { useParams } from "react-router-dom";
@@ -25,7 +25,7 @@ export default function SportsPage() {
 
       <CategoryAllSection />
 
-      <SubCategorySection />
+      <SubCategorySections />
     </>
   );
 }
