@@ -23,6 +23,12 @@ import { TypographyOverFlow } from "../../styled/TypopraphyOverFlow";
 
 const Today: React.FC<Post> = (props) => {
   const { title, image, description, auther, updatedAt, _id } = props;
+var today = new Date();
+var dd = String(today.getDate()).padStart(2, '0');
+var mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0!
+var yyyy = today.getFullYear();
+
+const todayDate = mm + '/' + dd + '/' + yyyy;
 
   // const Today: React.FC<Post> = (props) => {
   //   const { title, image, description, auther } = props;
@@ -57,7 +63,7 @@ const Today: React.FC<Post> = (props) => {
             
       
             <Box sx={{ color: "text.secondary", fontSize: "13px" }}>
-              {<PostDate date={updatedAt} />}
+              {<PostDate date={todayDate} />}
             </Box>
 
           </DateTypography>

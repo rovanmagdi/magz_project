@@ -1,15 +1,21 @@
 import React, { useEffect } from "react";
 import CategoryAllSection from "../../components/categoryAllSection/CategoryAllSection";
-import SubCategorySection from "../../components/subCategorySection/SubCategorySection";
+import SubCategorySection from "../../components/subCategorySection/SubCategorySections";
 import { useDispatch, useSelector } from "react-redux";
 import { Box, Stack } from "@mui/material";
 import { useParams } from "react-router-dom";
 import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
+import { Catergory } from "../../redux/actions/catergotyAction";
+
 
 export default function SportsPage() {
   const { catergory } = useSelector((state: any) => state);
   const { page } = useParams();
-
+  const dispatch: any = useDispatch();
+  useEffect(() => {
+    dispatch(Catergory(page));
+    console.log(catergory);
+  }, [page]);
   return (
     <>
       <Stack  direction ="row"sx={{color:"lightGray",fontSize:"12px",margin:"0px 0px 20px 20px"}}>
