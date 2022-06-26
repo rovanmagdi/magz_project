@@ -9,7 +9,7 @@ import {OverlayPostBox} from '../../styled/styledBox'
 
 const CategorySquareCardComponent: React.FC<Post> = (props) => {
   
-  const{title,image,description,updatedAt}=props;
+  const{title,image,description,updatedAt,_id}=props;
   // console.log(title,image,description,updatedAt);
 
   const StyledCard = styled(Box)(({ theme }) => ({
@@ -24,11 +24,18 @@ const CategorySquareCardComponent: React.FC<Post> = (props) => {
 
   }));
 
+  const nagivate: any = useNavigate();
+  const handleGoDetails = (id: any) => {
+    console.log("go details");
+    nagivate(`/details/${id}`);       
+
+
+  }
   
  
   return (
     <ThemeProvider theme={theme}>
-      <StyledCard >
+      <StyledCard   onClick={()=>handleGoDetails(_id)} >
       <OverlayPostBox height={'100%'} sx={{borderRadius:'5px'}}></OverlayPostBox>
         <Typography
           sx={{
