@@ -26,13 +26,14 @@ export default function SubCategorySection() {
            filteredCategories[category.subCategory]?
            filteredCategories[category.subCategory].push(category):filteredCategories[category.subCategory]=[category];
        })
-       console.log(filteredCategories["football"]?.slice(2, 6))
-       console.log(filteredCategories["football"])
+      //  console.log(filteredCategories["football"]?.slice(2, 6))
+      //  console.log(filteredCategories["football"])
+      //  console.log(Object.keys(filteredCategories))
    }
 
   
 
-  const subCategories = ["football","vollyball"];
+  const subCategories = Object.keys(filteredCategories);
 
   return (
     <>

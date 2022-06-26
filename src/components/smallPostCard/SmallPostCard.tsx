@@ -13,21 +13,26 @@ import {PostTitle,PostDate,AutherName} from '../../styled/styledTypography'
 import CustomPostDate from '../postDate/PostDate'
 import {OverlayPostBox} from '../../styled/styledBox'
 import {StyledPostCard} from '../../styled/styledCard'
+import { useNavigate } from 'react-router-dom';
 
 export default function SmallPostCard(props: Post) {
-  const { title, image, updatedAt } = props;
+  const { title, image, updatedAt,_id } = props;
   
 
+  const nagivate: any = useNavigate();
   
+  const handleGoDetails = (id: any) => {
+    console.log("go details");
+    nagivate(`/details/${id}`);
+
+
+  }
 
   return (
     <ThemeProvider theme={theme}>
       <StyledPostCard
-        // sx={{ 
-        //   border: ".1px solid lightGray",
-        //   position:'relative'
-          
-        // }}
+      onClick={()=>handleGoDetails(_id)}
+        
       >
         <OverlayPostBox></OverlayPostBox>
         <CardMedia

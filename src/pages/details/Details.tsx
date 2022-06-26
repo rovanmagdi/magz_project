@@ -63,8 +63,8 @@ const Details = () => {
     axios.get(`http://localhost:4000/posts/get_one/${id}`).then((response) => {
       setStateDetails(response.data);
       // console.log(response.data);
-      console.log(response.data.auther._id);
-      setStateAuthor(response.data.auther._id);
+      // console.log(response.data.auther._id);
+      // setStateAuthor(response.data.auther._id);
     });
     axios
       .patch(`http://localhost:4000/posts/add_view/${id}`)
@@ -160,7 +160,7 @@ const Details = () => {
             <AuthorTypography
               onClick={() => handleAuthor(stateDetails.auther._id)}
             >
-              {stateDetails.auther.firstName} {stateDetails.auther.lastName}
+              {/* {stateDetails.auther.firstName} {stateDetails.auther.lastName} */}
             </AuthorTypography>
           </Box>
 
@@ -268,12 +268,12 @@ const Details = () => {
             <Box sx={{ display: "flex",justifyContent: "center",alignItems: "center"}}>
               <Box
                 component="img"
-                src={stateDetails.auther.image}
+                // src={stateDetails.auther.image}
                 sx={{ borderRadius: "50%", height: "70px", width: "70px",margin:"20px" }}
               />
               <Box sx={{margin:"20px"}}>
                 <Box component="p" sx={{fontWeight:"bold"}} ><AuthorTypography>
-              {stateDetails.auther.firstName} {stateDetails.auther.lastName}
+              {/* {stateDetails.auther.firstName} {stateDetails.auther.lastName} */}
             </AuthorTypography></Box>
                 <Box component="span" sx={{fontSize:"13px"}}>
                 {stateDetails.brief}
