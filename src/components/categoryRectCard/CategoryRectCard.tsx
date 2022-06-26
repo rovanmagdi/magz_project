@@ -8,9 +8,13 @@ import { useNavigate } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import {OverlayPostBox} from '../../styled/styledBox'
 
-const CategoryRectCard:React.FC<Post> = (props) => {
+const CategoryRectCard: React.FC<Post> = (props) => {
 
-  const{title,image}=props;
+  const { title, image ,_id} = props;
+
+  // console.log({ title }, { image });
+
+  // const{title,image}=props;
   
   console.log({title},{image});
   
@@ -43,7 +47,8 @@ const CategoryRectCard:React.FC<Post> = (props) => {
         "&:hover": {
           cursor: "pointer",
         }
-      }}>
+      }}
+      onClick={()=>handleGoDetails(_id)}>
 <OverlayPostBox height={'100%'} sx={{borderRadius:'5px'}}></OverlayPostBox>
         <Typography
           sx={{
