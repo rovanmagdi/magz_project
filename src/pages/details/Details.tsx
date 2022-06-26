@@ -227,11 +227,7 @@ const Details = () => {
             <AuthorTypography
               onClick={() => handleAuthor(stateDetails?.auther?._id)}
             >
-<<<<<<< HEAD
-              {/* {stateDetails.auther.firstName} {stateDetails.auther.lastName} */}
-=======
               {stateDetails?.auther?.firstName} {stateDetails?.auther?.lastName}
->>>>>>> 5af0254efdb3cfc4f63a1839867cd8fdc1f712eb
             </AuthorTypography>
           </Box>
 
@@ -312,22 +308,6 @@ const Details = () => {
                 display: "flex",
               }}
             >
-<<<<<<< HEAD
-              Articles for Author
-            </CategoryLabelBox>
-            <Box sx={{ display: "flex",justifyContent: "center",alignItems: "center"}}>
-              <Box
-                component="img"
-                // src={stateDetails.auther.image}
-                sx={{ borderRadius: "50%", height: "70px", width: "70px",margin:"20px" }}
-              />
-              <Box sx={{margin:"20px"}}>
-                <Box component="p" sx={{fontWeight:"bold"}} ><AuthorTypography>
-              {/* {stateDetails.auther.firstName} {stateDetails.auther.lastName} */}
-            </AuthorTypography></Box>
-                <Box component="span" sx={{fontSize:"13px"}}>
-                {/* {stateDetails.brief} */}
-=======
               <StyledGridRightLine
                 sx={{
                   alignSelf: "flex-end",
@@ -383,7 +363,6 @@ const Details = () => {
                   <Box component="span" sx={{ fontSize: "13px" }}>
                     {stateDetails.brief}
                   </Box>
->>>>>>> 5af0254efdb3cfc4f63a1839867cd8fdc1f712eb
                 </Box>
               </Box>
             </Box>
