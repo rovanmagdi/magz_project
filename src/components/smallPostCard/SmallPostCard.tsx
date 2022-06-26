@@ -4,7 +4,7 @@ import CardHeader from "@mui/material/CardHeader";
 import CardMedia from "@mui/material/CardMedia";
 import CardContent from "@mui/material/CardContent";
 import Avatar from "@mui/material/Avatar";
-
+// mostafa
 import { red } from "@mui/material/colors";
 import {  ThemeProvider } from "@mui/system";
 import Post from "../../types/post";
@@ -16,7 +16,7 @@ import {StyledPostCard} from '../../styled/styledCard'
 import { useNavigate } from 'react-router-dom';
 
 export default function SmallPostCard(props: Post) {
-  const { title, image, updatedAt,_id } = props;
+  const { title, image, updatedAt,_id,autherFirstName,autherLastName,autherImage } = props;
   
 
   const nagivate: any = useNavigate();
@@ -58,11 +58,11 @@ export default function SmallPostCard(props: Post) {
           avatar={
             <Avatar
               sx={{ bgcolor: red[500] }}
-              src={image}
+              src={autherImage}
               aria-label="recipe"
             ></Avatar>
           }
-          subheader={<AutherName>Author Name</AutherName>}
+          subheader={<AutherName> {autherFirstName+' '+autherLastName}</AutherName>}
           sx={{ pt: 0, pb: "20px", color: "text.dark" }}
         />
         {/* <PostTitle>Author Name</PostTitle>
