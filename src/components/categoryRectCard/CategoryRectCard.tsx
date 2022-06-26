@@ -10,7 +10,7 @@ import { OverlayPostBox } from '../../styled/styledBox'
 
 const CategoryRectCard: React.FC<Post> = (props) => {
 
-  const { title, image } = props;
+  const { title, image ,_id} = props;
 
   // console.log({ title }, { image });
 
@@ -43,8 +43,14 @@ const CategoryRectCard: React.FC<Post> = (props) => {
         "&:hover": {
           cursor: "pointer",
         }
+<<<<<<< HEAD
       }}>
         <OverlayPostBox height={'100%'} sx={{ borderRadius: '5px' }}></OverlayPostBox>
+=======
+      }}
+      onClick={()=>handleGoDetails(_id)}>
+<OverlayPostBox height={'100%'} sx={{borderRadius:'5px'}}></OverlayPostBox>
+>>>>>>> 5af0254efdb3cfc4f63a1839867cd8fdc1f712eb
         <Typography
           sx={{
             width: "70%",

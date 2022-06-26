@@ -11,13 +11,29 @@ import { useNavigate } from "react-router-dom";
 
 export default function CategoryAllSection() {
   const { catergory } = useSelector((state: any) => state);
+<<<<<<< HEAD
   const nagivate: any = useNavigate();
   const handleGoDetails = (id: any) => {
     console.log("go details");
     nagivate(`/details/${id}`);       
+=======
+
+  const dispatch: any = useDispatch();
+  const { page } = useParams();
+
+  // useEffect(() => {
+  //   dispatch(Catergory(page));
+  //   console.log(catergory);
+  // }, [page]);
+
+  // const nagivate: any = useNavigate();
+  // const handleGoDetails = (id: any) => {
+  //   console.log("go details");
+  //   nagivate(`/details/${id}`);       
+>>>>>>> 5af0254efdb3cfc4f63a1839867cd8fdc1f712eb
 
 
-  }
+  // }
   return (
     <>
      
@@ -40,7 +56,7 @@ export default function CategoryAllSection() {
             
           >
             <Grid item md={5} xs={12} height={{ md: "100%", xs: "250px" }}
-            onClick={()=>handleGoDetails(catergory[0]._id)} sx={{"&:hover":{
+            sx={{"&:hover":{
               cursor: "pointer",
             }}}>
               <CategorySquareCard {...catergory[0]}  />
@@ -48,8 +64,8 @@ export default function CategoryAllSection() {
             <Grid item md={6.8} xs={12} height={{ md: "100%", xs: "500px" }}>
               <Stack spacing={2} height={"100%"}>
               
-                <CategoryRectCard {...catergory[1]} />
-                <CategoryRectCard {...catergory[2]} />
+                <CategoryRectCard {...catergory[1]}  />
+                <CategoryRectCard {...catergory[2]}  />
               </Stack>
             </Grid>
           </Grid>
