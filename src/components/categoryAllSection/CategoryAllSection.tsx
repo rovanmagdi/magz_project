@@ -16,10 +16,10 @@ export default function CategoryAllSection() {
   const dispatch: any = useDispatch();
   const { page } = useParams();
 
-  useEffect(() => {
-    dispatch(Catergory(page));
-    console.log(catergory);
-  }, [page]);
+  // useEffect(() => {
+  //   dispatch(Catergory(page));
+  //   console.log(catergory);
+  // }, [page]);
 
   const nagivate: any = useNavigate();
   const handleGoDetails = (id: any) => {

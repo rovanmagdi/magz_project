@@ -9,6 +9,9 @@ import Post from "../../types/post";
 import { theme } from "../../theme/palette";
 import {PostTitle,PostDate,AutherName} from '../../styled/styledTypography';
 import CustomPostDate from '../postDate/PostDate'
+import {OverlayPostBox} from '../../styled/styledBox'
+import {StyledPostCard} from '../../styled/styledCard'
+
 
 
 
@@ -18,12 +21,14 @@ export default function PostCard(props: Post) {
   
   return (
     <ThemeProvider theme={theme}>
-      <Card
-        sx={{
-          border: ".1px solid lightGray",
+      <StyledPostCard
+        // sx={{
+        //   border: ".1px solid lightGray",
+        //   position:'relative'
 
-        }}
+        // }}
       >
+        <OverlayPostBox height={"250px"}></OverlayPostBox>
         <CardMedia
           component="img"
           height="250px"
@@ -56,7 +61,7 @@ export default function PostCard(props: Post) {
         />
         {/* <PostTitle>Author Name</PostTitle>
          </CardHeader> */}
-      </Card>
+      </StyledPostCard>
     </ThemeProvider>
   );
 }

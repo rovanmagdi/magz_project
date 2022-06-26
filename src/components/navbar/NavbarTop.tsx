@@ -142,6 +142,7 @@ export default function NavbarTop() {
                         ) : (
                           <StyledRightOneConatiner>
                             <PersonIconNav />
+                           
                           </StyledRightOneConatiner>
                         )}
                         {userInfoObj.firstName} {userInfoObj.lastName}
