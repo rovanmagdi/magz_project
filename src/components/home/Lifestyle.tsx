@@ -31,7 +31,7 @@ const Lifestyle: React.FC<Post> = (props) => {
   return (
     <>
    
-      <StyledLifestyleCard   onClick={() => handleGoDetails(_id)}>
+      <StyledLifestyleCard   onClick={() => handleGoDetails(_id)}  elevation={0}>
         <CardActionArea>
           <CardMedia
             component="img"

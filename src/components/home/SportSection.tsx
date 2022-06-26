@@ -15,8 +15,8 @@ const SportSection = () => {
     const filteredCategories:any=[];
 
     const theme = useTheme();
-    const MobileView = useMediaQuery(theme.breakpoints.down("md")); 
-    const LaptopView = useMediaQuery(theme.breakpoints.up("md"));
+    const MobileView = useMediaQuery(theme.breakpoints.down("lg")); 
+    const LaptopView = useMediaQuery(theme.breakpoints.up("lg"));
 
     const {posts}=useSelector((state:any) =>state);
     // console.log(posts)
@@ -56,7 +56,7 @@ const SportSection = () => {
               {
         filteredCategories["sport"]? (filteredCategories["sport"].map(( post:any)=>{
             return <SportMobileView key={post._id} {...post}/>
-        })):(<CircularProgress/>)
+        })):(<CircularProgress sx={{margin:"auto"}}/>)
         
     }
 </Grid>

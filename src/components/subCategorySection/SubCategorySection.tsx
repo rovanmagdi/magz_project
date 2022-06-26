@@ -11,8 +11,8 @@ import { CategoryLabelBox } from "../../styled/styledBox";
 import { HorizontalLineBox } from "../../styled/styledBox";
 
 export default function SubCategorySection() {
-  const posts = useSelector((state: any) =>
-    state.posts ? state.posts[0].posts : state.posts
+  const {posts} = useSelector((state: any) =>
+    state 
   );
  
 

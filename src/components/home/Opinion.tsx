@@ -38,7 +38,7 @@ const Opinion: React.FC<Post> = (props) => {
   
   return (
     <>
-      <StyledOpinionCard onClick={() => handleGoDetails(_id)}>
+      <StyledOpinionCard onClick={() => handleGoDetails(_id)} elevation={0}>
         <CardActionArea>
           <CardMedia
             component="img"

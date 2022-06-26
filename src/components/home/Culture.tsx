@@ -28,7 +28,7 @@ const Culture: React.FC<Post> = (props) => {
 return(
 <>
  
-     <StyledCultureCard  onClick={() => handleGoDetails(_id)}>
+     <StyledCultureCard  onClick={() => handleGoDetails(_id)} elevation={0}>
       <CardActionArea>
         <CardMedia
           component="img" sx={{borderRadius:"2px"}}

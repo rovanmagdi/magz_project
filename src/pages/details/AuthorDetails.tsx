@@ -53,6 +53,7 @@ export default function AuthorDetails(props:any) {
                 width:"130px",
                 left: "40%",
               }}
+              // onClick={() => handleAuthor(stateDetails.auther._id)}
             >
               Articles for Author
             </CategoryLabelBox>

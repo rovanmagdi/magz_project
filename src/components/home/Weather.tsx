@@ -62,7 +62,7 @@ const Weather = () => {
     <>
  
 
-      <WeatherPaper hidden={MobileView}>
+      <WeatherPaper hidden={MobileView} elevation={0}>
         <Stack>
           <Stack direction={"row"} justifyContent={"space-between"}>
             <Box>
@@ -141,8 +141,7 @@ const Weather = () => {
           )}
         </Stack>
       </WeatherPaper>
-  
-      {/* <RecommendedPosts/> */}
+ 
     </>
   );
 };

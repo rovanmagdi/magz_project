@@ -21,6 +21,33 @@ import {
 
 import { userLogout } from "../../redux/actions/userData";
 import { useSelector } from "react-redux";
+import { ColorModeContext } from "../../contexts/ColorModeContext";
+import { useContext } from "react";
+import { useTheme } from "@mui/material";
+
+import { SxProps, Theme} from "@mui/material";
+import { theme } from "../../theme/palette";
+
+const TopNavStyles = (theme: Theme): SxProps<Theme> => {
+  const defaultStyles: SxProps<Theme> = {};
+  switch (theme.palette.mode) {
+    case "dark":
+      return {
+        ...defaultStyles,
+        color: "black",
+        backgroundColor: "#E6E8F0",
+
+      };
+
+    case "light": {
+      return {
+        ...defaultStyles,
+        color: "black",
+        backgroundColor: "#E6E8F0",
+      };
+    }
+  }
+};
 
 export default function NavbarTop() {
   const user = useSelector((state: any) => state.user);
@@ -93,7 +120,7 @@ export default function NavbarTop() {
   const userInfoObj = JSON.parse(`${localStorage.getItem("RegisterInfo")}`);
   return (
     <>
-      <StyledNavTop>
+      <StyledNavTop sx={TopNavStyles(theme)}>
         <Box component="div">
           {date_raw} {month_raw} {},{year}
         </Box>
@@ -112,13 +139,13 @@ export default function NavbarTop() {
                 component={"span"}
                 variant={"body2"}
               >
-                <StyledLink>Sign in</StyledLink>
+                <StyledLink sx={TopNavStyles(theme)}>Sign in</StyledLink>
               </Typography>
             </StyledRightOne>
           ) : (
             <Box>
               <StyledRightOne>
-                <FormControl>
+                <FormControl >
                   <Button
                     id="basic-button"
                     aria-controls={open ? "basic-menu" : undefined}
@@ -127,15 +154,16 @@ export default function NavbarTop() {
                     onClick={handleClick}
                   >
                     {!userInfoObj.imageUrl ? (
-                      <Box sx={{ display: "flex" }}>
+                      <Box sx={ TopNavStyles(theme)} display="flex">
                         {userInfoObj.image !== " " ? (
-                          <Box
+                          <Box 
                             component="img"
                             sx={{
                               height: "25px",
                               width: "25px",
                               borderRadius: "50%",
                               marginRight: "10px",
+                             
                             }}
                             src={`${userInfoObj.image}`}
                           />
@@ -163,7 +191,7 @@ export default function NavbarTop() {
                     )}
                     {` `}
                   </Button>
-                  <Menu
+                  <Menu  
                     id="basic-menu"
                     anchorEl={anchorEl}
                     open={open}
@@ -202,8 +230,8 @@ export default function NavbarTop() {
           )}
 
           <Box>
-            <FormControl>
-              <StylesSelected
+            <FormControl >
+              <StylesSelected sx={TopNavStyles(theme)}
                 value={selected}
                 onChange={handleChange}
                 inputProps={{

@@ -34,9 +34,9 @@ const OpinionSection = () => {
  
               {
        filteredCategories["opinion"]? (filteredCategories["opinion"].map(( post:any)=>{
-            return <Grid item sm={12} md={4} key={post._id} ><Opinion {...post}/>
+            return <Grid item sm={12} lg={4} key={post._id} ><Opinion {...post}/>
             </Grid> 
-        })):(<CircularProgress/>)
+        })):(<CircularProgress sx={{margin:"auto"}}/>)
         
     }
 

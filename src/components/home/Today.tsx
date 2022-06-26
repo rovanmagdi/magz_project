@@ -19,23 +19,24 @@ import { useNavigate } from "react-router-dom";
 
 import { ReadMoreTypography } from "../../styled/styledTypography";
 import { TypographyOverFlow } from "../../styled/styledTypography";
-
+import { useState } from "react";
+import {useMediaQuery, useTheme} from "@mui/material";
 
 const Today: React.FC<Post> = (props) => {
   const { title, image, description, autherFirstName,autherLastName, updatedAt, _id, autherImage } = props;
 
-  // const Today: React.FC<Post> = (props) => {
-  //   const { title, image, description, auther } = props;
+  const theme = useTheme();
+  const MobileView = useMediaQuery(theme.breakpoints.down("lg"));
 
-  // console.log({ title }, { image });
   const nagivate: any = useNavigate();
   const handleGoDetails = (id: any) => {
     console.log("go details");
     console.log(props);
     nagivate(`/details/${id}`);       
 
-
   }
+  // const [date, setDate]= useState("");
+
   return (
     <StyledTodayCard elevation={0} onClick={() => handleGoDetails(_id)}>
       <CardActionArea>
@@ -47,7 +48,7 @@ const Today: React.FC<Post> = (props) => {
           image={image}
           alt="green iguana"
         />
-        <OverlayTodayBox><ReadMoreTypography sx={{left:"43%", top:"45%"}}>read more...</ReadMoreTypography></OverlayTodayBox>
+        <OverlayTodayBox><ReadMoreTypography sx={{left:"43%", top:"45%"}} hidden={MobileView}>read more...</ReadMoreTypography></OverlayTodayBox>
         <CardContent>
           <Typography gutterBottom variant="h5" component="div">
             {title}

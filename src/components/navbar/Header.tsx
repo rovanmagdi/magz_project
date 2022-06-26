@@ -10,6 +10,28 @@ import NavbarImage from "./NavbarImage";
 import { useNavigate } from "react-router-dom";
 import NavbarBottom from "./NavbarBottom";
 
+import { SxProps, Theme} from "@mui/material";
+
+const HeaderStyles = (theme: Theme): SxProps<Theme> => {
+  const defaultStyles: SxProps<Theme> = {};
+  switch (theme.palette.mode) {
+    case "dark":
+      return {
+        ...defaultStyles,
+        color: "white",
+        backgroundColor: "black",
+
+      };
+
+    case "light": {
+      return {
+        ...defaultStyles,
+        color: "black",
+        backgroundColor: "#fff",
+      };
+    }
+  }
+};
 const Header = () => {
   const theme = useTheme();
   const isMatch = useMediaQuery(theme.breakpoints.down("md"));
@@ -18,7 +40,7 @@ const Header = () => {
     nagivate("/");
   };
   return (
-    <StyledNavConatiner>
+    <StyledNavConatiner sx={HeaderStyles(theme)}>
       {isMatch ? (
         <StypledMedia>
           <Box sx={{ padding: " 20px" }}>
