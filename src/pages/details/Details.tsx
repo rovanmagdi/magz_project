@@ -88,27 +88,29 @@ const Details = () => {
     setCommentsNummber(number);
   };
 
+
   const postId = useParams();
   const handleLike = useCallback(
     async (event: React.SyntheticEvent<EventTarget>) => {
+    
+
       const userInfo: any = JSON.parse(
         `${localStorage.getItem("RegisterInfo")}`
       );
 
-      const config = {
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: ` Bearer ${userInfo.token}`,
-        },
-      };
+      const config={
+        headers:{
+         'Content-Type':'application/json',
+         Authorization:` Bearer ${userInfo.token}`
+        }
+      }
 
-      const body = { postId: postId.id };
+      const body = {postId:postId.id };
 
-      const { data } = await axios.post(
-        "http://localhost:4000/like",
-        body,
-        config
-      );
+
+      const { data } = await axios.post("http://localhost:4000/like",body,config);
+
+      
     },
     [postId.id]
   );
@@ -118,7 +120,7 @@ const Details = () => {
   //     .get(`http://localhost:4000/posts/get_one/${props.id}`)
   //     .then((response) => {
   //       setComments(response.data.comments);
-
+        
   //     });
   // }, [setComments, props.id]);
 
@@ -132,7 +134,8 @@ const Details = () => {
 
   useEffect(() => {
     channel.bind("new-like", (data: any) => {
-      handleLikesNumber(data.likes.length);
+        // setComments((oldState: any) => ( data.comments ));
+        handleLikesNumber(data.likes.length)
     });
   }, [channel]);
 
@@ -269,7 +272,6 @@ const Details = () => {
               />
               <Typography component="span">
                 {/* {stateDetails?.likes?.length} */}
-                {likesNumber}
               </Typography>
             </Box>
           </Box>

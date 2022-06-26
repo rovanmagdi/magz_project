@@ -9,21 +9,31 @@ import Post from "../../types/post";
 import { theme } from "../../theme/palette";
 import {PostTitle,PostDate,AutherName} from '../../styled/styledTypography';
 import CustomPostDate from '../postDate/PostDate'
+import {OverlayPostBox} from '../../styled/styledBox'
+import {StyledPostCard} from '../../styled/styledCard'
+import { useNavigate } from 'react-router-dom';
+
 
 
 
 export default function PostCard(props: Post) {
-  const { title, image, updatedAt } = props;
+  const { title, image, updatedAt,_id } = props;
   
+  const nagivate: any = useNavigate();
   
+  const handleGoDetails = (id: any) => {
+    console.log("go details");
+    nagivate(`/details/${id}`);
+
+
+  }
   return (
     <ThemeProvider theme={theme}>
-      <Card
-        sx={{
-          border: ".1px solid lightGray",
-
-        }}
+      <StyledPostCard
+      onClick={()=>handleGoDetails(_id)}
+        
       >
+        <OverlayPostBox height={"250px"}></OverlayPostBox>
         <CardMedia
           component="img"
           height="250px"
@@ -56,7 +66,7 @@ export default function PostCard(props: Post) {
         />
         {/* <PostTitle>Author Name</PostTitle>
          </CardHeader> */}
-      </Card>
+      </StyledPostCard>
     </ThemeProvider>
   );
 }
