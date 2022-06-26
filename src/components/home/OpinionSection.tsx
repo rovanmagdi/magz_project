@@ -12,8 +12,7 @@ const OpinionSection = () => {
 
     const filteredCategories:any=[];
 
-
-    const posts=useSelector((state:any) =>state.posts? state.posts: state.posts);
+    const {posts}=useSelector((state:any) =>state);
     // console.log(posts)
     if(posts)
     {
@@ -31,13 +30,13 @@ const OpinionSection = () => {
     </Box>  
  
  <Grid container   columns={12}
-           gap={1} >
+          columnGap={17} >
  
               {
        filteredCategories["opinion"]? (filteredCategories["opinion"].map(( post:any)=>{
-            return <Grid item sm={12} md={4} key={post._id}><Opinion {...post}/>
+            return <Grid item sm={12} lg={4} key={post._id} ><Opinion {...post}/>
             </Grid> 
-        })):(<CircularProgress/>)
+        })):(<CircularProgress sx={{margin:"auto"}}/>)
         
     }
 

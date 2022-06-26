@@ -47,10 +47,14 @@ export const DateTypography= styled(Typography)(({theme})=>({
 
     fontSize:"1.3em", color:"white", fontWeight:"700"
     , position:"relative",
-    top:"40%",  left:"38%", textTransform:"capitalize"
+    top:"45%",  left:"38%", textTransform:"capitalize"
 
   
   
   
   }))
 
+  export const TypographyOverFlow = styled(Typography)(({ theme }) => ({
+    height:" 45px",
+           overflowY: "hidden",
+  }));

@@ -24,7 +24,38 @@ import { InterstedCatergory } from "../../redux/actions/interestedAction";
 import { subCatergory } from "../../redux/actions/subCategory";
 import { useParams } from "react-router";
 import { log } from "console";
+import { useTheme} from "@mui/material";
+import { ColorModeContext } from "../../contexts/ColorModeContext";
+import { useContext } from "react";
+
+
+import { SxProps, Theme} from "@mui/material";
+
+const AppbarStyles = (theme: Theme): SxProps<Theme> => {
+  const defaultStyles: SxProps<Theme> = {};
+  switch (theme.palette.mode) {
+    case "dark":
+      return {
+        ...defaultStyles,
+        color: "black",
+        backgroundColor: "white",
+
+      };
+
+    case "light": {
+      return {
+        ...defaultStyles,
+        color: "white",
+        backgroundColor: "#272727",
+      };
+    }
+  }
+};
+
 export default function NavbarBottom() {
+
+  const { toggleColorMode } = useContext(ColorModeContext);
+  const theme = useTheme();
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
   const open = Boolean(anchorEl);
   const [subcategories, setSubcategories] = useState([]);
@@ -69,7 +100,7 @@ export default function NavbarBottom() {
   }
   return (
     <>
-      <StyledNavBottom>
+      <StyledNavBottom  sx={AppbarStyles(theme)}>
         <StyledListNavLeft>
           <StyledListNavLeftContent onClick={handleGoHome}>
             News
@@ -123,13 +154,13 @@ export default function NavbarBottom() {
           })}
         </StyledListNavLeft>
         <StyledListNavRight>
-          <FormControl sx={{ m: 5, width: "25ch" }} variant="outlined">
+          <FormControl  variant="outlined" >
             <OutlinedInput
               sx={{ height: "30px", borderRadius: "40px", color: "white" }}
               id="outlined-adornment-weight"
               endAdornment={
-                <InputAdornment position="end">
-                  <SearchIcon sx={{ color: "white" }} />
+                <InputAdornment position="end" sx={AppbarStyles(theme)}>
+                  <SearchIcon />
                 </InputAdornment>
               }
               aria-describedby="outlined-weight-helper-text"
@@ -139,9 +170,11 @@ export default function NavbarBottom() {
             />
           </FormControl>
           <FormGroup>
-            <FormControlLabel
-              control={<MaterialUISwitch sx={{ m: 1 }} defaultChecked />}
-              label=""
+            <FormControlLabel label=""
+              control={<MaterialUISwitch   checked={theme.palette.mode === "dark"}
+              onChange={() => toggleColorMode()}
+            sx={{ ml: 4 }}/>}    
+              
             />
           </FormGroup>
         </StyledListNavRight>

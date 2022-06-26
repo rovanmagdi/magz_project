@@ -11,9 +11,8 @@ const LifestyleSection = () => {
 
   const filteredCategories:any=[];
 
-  const posts = useSelector((state: any) =>
-    state.posts ? state.posts : state.posts
-  );
+  const {posts}=useSelector((state:any) =>state);
+
   console.log(posts);
   
   if(posts)
@@ -35,11 +34,11 @@ const LifestyleSection = () => {
           ></HorizontalLineBox>
         </Box>
 
-        <Grid container columns={12} gap={1}>
+        <Grid container columns={12} columnGap={17}>
           {filteredCategories["lifestyle"] ? (
           filteredCategories["lifestyle"].map((post: any) => {
               return (
-                <Grid item md={4} sm={12} key={post._id}>
+                <Grid item lg={4} sm={12} key={post._id}>
                   <Lifestyle {...post} />
                 </Grid>
               );

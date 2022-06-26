@@ -26,7 +26,7 @@ const weekday = [
 
 const Weather = () => {
   const theme = useTheme();
-  const MobileView = useMediaQuery(theme.breakpoints.down("md")); 
+  const MobileView = useMediaQuery(theme.breakpoints.down("lg")); 
   const LaptopView = useMediaQuery(theme.breakpoints.up("md"));
   const [forecast, setForecast] = useState({
    
@@ -62,7 +62,7 @@ const Weather = () => {
     <>
  
 
-      <WeatherPaper hidden={MobileView}>
+      <WeatherPaper hidden={MobileView} elevation={0}>
         <Stack>
           <Stack direction={"row"} justifyContent={"space-between"}>
             <Box>
@@ -141,8 +141,7 @@ const Weather = () => {
           )}
         </Stack>
       </WeatherPaper>
-  
-      {/* <RecommendedPosts/> */}
+ 
     </>
   );
 };

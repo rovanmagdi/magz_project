@@ -39,7 +39,7 @@ export const StyledTitle = styled(Typography)(({ theme }) => ({
 }));
 
 export const HorizontalLineBox = styled(Box)(() => ({
-  width: "60%",
+  width: "94%",
   height: "4px",
   position: "absolute",
   top: "88%",
@@ -69,7 +69,7 @@ export const OverlayBox = styled(Box)(() => ({
 export const OverlayTodayBox = styled(OverlayBox)(() => ({
   width: "100%",
   borderRadius: "8px",
-  height: "65%",
+  height: "73%",
   "&:hover": {
     backgroundColor: "rgba(96, 89, 85,.5)",
   },
@@ -77,7 +77,7 @@ export const OverlayTodayBox = styled(OverlayBox)(() => ({
 
 export const OverlayOpinionBox = styled(OverlayBox)(() => ({
   width: "100%",
-  height: "59.3%",
+  height: "65.6%",
 
   "&:hover": {
     backgroundColor: "rgba(194, 150, 83,0.5)",
@@ -162,10 +162,20 @@ export const OverlaySportBox = styled(OverlayBox)(() => ({
   width: "48.5%",
   height: "100%",
 
-  "&:hover": {
-    backgroundColor: "rgba(100,0,0,0.5)",
-  },
-}));
+         
+            "&:hover": {
+             
+                backgroundColor: "rgba(100,0,0,0.5)"
+           
+              }
+        }))
+
+
+
+
+
+
+
 
 export const AuthorAvatarBox = styled(Box)(() => ({
   width: "150px",
@@ -188,14 +198,17 @@ export const AuthorPostLabelBox = styled(CategoryLabelBox)(({ theme }) => ({
   backgroundColor: `${theme.palette.primary.main}`,
 }));
 
-export const OverlayDetailsBox = styled(OverlayBox)(() => ({
-  width: "100%",
-  borderRadius: "8px",
-  height: "100%",
-  "&:hover": {
-    backgroundColor: "rgba(96, 89, 85,.5)",
-  },
-}));
+
+        export const OverlayDetailsBox = styled(OverlayBox)(() => ({
+          width: "100%",
+          borderRadius: "8px",
+          height: "100%",
+          "&:hover": {
+           
+            backgroundColor: "rgba(96, 89, 85,.5)",
+          },
+        }));
+        
 
 export const OverlayPostBox = styled(OverlayBox)(() => ({
   width: "100%",
