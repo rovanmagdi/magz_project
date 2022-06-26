@@ -19,11 +19,8 @@ import {
 import SearchIcon from "@mui/icons-material/Search";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { userLogout } from "../../redux/actions/userData";
-import { InterstedCatergory } from "../../redux/actions/interestedAction";
 import { subCatergory } from "../../redux/actions/subCategory";
 import { useParams } from "react-router";
-import { log } from "console";
 export default function NavbarBottom() {
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
   const open = Boolean(anchorEl);
@@ -34,14 +31,15 @@ export default function NavbarBottom() {
 
   const { page } = useParams();
 
-  const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
+  const handleClick = (event: React.MouseEvent<HTMLButtonElement>,id:any) => {
     setAnchorEl(event.currentTarget);
+    handleGoPage(id);
+    handleRoute(id);
   };
   const handleClose = () => {
     setAnchorEl(null);
   };
 
-  // console.log(subCatergoryState);
   const handleGoPage = useCallback(
     (page: any) => {
       const [{ subCategories }] = subCatergoryState?.filter(
@@ -52,9 +50,11 @@ export default function NavbarBottom() {
     },
     [page, setSubcategories, subCatergoryState]
   );
+  
   const handleGoHome = () => {
     nagivate("/");
   };
+
   useEffect(() => {
     dispatch(subCatergory());
   }, [dispatch]);
@@ -82,7 +82,7 @@ export default function NavbarBottom() {
                   aria-controls={open ? "basic-menu" : undefined}
                   aria-haspopup="true"
                   aria-expanded={open ? "true" : undefined}
-                  onClick={() => handleClick(page._id)}
+                  onClick={(event: React.MouseEvent<HTMLButtonElement>) => handleClick(event,page._id)}
                   sx={{
                     color: "white",
                     fontFamily: "Oswald",
@@ -91,9 +91,9 @@ export default function NavbarBottom() {
                     },
                   }}
                 >
-                  <Box onClick={() => handleGoPage(page._id)}>
-                    <Box onClick={() => handleRoute(page._id)}>{page._id}</Box>
-                  </Box>
+               
+                    <Box>{page._id}</Box>
+                 
 
                   {` `}
                 </StyledListNavLeftContent>

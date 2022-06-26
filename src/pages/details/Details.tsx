@@ -160,7 +160,7 @@ const Details = () => {
             <AuthorTypography
               onClick={() => handleAuthor(stateDetails.auther._id)}
             >
-              {stateDetails.auther.firstName} {stateDetails.auther.lastName}
+              {/* {stateDetails.auther.firstName} {stateDetails.auther.lastName} */}
             </AuthorTypography>
           </Box>
 
@@ -209,7 +209,7 @@ const Details = () => {
         </CardActions>
         <StyledLine sx={{ margin: "10px" }} />
         <Stack sx={{ fontSize: "15px", margin: "20px" }}>
-          {stateDetails?.description?.split("t")}
+          {stateDetails?.description}
         </Stack>
         <Comment />
 
@@ -268,15 +268,15 @@ const Details = () => {
             <Box sx={{ display: "flex",justifyContent: "center",alignItems: "center"}}>
               <Box
                 component="img"
-                src={stateDetails.auther.image}
+                // src={stateDetails.auther.image}
                 sx={{ borderRadius: "50%", height: "70px", width: "70px",margin:"20px" }}
               />
               <Box sx={{margin:"20px"}}>
                 <Box component="p" sx={{fontWeight:"bold"}} ><AuthorTypography>
-              {stateDetails.auther.firstName} {stateDetails.auther.lastName}
+              {/* {stateDetails.auther.firstName} {stateDetails.auther.lastName} */}
             </AuthorTypography></Box>
                 <Box component="span" sx={{fontSize:"13px"}}>
-                {stateDetails.brief}
+                {/* {stateDetails.brief} */}
                 </Box>
               </Box>
             </Box>

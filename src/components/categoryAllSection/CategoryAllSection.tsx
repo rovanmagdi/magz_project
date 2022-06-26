@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+
 import CategoryRectCard from "../categoryRectCard/CategoryRectCard";
 import CategorySquareCard from "../categorySquareCard/CategorySquareCard";
 import { useDispatch, useSelector } from "react-redux";
@@ -7,20 +7,10 @@ import Grid from "@mui/material/Grid";
 import { CategoryLabelBox } from "../../styled/styledBox";
 import { HorizontalLineBox } from "../../styled/styledBox";
 import Stack from "@mui/material/Stack";
-import { Catergory } from "../../redux/actions/catergotyAction";
-import { useNavigate, useParams } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 export default function CategoryAllSection() {
   const { catergory } = useSelector((state: any) => state);
-
-  const dispatch: any = useDispatch();
-  const { page } = useParams();
-
-  // useEffect(() => {
-  //   dispatch(Catergory(page));
-  //   console.log(catergory);
-  // }, [page]);
-
   const nagivate: any = useNavigate();
   const handleGoDetails = (id: any) => {
     console.log("go details");
