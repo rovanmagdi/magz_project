@@ -16,6 +16,8 @@ export default interface Post {
     "autherFirstName":string;
     "autherLastName":string;
     "autherImage":string;
+
     "autherBrief":string;
+
     
   }
