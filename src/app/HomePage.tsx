@@ -15,6 +15,8 @@ import { useContext } from "react";
 
 
 import { SxProps, Theme} from "@mui/material";
+import Interested from "../pages/Interested/Interested";
+import SubCatergory from "../pages/subCatergory/SubCatergory";
 
 const ContentStyles = (theme: Theme): SxProps<Theme> => {
   const defaultStyles: SxProps<Theme> = {};
@@ -54,6 +56,8 @@ function HomePage() {
             <Route path="/details/:id" element={<Details />} />
             <Route path="/auther/:id" element={<AuthorPage />} />
             <Route path="/:page" element={<SportsPage />} />
+            <Route path="/:page/:Subpage" element={<SubCatergory />} />
+
 
 
 

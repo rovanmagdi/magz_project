@@ -91,13 +91,11 @@ export default function NavbarBottom() {
     dispatch(subCatergory());
   }, [dispatch]);
 
-  const handleRoute=(page:any)=>
-
-  {
+  const handleRoute = (page: any) => {
     console.log("go");
     nagivate(`/${page}`)
 
-    
+
   }
   return (
     <>
@@ -125,6 +123,7 @@ export default function NavbarBottom() {
                 >
                
                     <Box>{page._id}</Box>
+                    
                  
 
                   {` `}
@@ -172,7 +171,7 @@ export default function NavbarBottom() {
           </FormControl>
           <FormGroup>
             <FormControlLabel label=""
-              control={<MaterialUISwitch   checked={theme.palette.mode === "dark"}
+              control={<MaterialUISwitch defaultChecked  checked={theme.palette.mode === "dark"}
               onChange={() => toggleColorMode()}
             sx={{ ml: 4 }}/>}    
               

@@ -18,7 +18,7 @@ const CommentList = (props: any) => {
         setComments(response.data.comments);
         
       });
-  }, [setComments, props.id]);
+  }, [props.id]);
 
   const [pusher, setPusher] = useState<any>(
     () =>
@@ -30,9 +30,13 @@ const CommentList = (props: any) => {
 
   useEffect(() => {
     channel.bind("new-comment", (data: any) => {
-   
+    
+      if(data._id == props.id) {
+
         setComments((oldState: any) => ( data.comments ));
         handleCommentsNummber(data.comments.length)
+      }
+      
     });
   }, [channel]);
 
