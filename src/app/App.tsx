@@ -45,11 +45,11 @@ function App() {
                   <Route path="/:page" element={<Details />} />
                   <Route path="/details/:id" element={<Details />} />
                   <Route path="/auther/:id" element={<AuthorPage />} />
-                  <Route path="/:page" element={<CategoryPage />} />
+                  <Route path="/catergory/:page" element={<CategoryPage />} />
                   <Route path="/:page/:Subpage" element={<SubCategoryPage />} />
 
-                </Route>
                   <Route path="*" element={<Not_Found/>} />
+                </Route>
 
                 <Route path="login" element={<Login />} />
                 <Route path="interested" element={<Interested />} />
