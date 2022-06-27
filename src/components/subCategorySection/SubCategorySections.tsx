@@ -32,6 +32,7 @@ export default function SubCategorySection() {
     console.log(Object.keys(filteredCategories));
   }
 
+  // const nagivate = useNavigate();
   const subCategories = Object.keys(filteredCategories);
   const nagivate: any = useNavigate();
   const {page} = useParams()
