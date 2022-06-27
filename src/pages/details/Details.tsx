@@ -21,7 +21,6 @@ import comments from "../../assets/comment.png";
 import unlike from "../../assets/like.png";
 import like from "../../assets/like2.png";
 
-
 import Pusher from "pusher-js";
 
 import Comment from "./Comment";
@@ -37,6 +36,9 @@ import { StyledGridRightLine } from "../../styled/recommendedPosts";
 import CommentList from "./CommentList";
 
 const Details = () => {
+  const userData: any = localStorage.getItem("RegisterInfo");
+  const userId = userData && JSON.parse(userData)._id;
+
   const { id }: any = useParams();
   const [stateDetails, setStateDetails] = useState({
     _id: "",
@@ -45,7 +47,7 @@ const Details = () => {
     image: "",
     category: "",
     subCategory: "",
-    likes: [],
+    likes: [{ user: "", _id: "" }],
     auther: {
       _id: "",
       firstName: "",
@@ -63,6 +65,7 @@ const Details = () => {
 
   const [commentsNummber, setCommentsNummber] = useState<any>(0);
   const [likesNumber, setLikesNumber] = useState<any>(0);
+  const [userLiked, setUserLiked] = useState<boolean>(false);
   const [stateAuthor, setStateAuthor] = useState();
   const dispatch: any = useDispatch();
   const nagivate: any = useNavigate();
@@ -77,7 +80,6 @@ const Details = () => {
     axios
       .patch(`http://localhost:4000/posts/add_view/${id}`)
       .then((response) => {});
-    // console.log(stateDetails?.comments);
   }, [id]);
   const handleAuthor = (id: any) => {
     dispatch(getAuthorInfo(stateAuthor));
@@ -88,34 +90,37 @@ const Details = () => {
     setCommentsNummber(number);
   };
 
-
   const postId = useParams();
   const handleLike = useCallback(
     async (event: React.SyntheticEvent<EventTarget>) => {
-    
-
       const userInfo: any = JSON.parse(
         `${localStorage.getItem("RegisterInfo")}`
       );
 
-      const config={
-        headers:{
-         'Content-Type':'application/json',
-         Authorization:` Bearer ${userInfo.token}`
-        }
+      const config = {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: ` Bearer ${userInfo.token}`,
+        },
+      };
+
+      const body = { postId: postId.id };
+
+      const { data } = await axios.post(
+        "http://localhost:4000/like",
+        body,
+        config
+      );
+
+      if (data) {
+        setUserLiked(true);
+      } else {
+        setUserLiked(false);
       }
-
-      const body = {postId:postId.id };
-
-
-      const { data } = await axios.post("http://localhost:4000/like",body,config);
-
-      
     },
     [postId.id]
   );
 
- 
   const [pusher, setPusher] = useState<any>(
     () =>
       new Pusher("7d5a00f0cb139e7cc884", {
@@ -126,10 +131,20 @@ const Details = () => {
 
   useEffect(() => {
     channel.bind("new-like", (data: any) => {
-        // setComments((oldState: any) => ( data.comments ));
-        handleLikesNumber(data.likes.length)
+      if (data._id == postId.id) {
+        handleLikesNumber(data.likes.length);
+      }
     });
-  }, [channel]);
+  }, [channel, postId.id]);
+
+  useEffect(() => {
+    for (var i = 0; i < stateDetails.likes.length; i++) {
+      if (stateDetails.likes[i].user === userId) {
+
+        setUserLiked(true);
+      }
+    }
+  },[stateDetails.likes,userId]);
 
   const handleLikesNumber = (number: any) => {
     setLikesNumber(number);
@@ -259,13 +274,7 @@ const Details = () => {
             >
               <Box
                 component="img"
-                src={unlike}
-                sx={{ height: "15px", width: "15px", margin: "8px" }}
-                onClick={handleLike}
-              />
-              <Box
-                component="img"
-                src={like}
+                src={userLiked ? like : unlike}
                 sx={{ height: "15px", width: "15px", margin: "8px" }}
                 onClick={handleLike}
               />
@@ -281,15 +290,15 @@ const Details = () => {
           {stateDetails?.description}
         </Stack>
         <Box position={"relative"} sx={{ margin: "20px" }}>
-            <CategoryLabelBox sx={{ backgroundColor: "#4D7E96" }}>
-              Comments
-            </CategoryLabelBox>
-            <HorizontalLineBox
-              sx={{ backgroundColor: "#4D7E96", width: "550px" }}
-            ></HorizontalLineBox>
-          </Box>
+          <CategoryLabelBox sx={{ backgroundColor: "#4D7E96" }}>
+            Comments
+          </CategoryLabelBox>
+          <HorizontalLineBox
+            sx={{ backgroundColor: "#4D7E96", width: "550px" }}
+          ></HorizontalLineBox>
+        </Box>
         <CommentList id={id} handleCommentsNummber={handleCommentsNummber} />
-        
+
         <Comment />
 
         <Box
