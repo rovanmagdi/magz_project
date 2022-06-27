@@ -24,12 +24,17 @@ import CategoryPage from "../pages/categoryPage/CategoryPage";
 import { getDesignMode } from "../theme/DarkMode";
 import { createTheme } from "@mui/material";
 import { ColorModeProvider } from "../contexts/ColorModeContext";
-import SubCategoryPage from "../pages/subCategoryPage/SubCategoryPage";
+import SubCatergory from "../pages/subCatergory/SubCatergory";
 function App() {
+
+
   return (
     <div className="App">
       <ColorModeProvider>
+
+
         <Provider store={store}>
+
           <Suspense fallback={<CircularProgress />}>
             <BrowserRouter>
               <Routes>
@@ -38,19 +43,23 @@ function App() {
                   <Route path="/:page" element={<Details />} />
                   <Route path="/details/:id" element={<Details />} />
                   <Route path="/auther/:id" element={<AuthorPage />} />
-                  <Route path="/:page" element={<CategoryPage />}>
-                    <Route path="/:page" element={<SubCategoryPage />} />
-                  </Route>
+                  <Route path="/:page" element={<CategoryPage />} />
+                  <Route path="/:page/:Subpage" element={<SubCatergory />} />
                 </Route>
+
                 <Route path="login" element={<Login />} />
                 <Route path="interested" element={<Interested />} />
                 <Route path="done" element={<Done />} />
               </Routes>
             </BrowserRouter>
           </Suspense>
+
         </Provider>
+
+
       </ColorModeProvider>
     </div>
+
   );
 }
 

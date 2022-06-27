@@ -12,7 +12,10 @@ import AuthorPage from "../pages/author/AuthorPage";
 import CategoryPage from "../pages/categoryPage/CategoryPage";
 import SubCategoryPage from "../pages/subCategoryPage/SubCategoryPage";
 
-import { SxProps, Theme } from "@mui/material";
+
+import { SxProps, Theme} from "@mui/material";
+import Interested from "../pages/Interested/Interested";
+import SubCatergory from "../pages/subCatergory/SubCatergory";
 
 const ContentStyles = (theme: Theme): SxProps<Theme> => {
   const defaultStyles: SxProps<Theme> = {};
@@ -50,9 +53,12 @@ function HomePage() {
 
             <Route path="/details/:id" element={<Details />} />
             <Route path="/auther/:id" element={<AuthorPage />} />
-            <Route path="/:page" element={<CategoryPage />}>
-              <Route path="/:page" element={<SubCategoryPage />} />
-            </Route>
+            <Route path="/:page" element={<CategoryPage />} />
+            <Route path="/:page/:Subpage" element={<SubCatergory />} />
+
+
+
+
           </Routes>
         </Info>
 

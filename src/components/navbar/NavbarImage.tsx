@@ -18,7 +18,7 @@ export default function NavbarImage() {
       height="70px"
       width="160px"
       onClick={handleHome}
-      sx={{ cursor: "pointer" }}
+      sx={{ cursor: "pointer",marginTop:"10px" }}
     />
   </StyledImage>
   )

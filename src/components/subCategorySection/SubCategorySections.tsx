@@ -1,6 +1,3 @@
-import React, { useEffect } from "react";
-import CategoryRectCard from "../categoryRectCard/CategoryRectCard";
-import CategorySquareCard from "../categorySquareCard/CategorySquareCard";
 import PostCard from "../postCard/PostCard";
 import { useSelector } from "react-redux";
 import Post from "../../types/post";
@@ -35,13 +32,13 @@ export default function SubCategorySection() {
     console.log(Object.keys(filteredCategories));
   }
 
-  const nagivate = useNavigate();
+  // const nagivate = useNavigate();
   const subCategories = Object.keys(filteredCategories);
-  const pageParam = useParams();
-  // const handleGoSubCatergory = (CatergoryPage:any,SubCatergoryPage: any) => {
-  //   nagivate(`${SubCatergoryPage}`);
-  // };
-console.log(catergory);
+  const nagivate: any = useNavigate();
+  const {page} = useParams()
+  const handelGoSubCategory = (subCatergory: any) => {
+    nagivate(`/${page}/${subCatergory}`)
+  };
 
   return (
     <>
@@ -52,7 +49,7 @@ console.log(catergory);
               <Box position={"relative"} mb={2} mt={7}>
                 <CategoryLabelBox
                   sx={{ backgroundColor: "#272727" }}
-                  // onClick={() => handleGoSubCatergory(filteredCategories[item][0].category,item)}
+                  onClick={() => handelGoSubCategory(item)}
                 >
                   {item}
                 </CategoryLabelBox>
@@ -67,9 +64,9 @@ console.log(catergory);
                     spacing={1.5}
                     columns={12}
 
-                    // ml={3}
-                    // gap={1}
-                    // sx={{ minHeight: "300px" }}
+                  // ml={3}
+                  // gap={1}
+                  // sx={{ minHeight: "300px" }}
                   >
                     <Grid
                       item
@@ -124,4 +121,7 @@ console.log(catergory);
         })}
     </>
   );
+}
+function useRouteMatch(): { path: any; url: any } {
+  throw new Error("Function not implemented.");
 }
