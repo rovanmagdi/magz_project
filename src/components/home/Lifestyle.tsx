@@ -24,8 +24,8 @@ const Lifestyle: React.FC<Post> = (props) => {
 
   const nagivate: any = useNavigate();
   const handleGoDetails = (id: any) => {
-    console.log("go details");
-    console.log(props);
+    // console.log("go details");
+    // console.log(props);
     nagivate(`/details/${id}`); }
   // console.log(title, image, description, updatedAt);
   return (

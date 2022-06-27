@@ -21,3 +21,4 @@ export const CATERGORY="CATERGORY"
 export const DARK_MODE = 'dark_mode';
 export const RECOMMENDED_POSTS="RECOMMENDED_POSTS";
 export const GET_SUBCATEGORY_POSTS='GET_SUBCATEGORY_POSTS'
+export const SEARCH="SEARCH";

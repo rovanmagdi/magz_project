@@ -19,7 +19,7 @@ const OpinionSection = () => {
        posts.forEach((category:any)=>{
            filteredCategories[category._id]=category.posts
        })
-       console.log(filteredCategories["opinion"])
+    //    console.log(filteredCategories["opinion"])
    }
     return (
         <>

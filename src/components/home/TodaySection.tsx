@@ -11,7 +11,7 @@ import { CircularProgress } from "@mui/material";
 import { useTheme } from "@mui/material";
 import { useMediaQuery } from "@mui/material";
 import { Grid } from "@mui/material";
-import RecommendedPosts from "../recommendPosts/RecommendedPosts";
+import RecommendedPosts from "../popularPosts/RecommendedPosts";
 const TodaySection = () => {
     const theme = useTheme();
     const MobileView = useMediaQuery(theme.breakpoints.down("md"));

@@ -22,6 +22,7 @@ import { useContext } from "react";
 
 
 import { SxProps, Theme} from "@mui/material";
+import RecommendedPostsDark from "../recommededPosts/recommendedDark";
 
 const TypoStyles = (theme: Theme): SxProps<Theme> => {
   const defaultStyles: SxProps<Theme> = {};
@@ -90,6 +91,8 @@ const RecommendedPosts = () => {
     
         );
       })}
+          <RecommendedPostsDark/>
+      
     </Box>
   );
 };

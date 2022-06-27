@@ -26,7 +26,7 @@ const SportSection = () => {
        posts.forEach((category:any)=>{
            filteredCategories[category._id]=category.posts
        })
-       console.log(filteredCategories["sport"])
+    //    console.log(filteredCategories["sport"])
    }
 
     return (

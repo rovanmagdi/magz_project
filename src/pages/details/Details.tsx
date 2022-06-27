@@ -29,7 +29,7 @@ import { Link, useNavigate, useParams } from "react-router-dom";
 import axios from "axios";
 import PostDate from "../../components/postDate/PostDate";
 import { AuthorTypography } from "../../styled/AuthorTypography";
-import RecommendedPosts from "../../components/recommendPosts/RecommendedPosts";
+import RecommendedPosts from "../../components/popularPosts/RecommendedPosts";
 import { useDispatch } from "react-redux";
 import { getAuthorInfo } from "../../redux/actions/authorAction";
 import { StyledGridRightLine } from "../../styled/recommendedPosts";

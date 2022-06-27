@@ -30,7 +30,7 @@ const CommentDetails = (props: any) => {
       <Stack direction="row" spacing={2} sx={{ margin: "15px 0px 0px 15px" }}>
         <Box
           component="img"
-          src={props.comment.user.image}
+          src={props.comment.user?.image}
           height="50px"
           width="50px"
           sx={{ borderRadius: "50%" }}
@@ -47,7 +47,7 @@ const CommentDetails = (props: any) => {
               component="span"
               sx={{ fontWeight: "bold", textTransform: "capitalize" }}
             >
-              {props.comment.user.firstName} {props.comment.user.lastName}
+              {props.comment.user?.firstName} {props.comment.user?.lastName}
             </Typography>
             <Box sx={{ fontSize: "12px", color: "#ABABAB" }}> {postDate}</Box>
           </Stack>
