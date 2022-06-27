@@ -89,10 +89,11 @@ function Register() {
         results.profileObj.familyName,
         results.profileObj.email,
         results.profileObj.googleId,
-        results.profileObj.imageUrl
+        results.profileObj.imageUrl,
+        
       )
     );
-    navigate("/interested");
+    navigate("/");
     console.log(results);
   };
   const handleFailure = (error: any) => {

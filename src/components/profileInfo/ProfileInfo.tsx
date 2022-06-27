@@ -31,7 +31,7 @@ export default function ProfileInfo() {
   useEffect(() => {}, [user]);
 
   userInfoObj = JSON.parse(`${localStorage.getItem("RegisterInfo")}`);
-  const email = `${userInfoObj.email}`;
+  const {email,imageUrl} = userInfoObj;
   const intersted:string[] = userInfoObj.intersted!;
 
   const dispatch: any = useDispatch();
@@ -63,7 +63,7 @@ export default function ProfileInfo() {
                 <ProfileDataItem elevation={elevation}>{email}</ProfileDataItem>
               </TableCell>
             </TableRow>
-            <TableRow>
+            {!imageUrl?(<> <TableRow>
               <TableCell>Interested</TableCell>
               <TableCell>
               {userInterested?.map((item: any) => {
@@ -103,12 +103,16 @@ export default function ProfileInfo() {
             );
           })}
               </TableCell>
-            </TableRow>
+            </TableRow></>):('')}
+           
           </TableBody>
         </Table>
-        <StyledButton onClick={handleEditClick}>
-          <Typography color={"white"}>Edit profile</Typography>
-        </StyledButton>
+        {
+          !imageUrl?(<StyledButton onClick={handleEditClick}>
+            <Typography color={"white"}>Edit profile</Typography>
+          </StyledButton>):('')
+        }
+        
       </Box>
     </>
   );

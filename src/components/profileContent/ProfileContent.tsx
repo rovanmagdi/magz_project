@@ -15,7 +15,7 @@ export default function ProfileContent() {
 
     let editMode = useSelector((state: any) => state.flags.profileEditFlag);
     const user = useSelector((state: any) => state.user);
-  
+   
   
     useEffect(() => {
       dispatch(getProfileEditFlag());
