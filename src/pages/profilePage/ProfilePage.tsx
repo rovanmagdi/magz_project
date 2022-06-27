@@ -75,16 +75,17 @@ export default function ProfilePge() {
           padding: "20px 0px",
         }}
       >
-        {userInfoObj.imageUrl?<Avatar
-          sx={{ width: "150px", height: "150px", margin: "auto" }}
-          src={userInfoObj.imageUrl}
-        ></Avatar>:<Avatar
-        sx={{ width: "150px", height: "150px", margin: "auto" }}
-        src={userInfoObj.image}
-      ></Avatar>}
-        
-
-        <label htmlFor="contained-button-file">
+        {userInfoObj.imageUrl ? (
+          <Avatar
+            sx={{ width: "150px", height: "150px", margin: "auto" }}
+            src={userInfoObj.imageUrl}
+          ></Avatar>
+        ) : (<>
+          <Avatar
+            sx={{ width: "150px", height: "150px", margin: "auto" }}
+            src={userInfoObj.image}
+          ></Avatar>
+           <label htmlFor="contained-button-file">
           <Input
             accept="image/*"
             id="contained-button-file"
@@ -103,15 +104,20 @@ export default function ProfilePge() {
             }}
           />
         </label>
+          </>
+        )}
+
+       
         <Typography variant="h3" mt={1}>
-         
           {!userInfoObj.name ? (
             <Box>
-              {" "}
+              {/* {" "} */}
               {userInfoObj.firstName} {userInfoObj.lastName}
             </Box>
           ) : (
-            <Box>{userInfoObj.name}</Box>
+            <Box>
+              {userInfoObj.givenName} {userInfoObj.familyName}
+            </Box>
           )}
         </Typography>
 
