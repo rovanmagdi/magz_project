@@ -41,7 +41,7 @@ export default function PostCard(props: Post) {
           alt=""
         />
         <CardContent sx={{ py: "20px" }}>
-          <PostTitle color="text.dark" sx={{width:'250px'}}>{title}
+          <PostTitle color="text.dark" sx={{width:'250px'}}>{`${title?.slice(0,61)}...`}
           
          
           

@@ -43,7 +43,7 @@ export default function SmallPostCard(props: Post) {
         />
         <OverlayPostBox height={'250px'}></OverlayPostBox>
         <CardContent sx={{ py: "20px" }}>
-          <PostTitle color="text.dark">{title}
+          <PostTitle color="text.dark">{`${title?.slice(0,61)}...`}
          
           
           </PostTitle>

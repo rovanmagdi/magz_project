@@ -48,7 +48,7 @@ const CategorySquareCardComponent: React.FC<Post> = (props) => {
           }} variant='caption'
         >
           
-          {title}
+          {`${title?.slice(0,61)}...`}
         </Typography>
       </StyledCard>
     </ThemeProvider>
