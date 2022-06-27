@@ -14,7 +14,6 @@ import GoogleLogin from "react-google-login";
 import { RegisterUser } from "../../redux/actions/userData";
 
 function Register() {
- 
   const [state, setStateList] = useState({
     firstName: "",
     lastName: "",
@@ -61,7 +60,14 @@ function Register() {
     if (validationLoginFormResult.error) {
       setErrorList(validationLoginFormResult.error.details);
     } else {
-      dispatch(RegisterUser(state.firstName, state.lastName, state.email, state.password));
+      dispatch(
+        RegisterUser(
+          state.firstName,
+          state.lastName,
+          state.email,
+          state.password
+        )
+      );
       setErrorList([]);
     }
   };
@@ -72,15 +78,23 @@ function Register() {
     }
   }, [data]);
 
-  const [stateGoogle, setState] = useState({
-    firstName: "",
-    lastName: "",
-    email: "",
-    password: "",
-    // confirmePassword: "",
+  // const [stateGoogle, setState] = useState({
+  //   firstName: "",
+  //   lastName: "",
+  //   email: "",
+  //   password: "",
+  //   // confirmePassword: "",
+  // });
+  const [stateProfile, SetProfile] = useState({
+    dataProfile:"",
+    inteseted:[]
   });
   const handleSuccess = (results: any) => {
     console.log(results);
+    SetProfile(results.profileObj);
+    console.log(stateProfile);
+    
+
     localStorage.setItem("RegisterInfo", JSON.stringify(results.profileObj));
 
     dispatch(
@@ -194,7 +208,7 @@ function Register() {
             })
           : ""} */}
         <StyledButton variant="contained" type="submit">
-          Sign in
+          Resgister
         </StyledButton>
       </form>
       <Box sx={{ marginTop: "10px" }}>

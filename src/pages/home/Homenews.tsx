@@ -12,7 +12,7 @@ import OpinionSection from "../../components/home/OpinionSection";
 import SportSection from "../../components/home/SportSection";
 import LifestyleSection from "../../components/home/LifestyleSection";
 import Weather from "../../components/home/Weather";
-import SubCategoryPage from '../subCategoryPage/SubCategoryPage'
+import SubCategoryPage from "../subCategoryPage/SubCategoryPage";
 
 import { QuotePaper } from "../../styled/styledPaper";
 import SearchCategory from "../../components/navbar/SearchCategory";
@@ -20,25 +20,26 @@ import AuthorPage from "../author/AuthorPage";
 import RecommendedPosts from "../../components/recommendPosts/RecommendedPosts";
 import { Box, Stack } from "@mui/material";
 import { getAuthorInfo } from "../../redux/actions/authorAction";
+import { getRecommendedPosts } from "../../redux/actions/recommendedAction";
 const Homenews = () => {
   // const posts=useSelector((state:any) =>state.posts? state.posts[0].posts : state.posts);
 
   const dispatch: any = useDispatch();
   console.log("here news home");
 
+  // const {}
   useEffect(() => {
     dispatch(getAllPosts());
+    dispatch(getRecommendedPosts());
     // console.log(posts._id)
   }, [dispatch]);
 
-
- 
   return (
     <>
       {/* <AuthorPage></AuthorPage> */}
       {/* <SubCategoryPage/> */}
       <Box sx={{ display: "flex", justifyContent: "space-around" }}>
-        <Box sx={{ width: "65%", }}>
+        <Box sx={{ width: "65%" }}>
           <TodaySection></TodaySection>
           <OpinionSection></OpinionSection>
           <SportSection></SportSection>
@@ -47,10 +48,7 @@ const Homenews = () => {
         </Box>
         <Box sx={{ width: "30%" }}>
           <Weather />
-
-
           <RecommendedPosts />
-
         </Box>
       </Box>
 

@@ -54,7 +54,7 @@ const CommentDetails = (props: any) => {
           <Box>{props.comment.commentText}</Box>
         </Box>
       </Stack>
-      <StyledLine sx={{ width: "600px" ,backgroundColor:"#CACACA"}} />
+      <StyledLine sx={{ width: "600px" ,backgroundColor:"#CACACA",marginLeft:"20px"}} />
     </>
   );
 };

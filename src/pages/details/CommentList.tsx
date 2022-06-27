@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import Pusher from "pusher-js";
 import CommentDetails from "./CommentDetails";
 import axios from "axios";
+import { Typography } from "@mui/material";
 
 const CommentList = (props: any) => {
 
@@ -43,12 +44,13 @@ const CommentList = (props: any) => {
 
   return (
     <div>
-      {comments ? (
-        comments.map((comment: any) => <CommentDetails comment={comment} />)
+      {comments && comments.length > 0 ? (
+        
+        comments.map((comment: any) => <CommentDetails comment={comment} key={comment._id}/>)
       ) : (
-        <h5 className="no-comments-alert">
+        <Typography variant="body1"  component="span" sx={{margin:"auto"}}>
           No comments on this post yet. Be the first
-        </h5>
+        </Typography >
       )}
     </div>
   );
