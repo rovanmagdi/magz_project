@@ -8,7 +8,7 @@ import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
 import { Catergory } from "../../redux/actions/catergotyAction";
 
 
-export default function SportsPage() {
+export default function CategoryPage() {
   const { catergory } = useSelector((state: any) => state);
   const { page } = useParams();
   const dispatch: any = useDispatch();

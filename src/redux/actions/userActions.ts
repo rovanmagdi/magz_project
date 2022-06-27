@@ -12,6 +12,7 @@ interface Info {
 
 export const updateUser = (state: Info) => (dispatch: any) => {
   const userToken = JSON.parse(localStorage.RegisterInfo).token;
+  console.log(userToken)
   const config = {
     headers: {
       "Content-Type": "application/json",

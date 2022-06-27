@@ -9,9 +9,8 @@ import ProfilePge from "../pages/profilePage/ProfilePage";
 
 import Details from "../pages/details/Details";
 import AuthorPage from "../pages/author/AuthorPage";
-import SportsPage from "../pages/categoryPage/CategoryPage";
-import { ColorModeContext } from "./../contexts/ColorModeContext";
-import { useContext } from "react";
+import CategoryPage from "../pages/categoryPage/CategoryPage";
+import SubCategoryPage from "../pages/subCategoryPage/SubCategoryPage";
 
 
 import { SxProps, Theme} from "@mui/material";
@@ -26,21 +25,20 @@ const ContentStyles = (theme: Theme): SxProps<Theme> => {
         ...defaultStyles,
         color: "white",
         backgroundColor: "white",
-
       };
 
     case "light": {
       return {
         ...defaultStyles,
         color: "black",
-        backgroundColor:"rgba(0,0,0,.8)"
+        backgroundColor: "rgba(0,0,0,.8)",
       };
     }
   }
 };
 function HomePage() {
   const isMatch = useMediaQuery(theme.breakpoints.down("sm"));
-  
+
   return (
     <>
       {/* <Roues></Roues> */}
@@ -52,10 +50,10 @@ function HomePage() {
             <Route path="/" element={<Homenews />} />
             <Route path="/Profile" element={<ProfilePge />} />
             <Route path="/details" element={<Details />} />
-          
+
             <Route path="/details/:id" element={<Details />} />
             <Route path="/auther/:id" element={<AuthorPage />} />
-            <Route path="/:page" element={<SportsPage />} />
+            <Route path="/:page" element={<CategoryPage />} />
             <Route path="/:page/:Subpage" element={<SubCatergory />} />
 
 

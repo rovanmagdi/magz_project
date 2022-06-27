@@ -1,4 +1,3 @@
-
 import logo from "./logo.svg";
 import "./App.css";
 import { Provider } from "react-redux";
@@ -20,7 +19,7 @@ import Done from "../pages/Done/Done";
 import { Paper } from "@mui/material";
 import Details from "../pages/details/Details";
 import AuthorPage from "../pages/author/AuthorPage";
-import SportsPage from "../pages/categoryPage/CategoryPage";
+import CategoryPage from "../pages/categoryPage/CategoryPage";
 
 import { getDesignMode } from "../theme/DarkMode";
 import { createTheme } from "@mui/material";
@@ -44,7 +43,7 @@ function App() {
                   <Route path="/:page" element={<Details />} />
                   <Route path="/details/:id" element={<Details />} />
                   <Route path="/auther/:id" element={<AuthorPage />} />
-                  <Route path="/:page" element={<SportsPage />} />
+                  <Route path="/:page" element={<CategoryPage />} />
                   <Route path="/:page/:Subpage" element={<SubCatergory />} />
                 </Route>
 
