@@ -63,7 +63,7 @@ export const DateTypography= styled(Typography)(({theme})=>({
     color:"#4D7E96",
     padding:'6px',
     borderBottom:'1px solid gray',
-    fontSize:'1.8em',
+    fontSize:'1.6em',
     margin:'50px 0px',
     textTransform:'uppercase'
   }));

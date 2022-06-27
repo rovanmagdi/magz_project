@@ -17,7 +17,8 @@ import { useNavigate } from 'react-router-dom';
 
 
 export default function PostCard(props: Post) {
-  const { title, image, updatedAt,_id } = props;
+  const { title, image, updatedAt,_id ,autherFirstName,autherLastName,autherImage} = props;
+  const autherName=autherFirstName+' '+autherLastName;
   
   const nagivate: any = useNavigate();
   
@@ -57,11 +58,11 @@ export default function PostCard(props: Post) {
           avatar={
             <Avatar
               sx={{ bgcolor: red[500] }}
-              src={image}
+              src={autherImage}
               aria-label="recipe"
             ></Avatar>
           }
-          subheader={<AutherName>Author Name</AutherName>}
+          subheader={<AutherName>{autherName}</AutherName>}
           sx={{ pt: 0, pb: "20px", color: "text.dark" }}
         />
         {/* <PostTitle>Author Name</PostTitle>
