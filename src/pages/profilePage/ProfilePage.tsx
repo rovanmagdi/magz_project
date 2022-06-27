@@ -75,10 +75,14 @@ export default function ProfilePge() {
           padding: "20px 0px",
         }}
       >
-        <Avatar
+        {userInfoObj.imageUrl?<Avatar
           sx={{ width: "150px", height: "150px", margin: "auto" }}
-          src={userInfoObj.image}
-        ></Avatar>
+          src={userInfoObj.imageUrl}
+        ></Avatar>:<Avatar
+        sx={{ width: "150px", height: "150px", margin: "auto" }}
+        src={userInfoObj.image}
+      ></Avatar>}
+        
 
         <label htmlFor="contained-button-file">
           <Input

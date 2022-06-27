@@ -48,7 +48,7 @@ export default function SubCategorySection() {
             <Box mb={5}>
               <Box position={"relative"} mb={2} mt={7}>
                 <CategoryLabelBox
-                  sx={{ backgroundColor: "#272727" }}
+                  sx={{ backgroundColor: "#272727",cursor:'pointer' }}
                   onClick={() => handelGoSubCategory(item)}
                 >
                   {item}
