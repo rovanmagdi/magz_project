@@ -26,6 +26,7 @@ import { getDesignMode } from "../theme/DarkMode";
 import { createTheme } from "@mui/material";
 import { ColorModeProvider } from "../contexts/ColorModeContext";
 import SubCatergory from "../pages/subCatergory/SubCatergory";
+import Not_Found from "../pages/not found/Not_found";
 function App() {
 
 
@@ -46,7 +47,9 @@ function App() {
                   <Route path="/auther/:id" element={<AuthorPage />} />
                   <Route path="/:page" element={<SportsPage />} />
                   <Route path="/:page/:Subpage" element={<SubCatergory />} />
+
                 </Route>
+                  <Route path="*" element={<Not_Found/>} />
 
                 <Route path="login" element={<Login />} />
                 <Route path="interested" element={<Interested />} />

@@ -95,6 +95,7 @@ import { Link } from "react-router-dom";
   export const StyledListNavLeftContent = styled(Button)(({ theme }) => ({
     color: `${theme.palette.primary.contrastText}`,
     fontSize: "18px",
+    fontWeight:"bold",
     textTransform: "uppercase",
     fontFamily: "Oswald",
     "&:hover": {

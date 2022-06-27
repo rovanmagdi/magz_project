@@ -6,10 +6,18 @@ import {
   TodayLabelBox,
   TodayLabelBox2,
 } from "../../styled/styledBox";
-import { Box, Stack, TextareaAutosize, Typography } from "@mui/material";
+import {
+  Box,
+  InputAdornment,
+  Stack,
+  TextareaAutosize,
+  TextField,
+  Typography,
+} from "@mui/material";
 import { StyledButton } from "../../styled/Button";
 import axios from "axios";
 import { useParams } from "react-router-dom";
+import SendIcon from "@mui/icons-material/Send";
 
 export default function Comment() {
   const [comment, setComment] = useState({
@@ -17,7 +25,6 @@ export default function Comment() {
   });
 
   const postId = useParams();
-  
 
   const handleChange = useCallback(
     (event: React.ChangeEvent<HTMLInputElement> | any) => {
@@ -37,56 +44,54 @@ export default function Comment() {
         `${localStorage.getItem("RegisterInfo")}`
       );
 
-      const config={
-        headers:{
-         'Content-Type':'application/json',
-         Authorization:` Bearer ${userInfo.token}`
-        }
-      }
+      const config = {
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: ` Bearer ${userInfo.token}`,
+        },
+      };
 
-      const body = { ...comment,postId:postId.id };
+      const body = { ...comment, postId: postId.id };
 
+      const { data } = await axios.post(
+        "http://localhost:4000/comment",
+        body,
+        config
+      );
 
-
-      const { data } = await axios.post("http://localhost:4000/comment",body,config);
-
-      console.log(data);
-      
-
-      
       setComment({ commentText: "" });
     },
     [comment]
   );
 
+  const RegisterInfo = localStorage.getItem("RegisterInfo");
+  const userInfoObj = JSON.parse(`${localStorage.getItem("RegisterInfo")}`);
   return (
     <>
-      <Box sx={{ border: "1px solid #B1B1B1",borderRadius: "5px"}}>
-        <Box>
-          <Box position={"relative"} sx={{ margin: "20px" }}>
-            <CategoryLabelBox sx={{ backgroundColor: "#4D7E96" }}>
-              Leave Comment
-            </CategoryLabelBox>
-            <HorizontalLineBox
-              sx={{ backgroundColor: "#4D7E96", width: "550px" }}
-            ></HorizontalLineBox>
-          </Box>
-          <TextareaAutosize
-            aria-label="minimum height"
-            minRows={3}
-            placeholder="Your Comment"
-            style={{ width: 400, margin: "20px", border: "1px solid #B1B1B1",borderRadius:"5px" }}
-            name="comment"
-            value={comment.commentText}
-            onChange={handleChange}
-          />
-        </Box>
-        <StyledButton
-          sx={{ color: "white", margin: "21px" }}
-          onClick={handleSubmit}
-        >
-          POST COMMENT
-        </StyledButton>
+      <Box sx={{display:"flex",alignItems:"center"}}>
+        <Box component="img"
+          height="40px"
+          width="40px"
+          sx={{ borderRadius: "50%" }}
+          src={userInfoObj.image} />
+        <TextField
+          id="outlined-start-adornment"
+          sx={{ m: 1, width: "70ch" ,marginTop: "20px"}}
+          placeholder="Write a Comment..."
+          
+          InputProps={{
+
+
+            endAdornment: (
+              <InputAdornment position="end" sx={{ cursor: "pointer" }}>
+                <SendIcon onClick={handleSubmit} />
+              </InputAdornment>
+            ),
+          }}
+          name="comment"
+          value={comment.commentText}
+          onChange={handleChange}
+        />
       </Box>
     </>
   );
