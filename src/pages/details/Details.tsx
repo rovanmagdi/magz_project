@@ -61,6 +61,7 @@ const Details = () => {
 
   const [commentsNummber, setCommentsNummber] = useState<any>(0);
   const [likesNumber, setLikesNumber] = useState<any>(0);
+  const [userLiked,setUserLiked] = useState<boolean>(false);
   const [stateAuthor, setStateAuthor] = useState();
   const dispatch: any = useDispatch();
   const nagivate: any = useNavigate();
@@ -108,21 +109,19 @@ const Details = () => {
       const body = {postId:postId.id };
 
 
-      const { data } = await axios.post("http://localhost:4000/like",body,config);
-
+      const {data} = await axios.post("http://localhost:4000/like",body,config);
+      
+      if(data) {
+        setUserLiked(true);
+      } else {
+        setUserLiked(false);
+      }
       
     },
     [postId.id]
   );
 
-  // useEffect(() => {
-  //   axios
-  //     .get(`http://localhost:4000/posts/get_one/${props.id}`)
-  //     .then((response) => {
-  //       setComments(response.data.comments);
-        
-  //     });
-  // }, [setComments, props.id]);
+ 
 
   const [pusher, setPusher] = useState<any>(
     () =>
@@ -133,11 +132,18 @@ const Details = () => {
   const [channel, setChannel] = useState<any>(() => pusher.subscribe("magz"));
 
   useEffect(() => {
+
+    
     channel.bind("new-like", (data: any) => {
-        // setComments((oldState: any) => ( data.comments ));
-        handleLikesNumber(data.likes.length)
+        
+        if(data._id == postId.id) {
+          handleLikesNumber(data.likes.length)
+          
+        }
+        
+         
     });
-  }, [channel]);
+  }, [channel,postId.id]);
 
   const handleLikesNumber = (number: any) => {
     setLikesNumber(number);
@@ -267,7 +273,7 @@ const Details = () => {
             >
               <Box
                 component="img"
-                src={like}
+                src={userLiked ? icon : like }
                 sx={{ height: "15px", width: "15px", margin: "8px" }}
                 onClick={handleLike}
               />
