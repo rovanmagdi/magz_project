@@ -12,6 +12,7 @@ import OpinionSection from "../../components/home/OpinionSection";
 import SportSection from "../../components/home/SportSection";
 import LifestyleSection from "../../components/home/LifestyleSection";
 import Weather from "../../components/home/Weather";
+import SubCategoryPage from '../subCategoryPage/SubCategoryPage'
 
 import { QuotePaper } from "../../styled/styledPaper";
 import SearchCategory from "../../components/navbar/SearchCategory";
@@ -35,6 +36,7 @@ const Homenews = () => {
   return (
     <>
       {/* <AuthorPage></AuthorPage> */}
+      {/* <SubCategoryPage/> */}
       <Box sx={{ display: "flex", justifyContent: "space-around" }}>
         <Box sx={{ width: "65%", }}>
           <TodaySection></TodaySection>

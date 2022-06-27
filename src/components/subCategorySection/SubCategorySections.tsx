@@ -9,22 +9,20 @@ import { CircularProgress, Box } from "@mui/material";
 import Grid from "@mui/material/Grid";
 import { CategoryLabelBox } from "../../styled/styledBox";
 import { HorizontalLineBox } from "../../styled/styledBox";
+import { useNavigate, useParams } from "react-router-dom";
 
 export default function SubCategorySection() {
   const { catergory } = useSelector((state: any) => state);
 
-  
   const posts = catergory;
   const filteredCategories: any = [];
 
   // const {posts}=useSelector((state:any) =>state);
   // console.log(posts)
 
- 
-  
   if (catergory) {
     console.log("Here");
-    
+
     catergory.forEach((category: any) => {
       console.log("category");
 
@@ -34,13 +32,16 @@ export default function SubCategorySection() {
     });
     //  console.log(filteredCategories["football"]?.slice(2, 6))
     //  console.log(filteredCategories["football"])
-     console.log(Object.keys(filteredCategories))
+    console.log(Object.keys(filteredCategories));
   }
-  
-  
 
+  const nagivate = useNavigate();
   const subCategories = Object.keys(filteredCategories);
-
+  const pageParam = useParams();
+  // const handleGoSubCatergory = (CatergoryPage:any,SubCatergoryPage: any) => {
+  //   nagivate(`${SubCatergoryPage}`);
+  // };
+console.log(catergory);
 
   return (
     <>
@@ -49,7 +50,10 @@ export default function SubCategorySection() {
           return (
             <Box mb={5}>
               <Box position={"relative"} mb={2} mt={7}>
-                <CategoryLabelBox sx={{ backgroundColor: "#272727" }}>
+                <CategoryLabelBox
+                  sx={{ backgroundColor: "#272727" }}
+                  // onClick={() => handleGoSubCatergory(filteredCategories[item][0].category,item)}
+                >
                   {item}
                 </CategoryLabelBox>
                 <HorizontalLineBox
