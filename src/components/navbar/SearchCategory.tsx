@@ -10,20 +10,20 @@ const SearchCategory = () => {
 
   const {posts}=useSelector((state:any) =>state);
 
-  console.log(posts);
+  // console.log(posts);
   
   if(posts)
   {
      posts.forEach((category:any)=>{
          filteredCategories[category._id]=category.posts
      })
-     console.log(filteredCategories["lifestyle"])
+    //  console.log(filteredCategories["lifestyle"])
  }
   const [search, setSearch] = useState("");
 
   function handleChange(e: any) {
     setSearch(e.target.value)
-    console.log(e.target.value);
+    // console.log(e.target.value);
     
   }
   return (

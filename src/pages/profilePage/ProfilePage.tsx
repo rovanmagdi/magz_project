@@ -39,13 +39,13 @@ export default function ProfilePge() {
   }));
 
   const editProfilePic = () => {
-    console.log("clicked");
+    // console.log("clicked");
   };
   const uploadImage = (files: any) => {
     const formData = new FormData();
     formData.append("file", files[0]);
     formData.append("upload_preset", "tl55trty");
-    console.log(userInfoObj.token);
+    // console.log(userInfoObj.token);
 
     axios
       .post("https://api.cloudinary.com/v1_1/dsvj1cj17/image/upload", formData)
@@ -73,6 +73,7 @@ export default function ProfilePge() {
           margin: "auto",
           textAlign: "center",
           padding: "20px 0px",
+          
         }}
       >
         {userInfoObj.imageUrl ? (

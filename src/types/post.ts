@@ -18,6 +18,7 @@ export default interface Post {
     "autherImage":string;
 
     "autherBrief":string;
+    "autherId":string;
 
     
   }

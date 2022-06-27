@@ -5,7 +5,7 @@ import Post from "./Post";
 import { Box } from "@mui/material";
 const AuthorInfo: React.FC<Author> = (props: any) => {
   const { fullName, image, posts, brief } = props;
-  console.log(fullName, image, posts, brief);
+  // console.log(fullName, image, posts, brief);
 
   return (
     <>

@@ -14,7 +14,7 @@ export default function CategoryPage() {
   const dispatch: any = useDispatch();
   useEffect(() => {
     dispatch(Catergory(page));
-    console.log(catergory);
+    // console.log(catergory);
   }, [page]);
   return (
     <>

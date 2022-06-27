@@ -19,7 +19,7 @@ export default function ProfileContent() {
   
     useEffect(() => {
       dispatch(getProfileEditFlag());
-      console.log('hello from content')
+      // console.log('hello from content')
     }, [dispatch, editMode,user]);
   
     return <>

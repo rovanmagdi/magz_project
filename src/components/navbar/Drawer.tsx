@@ -71,11 +71,11 @@ const DrawerList = () => {
   useEffect(() => {
     dispatch(InterstedCatergory());
 
-    console.log(intersted);
+    // console.log(intersted);
   }, []);
   const nagivate: any = useNavigate();
   const handleRoute = (page: any) => {
-    console.log("go");
+    // console.log("go");
     nagivate(`/${page}`);
   
   };

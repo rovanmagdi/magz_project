@@ -94,10 +94,10 @@ function Register() {
       )
     );
     navigate("/");
-    console.log(results);
+    // console.log(results);
   };
   const handleFailure = (error: any) => {
-    console.log(error);
+    // console.log(error);
   };
   return (
     <>

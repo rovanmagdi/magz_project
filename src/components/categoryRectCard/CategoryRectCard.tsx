@@ -16,7 +16,7 @@ const CategoryRectCard: React.FC<Post> = (props) => {
 
   // const{title,image}=props;
   
-  console.log({title},{image});
+  // console.log({title},{image});
   
 
   const StyledCard = styled(Box)(({ theme }) => ({
@@ -35,7 +35,7 @@ const CategoryRectCard: React.FC<Post> = (props) => {
   const nagivate: any = useNavigate();
 
   const handleGoDetails = (id: any) => {
-    console.log("go details");
+    // console.log("go details");
     nagivate(`/details/${id}`);
 
 

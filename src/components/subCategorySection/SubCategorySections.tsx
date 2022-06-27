@@ -18,10 +18,10 @@ export default function SubCategorySection() {
   // console.log(posts)
 
   if (catergory) {
-    console.log("Here");
+    // console.log("Here");
 
     catergory.forEach((category: any) => {
-      console.log("category");
+      // console.log("category");
 
       filteredCategories[category.subCategory]
         ? filteredCategories[category.subCategory].push(category)
@@ -29,7 +29,7 @@ export default function SubCategorySection() {
     });
     //  console.log(filteredCategories["football"]?.slice(2, 6))
     //  console.log(filteredCategories["football"])
-    console.log(Object.keys(filteredCategories));
+    // console.log(Object.keys(filteredCategories));
   }
 
   // const nagivate = useNavigate();

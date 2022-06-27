@@ -12,22 +12,31 @@ import CustomPostDate from '../postDate/PostDate'
 import {OverlayPostBox} from '../../styled/styledBox'
 import {StyledPostCard} from '../../styled/styledCard'
 import { useNavigate } from 'react-router-dom';
+import { getAuthorInfo } from "../../redux/actions/authorAction";
+import { useDispatch } from "react-redux";
 
 
 
 
 export default function PostCard(props: Post) {
-  const { title, image, updatedAt,_id ,autherFirstName,autherLastName,autherImage} = props;
+  const { title, image, updatedAt,_id ,autherFirstName,autherLastName,autherImage,autherId} = props;
   const autherName=autherFirstName+' '+autherLastName;
   
   const nagivate: any = useNavigate();
+  const dispatch: any = useDispatch();
+ 
   
   const handleGoDetails = (id: any) => {
-    console.log("go details");
+    // console.log("go details");
     nagivate(`/details/${id}`);
 
 
   }
+  const handleAuthor = (event: React.MouseEvent<HTMLButtonElement>,id: any) => {
+    event.stopPropagation();
+    dispatch(getAuthorInfo(autherId));
+    nagivate(`/auther/${autherId}`);
+  };
   return (
     <ThemeProvider theme={theme}>
       <StyledPostCard
@@ -63,7 +72,8 @@ export default function PostCard(props: Post) {
             ></Avatar>
           }
           subheader={<AutherName>{autherName}</AutherName>}
-          sx={{ pt: 0, pb: "20px", color: "text.dark" }}
+          sx={{ pt: 0, pb: "20px", color: "text.dark",cursor:'pointer' }}
+          onClick={(event: React.MouseEvent<HTMLButtonElement>)=>handleAuthor(event,autherId)}
         />
         {/* <PostTitle>Author Name</PostTitle>
          </CardHeader> */}

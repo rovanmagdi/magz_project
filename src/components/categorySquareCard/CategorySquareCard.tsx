@@ -26,7 +26,7 @@ const CategorySquareCardComponent: React.FC<Post> = (props) => {
 
   const nagivate: any = useNavigate();
   const handleGoDetails = (id: any) => {
-    console.log("go details");
+    // console.log("go details");
     nagivate(`/details/${id}`);       
 
 
