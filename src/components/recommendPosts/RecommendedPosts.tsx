@@ -56,7 +56,7 @@ const RecommendedPosts = () => {
 
   }, []);
   useEffect(() => {
-    console.log(views);
+    // console.log(views);
   }, [views]);
   const nagivate: any = useNavigate();
   const handleGoDetails = (id: any) => {

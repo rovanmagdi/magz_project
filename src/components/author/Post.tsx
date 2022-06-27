@@ -18,14 +18,25 @@ import { StyledCircleIcon } from "../../styled/StyledIcon";
 import { StyledAuthorPostCard } from "../../styled/styledCard";
 import { TodayLabelBox } from "../../styled/styledBox";
 import { AuthorPostLabelBox } from "../../styled/styledBox";
+import { useNavigate } from 'react-router-dom';
+import { useDispatch } from "react-redux";
 
 const AuthorPost: React.FC<Post> = (props) => {
-  const { title, image, description, updatedAt , autherFirstName, autherLastName, category, autherBrief,autherImage} = props;
-  console.log(title, image, description, updatedAt, autherFirstName);
+  const { _id,title, image, description, updatedAt , autherFirstName, autherLastName, category, autherBrief,autherImage} = props;
+  // console.log(title, image, description, updatedAt, autherFirstName);
+  const nagivate: any = useNavigate();
+  
+  const handleGoDetails = (id: any) => {
+    // console.log("go details");
+    nagivate(`/details/${id}`);
+
+
+  }
+  
   return (
     <>
    
-      <StyledAuthorPostCard>
+      <StyledAuthorPostCard onClick={()=>handleGoDetails(_id)}>
         <CardActionArea>
           <CardMedia
             component="img"
@@ -50,7 +61,7 @@ const AuthorPost: React.FC<Post> = (props) => {
             })}`}
           </DateTypography>
           <Typography variant="body2" color="text.secondary">
-            {description}
+            {`${description.slice(0,120)}...`}
           </Typography>
           </CardContent>
         </CardActionArea>

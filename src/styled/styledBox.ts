@@ -69,7 +69,7 @@ export const OverlayBox = styled(Box)(() => ({
 export const OverlayTodayBox = styled(OverlayBox)(() => ({
   width: "100%",
   borderRadius: "8px",
-  height: "73%",
+  height: "380px",
   "&:hover": {
     backgroundColor: "rgba(96, 89, 85,.5)",
   },
@@ -191,7 +191,7 @@ export const OverlaySportMobileBox = styled(OverlayLifestyleBox)(() => ({
 
 export const AuthorPostLabelBox = styled(CategoryLabelBox)(({ theme }) => ({
   position: "relative",
-  left: "80%",
+  left: "77%",
   height: "28px",
   width: "70px",
   marginBottom: "15px",

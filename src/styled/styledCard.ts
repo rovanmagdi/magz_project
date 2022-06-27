@@ -59,7 +59,7 @@ export const StyledCultureCard = styled(StyledLifestyleCard)(() => ({
 
 
   export const StyledAuthorPostCard = styled(StyledCard)(() => ({
-    width: "350px",
+    // width: "350px",
       color: "#4D7E96"
     
   }));

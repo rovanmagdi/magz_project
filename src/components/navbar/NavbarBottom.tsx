@@ -92,7 +92,7 @@ export default function NavbarBottom() {
   }, [dispatch]);
 
   const handleRoute = (page: any) => {
-    console.log("go");
+    // console.log("go");
     nagivate(`Catergory/${page}`)
 
 

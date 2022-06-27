@@ -32,8 +32,8 @@ const SportLaptopView: React.FC<Post> = (props) => {
   } = props;
   const nagivate: any = useNavigate();
   const handleGoDetails = (id: any) => {
-    console.log("go details");
-    console.log(props);
+    // console.log("go details");
+    // console.log(props);
     nagivate(`/details/${id}`);
   };
   return (

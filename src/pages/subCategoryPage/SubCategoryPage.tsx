@@ -20,7 +20,7 @@ export default function SubCategoryPage() {
   const dispatch: any = useDispatch();
   useEffect(() => {
     dispatch(getSubcategoryPosts(Subpage));
-    console.log(subcategoryPosts);
+    // console.log(subcategoryPosts);
   }, []);
 
   const { subcategoryPosts } = useSelector((state: any) => state);

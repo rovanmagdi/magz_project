@@ -25,7 +25,7 @@ const Homenews = () => {
   // const posts=useSelector((state:any) =>state.posts? state.posts[0].posts : state.posts);
 
   const dispatch: any = useDispatch();
-  console.log("here news home");
+  // console.log("here news home");
 
   // const {}
   useEffect(() => {

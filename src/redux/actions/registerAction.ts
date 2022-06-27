@@ -11,11 +11,11 @@ export function registerUser(firstName: any, lastName: any, email: any, password
             .then(({ data }) => {
                 dispatch(showSuccess());
                 dispatch(RegisterInterface(data))
-                console.log("done from action registerUser");
-                console.log(data);
+                // console.log("done from action registerUser");
+                // console.log(data);
                 localStorage.setItem('RegisterInfo', JSON.stringify(data));
             }).catch((error) => {
-                console.log("errror from action registerUser");
+                // console.log("errror from action registerUser");
                 dispatch(showError(error.response.data.message));
             })
     }

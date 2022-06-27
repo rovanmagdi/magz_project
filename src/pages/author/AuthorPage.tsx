@@ -24,10 +24,10 @@ const AuthorPage = () => {
   return (
 
     <>
-      <Stack alignItems={"center"}>
+      <Stack alignItems={"center"} sx={{paddingTop:'110px'}}>
         <AuthorInfoSection></AuthorInfoSection>
         <PostsSection></PostsSection>
-        <Paginationd></Paginationd>
+        {/* <Paginationd></Paginationd> */}
       </Stack>
 
 

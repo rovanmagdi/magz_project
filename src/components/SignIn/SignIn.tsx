@@ -57,10 +57,10 @@ export default function SignIn() {
     }
   };
   const data = useSelector((state: any) => state.userData);
-  console.log(data);
+  // console.log(data);
   useEffect(() => {
     if (data) {
-      console.log("here");
+      // console.log("here");
       navigate("/");
     }
   }, [data]);
@@ -68,7 +68,7 @@ export default function SignIn() {
   const handleForgetPassword=()=>
   {
     navigate('/forget_password')
-    console.log("yes");
+    // console.log("yes");
     
   }
   return (

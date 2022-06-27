@@ -140,7 +140,7 @@ const Details = () => {
   useEffect(() => {
     for (var i = 0; i < stateDetails.likes.length; i++) {
       if (stateDetails.likes[i].user === userId) {
-        console.log("here");
+        // console.log("here");
         setUserLiked(true);
       }
     }

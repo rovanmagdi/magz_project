@@ -48,7 +48,7 @@ export const RegisterUser = (firstName: any, lastName: any, email: any, password
       localStorage.setItem("RegisterInfo", JSON.stringify(response.data));
     })
     .catch((err) => {
-      console.log(err.response.data.message);
+      // console.log(err.response.data.message);
 
       dispatch(showError(err.response.data.message));
     });

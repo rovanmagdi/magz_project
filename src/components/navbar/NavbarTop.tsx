@@ -108,7 +108,7 @@ export default function NavbarTop() {
   };
   const dispatch: any = useDispatch();
   const handleClickLogout = () => {
-    console.log("logout");
+    // console.log("logout");
     dispatch(userLogout());
     nagivate("/");
   };

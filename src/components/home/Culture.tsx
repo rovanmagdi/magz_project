@@ -22,8 +22,8 @@ const Culture: React.FC<Post> = (props) => {
   const{title,image,updatedAt, autherFirstName, autherLastName, _id, autherImage}=props;
   const nagivate: any = useNavigate();
   const handleGoDetails = (id: any) => {
-    console.log("go details");
-    console.log(props);
+    // console.log("go details");
+    // console.log(props);
     nagivate(`/details/${id}`);  }
 return(
 <>

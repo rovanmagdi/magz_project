@@ -10,7 +10,7 @@ export const getRecommendedPosts = () => (dispatch:any) => {
 		.get(`/`)
 		.then((response) => {
 			dispatch(getAllPostsSuccess(response.data));
-			console.log("data", response.data)
+			// console.log("data", response.data)
 			dispatch(showSuccess());
 		})
 		.catch((err) => {

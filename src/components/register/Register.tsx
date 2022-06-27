@@ -90,9 +90,9 @@ function Register() {
     inteseted:[]
   });
   const handleSuccess = (results: any) => {
-    console.log(results);
+    // console.log(results);
     SetProfile(results.profileObj);
-    console.log(stateProfile);
+    // console.log(stateProfile);
     
 
     localStorage.setItem("RegisterInfo", JSON.stringify(results.profileObj));
@@ -108,10 +108,10 @@ function Register() {
       )
     );
     navigate("/");
-    console.log(results);
+    // console.log(results);
   };
   const handleFailure = (error: any) => {
-    console.log(error);
+    // console.log(error);
   };
   return (
     <>

@@ -5,7 +5,7 @@ import { StyledImageComment } from "../../styled/Comments";
 import { StyledLine } from "../../styled/Footer";
 
 const CommentDetails = (props: any) => {
-  console.log(props.comment);
+  // console.log(props.comment);
   const month = [
     "January",
     "February",

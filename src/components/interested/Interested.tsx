@@ -9,7 +9,7 @@ export default function InterestedComponent(props: InterestedInterFace) {
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { value, checked } = e.target;
 
-    console.log(`${value} is ${checked}`);
+    // console.log(`${value} is ${checked}`);
   };
   return (
     <Stack key={props.id}>

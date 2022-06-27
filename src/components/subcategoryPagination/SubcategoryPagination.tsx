@@ -27,7 +27,7 @@ export default function SubcategoryPagination() {
     indexOfFirstPost,
     indexOfLastPost
   );
-  console.log(currentPosts);
+  
 
   return (
     <>
