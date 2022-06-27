@@ -24,8 +24,9 @@ import CategoryPage from "../pages/categoryPage/CategoryPage";
 import { getDesignMode } from "../theme/DarkMode";
 import { createTheme } from "@mui/material";
 import { ColorModeProvider } from "../contexts/ColorModeContext";
-import SubCatergory from "../pages/subCatergory/SubCatergory";
+
 import Not_Found from "../pages/not found/Not_found";
+import SubCategoryPage from "../pages/subCategoryPage/SubCategoryPage";
 function App() {
 
 
@@ -45,7 +46,7 @@ function App() {
                   <Route path="/details/:id" element={<Details />} />
                   <Route path="/auther/:id" element={<AuthorPage />} />
                   <Route path="/:page" element={<CategoryPage />} />
-                  <Route path="/:page/:Subpage" element={<SubCatergory />} />
+                  <Route path="/:page/:Subpage" element={<SubCategoryPage />} />
 
                 </Route>
                   <Route path="*" element={<Not_Found/>} />
