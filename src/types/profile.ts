@@ -6,5 +6,6 @@ export interface UserInfo {
     image: string;
     name?:string;
     intersted?:[];
+    imageUrl?:string;
 
   }

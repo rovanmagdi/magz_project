@@ -77,7 +77,6 @@ export default function NavbarTop() {
     "December",
   ];
   let date_raw = days[newDate.getDay()];
-  let date_number = newDate.getDay();
   let month_raw = months[newDate.getMonth() + 1];
   let year = newDate.getFullYear();
   function handleChange(event: any) {
@@ -107,9 +106,6 @@ export default function NavbarTop() {
   const handleProfile = () => {
     nagivate("/Profile");
   };
-  const handleHome = () => {
-    nagivate("/");
-  };
   const dispatch:any=useDispatch();
   const handleClickLogout = () => {
     console.log("logout");
@@ -121,7 +117,7 @@ export default function NavbarTop() {
   return (
     <>
       <StyledNavTop sx={TopNavStyles(theme)}>
-        <Box component="div">
+        <Box component="div" sx={{color:"#AAAEAF"}}>
           {date_raw} {month_raw} {},{year}
         </Box>
         <StyledNavTopRight>
@@ -173,7 +169,7 @@ export default function NavbarTop() {
                            
                           </StyledRightOneConatiner>
                         )}
-                        {userInfoObj.firstName} {userInfoObj.lastName}
+                        <Box sx={{textTransform:"capitalize",fontWeight:"bold"}}>{userInfoObj.firstName} {userInfoObj.lastName}</Box>
                       </Box>
                     ) : (
                       <>

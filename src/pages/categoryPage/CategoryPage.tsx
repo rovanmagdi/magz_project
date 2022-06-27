@@ -8,7 +8,7 @@ import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
 import { Catergory } from "../../redux/actions/catergotyAction";
 
 
-export default function SportsPage() {
+export default function CategoryPage() {
   const { catergory } = useSelector((state: any) => state);
   const { page } = useParams();
   const dispatch: any = useDispatch();
@@ -18,10 +18,10 @@ export default function SportsPage() {
   }, [page]);
   return (
     <>
-      <Stack  direction ="row"sx={{color:"lightGray",fontSize:"12px",margin:"0px 0px 20px 20px"}}>
-       Home <ArrowForwardIosIcon sx={{fontSize:"12px",margin:"3px"}}/> 
+      <Stack direction="row" sx={{ color: "lightGray", fontSize: "12px", margin: "0px 0px 20px 20px" }}>
+        Home <ArrowForwardIosIcon sx={{ fontSize: "12px", margin: "3px" }} />
         {page}
-        </Stack>
+      </Stack>
 
       <CategoryAllSection />
 

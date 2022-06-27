@@ -9,7 +9,7 @@ export const BootstrapInput = styled(InputBase)(({ theme }) => ({
   padding:"5px",
   backgroundColor:
     theme.palette.mode === "light"
-      ? `${theme.palette.success.dark}`
+      ? `rgba(99,142,163,0.2)`
       : "#2b2b2b",
 
   display: "block",
