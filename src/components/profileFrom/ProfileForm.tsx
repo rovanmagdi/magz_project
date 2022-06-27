@@ -30,17 +30,15 @@ export default function ProfileForm() {
   // const firstName = `${userInfoObj.firstName}`;
   // const lastName = `${userInfoObj.lastName}`;
   // const email = `${userInfoObj.email}`;
-  const{firstName,lastName,email,imageUrl}=userInfoObj;
+  const {firstName,lastName,email,imageUrl}=userInfoObj
   const userToken = `${userInfoObj.token}`;
   const oldIntersted= userInfoObj.intersted;
-
     
 
   const [state, setState] = useState({
     firstName: firstName,
     lastName: lastName,
     email: email,
-
    
   });
 
@@ -67,7 +65,6 @@ export default function ProfileForm() {
         .min(3)
         .required()
         .regex(/^[a-zA-Z]*$/),
-       
       email: Joi.string().regex(/[a-z0-9]+@[a-z]+\.[a-z]{2,3}/),
     });
 
@@ -75,21 +72,28 @@ export default function ProfileForm() {
   };
 
   const handleSaveClick = () => {
+    
     let errors: any = [];
 
     validations(state).error?.details.forEach((element) => {
+      
       errors.push(element.path[0]);
     });
     // console.log(validations(state).error?.details);
     setErrorState(errors);
 
     const isValidData = !validations(state).error;
-    if (isValidData) {
-      dispatch(updateUser(state));
-      dispatch(updateUser({ intersted: userIntests }));
-
+    if(!imageUrl){
+      if (isValidData) {
+        dispatch(updateUser(state));
+        dispatch(updateUser({ intersted: userIntests }));
+  
+        dispatch(setFalseProfileEditFlag());
+      }
+    }else{
       dispatch(setFalseProfileEditFlag());
     }
+    
   };
 
   const handleCancelClick = () => {
@@ -124,7 +128,7 @@ export default function ProfileForm() {
       <Box sx={{ textAlign: "center" }}>
         <Table>
           <TableBody>
-            {!imageUrl?(<><TableRow>
+            <TableRow>
               <TableCell>First Name</TableCell>
               <TableCell>
                 <TextField
@@ -187,10 +191,7 @@ export default function ProfileForm() {
                   <StyledError></StyledError>
                 )}
               </TableCell>
-            </TableRow></>):('')}
-            
-            
-            <TableRow>
+            </TableRow> <TableRow>
               <TableCell>Interested</TableCell>
               <TableCell>
               {intersted?.map((item: any) => {
@@ -232,6 +233,8 @@ export default function ProfileForm() {
           })}
               </TableCell>
             </TableRow>
+            
+           
           </TableBody>
         </Table>
         <StyledButton onClick={handleSaveClick}>
