@@ -31,23 +31,12 @@ export default function SubcategoryPagination() {
 
   return (
     <>
-    <Stack spacing={2}>
-      <Box mb={5}>
-        <Box position={"relative"} mb={2} mt={7}>
-          <CategoryLabelBox
-            sx={{ backgroundColor: "#272727" }}
-            // onClick={() => handleGoSubCatergory(filteredCategories[item][0].category,item)}
-          >
-            lol
-          </CategoryLabelBox>
-          <HorizontalLineBox
-            sx={{ backgroundColor: "#272727" }}
-          ></HorizontalLineBox>
-        </Box>
-      </Box>
+    <Stack spacing={2} justifyContent="center"
+  alignItems="center">
+    
       {currentPosts ? (
         <>
-          <Grid item xs={12} container gap={1} justifyContent={"center"}>
+          <Grid item xs={12} container gap={1} justifyContent={"center"} sx={{mt:4}}>
           {currentPosts.map((post:any)=>{
              return (
                 <>

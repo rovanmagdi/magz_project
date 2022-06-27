@@ -97,6 +97,11 @@ export default function NavbarBottom() {
 
 
   }
+
+  const handelGoSubCategory = (subCatergory: any) => {
+    nagivate(`/${page}/${subCatergory}`)
+  };
+
   return (
     <>
       <StyledNavBottom  sx={AppbarStyles(theme)}>
@@ -144,7 +149,7 @@ export default function NavbarBottom() {
                   }}
                 >
                   {subcategories?.map((el: any) => (
-                    <Box sx={{ color: "white", width: "100px" }} key={el._id}>
+                    <Box sx={{ color: "white", width: "100px",cursor:'pointer' }} key={el._id} onClick={() => handelGoSubCategory(el.title)}>
                       {el?.title}
                     </Box>
                   ))}

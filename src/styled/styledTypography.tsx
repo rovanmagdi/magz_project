@@ -58,3 +58,12 @@ export const DateTypography= styled(Typography)(({theme})=>({
     height:" 45px",
            overflowY: "hidden",
   }));
+
+  export const SubCategoryLatestPost = styled(Typography)(({ theme }) => ({
+    color:"#4D7E96",
+    padding:'6px',
+    borderBottom:'1px solid gray',
+    fontSize:'1.8em',
+    margin:'50px 0px',
+    textTransform:'uppercase'
+  }));
