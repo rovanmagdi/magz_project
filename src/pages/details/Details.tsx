@@ -18,7 +18,9 @@ import image from "../../assets/background.png";
 import icon from "../../assets/icons.png";
 import { StyledLine } from "../../styled/Footer";
 import comments from "../../assets/comment.png";
-import like from "../../assets/like.png";
+import unlike from "../../assets/like.png";
+import like from "../../assets/like2.png";
+
 
 import Pusher from "pusher-js";
 
@@ -255,6 +257,12 @@ const Details = () => {
                 alignItems: "center",
               }}
             >
+              <Box
+                component="img"
+                src={unlike}
+                sx={{ height: "15px", width: "15px", margin: "8px" }}
+                onClick={handleLike}
+              />
               <Box
                 component="img"
                 src={like}
