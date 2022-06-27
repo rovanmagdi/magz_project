@@ -43,6 +43,10 @@ const LastPosts = () => {
     // console.log(recently);
   }, []);
 
+  // const handleGoDetails = (id: any) => {
+  //   nagivate(`/details/${id}`);
+
+  // }
   return (
     <Box >
       <StyledGridRightTitle
@@ -64,6 +68,7 @@ const LastPosts = () => {
             data={i.title}
             date={<PostDate date={i.updatedAt} />}
             img={i.image}
+            _id={i._id}
           />
         );
       })}

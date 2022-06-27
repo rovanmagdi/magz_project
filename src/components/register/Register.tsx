@@ -194,7 +194,7 @@ function Register() {
             })
           : ""} */}
         <StyledButton variant="contained" type="submit">
-          Sign in
+          Resgister
         </StyledButton>
       </form>
       <Box sx={{ marginTop: "10px" }}>

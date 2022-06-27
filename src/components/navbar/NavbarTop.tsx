@@ -6,7 +6,7 @@ import {
   MenuItem,
   Typography,
 } from "@mui/material";
-import React, { useState,useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import {
@@ -25,7 +25,7 @@ import { ColorModeContext } from "../../contexts/ColorModeContext";
 import { useContext } from "react";
 import { useTheme } from "@mui/material";
 
-import { SxProps, Theme} from "@mui/material";
+import { SxProps, Theme } from "@mui/material";
 import { theme } from "../../theme/palette";
 
 const TopNavStyles = (theme: Theme): SxProps<Theme> => {
@@ -51,7 +51,7 @@ const TopNavStyles = (theme: Theme): SxProps<Theme> => {
 
 export default function NavbarTop() {
   const user = useSelector((state: any) => state.user);
-  useEffect(() => {}, [user]);
+  useEffect(() => { }, [user]);
   let newDate = new Date();
   const days = [
     "Sunday",
@@ -106,7 +106,7 @@ export default function NavbarTop() {
   const handleProfile = () => {
     nagivate("/Profile");
   };
-  const dispatch:any=useDispatch();
+  const dispatch: any = useDispatch();
   const handleClickLogout = () => {
     console.log("logout");
     dispatch(userLogout());
@@ -117,8 +117,8 @@ export default function NavbarTop() {
   return (
     <>
       <StyledNavTop sx={TopNavStyles(theme)}>
-        <Box component="div" sx={{color:"#AAAEAF"}}>
-          {date_raw} {month_raw} {},{year}
+        <Box component="div" sx={{ color: "#AAAEAF" }}>
+          {date_raw} {month_raw} { },{year}
         </Box>
         <StyledNavTopRight>
           {!RegisterInfo ? (
@@ -150,26 +150,26 @@ export default function NavbarTop() {
                     onClick={handleClick}
                   >
                     {!userInfoObj.imageUrl ? (
-                      <Box sx={ TopNavStyles(theme)} display="flex">
-                        {userInfoObj.image !== " " ? (
-                          <Box 
+                      <Box sx={TopNavStyles(theme)} display="flex">
+                        {userInfoObj.image !== "" ? (
+                          <Box
                             component="img"
                             sx={{
                               height: "25px",
                               width: "25px",
                               borderRadius: "50%",
                               marginRight: "10px",
-                             
+
                             }}
                             src={`${userInfoObj.image}`}
                           />
                         ) : (
                           <StyledRightOneConatiner>
                             <PersonIconNav />
-                           
+
                           </StyledRightOneConatiner>
                         )}
-                        <Box sx={{textTransform:"capitalize",fontWeight:"bold"}}>{userInfoObj.firstName} {userInfoObj.lastName}</Box>
+                        <Box sx={{ textTransform: "capitalize", fontWeight: "bold" }}>{userInfoObj.firstName} {userInfoObj.lastName}</Box>
                       </Box>
                     ) : (
                       <>
@@ -188,7 +188,7 @@ export default function NavbarTop() {
                     )}
                     {` `}
                   </Button>
-                  <Menu  
+                  <Menu
                     id="basic-menu"
                     anchorEl={anchorEl}
                     open={open}

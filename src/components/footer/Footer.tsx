@@ -34,6 +34,7 @@ import { useContext } from "react";
 
 
 import { SxProps, Theme} from "@mui/material";
+import { useNavigate } from "react-router-dom";
 
 const FooterStyles = (theme: Theme): SxProps<Theme> => {
   const defaultStyles: SxProps<Theme> = {};
@@ -60,6 +61,7 @@ const Footer = () => {
   const isMatch = useMediaQuery(theme.breakpoints.down(1117));
   const dispatch: any = useDispatch();
   const { recently } = useSelector((state: any) => state);
+  const nagivate: any = useNavigate();
  
   return (
     <Box >
@@ -77,7 +79,7 @@ const Footer = () => {
                   and social issues
                 </Box>
 
-                <StyledFooterButton>Sign up for MAGZ</StyledFooterButton>
+                <StyledFooterButton onClick={()=>nagivate("/login")}>Sign up for MAGZ</StyledFooterButton>
               </StyledGridLeftText>
             </StyledGridLeft>
             <LastPosts />
@@ -87,6 +89,7 @@ const Footer = () => {
               data="Any Description"
               date="125"
               img="img"
+              _id=""
             />
           </Grid>
 

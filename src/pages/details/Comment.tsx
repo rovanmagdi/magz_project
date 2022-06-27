@@ -68,30 +68,35 @@ export default function Comment() {
   const userInfoObj = JSON.parse(`${localStorage.getItem("RegisterInfo")}`);
   return (
     <>
-      <Box sx={{display:"flex",alignItems:"center"}}>
-        <Box component="img"
+      <Box sx={{ display: "flex", alignItems: "center" }}>
+        <Box
+          component="img"
           height="40px"
           width="40px"
           sx={{ borderRadius: "50%" }}
-          src={userInfoObj.image} />
-        <TextField
-          id="outlined-start-adornment"
-          sx={{ m: 1, width: "70ch" ,marginTop: "20px"}}
-          placeholder="Write a Comment..."
-          
-          InputProps={{
+          src={userInfoObj.image}
+        /> 
+        {
+          RegisterInfo?(
+            <TextField
+            id="outlined-start-adornment"
+            sx={{ m: 1, width: "70ch", marginTop: "20px" }}
+            placeholder="Write a Comment..."
+            InputProps={{
+              endAdornment: (
+                <InputAdornment position="end" sx={{ cursor: "pointer",color:"#4D7E96" }}>
+                  <SendIcon onClick={handleSubmit} />
+                </InputAdornment>
+              ),
+            }}
+            name="comment"
+            value={comment.commentText}
+            onChange={handleChange}
+          />
+          ):(<Box></Box>)
+        }
+      
 
-
-            endAdornment: (
-              <InputAdornment position="end" sx={{ cursor: "pointer" }}>
-                <SendIcon onClick={handleSubmit} />
-              </InputAdornment>
-            ),
-          }}
-          name="comment"
-          value={comment.commentText}
-          onChange={handleChange}
-        />
       </Box>
     </>
   );

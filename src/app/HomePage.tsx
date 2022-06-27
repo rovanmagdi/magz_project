@@ -54,7 +54,7 @@ function HomePage() {
 
             <Route path="/details/:id" element={<Details />} />
             <Route path="/auther/:id" element={<AuthorPage />} />
-            <Route path="/catergory/:page" element={<CategoryPage />} />
+            <Route path="/Catergory/:page" element={<CategoryPage />} />
             <Route path="/:page/:Subpage" element={<SubCategoryPage />} />
             <Route path="*" element={<Not_Found/>} />
 

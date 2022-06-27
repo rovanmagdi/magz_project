@@ -93,7 +93,7 @@ export default function NavbarBottom() {
 
   const handleRoute = (page: any) => {
     console.log("go");
-    nagivate(`/${page}`)
+    nagivate(`Catergory/${page}`)
 
 
   }
@@ -161,7 +161,7 @@ export default function NavbarBottom() {
         <StyledListNavRight>
           <FormControl  variant="outlined" >
             <OutlinedInput
-              sx={{ height: "30px", borderRadius: "40px", color: "white" }}
+              sx={{ height: "30px", borderRadius: "40px", color: "white",border:"0.5px solid #E6E8F0" }}
               id="outlined-adornment-weight"
               endAdornment={
                 <InputAdornment position="end" sx={AppbarStyles(theme)}>

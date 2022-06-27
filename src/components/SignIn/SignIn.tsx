@@ -1,5 +1,5 @@
 import { BootstrapInput } from "../../styled/Input";
-import { FormControl, Box, Alert } from "@mui/material";
+import { FormControl, Box, Alert, Typography } from "@mui/material";
 import { StyledButton } from "../../styled/Button";
 import { useCallback, useEffect, useState } from "react";
 import { LoginInterFace } from "../../types/login";
@@ -57,13 +57,13 @@ export default function SignIn() {
     }
   };
   const data = useSelector((state: any) => state.userData);
-  console.log(data)
+  console.log(data);
   useEffect(() => {
     if (data) {
-      console.log("here")
+      console.log("here");
       navigate("/");
     }
-  },[data]);
+  }, [data]);
 
   return (
     <form onSubmit={handleSubmit}>
@@ -101,6 +101,18 @@ export default function SignIn() {
       <StyledButton variant="contained" type="submit">
         Sign in
       </StyledButton>
+      <Typography
+        variant="body1"
+        sx={{
+          fontSize: "14px",
+          color: "#4D7E96",
+          float: "right",
+          marginTop: "10px",
+          cursor: "pointer",
+        }}
+      >
+        Forget Password ?
+      </Typography>
     </form>
   );
 }

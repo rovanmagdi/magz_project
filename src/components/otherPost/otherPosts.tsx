@@ -10,11 +10,18 @@ import {
   BoxStyle,
 } from "../../styled/PopularPost";
 import { PopularPostsInterFace } from "../../types/popularPosts";
-const OtherPosts:React.FC<PopularPostsInterFace> = (props) => {
+import { useNavigate } from "react-router-dom";
+const OtherPosts: React.FC<PopularPostsInterFace> = (props) => {
+  const nagivate: any = useNavigate();
+  
+  const handleGoDetails = (id: any) => {
+    nagivate(`/details/${id}`);
+
+  }
   return (
     <StyledGridRight>
-     
-      <StyledGridRightTitle>
+
+      <StyledGridRightTitle onClick={() => handleGoDetails(props._id)}>
         <Box
           component="img"
           src={props.img}
