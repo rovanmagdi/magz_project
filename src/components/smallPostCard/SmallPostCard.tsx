@@ -17,7 +17,9 @@ import { useNavigate } from 'react-router-dom';
 
 export default function SmallPostCard(props: Post) {
   const { title, image, updatedAt,_id,autherFirstName,autherLastName,autherImage } = props;
+  console.log(props);
   
+  const autherName=autherFirstName+' '+autherLastName;
 
   const nagivate: any = useNavigate();
   
@@ -62,7 +64,7 @@ export default function SmallPostCard(props: Post) {
               aria-label="recipe"
             ></Avatar>
           }
-          subheader={<AutherName> {autherFirstName+' '+autherLastName}</AutherName>}
+          subheader={<AutherName>{ autherName}</AutherName>}
           sx={{ pt: 0, pb: "20px", color: "text.dark" }}
         />
         {/* <PostTitle>Author Name</PostTitle>
