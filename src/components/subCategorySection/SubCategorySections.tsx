@@ -1,6 +1,3 @@
-import React, { useEffect } from "react";
-import CategoryRectCard from "../categoryRectCard/CategoryRectCard";
-import CategorySquareCard from "../categorySquareCard/CategorySquareCard";
 import PostCard from "../postCard/PostCard";
 import { useSelector } from "react-redux";
 import Post from "../../types/post";
@@ -9,22 +6,20 @@ import { CircularProgress, Box } from "@mui/material";
 import Grid from "@mui/material/Grid";
 import { CategoryLabelBox } from "../../styled/styledBox";
 import { HorizontalLineBox } from "../../styled/styledBox";
+import { useNavigate, useParams } from "react-router-dom";
 
 export default function SubCategorySection() {
   const { catergory } = useSelector((state: any) => state);
 
-  
   const posts = catergory;
   const filteredCategories: any = [];
 
   // const {posts}=useSelector((state:any) =>state);
   // console.log(posts)
 
- 
-  
   if (catergory) {
     console.log("Here");
-    
+
     catergory.forEach((category: any) => {
       console.log("category");
 
@@ -34,13 +29,15 @@ export default function SubCategorySection() {
     });
     //  console.log(filteredCategories["football"]?.slice(2, 6))
     //  console.log(filteredCategories["football"])
-     console.log(Object.keys(filteredCategories))
+    console.log(Object.keys(filteredCategories));
   }
-  
-  
 
   const subCategories = Object.keys(filteredCategories);
-
+  const nagivate: any = useNavigate();
+  const {page} = useParams()
+  const handelGoSubCategory = (subCatergory: any) => {
+    nagivate(`/${page}/${subCatergory}`)
+  };
 
   return (
     <>
@@ -49,7 +46,10 @@ export default function SubCategorySection() {
           return (
             <Box mb={5}>
               <Box position={"relative"} mb={2} mt={7}>
-                <CategoryLabelBox sx={{ backgroundColor: "#272727" }}>
+                <CategoryLabelBox
+                  sx={{ backgroundColor: "#272727" }}
+                  onClick={() => handelGoSubCategory(item)}
+                >
                   {item}
                 </CategoryLabelBox>
                 <HorizontalLineBox
@@ -63,9 +63,9 @@ export default function SubCategorySection() {
                     spacing={1.5}
                     columns={12}
 
-                    // ml={3}
-                    // gap={1}
-                    // sx={{ minHeight: "300px" }}
+                  // ml={3}
+                  // gap={1}
+                  // sx={{ minHeight: "300px" }}
                   >
                     <Grid
                       item
@@ -120,4 +120,7 @@ export default function SubCategorySection() {
         })}
     </>
   );
+}
+function useRouteMatch(): { path: any; url: any } {
+  throw new Error("Function not implemented.");
 }

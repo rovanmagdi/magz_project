@@ -6,7 +6,7 @@ import Typography from "@mui/material/Typography";
 import Post from '../../types/post'
 import { useNavigate } from 'react-router-dom';
 import { useSelector } from 'react-redux';
-import {OverlayPostBox} from '../../styled/styledBox'
+import { OverlayPostBox } from '../../styled/styledBox'
 
 const CategoryRectCard: React.FC<Post> = (props) => {
 
@@ -33,7 +33,7 @@ const CategoryRectCard: React.FC<Post> = (props) => {
   const { catergory } = useSelector((state: any) => state);
 
   const nagivate: any = useNavigate();
-  
+
   const handleGoDetails = (id: any) => {
     console.log("go details");
     nagivate(`/details/${id}`);
@@ -42,8 +42,8 @@ const CategoryRectCard: React.FC<Post> = (props) => {
   }
   return (
     <ThemeProvider theme={theme}>
-      
-      <StyledCard  sx={{
+
+      <StyledCard sx={{
         "&:hover": {
           cursor: "pointer",
         }

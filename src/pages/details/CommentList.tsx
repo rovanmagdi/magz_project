@@ -43,7 +43,7 @@ const CommentList = (props: any) => {
   return (
     <div>
       {comments ? (
-        comments.map((comment: any) => <CommentDetails comment={comment} />)
+        comments.map((comment: any) => <CommentDetails comment={comment} sx={{borderBottom:"1px solid black"}}/>)
       ) : (
         <h5 className="no-comments-alert">
           No comments on this post yet. Be the first

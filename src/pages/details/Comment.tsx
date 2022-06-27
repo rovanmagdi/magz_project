@@ -61,7 +61,7 @@ export default function Comment() {
 
   return (
     <>
-      <Box sx={{ border: "1px solid #B1B1B1" }}>
+      <Box sx={{ border: "1px solid #B1B1B1",borderRadius: "5px"}}>
         <Box>
           <Box position={"relative"} sx={{ margin: "20px" }}>
             <CategoryLabelBox sx={{ backgroundColor: "#4D7E96" }}>
@@ -73,9 +73,9 @@ export default function Comment() {
           </Box>
           <TextareaAutosize
             aria-label="minimum height"
-            minRows={10}
+            minRows={3}
             placeholder="Your Comment"
-            style={{ width: 500, margin: "20px", border: "1px solid #B1B1B1" }}
+            style={{ width: 400, margin: "20px", border: "1px solid #B1B1B1",borderRadius:"5px" }}
             name="comment"
             value={comment.commentText}
             onChange={handleChange}
