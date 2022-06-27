@@ -9,6 +9,7 @@ export const InterstedCatergory = ()=> {
  
 
     return (dispatch: any) => {
+        
         intersetedApi.get(`/categories`)
             .then(({ data }) => {
                 dispatch(showSuccess());

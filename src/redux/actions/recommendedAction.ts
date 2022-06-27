@@ -6,8 +6,15 @@ import recommendedApi from "../../api/recommendedApi";
 
 export const getRecommendedPosts = () => (dispatch:any) => {
 	dispatch(startLoading());
+	const userToken = JSON.parse(localStorage.RegisterInfo).token;
+	const config = {
+		headers: {
+		  "Content-Type": "application/json",
+		  Authorization: `Bearer ${userToken}`,
+		},
+	  };
 	recommendedApi
-		.get(`/`)
+		.get(`/intrests`,config)
 		.then((response) => {
 			dispatch(getAllPostsSuccess(response.data));
 			console.log("data", response.data)

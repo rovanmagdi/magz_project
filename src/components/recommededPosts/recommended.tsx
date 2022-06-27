@@ -15,6 +15,7 @@ import { useContext } from "react";
 
 import { SxProps, Theme} from "@mui/material";
 import { theme } from "../../theme/palette";
+import { getRecommendedPosts } from "../../redux/actions/recommendedAction";
 
 const Styles = (theme: Theme): SxProps<Theme> => {
   const defaultStyles: SxProps<Theme> = {};
@@ -34,12 +35,13 @@ const Styles = (theme: Theme): SxProps<Theme> => {
     }
   }
 };
-const LastPosts = () => {
+const RecommendedPosts = () => {
   const dispatch: any = useDispatch();
 
-  const { recently } = useSelector((state: any) => state);
+  const { recommded } = useSelector((state: any) => state);
   useEffect(() => {
-    dispatch(RecentlyPosts());
+    // dispatch(RecentlyPosts());
+    dispatch(getRecommendedPosts())
     // console.log(recently);
   }, []);
   return (
@@ -70,4 +72,4 @@ const LastPosts = () => {
     </Box>
   );
 };
-export default LastPosts;
+export default RecommendedPosts;

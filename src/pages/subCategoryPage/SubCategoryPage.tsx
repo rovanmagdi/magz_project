@@ -6,7 +6,7 @@ import { useParams } from "react-router-dom";
 import { getSubcategoryPosts } from "../../redux/actions/subcategoryPostsAction";
 import ArrowForwardIosIcon from "@mui/icons-material/ArrowForwardIos";
 import TodaySection from "../../components/home/TodaySection";
-import RecommendedPosts from "../../components/recommendPosts/RecommendedPosts";
+import RecommendedPosts from "../../components/popularPosts/RecommendedPosts";
 import PostCard from "../../components/postCard/PostCard";
 import { CircularProgress } from "@mui/material";
 import Grid from "@mui/material/Grid";

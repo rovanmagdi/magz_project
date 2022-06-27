@@ -17,7 +17,7 @@ import SubCategoryPage from "../subCategoryPage/SubCategoryPage";
 import { QuotePaper } from "../../styled/styledPaper";
 import SearchCategory from "../../components/navbar/SearchCategory";
 import AuthorPage from "../author/AuthorPage";
-import RecommendedPosts from "../../components/recommendPosts/RecommendedPosts";
+import RecommendedPosts from "../../components/popularPosts/RecommendedPosts";
 import { Box, Stack } from "@mui/material";
 import { getAuthorInfo } from "../../redux/actions/authorAction";
 import { getRecommendedPosts } from "../../redux/actions/recommendedAction";
