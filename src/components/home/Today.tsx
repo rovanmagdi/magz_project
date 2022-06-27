@@ -38,8 +38,8 @@ const todayDate = mm + '/' + dd + '/' + yyyy;
 
   const nagivate: any = useNavigate();
   const handleGoDetails = (id: any) => {
-    console.log("go details");
-    console.log(props);
+    // console.log("go details");
+    // console.log(props);
     nagivate(`/details/${id}`);       
 
 

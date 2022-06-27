@@ -43,7 +43,7 @@ const RecommendedPosts = () => {
     // dispatch(RecentlyPosts());
     dispatch(getRecommendedPosts())
     // console.log(recently);
-  }, []);
+  }, [ dispatch]);
   return (
     <Box >
       <StyledGridRightTitle
@@ -54,10 +54,10 @@ const RecommendedPosts = () => {
           textTransform: "uppercase", 
         }}
       >
-        latest posts
+        Recommended Posts
         <StyledGridRightLine />
       </StyledGridRightTitle>
-      {recently.map((i: any) => {
+      {recommded?.map((i: any) => {
         return (
           <OtherPosts
             key={i._id}

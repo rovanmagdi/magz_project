@@ -15,7 +15,7 @@ import { Box, Button, Grid, useMediaQuery, useTheme } from "@mui/material";
   export const StyledGridRightLine = styled(Box)(({ theme }) => ({
     backgroundColor: `${theme.palette.primary.light}`,
     height: "3px",
-    width: "140px",
+    width: "120px",
     borderRadius: "10px",
     margin: "12px 0px 0px 25px",
   }));

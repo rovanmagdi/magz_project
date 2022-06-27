@@ -14,6 +14,7 @@ import authorReducer from "./authorReducer";
 import CatergoryReducer from "./catergoryReducer";
 import subcategoryPostsReducer from "./subcategoryPostsReducer";
 import RecommdedReducer from "./recommendedReducer";
+import SearchReducer from "./searchReducer";
 
 const rootReducer = combineReducers({
   status: statusReducer,
@@ -28,7 +29,8 @@ const rootReducer = combineReducers({
   views: viewsReducer,
   catergory:CatergoryReducer,
   subcategoryPosts:subcategoryPostsReducer,
-  recommded:RecommdedReducer
+  recommded:RecommdedReducer,
+  search:SearchReducer
 });
 
 export default rootReducer;

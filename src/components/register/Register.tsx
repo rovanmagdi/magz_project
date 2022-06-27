@@ -60,14 +60,7 @@ function Register() {
     if (validationLoginFormResult.error) {
       setErrorList(validationLoginFormResult.error.details);
     } else {
-      dispatch(
-        RegisterUser(
-          state.firstName,
-          state.lastName,
-          state.email,
-          state.password
-        )
-      );
+      dispatch(RegisterUser(state.firstName, state.lastName, state.email, state.password));
       setErrorList([]);
     }
   };
@@ -78,24 +71,17 @@ function Register() {
     }
   }, [data]);
 
-  // const [stateGoogle, setState] = useState({
-  //   firstName: "",
-  //   lastName: "",
-  //   email: "",
-  //   password: "",
-  //   // confirmePassword: "",
-  // });
-  const [stateProfile, SetProfile] = useState({
-    dataProfile:"",
-    inteseted:[]
+  const [stateGoogle, setStateGoogle] = useState({
+    dataProfile: "",
+    interested:[]
+    
+    // confirmePassword: "",
   });
   const handleSuccess = (results: any) => {
     console.log(results);
-    SetProfile(results.profileObj);
-    console.log(stateProfile);
-    
+    setStateGoogle(results.profileObj);
 
-    localStorage.setItem("RegisterInfo", JSON.stringify(results.profileObj));
+    localStorage.setItem("RegisterInfo", JSON.stringify(stateGoogle));
 
     dispatch(
       RegisterUser(
@@ -140,8 +126,8 @@ function Register() {
           placeholder="Last Name"
           type="text"
           value={lastName}
-          sx={{ marginTop: "20px" }}
           onChange={handLeInputChange}
+          sx={{ marginTop: "20px" }}
           name="lastName"
         />
         {errorList
@@ -208,7 +194,7 @@ function Register() {
             })
           : ""} */}
         <StyledButton variant="contained" type="submit">
-          Resgister
+          Sign in
         </StyledButton>
       </form>
       <Box sx={{ marginTop: "10px" }}>
