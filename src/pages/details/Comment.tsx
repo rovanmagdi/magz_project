@@ -18,6 +18,7 @@ import { StyledButton } from "../../styled/Button";
 import axios from "axios";
 import { useParams } from "react-router-dom";
 import SendIcon from "@mui/icons-material/Send";
+import { PersonIconNav, StyledRightOneConatiner } from "../../styled/Navbar";
 
 export default function Comment() {
   const [comment, setComment] = useState({
@@ -69,33 +70,39 @@ export default function Comment() {
   return (
     <>
       <Box sx={{ display: "flex", alignItems: "center" }}>
-        <Box
-          component="img"
-          height="40px"
-          width="40px"
-          sx={{ borderRadius: "50%" }}
-          src={userInfoObj.image}
-        /> 
         {
-          RegisterInfo?(
-            <TextField
-            id="outlined-start-adornment"
-            sx={{ m: 1, width: "70ch", marginTop: "20px" }}
-            placeholder="Write a Comment..."
-            InputProps={{
-              endAdornment: (
-                <InputAdornment position="end" sx={{ cursor: "pointer",color:"#4D7E96" }}>
-                  <SendIcon onClick={handleSubmit} />
-                </InputAdornment>
-              ),
-            }}
-            name="comment"
-            value={comment.commentText}
-            onChange={handleChange}
-          />
-          ):(<Box></Box>)
+          RegisterInfo ? (
+            <>
+              {userInfoObj.image !== "" ? (
+                <Box
+                  component="img"
+                  height="40px"
+                  width="40px"
+                  sx={{ borderRadius: "50%" }}
+                  src={userInfoObj.image}
+                />
+              ) : (<StyledRightOneConatiner>
+                <PersonIconNav />
+              </StyledRightOneConatiner>)}
+              <TextField
+                id="outlined-start-adornment"
+                sx={{ m: 1, width: "70ch", marginTop: "20px" }}
+                placeholder="Write a Comment..."
+                InputProps={{
+                  endAdornment: (
+                    <InputAdornment position="end" sx={{ cursor: "pointer", color: "#4D7E96" }}>
+                      <SendIcon onClick={handleSubmit} />
+                    </InputAdornment>
+                  ),
+                }}
+                name="comment"
+                value={comment.commentText}
+                onChange={handleChange}
+              />
+            </>
+          ) : (<Box></Box>)
         }
-      
+
 
       </Box>
     </>

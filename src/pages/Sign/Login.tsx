@@ -9,6 +9,7 @@ import { StyledLoginContainer } from "../../styled/Login";
 import { Box, useMediaQuery } from "@mui/material";
 import { theme } from "../../theme/palette";
 import LoginResponsive from "../../components/loginResponsive/LoginResponsive";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 export default function Login() {
   const isMatch = useMediaQuery(theme.breakpoints.down(1117));
@@ -22,7 +23,13 @@ export default function Login() {
             <NavbarSign />
             <Box sx={{ display: "flex" }}>
               <ImageSign />
-              <MniNavbar />
+            
+                <Routes>
+                  <Route path=""  element={<MniNavbar />} />
+                  {/* <Route path=""  element={<MniNavbar />} /> */}
+                </Routes>
+             
+              {/* <MniNavbar /> */}
             </Box>
             <FooterSign />
           </StyledLoginContainer>

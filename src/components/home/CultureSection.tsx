@@ -11,13 +11,13 @@ const CultureSection = () => {
 
     const filteredCategories:any=[];
     const {posts}=useSelector((state:any) =>state);
-    console.log(posts);
+    // console.log(posts);
      if(posts)
      {
         posts.forEach((category:any)=>{
             filteredCategories[category._id]=category.posts
         })
-        console.log(filteredCategories["culture"])
+        // console.log(filteredCategories["culture"])
     }
 
     return (

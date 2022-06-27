@@ -65,6 +65,12 @@ export default function SignIn() {
     }
   }, [data]);
 
+  const handleForgetPassword=()=>
+  {
+    navigate('/forget_password')
+    console.log("yes");
+    
+  }
   return (
     <form onSubmit={handleSubmit}>
       <BootstrapInput
@@ -110,6 +116,8 @@ export default function SignIn() {
           marginTop: "10px",
           cursor: "pointer",
         }}
+        onClick={handleForgetPassword}
+        
       >
         Forget Password ?
       </Typography>

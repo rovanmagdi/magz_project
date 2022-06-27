@@ -140,16 +140,20 @@ const Details = () => {
   useEffect(() => {
     for (var i = 0; i < stateDetails.likes.length; i++) {
       if (stateDetails.likes[i].user === userId) {
-
+        console.log("here");
         setUserLiked(true);
       }
     }
-  },[stateDetails.likes,userId]);
+  }, [stateDetails.likes, userId]);
 
   const handleLikesNumber = (number: any) => {
     setLikesNumber(number);
   };
 
+  const RegisterInfo = localStorage.getItem("RegisterInfo");
+  const handleGoLogin = () => {
+    nagivate("/Login");
+  };
   return (
     <Stack direction="row">
       <StyledTodayCard elevation={0}>
@@ -272,22 +276,62 @@ const Details = () => {
                 alignItems: "center",
               }}
             >
-              <Box
-                component="img"
-                src={userLiked ? like : unlike}
-                sx={{ height: "15px", width: "15px", margin: "8px" }}
-                onClick={handleLike}
-              />
-              <Typography component="span">
-                {/* {stateDetails?.likes?.length} */}
-                {likesNumber}
-              </Typography>
+              {RegisterInfo ? (
+                <>
+                  <Box
+                    component="img"
+                    src={userLiked ? like : unlike}
+                    sx={{
+                      height: "15px",
+                      width: "15px",
+                      margin: "8px",
+                      cursor: "pointer",
+                    }}
+                    onClick={handleLike}
+                  />
+                  <Typography component="span">
+                    {/* {stateDetails?.likes?.length} */}
+                    {likesNumber}
+                  </Typography>
+                </>
+              ) : (
+                <Box
+                  onClick={handleGoLogin}
+                  sx={{
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "center",
+                  }}
+                >
+                  <Box
+                    component="img"
+                    src={userLiked ? like : unlike}
+                    sx={{
+                      height: "15px",
+                      width: "15px",
+                      margin: "8px",
+                      cursor: "pointer",
+                    }}
+                    onClick={handleLike}
+                  />
+                  <Typography component="span">
+                    {/* {stateDetails?.likes?.length} */}
+                    {likesNumber}
+                  </Typography>
+                </Box>
+              )}
             </Box>
           </Box>
         </CardActions>
         <StyledLine sx={{ margin: "10px" }} />
         <Stack sx={{ fontSize: "15px", margin: "20px" }}>
-          {stateDetails?.description}
+          {stateDetails?.description.split(".").map((item) => {
+            return (
+              <>
+                <Box sx={{ lineHeight: "1.9" }}>{`${item}.`}</Box>
+              </>
+            );
+          })}
         </Stack>
         <Box position={"relative"} sx={{ margin: "20px" }}>
           <CategoryLabelBox sx={{ backgroundColor: "#4D7E96" }}>
@@ -300,11 +344,18 @@ const Details = () => {
         <CommentList id={id} handleCommentsNummber={handleCommentsNummber} />
 
         <Comment />
-
+        <Box position={"relative"} sx={{ margin: "20px" }}>
+          <CategoryLabelBox sx={{ backgroundColor: "#4D7E96" }}>
+            Author
+          </CategoryLabelBox>
+          <HorizontalLineBox
+            sx={{ backgroundColor: "#4D7E96", width: "550px" }}
+          ></HorizontalLineBox>
+        </Box>
         <Box
           sx={{
-            border: "1px solid #B1B1B1",
-            marginTop: "30px",
+            // border: "1px solid #B1B1B1",
+            marginTop: "20px",
             height: "250px",
             display: "flex",
             justifyItems: "flex-end",

@@ -13,6 +13,7 @@ import viewsReducer from "./viewReducer";
 import authorReducer from "./authorReducer";
 import CatergoryReducer from "./catergoryReducer";
 import subcategoryPostsReducer from "./subcategoryPostsReducer";
+import RecommdedReducer from "./recommendedReducer";
 
 const rootReducer = combineReducers({
   status: statusReducer,
@@ -27,6 +28,7 @@ const rootReducer = combineReducers({
   views: viewsReducer,
   catergory:CatergoryReducer,
   subcategoryPosts:subcategoryPostsReducer,
+  recommded:RecommdedReducer
 });
 
 export default rootReducer;

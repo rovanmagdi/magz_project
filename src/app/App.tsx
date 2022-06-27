@@ -27,16 +27,12 @@ import { ColorModeProvider } from "../contexts/ColorModeContext";
 
 import Not_Found from "../pages/not found/Not_found";
 import SubCategoryPage from "../pages/subCategoryPage/SubCategoryPage";
+import Forget_Password from "../pages/forget_Password/forget_password";
 function App() {
-
-
   return (
     <div className="App">
       <ColorModeProvider>
-
-
         <Provider store={store}>
-
           <Suspense fallback={<CircularProgress />}>
             <BrowserRouter>
               <Routes>
@@ -48,22 +44,20 @@ function App() {
                   <Route path="/Catergory/:page" element={<CategoryPage />} />
                   <Route path="/:page/:Subpage" element={<SubCategoryPage />} />
 
-                  <Route path="*" element={<Not_Found/>} />
+                  <Route path="*" element={<Not_Found />} />
                 </Route>
 
                 <Route path="login" element={<Login />} />
+                <Route path="forget_password" element={<Forget_Password />} />
+
                 <Route path="interested" element={<Interested />} />
                 <Route path="done" element={<Done />} />
               </Routes>
             </BrowserRouter>
           </Suspense>
-
         </Provider>
-
-
       </ColorModeProvider>
     </div>
-
   );
 }
 
