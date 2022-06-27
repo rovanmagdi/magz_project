@@ -122,7 +122,7 @@ export default function NavbarBottom() {
                   }}
                 >
                
-                    <Box>{page._id}</Box>
+                    <Box sx={{fontWeight:"bold"}}>{page._id}</Box>
                     
                  
 

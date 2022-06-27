@@ -272,7 +272,16 @@ const Details = () => {
         <Stack sx={{ fontSize: "15px", margin: "20px" }}>
           {stateDetails?.description}
         </Stack>
+        <Box position={"relative"} sx={{ margin: "20px" }}>
+            <CategoryLabelBox sx={{ backgroundColor: "#4D7E96" }}>
+              Comments
+            </CategoryLabelBox>
+            <HorizontalLineBox
+              sx={{ backgroundColor: "#4D7E96", width: "550px" }}
+            ></HorizontalLineBox>
+          </Box>
         <CommentList id={id} handleCommentsNummber={handleCommentsNummber} />
+        
         <Comment />
 
         <Box
