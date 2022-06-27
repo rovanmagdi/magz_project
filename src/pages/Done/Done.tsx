@@ -74,7 +74,7 @@ const Done = () => {
             sx={{
               color: "white",
               transform: "translateX(300%)",
-              marginBottom: "20px",
+              maxWidth:"50px"
             }}
             onClick={handleGoDone}
           >

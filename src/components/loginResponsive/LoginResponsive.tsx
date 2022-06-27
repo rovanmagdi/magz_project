@@ -29,7 +29,7 @@ export default function LoginResponsive() {
   return (
     <StyledImgContainer>
       <img src={Image} height="350px" width="450px"  />
-      <MniNavbar width="450px" />
+      <MniNavbar  />
       <Box sx={{ width: "450px" }}>
         <StyledGridRightTitle sx={{ color: "black" }}>
           Contact Us

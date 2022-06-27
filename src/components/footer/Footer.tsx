@@ -35,6 +35,7 @@ import { useContext } from "react";
 
 import { SxProps, Theme} from "@mui/material";
 import { useNavigate } from "react-router-dom";
+import RecommendedPosts from "../recommededPosts/recommended";
 
 const FooterStyles = (theme: Theme): SxProps<Theme> => {
   const defaultStyles: SxProps<Theme> = {};
@@ -62,6 +63,9 @@ const Footer = () => {
   const dispatch: any = useDispatch();
   const { recently } = useSelector((state: any) => state);
   const nagivate: any = useNavigate();
+	const RegisterInfo = localStorage.getItem("RegisterInfo");
+
+  
  
   return (
     <Box >
@@ -83,14 +87,8 @@ const Footer = () => {
               </StyledGridLeftText>
             </StyledGridLeft>
             <LastPosts />
-
-            <PopularPosts
-              title="title"
-              data="Any Description"
-              date="125"
-              img="img"
-              _id=""
-            />
+<RecommendedPosts/>
+            
           </Grid>
 
           <StyledLine />

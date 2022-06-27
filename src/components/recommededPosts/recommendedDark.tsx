@@ -42,13 +42,13 @@ const TypoStyles = (theme: Theme): SxProps<Theme> => {
   }
 };
 
-const RecommendedPosts = () => {
+const RecommendedPostsDark = () => {
 
   const theme = useTheme();
   const MobileView = useMediaQuery(theme.breakpoints.down("lg"));
 
   const dispatch: any = useDispatch();
-  const { recently } = useSelector((state: any) => state);
+  const { recommded } = useSelector((state: any) => state);
   const { views } = useSelector((state: any) => state);
   useEffect(() => {
     dispatch(RecentlyPosts());
@@ -56,7 +56,7 @@ const RecommendedPosts = () => {
 
   }, []);
   useEffect(() => {
-    // console.log(views);
+    console.log(views);
   }, [views]);
   const nagivate: any = useNavigate();
   const handleGoDetails = (id: any) => {
@@ -64,14 +64,14 @@ const RecommendedPosts = () => {
 
   }
   return (
-    <Box sx={{position:"sticky",top:"10px", fontFamily:"Oswald", fontSize:".9em", fontWeight:"600"}} component={"section"} >
+    <Box sx={{top:"10px", fontFamily:"Oswald", fontSize:".9em", fontWeight:"600"}} component={"section"} >
       <StyledGridRightTitle
         sx={TypoStyles(theme)}
       >
-       POPULAR POSTS
+       RECOMMENDED POSTS
         <StyledGridRightLine />
       </StyledGridRightTitle>
-      {views?.map((i: any) => {
+      {recommded?.map((i: any) => {
         return (
           <StyledGridRight    onClick={()=>handleGoDetails(i._id)}>
 
@@ -93,4 +93,4 @@ const RecommendedPosts = () => {
     </Box>
   );
 };
-export default RecommendedPosts;
+export default RecommendedPostsDark;

@@ -28,6 +28,7 @@ import { ColorModeProvider } from "../contexts/ColorModeContext";
 import Not_Found from "../pages/not found/Not_found";
 import SubCategoryPage from "../pages/subCategoryPage/SubCategoryPage";
 import Forget_Password from "../pages/forget_Password/forget_password";
+import Search from "../pages/search/Search";
 function App() {
   return (
     <div className="App">
@@ -43,6 +44,8 @@ function App() {
                   <Route path="/auther/:id" element={<AuthorPage />} />
                   <Route path="/Catergory/:page" element={<CategoryPage />} />
                   <Route path="/:page/:Subpage" element={<SubCategoryPage />} />
+                  <Route path="/search" element={<Search />} />
+
 
                   <Route path="*" element={<Not_Found />} />
                 </Route>

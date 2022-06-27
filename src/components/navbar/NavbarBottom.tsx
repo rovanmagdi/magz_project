@@ -22,12 +22,11 @@ import { useNavigate } from "react-router-dom";
 import { subCatergory } from "../../redux/actions/subCategory";
 import { useParams } from "react-router";
 import { log } from "console";
-import { useTheme} from "@mui/material";
+import { useTheme } from "@mui/material";
 import { ColorModeContext } from "../../contexts/ColorModeContext";
 import { useContext } from "react";
-
-
-import { SxProps, Theme} from "@mui/material";
+import { SxProps, Theme } from "@mui/material";
+import { Search } from "../../redux/actions/searchAction";
 
 const AppbarStyles = (theme: Theme): SxProps<Theme> => {
   const defaultStyles: SxProps<Theme> = {};
@@ -37,7 +36,6 @@ const AppbarStyles = (theme: Theme): SxProps<Theme> => {
         ...defaultStyles,
         color: "black",
         backgroundColor: "white",
-
       };
 
     case "light": {
@@ -51,7 +49,6 @@ const AppbarStyles = (theme: Theme): SxProps<Theme> => {
 };
 
 export default function NavbarBottom() {
-
   const { toggleColorMode } = useContext(ColorModeContext);
   const theme = useTheme();
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
@@ -63,7 +60,7 @@ export default function NavbarBottom() {
 
   const { page } = useParams();
 
-  const handleClick = (event: React.MouseEvent<HTMLButtonElement>,id:any) => {
+  const handleClick = (event: React.MouseEvent<HTMLButtonElement>, id: any) => {
     setAnchorEl(event.currentTarget);
     handleGoPage(id);
     handleRoute(id);
@@ -82,7 +79,7 @@ export default function NavbarBottom() {
     },
     [page, setSubcategories, subCatergoryState]
   );
-  
+
   const handleGoHome = () => {
     nagivate("/");
   };
@@ -92,19 +89,37 @@ export default function NavbarBottom() {
   }, [dispatch]);
 
   const handleRoute = (page: any) => {
-    // console.log("go");
-    nagivate(`Catergory/${page}`)
-
-
-  }
-
-  const handelGoSubCategory = (subCatergory: any) => {
-    nagivate(`/${page}/${subCatergory}`)
+    console.log("go");
+    nagivate(`Catergory/${page}`);
   };
 
+  const handelGoSubCategory = (subCatergory: any) => {
+    nagivate(`/${page}/${subCatergory}`);
+  };
+  const [state, setStateList] = useState({
+    statePage: "",
+
+  });
+  const { statePage } = state;
+const [stateSearch,setStateSearch] = useState({ })
+  const handLeInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    let { name, value } = e.target;
+    console.log(value);
+    setStateSearch(value)
+
+    setStateList({ ...state, [name]: value });
+  };
+
+  const handleSearch=(stateSearch:any)=>
+  {
+    console.log("search");
+    dispatch(Search(stateSearch))
+   nagivate('/search')
+  }
+ 
   return (
     <>
-      <StyledNavBottom  sx={AppbarStyles(theme)}>
+      <StyledNavBottom sx={AppbarStyles(theme)}>
         <StyledListNavLeft>
           <StyledListNavLeftContent onClick={handleGoHome}>
             News
@@ -117,7 +132,9 @@ export default function NavbarBottom() {
                   aria-controls={open ? "basic-menu" : undefined}
                   aria-haspopup="true"
                   aria-expanded={open ? "true" : undefined}
-                  onClick={(event: React.MouseEvent<HTMLButtonElement>) => handleClick(event,page._id)}
+                  onClick={(event: React.MouseEvent<HTMLButtonElement>) =>
+                    handleClick(event, page._id)
+                  }
                   sx={{
                     color: "white",
                     fontFamily: "Oswald",
@@ -126,10 +143,7 @@ export default function NavbarBottom() {
                     },
                   }}
                 >
-               
-                    <Box sx={{fontWeight:"bold"}}>{page._id}</Box>
-                    
-                 
+                  <Box sx={{ fontWeight: "bold" }}>{page._id}</Box>
 
                   {` `}
                 </StyledListNavLeftContent>
@@ -149,7 +163,11 @@ export default function NavbarBottom() {
                   }}
                 >
                   {subcategories?.map((el: any) => (
-                    <Box sx={{ color: "white", width: "100px",cursor:'pointer' }} key={el._id} onClick={() => handelGoSubCategory(el.title)}>
+                    <Box
+                      sx={{ color: "white", width: "100px", cursor: "pointer" }}
+                      key={el._id}
+                      onClick={() => handelGoSubCategory(el.title)}
+                    >
                       {el?.title}
                     </Box>
                   ))}
@@ -159,13 +177,24 @@ export default function NavbarBottom() {
           })}
         </StyledListNavLeft>
         <StyledListNavRight>
-          <FormControl  variant="outlined" >
+          <FormControl variant="outlined">
             <OutlinedInput
-              sx={{ height: "30px", borderRadius: "40px", color: "white",border:"0.5px solid #E6E8F0" }}
+              sx={{
+                height: "30px",
+                borderRadius: "40px",
+                color: "white",
+                border: "0.5px solid #E6E8F0",
+                fontSize:"12px"
+              }}
+              value={statePage}
+              onChange={handLeInputChange}
+              name="statePage"
+              placeholder="Search by Catergory"
               id="outlined-adornment-weight"
+             
               endAdornment={
                 <InputAdornment position="end" sx={AppbarStyles(theme)}>
-                  <SearchIcon />
+                  <SearchIcon sx={{cursor: "pointer"}}onClick={()=>handleSearch(statePage)}/>
                 </InputAdornment>
               }
               aria-describedby="outlined-weight-helper-text"
@@ -175,11 +204,16 @@ export default function NavbarBottom() {
             />
           </FormControl>
           <FormGroup>
-            <FormControlLabel label=""
-              control={<MaterialUISwitch defaultChecked  checked={theme.palette.mode === "dark"}
-              onChange={() => toggleColorMode()}
-            sx={{ ml: 4 }}/>}    
-              
+            <FormControlLabel
+              label=""
+              control={
+                <MaterialUISwitch
+                  defaultChecked
+                  checked={theme.palette.mode === "dark"}
+                  onChange={() => toggleColorMode()}
+                  sx={{ ml: 4 }}
+                />
+              }
             />
           </FormGroup>
         </StyledListNavRight>
@@ -187,4 +221,5 @@ export default function NavbarBottom() {
     </>
   );
 }
+
 

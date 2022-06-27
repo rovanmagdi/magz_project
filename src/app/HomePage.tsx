@@ -17,6 +17,7 @@ import { SxProps, Theme} from "@mui/material";
 import Interested from "../pages/Interested/Interested";
 
 import Not_Found from "../pages/not found/Not_found";
+import Search from "../pages/search/Search";
 
 const ContentStyles = (theme: Theme): SxProps<Theme> => {
   const defaultStyles: SxProps<Theme> = {};
@@ -56,7 +57,9 @@ function HomePage() {
             <Route path="/auther/:id" element={<AuthorPage />} />
             <Route path="/Catergory/:page" element={<CategoryPage />} />
             <Route path="/:page/:Subpage" element={<SubCategoryPage />} />
+            <Route path="/search" element={<Search />} />
             <Route path="*" element={<Not_Found/>} />
+            
 
 
 
