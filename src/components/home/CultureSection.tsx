@@ -29,7 +29,7 @@ const CultureSection = () => {
     <HorizontalLineBox sx={{backgroundColor:"#128CCB"}}></HorizontalLineBox>
     </Box>  
     <Grid container  columns={12}
-          columnGap={17}>
+          columnGap={18}>
               {
         filteredCategories["culture"]? (filteredCategories["culture"].map((post:any)=>{
             return <Grid item lg={4} sm={12} key={post._id}><Culture {...post}/>

@@ -4,7 +4,7 @@ import { QuotePaper } from '../../styled/styledPaper';
 const Quote = () => {
     return (
         <>
-          <QuotePaper><Typography textAlign={"center"}>sdfghgfd</Typography></QuotePaper>
+          <QuotePaper><Typography textAlign={"center"}>sdfghgfdsdfghgfd</Typography></QuotePaper>
         </>
     );
 };

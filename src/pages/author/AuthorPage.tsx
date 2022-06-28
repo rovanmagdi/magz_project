@@ -27,7 +27,6 @@ const AuthorPage = () => {
       <Stack alignItems={"center"} sx={{paddingTop:'110px'}}>
         <AuthorInfoSection></AuthorInfoSection>
         <PostsSection></PostsSection>
-        {/* <Paginationd></Paginationd> */}
       </Stack>
 
 

@@ -30,7 +30,7 @@ const OpinionSection = () => {
     </Box>  
  
  <Grid container   columns={12}
-          columnGap={17} >
+          columnGap={18} >
  
               {
        filteredCategories["opinion"]? (filteredCategories["opinion"].map(( post:any)=>{
