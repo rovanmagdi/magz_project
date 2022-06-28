@@ -15,7 +15,7 @@ import {
 import { OverlayTodayBox } from "../../styled/styledBox";
 import { color } from "@mui/system";
 import { StyledOpinionCard } from "../../styled/styledCard";
-import Post from "../../types/post";
+import PostHome from "../../types/PostHome";
 import { TypographyCardTitle } from "../../styled/styledTypography";
 import { DateTypography } from "../../styled/styledTypography";
 
@@ -23,7 +23,7 @@ import { useNavigate } from "react-router-dom";
 import PostDate from "../postDate/PostDate";
 import { ReadMoreTypography } from "../../styled/styledTypography";
 
-const Opinion: React.FC<Post> = (props) => {
+const Opinion: React.FC<PostHome> = (props) => {
   const { title, image, updatedAt, autherFirstName, autherLastName,_id,autherImage} = props;
   // console.log(title, image, description, updatedAt, auther);
   

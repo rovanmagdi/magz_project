@@ -22,7 +22,7 @@ import { useNavigate } from 'react-router-dom';
 import { useDispatch } from "react-redux";
 
 const AuthorPost: React.FC<Post> = (props) => {
-  const { _id,title, image, description, updatedAt , autherFirstName, autherLastName, category, autherBrief,autherImage} = props;
+  const { _id,title, image, description, updatedAt , auther, category} = props;
   // console.log(title, image, description, updatedAt, autherFirstName);
   const nagivate: any = useNavigate();
   
@@ -73,10 +73,10 @@ const AuthorPost: React.FC<Post> = (props) => {
             borderRadius="50%"
             marginLeft={2}
             marginRight={2}
-            src={image}
+            src={auther.image}
             alt="green iguana"
           />
-          <Typography textTransform={"capitalize"}>{ autherFirstName+" "+ autherLastName}</Typography>
+          <Typography textTransform={"capitalize"}>{ auther.firstName+" "+ auther.lastName}</Typography>
         </CardActions>
       </StyledAuthorPostCard>
     </>

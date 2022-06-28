@@ -19,8 +19,8 @@ import { useDispatch } from "react-redux";
 
 
 export default function PostCard(props: Post) {
-  const { title, image, updatedAt,_id ,autherFirstName,autherLastName,autherImage,autherId} = props;
-  const autherName=autherFirstName+' '+autherLastName;
+  const { title, image, updatedAt,_id ,auther} = props;
+  
   
   const nagivate: any = useNavigate();
   const dispatch: any = useDispatch();
@@ -34,8 +34,8 @@ export default function PostCard(props: Post) {
   }
   const handleAuthor = (event: React.MouseEvent<HTMLButtonElement>,id: any) => {
     event.stopPropagation();
-    dispatch(getAuthorInfo(autherId));
-    nagivate(`/auther/${autherId}`);
+    dispatch(getAuthorInfo(id));
+    nagivate(`/auther/${id}`);
   };
   return (
     <ThemeProvider theme={theme}>
@@ -67,13 +67,13 @@ export default function PostCard(props: Post) {
           avatar={
             <Avatar
               sx={{ bgcolor: red[500] }}
-              src={autherImage}
+              src={auther.image}
               aria-label="recipe"
             ></Avatar>
           }
-          subheader={<AutherName>{autherName}</AutherName>}
+          subheader={<AutherName>{ auther.firstName+" "+ auther.lastName}</AutherName>}
           sx={{ pt: 0, pb: "20px", color: "text.dark",cursor:'pointer' }}
-          onClick={(event: React.MouseEvent<HTMLButtonElement>)=>handleAuthor(event,autherId)}
+          onClick={(event: React.MouseEvent<HTMLButtonElement>)=>handleAuthor(event,auther._id)}
         />
         {/* <PostTitle>Author Name</PostTitle>
          </CardHeader> */}

@@ -11,13 +11,13 @@ import { Box } from '@mui/material';
 import { color } from '@mui/system';
 import { StyledCultureCard } from '../../styled/styledCard';
 import { OverlayCultureBox } from '../../styled/styledBox';
-import Post from '../../types/post';
+import PostHome from '../../types/PostHome';
 import { ReadMoreTypography, TypographyCardTitle } from '../../styled/styledTypography';
 import { DateTypography } from '../../styled/styledTypography';
 import PostDate from '../postDate/PostDate';
 import { useNavigate } from 'react-router-dom';
 
-const Culture: React.FC<Post> = (props) => {
+const Culture: React.FC<PostHome> = (props) => {
 
   const{title,image,updatedAt, autherFirstName, autherLastName, _id, autherImage}=props;
   const nagivate: any = useNavigate();

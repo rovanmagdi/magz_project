@@ -71,14 +71,14 @@ const Details = () => {
   const nagivate: any = useNavigate();
 
   useEffect(() => {
-    axios.get(`http://localhost:4000/posts/get_one/${id}`).then((response) => {
+    axios.get(`https://journalism-system.herokuapp.com/posts/get_one/${id}`).then((response) => {
       setStateDetails(response.data);
       handleLikesNumber(response.data.likes.length);
       setStateAuthor(response.data.auther?._id);
       handleCommentsNummber(response.data.comments.length);
     });
     axios
-      .patch(`http://localhost:4000/posts/add_view/${id}`)
+      .patch(`https://journalism-system.herokuapp.com/posts/add_view/${id}`)
       .then((response) => {});
   }, [id]);
   const handleAuthor = (id: any) => {

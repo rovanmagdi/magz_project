@@ -8,7 +8,7 @@ import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
 import { Box } from "@mui/material";
 import { StyledOpinionCard } from "../../styled/styledCard";
-import Post from "../../types/post";
+import PostHome from "../../types/PostHome";
 import { TypographyCardTitle } from "../../styled/styledTypography";
 import { DateTypography } from "../../styled/styledTypography";
 import { OverlaySportMobileBox } from "../../styled/styledBox";
@@ -17,7 +17,7 @@ import PostDate from "../postDate/PostDate";
 import { ReadMoreTypography } from "../../styled/styledTypography";
 import { useNavigate } from "react-router-dom";
 
-const SportMobileView: React.FC<Post> = (props) => {
+const SportMobileView: React.FC<PostHome> = (props) => {
   const{title,image,description,updatedAt, autherFirstName, autherLastName,_id, autherImage}=props;
   const nagivate: any = useNavigate();
   const handleGoDetails = (id: any) => {
