@@ -8,7 +8,7 @@ import Typography from "@mui/material/Typography";
 import { Box } from "@mui/material";
 import { styled, ThemeProvider } from "@mui/system";
 import { theme } from "../../theme/palette";
-import Post from "../../types/post";
+import PostHome from "../../types/PostHome";
 import postAPI from "../../api/postsApi";
 import { OverlayTodayBox } from "../../styled/styledBox";
 import { StyledTodayCard } from "../../styled/styledCard";
@@ -22,7 +22,7 @@ import { TypographyOverFlow } from "../../styled/styledTypography";
 import { useState } from "react";
 import {useMediaQuery, useTheme} from "@mui/material";
 
-const Today: React.FC<Post> = (props) => {
+const Today: React.FC<PostHome> = (props) => {
   const { title, image, description, autherFirstName,autherLastName, updatedAt, _id, autherImage } = props;
 
 
