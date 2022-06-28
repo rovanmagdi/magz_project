@@ -31,57 +31,61 @@ const Search = () => {
     };
     return (
         // <Stack sx={{ margin: "auto", maxWidth: "50%" }}>
-        <>{search.map((item: any) => {
-            return (
-                <StyledSportCard elevation={0} onClick={() => handleGoDetails(item._id)}>
-                    <CardActionArea>
-                        <Stack direction={"row"}>
-                            <CardMedia
-                                component="img"
-                                sx={{ borderRadius: "2px", maxWidth: "340px" }}
-                                height={275}
-                                image={item.image}
-                                alt="green iguana"
-                            />
-                            <OverlaySportBox>
-                                <ReadMoreTypography>read more...</ReadMoreTypography>
-                            </OverlaySportBox>
-                            <CardContent>
-                                <TypographyCardTitle gutterBottom>{item.title}</TypographyCardTitle>
-                                <DateTypography>
-                                    <Box sx={{ color: "text.secondary", fontSize: "13px" }}>
-                                        {<PostDate date={item.updatedAt} />}
+        <>{search && search.length > 0 ? (
+            search.map((item: any) => {
+                return (
+                    <StyledSportCard elevation={0} onClick={() => handleGoDetails(item._id)} key={item._id}>
+                        <CardActionArea>
+                            <Stack direction={"row"}>
+                                <CardMedia
+                                    component="img"
+                                    sx={{ borderRadius: "2px", maxWidth: "340px" }}
+                                    height={275}
+                                    image={item.image}
+                                    alt="green iguana"
+                                />
+                                <OverlaySportBox>
+                                    <ReadMoreTypography>read more...</ReadMoreTypography>
+                                </OverlaySportBox>
+                                <CardContent>
+                                    <TypographyCardTitle gutterBottom>{item.title}</TypographyCardTitle>
+                                    <DateTypography>
+                                        <Box sx={{ color: "text.secondary", fontSize: "13px" }}>
+                                            {<PostDate date={item.updatedAt} />}
+                                        </Box>
+                                    </DateTypography>
+                                    <Box height="80px" overflow={"hidden"}>
+                                        <TypographyOverFlow
+                                            sx={{ height: "150px" }}
+                                            variant="body2"
+                                            color="text.secondary"
+                                        >
+                                            {item.description}...
+                                        </TypographyOverFlow>
                                     </Box>
-                                </DateTypography>
-                                <Box height="80px" overflow={"hidden"}>
-                                    <TypographyOverFlow
-                                        sx={{ height: "150px" }}
-                                        variant="body2"
-                                        color="text.secondary"
-                                    >
-                                        {item.description}...
-                                    </TypographyOverFlow>
-                                </Box>
-                                <CardActions>
-                                    <Box
-                                        component="img"
-                                        height="30px"
-                                        width="30px"
-                                        borderRadius="50%"
-                                        marginRight={2}
-                                        marginLeft={-1}
-                                        //   src={autherImage}
-                                        alt="green iguana"
-                                    />
-                                    {/* <Typography textTransform={"capitalize"}>{ autherFirstName+" "+ autherLastName}</Typography> */}
+                                    <CardActions>
+                                        <Box
+                                            component="img"
+                                            height="30px"
+                                            width="30px"
+                                            borderRadius="50%"
+                                            marginRight={2}
+                                            marginLeft={-1}
+                                            //   src={autherImage}
+                                            alt="green iguana"
+                                        />
+                                        {/* <Typography textTransform={"capitalize"}>{ autherFirstName+" "+ autherLastName}</Typography> */}
 
-                                </CardActions>
-                            </CardContent>
-                        </Stack>
-                    </CardActionArea>
-                </StyledSportCard>
-            )
-        })}
+                                    </CardActions>
+                                </CardContent>
+                            </Stack>
+                        </CardActionArea>
+                    </StyledSportCard>
+                )
+            })
+
+        ) : (<Box sx={{textAlign: "center"}}>Not Result</Box>)}
+
         </>
 
 

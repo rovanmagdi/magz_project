@@ -17,7 +17,7 @@ const AuthorInfo: React.FC<Author> = (props: any) => {
         src={image}
         alt="author image"
       />
-      <Quote></Quote>
+      
     </>
   );
 };

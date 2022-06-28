@@ -53,13 +53,13 @@ const Details = () => {
       firstName: "",
       lastName: "",
       image: "",
+      brief: "",
     },
     regien: "",
     status: "",
     views: "",
     comments: [],
     updatedAt: "",
-    brief: "",
     autherId: "",
   });
 
@@ -107,7 +107,7 @@ const Details = () => {
       const body = { postId: postId.id };
 
       const { data } = await axios.post(
-        "http://localhost:4000/like",
+        "https://journalism-system.herokuapp.com/like",
         body,
         config
       );
@@ -160,7 +160,7 @@ const Details = () => {
         <Box
           sx={{
             display: "flex",
-            alignItems: "space-between",
+            alignItems: "space-around",
             justifyContent: "center",
             marginBottom: "20px",
           }}
@@ -428,8 +428,8 @@ const Details = () => {
                       {stateDetails.auther?.lastName}
                     </AuthorTypography>
                   </Box>
-                  <Box component="span" sx={{ fontSize: "13px" }}>
-                    {stateDetails.brief}
+                  <Box component="span" sx={{ fontSize: "12px",marginBottom: "50px"}}>
+                    {stateDetails.auther.brief}
                   </Box>
                 </Box>
               </Box>

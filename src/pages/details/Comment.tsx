@@ -55,7 +55,7 @@ export default function Comment() {
       const body = { ...comment, postId: postId.id };
 
       const { data } = await axios.post(
-        "http://localhost:4000/comment",
+        "https://journalism-system.herokuapp.com/comment",
         body,
         config
       );

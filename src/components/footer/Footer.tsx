@@ -33,7 +33,7 @@ import { ColorModeContext } from "../../contexts/ColorModeContext";
 import { useContext } from "react";
 
 
-import { SxProps, Theme} from "@mui/material";
+import { SxProps, Theme } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 import RecommendedPosts from "../recommededPosts/recommended";
 
@@ -63,10 +63,10 @@ const Footer = () => {
   const dispatch: any = useDispatch();
   const { recently } = useSelector((state: any) => state);
   const nagivate: any = useNavigate();
-	const RegisterInfo = localStorage.getItem("RegisterInfo");
+  const RegisterInfo = localStorage.getItem("RegisterInfo");
 
-  
- 
+
+
   return (
     <Box >
       {!isMatch ? (
@@ -83,12 +83,12 @@ const Footer = () => {
                   and social issues
                 </Box>
 
-                <StyledFooterButton onClick={()=>nagivate("/login")}>Sign up for MAGZ</StyledFooterButton>
+                <StyledFooterButton onClick={() => nagivate("/login")}>Sign up for MAGZ</StyledFooterButton>
               </StyledGridLeftText>
             </StyledGridLeft>
             <LastPosts />
-<RecommendedPosts/>
-            
+            <RecommendedPosts />
+
           </Grid>
 
           <StyledLine />
@@ -107,9 +107,9 @@ const Footer = () => {
               explores the connection between contemporary visual culture and
               social issues
             </StyledGridLeftTextMedia>
-              <StyledFooterButton>Sign up for MAGZ</StyledFooterButton>
+            <StyledFooterButton>Sign up for MAGZ</StyledFooterButton>
           </StyledGridLeft>
-        
+
           <StyledLineMedai />
           <StyledFooterBottom>
             © 2022 - MAGZ. All Rights Reserved.
