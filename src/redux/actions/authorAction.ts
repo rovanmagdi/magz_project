@@ -9,7 +9,7 @@ export const getAuthorInfo = (id:any) => (dispatch:any) => {
 		.get(`/${id}`)
 		.then((response) => {
 			dispatch(getAuthorInfoSuccess(response.data));
-			// console.log("data", response.data)
+			console.log("data", response.data)
 			dispatch(showSuccess());
 		})
 		.catch((err) => {

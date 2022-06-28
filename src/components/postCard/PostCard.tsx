@@ -67,11 +67,11 @@ export default function PostCard(props: Post) {
           avatar={
             <Avatar
               sx={{ bgcolor: red[500] }}
-              src={auther.image}
+              src={auther?.image}
               aria-label="recipe"
             ></Avatar>
           }
-          subheader={<AutherName>{ auther.firstName+" "+ auther.lastName}</AutherName>}
+          subheader={<AutherName>{ auther?.firstName+" "+ auther?.lastName}</AutherName>}
           sx={{ pt: 0, pb: "20px", color: "text.dark",cursor:'pointer' }}
           onClick={(event: React.MouseEvent<HTMLButtonElement>)=>handleAuthor(event,auther._id)}
         />

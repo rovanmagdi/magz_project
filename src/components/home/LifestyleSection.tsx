@@ -34,7 +34,7 @@ const LifestyleSection = () => {
           ></HorizontalLineBox>
         </Box>
 
-        <Grid container columns={12} columnGap={17}>
+        <Grid container columns={12} columnGap={18}>
           {filteredCategories["life style"] ? (
           filteredCategories["life style"].map((post: any) => {
               return (

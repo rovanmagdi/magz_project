@@ -30,8 +30,14 @@ export const BoxTitleSub = styled(Box)(({ theme }) => ({
   cursor: "pointer",
   background:
     theme.palette.mode === "light"
-      ? `rgba(99,142,163,0.2)`
-      : "#2b2b2b",
+      ? `#2b2b2b`
+      : "white",
+      textTransform:"capitalize",
+      color:
+      theme.palette.mode === "light"
+        ? `white`
+        : "#2b2b2b",
+
 
 }));
 export const BoxTitleCategory = styled(Box)(({ theme }) => ({
