@@ -35,8 +35,8 @@ const LifestyleSection = () => {
         </Box>
 
         <Grid container columns={12} columnGap={17}>
-          {filteredCategories["lifestyle"] ? (
-          filteredCategories["lifestyle"].map((post: any) => {
+          {filteredCategories["life style"] ? (
+          filteredCategories["life style"].map((post: any) => {
               return (
                 <Grid item lg={4} sm={12} key={post._id}>
                   <Lifestyle {...post} />

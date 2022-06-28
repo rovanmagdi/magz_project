@@ -10,6 +10,8 @@ import {
 } from "@mui/material";
 import React, { useCallback, useEffect, useState } from "react";
 import {
+  BoxTitleCategory,
+  BoxTitleSub,
   MaterialUISwitch,
   StyledListNavLeft,
   StyledListNavLeftContent,
@@ -115,6 +117,7 @@ const [stateSearch,setStateSearch] = useState({ })
     console.log("search");
     dispatch(Search(stateSearch))
    nagivate('/search')
+
   }
  
   return (
@@ -143,7 +146,7 @@ const [stateSearch,setStateSearch] = useState({ })
                     },
                   }}
                 >
-                  <Box sx={{ fontWeight: "bold" }}>{page._id}</Box>
+                  <BoxTitleCategory sx={{ fontWeight: "bold" }}>{page._id}</BoxTitleCategory>
 
                   {` `}
                 </StyledListNavLeftContent>
@@ -163,13 +166,12 @@ const [stateSearch,setStateSearch] = useState({ })
                   }}
                 >
                   {subcategories?.map((el: any) => (
-                    <Box
-                      sx={{ color: "white", width: "100px", cursor: "pointer" }}
+                    <BoxTitleSub
                       key={el._id}
                       onClick={() => handelGoSubCategory(el.title)}
                     >
                       {el?.title}
-                    </Box>
+                    </BoxTitleSub>
                   ))}
                 </Menu>
               </FormControl>

@@ -53,13 +53,13 @@ const Details = () => {
       firstName: "",
       lastName: "",
       image: "",
+      brief: "",
     },
     regien: "",
     status: "",
     views: "",
     comments: [],
     updatedAt: "",
-    brief: "",
     autherId: "",
   });
 
@@ -71,14 +71,14 @@ const Details = () => {
   const nagivate: any = useNavigate();
 
   useEffect(() => {
-    axios.get(`http://localhost:4000/posts/get_one/${id}`).then((response) => {
+    axios.get(`https://journalism-system.herokuapp.com/posts/get_one/${id}`).then((response) => {
       setStateDetails(response.data);
       handleLikesNumber(response.data.likes.length);
       setStateAuthor(response.data.auther?._id);
       handleCommentsNummber(response.data.comments.length);
     });
     axios
-      .patch(`http://localhost:4000/posts/add_view/${id}`)
+      .patch(`https://journalism-system.herokuapp.com/posts/add_view/${id}`)
       .then((response) => {});
   }, [id]);
   const handleAuthor = (id: any) => {
@@ -107,7 +107,7 @@ const Details = () => {
       const body = { postId: postId.id };
 
       const { data } = await axios.post(
-        "http://localhost:4000/like",
+        "https://journalism-system.herokuapp.com/like",
         body,
         config
       );
@@ -160,7 +160,7 @@ const Details = () => {
         <Box
           sx={{
             display: "flex",
-            alignItems: "space-between",
+            alignItems: "space-around",
             justifyContent: "center",
             marginBottom: "20px",
           }}
@@ -428,8 +428,8 @@ const Details = () => {
                       {stateDetails.auther?.lastName}
                     </AuthorTypography>
                   </Box>
-                  <Box component="span" sx={{ fontSize: "13px" }}>
-                    {stateDetails.brief}
+                  <Box component="span" sx={{ fontSize: "12px",marginBottom: "50px"}}>
+                    {stateDetails.auther.brief}
                   </Box>
                 </Box>
               </Box>

@@ -15,7 +15,7 @@ const AuthorInfoSection = () => {
 
   useEffect(() => {
     // dispatch(getAuthorInfo("62b350b25dc7b38dcce966c8"))
-    console.log(author.posts);
+    console.log(author);
   }, [author]);
 
   return (
@@ -27,7 +27,17 @@ const AuthorInfoSection = () => {
             sx={{ width: "150px", height: "150px", margin: "auto" ,position:'absolute',left:'43%',top:'-75px'}}
             src={author.image}
           ></Avatar>
-            <QuotePaper {...author} />
+            <QuotePaper sx={{margin:"auto"}} >
+              <Box >
+                {author.fullName}
+              </Box>
+              <Box>
+                {author.brief}
+              </Box>
+              <Box>
+                {author.numOfPosts}
+              </Box>
+            </QuotePaper>
           </Grid>
         ) : (
           <CircularProgress sx={{ margin: "auto" }} />
