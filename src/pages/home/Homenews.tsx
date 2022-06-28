@@ -21,7 +21,7 @@ import RecommendedPosts from "../../components/popularPosts/RecommendedPosts";
 import { Box, Stack } from "@mui/material";
 import { getAuthorInfo } from "../../redux/actions/authorAction";
 import { getRecommendedPosts } from "../../redux/actions/recommendedAction";
-import RecommendedPostsDark from "../../components/recommededPosts/recommendedDark";
+
 const Homenews = () => {
   // const posts=useSelector((state:any) =>state.posts? state.posts[0].posts : state.posts);
 

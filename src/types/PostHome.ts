@@ -13,13 +13,13 @@ export default interface Post {
     "status":string;
     "createdAt":string;
     "__v":number;
-    
-    "auther":{"firstName":string;
-    "lastName":string;
-    "image":string;
+    "auther":string;
+    "autherFirstName":string;
+    "autherLastName":string;
+    "autherImage":string;
 
-    "brief":string;
-    "_id":string;};
+    "autherBrief":string;
+    "autherId":string;
 
     
   }

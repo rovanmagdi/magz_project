@@ -19,11 +19,10 @@ import { getAuthorInfo } from "../../redux/actions/authorAction";
 
 
 export default function SmallPostCard(props: Post) {
-  const { title, image, updatedAt,_id,autherFirstName,autherLastName,autherImage,autherId} = props;
-  // console.log(props);
+  const { title, image, updatedAt,_id,auther} = props;
+  console.log(auther);
   
-  const autherName=autherFirstName+' '+autherLastName;
-
+  
   const nagivate: any = useNavigate();
   const dispatch: any = useDispatch();
  
@@ -36,8 +35,8 @@ export default function SmallPostCard(props: Post) {
   }
   const handleAuthor = (event: React.MouseEvent<HTMLButtonElement>,id: any) => {
     event.stopPropagation();
-    dispatch(getAuthorInfo(autherId));
-    nagivate(`/auther/${autherId}`);
+    dispatch(getAuthorInfo(id));
+    nagivate(`/auther/${id}`);
   };
 
   return (
@@ -55,7 +54,7 @@ export default function SmallPostCard(props: Post) {
         />
         <OverlayPostBox height={'250px'}></OverlayPostBox>
         <CardContent sx={{ py: "20px" }}>
-          <PostTitle color="text.dark">{`${title?.slice(0,61)}...`}
+          <PostTitle color="text.dark" sx={{height:'50px'}}>{`${title?.slice(0,25)}...`}
          
           
           </PostTitle>
@@ -70,13 +69,13 @@ export default function SmallPostCard(props: Post) {
           avatar={
             <Avatar
               sx={{ bgcolor: red[500] }}
-              src={autherImage}
+              src={auther.image}
               aria-label="recipe"
             ></Avatar>
           }
-          subheader={<AutherName>{ autherName}</AutherName>}
+          subheader={<AutherName>{ auther.firstName+" "+ auther.lastName}</AutherName>}
           sx={{ pt: 0, pb: "20px", color: "text.dark",cursor:'pointer' }}
-          onClick={(event: React.MouseEvent<HTMLButtonElement>)=>handleAuthor(event,autherId)}
+          onClick={(event: React.MouseEvent<HTMLButtonElement>)=>handleAuthor(event,auther._id)}
         />
         {/* <PostTitle>Author Name</PostTitle>
          </CardHeader> */}

@@ -11,7 +11,7 @@ import { palette } from "@mui/system";
 import { CategoryLabelBox, HorizontalLineBox } from "../../styled/styledBox";
 import { OverlaySportBox } from "../../styled/styledBox";
 import { StyledSportCard } from "../../styled/styledCard";
-import Post from "../../types/post";
+import PostHome from "../../types/PostHome";
 import { TypographyCardTitle } from "../../styled/styledTypography";
 import { DateTypography } from "../../styled/styledTypography";
 import PostDate from "../postDate/PostDate";
@@ -19,7 +19,7 @@ import { ReadMoreTypography } from "../../styled/styledTypography";
 import { TypographyOverFlow } from "../../styled/styledTypography";
 import { useNavigate } from "react-router-dom";
 
-const SportLaptopView: React.FC<Post> = (props) => {
+const SportLaptopView: React.FC<PostHome> = (props) => {
   const {
     title,
     image,
@@ -32,8 +32,8 @@ const SportLaptopView: React.FC<Post> = (props) => {
   } = props;
   const nagivate: any = useNavigate();
   const handleGoDetails = (id: any) => {
-    // console.log("go details");
-    // console.log(props);
+    console.log("go details");
+    console.log(props);
     nagivate(`/details/${id}`);
   };
   return (

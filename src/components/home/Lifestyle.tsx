@@ -11,21 +11,21 @@ import { CategoryLabelBox, HorizontalLineBox } from "../../styled/styledBox";
 import { color } from "@mui/system";
 import { OverlayLifestyleBox } from "../../styled/styledBox";
 import { StyledLifestyleCard } from "../../styled/styledCard";
-import Post from "../../types/post";
+import PostHome from "../../types/PostHome";
 import { ReadMoreTypography, TypographyCardTitle } from "../../styled/styledTypography";
 import { DateTypography } from "../../styled/styledTypography";
 import PostDate from "../postDate/PostDate";
 import { useNavigate } from "react-router-dom";
 
-const Lifestyle: React.FC<Post> = (props) => {
+const Lifestyle: React.FC<PostHome> = (props) => {
 
   const { title, image, updatedAt , autherFirstName, autherLastName, _id, autherImage} = props;
 
 
   const nagivate: any = useNavigate();
   const handleGoDetails = (id: any) => {
-    // console.log("go details");
-    // console.log(props);
+    console.log("go details");
+    console.log(props);
     nagivate(`/details/${id}`); }
   // console.log(title, image, description, updatedAt);
   return (
