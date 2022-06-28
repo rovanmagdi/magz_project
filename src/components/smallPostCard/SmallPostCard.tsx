@@ -64,8 +64,7 @@ export default function SmallPostCard(props: Post) {
           </PostDate>
          
         </CardContent>
-
-        <CardHeader
+       { auther.firstName?(<> <CardHeader
           avatar={
             <Avatar
               sx={{ bgcolor: red[500] }}
@@ -76,7 +75,8 @@ export default function SmallPostCard(props: Post) {
           subheader={<AutherName>{ auther.firstName+" "+ auther.lastName}</AutherName>}
           sx={{ pt: 0, pb: "20px", color: "text.dark",cursor:'pointer' }}
           onClick={(event: React.MouseEvent<HTMLButtonElement>)=>handleAuthor(event,auther._id)}
-        />
+        /></>):('')}
+       
         {/* <PostTitle>Author Name</PostTitle>
          </CardHeader> */}
       </StyledPostCard>
